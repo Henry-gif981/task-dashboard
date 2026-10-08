@@ -5,13 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The European Union – Group 4 | NEU</title>
 <meta name="description" content="Group 4 (NEU): the European Union and its role in the integration of the region, the world and Vietnam.">
-<!-- Fonts (optional): if offline, the system fallbacks in --display / --sans are used -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Mark that JavaScript runs: reveal animations only hide content when this class is present -->
+<script>document.documentElement.classList.add("js");</script>
 <style>
 /* =========================================================
-   1. Tokens — European Union palette
+   0. Local fonts (fonts/, SIL Open Font License); system fonts are the fallback
+   ========================================================= */
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(fonts/Inter-vietnamese.woff2) format('woff2'); unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB; }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(fonts/Inter-latin-ext.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(fonts/Inter-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 500 800; font-display: swap; src: url(fonts/PlusJakartaSans-vietnamese.woff2) format('woff2'); unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB; }
+@font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 500 800; font-display: swap; src: url(fonts/PlusJakartaSans-latin-ext.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 500 800; font-display: swap; src: url(fonts/PlusJakartaSans-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* =========================================================
+   1. Tokens: European Union palette
    ========================================================= */
 :root {
   --eu-blue: #003399;      /* EU flag blue */
@@ -79,7 +87,7 @@ body.night .nav-links a:hover, body.night .nav-links a.on { color: var(--gold); 
 body.night .btn-soft { background: rgba(255,255,255,.1); color: #fff !important; }
 @media (max-width: 980px) { .nav-links a:not(.btn-soft) { display: none; } }
 
-#progress { position: fixed; left: 0; top: 0; height: 4px; width: 0; background: linear-gradient(90deg, var(--eu-blue), var(--gold)); z-index: 11; }
+#progress { position: fixed; left: 0; top: 0; height: 3px; width: 0; background: var(--eu-blue); z-index: 11; }
 .dots { position: fixed; right: 26px; top: 50%; transform: translateY(-50%); z-index: 9; display: flex; flex-direction: column; gap: 16px; }
 .dots a { width: 10px; height: 10px; border-radius: 50%; background: rgba(11,21,48,.22); position: relative; transition: background .2s, transform .2s; }
 .dots a.on { background: var(--eu-blue); transform: scale(1.35); }
@@ -90,7 +98,7 @@ body.night .dots a.on { background: var(--gold); }
 .scroll-hint { position: fixed; right: 22px; bottom: 26px; z-index: 9; writing-mode: vertical-rl; font: 700 .6rem/1 var(--display); letter-spacing: .3em; color: var(--ink-3); display: flex; align-items: center; gap: 12px; }
 .scroll-hint::after { content: ""; width: 1px; height: 54px; background: currentColor; opacity: .5; }
 body.night .scroll-hint { color: rgba(255,255,255,.6); }
-.counter { position: fixed; left: var(--pad-x); bottom: 22px; z-index: 9; font: 700 .7rem/1 var(--display); letter-spacing: .14em; color: var(--ink-3); }
+.counter { position: fixed; right: 18px; top: 92px; z-index: 9; font: 700 .62rem/1 var(--display); letter-spacing: .12em; color: var(--ink-3); writing-mode: vertical-rl; }
 body.night .counter { color: rgba(255,255,255,.55); }
 @media (max-width: 760px) { .dots, .scroll-hint, .counter { display: none; } }
 
@@ -103,8 +111,7 @@ body.night .counter { color: rgba(255,255,255,.55); }
 .copy { max-width: min(46%, 860px); }
 @media (max-width: 1100px) { .copy { max-width: 100%; } }
 
-.eyebrow { display: inline-flex; align-items: center; gap: 12px; font: 700 .72rem/1 var(--display); letter-spacing: .16em; text-transform: uppercase; color: var(--eu-blue-2); margin-bottom: 22px; }
-.eyebrow::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 4px rgba(255, 204, 0, .25); }
+.eyebrow { font: 700 .8rem/1 var(--display); letter-spacing: .08em; color: var(--eu-blue-2); margin-bottom: 18px; }
 .dark .eyebrow { color: var(--gold); }
 h1, .h { font-family: var(--display); font-weight: 800; letter-spacing: -.025em; line-height: 1.06; }
 h1 { font-size: clamp(2.4rem, 4vw, 5rem); }
@@ -121,7 +128,7 @@ h1 { font-size: clamp(2.4rem, 4vw, 5rem); }
 .mt { margin-top: 36px; }
 
 /* Frosted panel for wide content (tables, grids) */
-.panel { background: rgba(255, 255, 255, .72); backdrop-filter: blur(18px) saturate(1.2); -webkit-backdrop-filter: blur(18px) saturate(1.2); border: 1px solid rgba(255,255,255,.8); border-radius: 32px; padding: clamp(24px, 3.4vw, 64px); box-shadow: var(--shadow); }
+.panel { background: #FBFCFE; border: 1px solid var(--line); border-radius: 24px; padding: clamp(22px, 3.2vw, 60px); box-shadow: 0 10px 40px -24px rgba(11, 21, 48, .25); }
 
 /* Buttons */
 .btn { display: inline-flex; align-items: center; gap: 14px; font: 700 .9rem/1 var(--display); padding: 22px 30px; border-radius: 14px; transition: transform .2s, box-shadow .2s; cursor: pointer; border: 0; }
@@ -138,17 +145,16 @@ h1 { font-size: clamp(2.4rem, 4vw, 5rem); }
 .g4 { grid-template-columns: repeat(4, 1fr); } .g5 { grid-template-columns: repeat(5, 1fr); }
 @media (max-width: 1100px) { .g4, .g5 { grid-template-columns: repeat(2, 1fr); } .g3 { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 680px) { .g2, .g3, .g4, .g5 { grid-template-columns: 1fr; } }
-.card { background: var(--card); border-radius: var(--radius); padding: 28px 28px 30px; box-shadow: var(--shadow); border: 1px solid var(--line); position: relative; display: flex; flex-direction: column; gap: 10px; }
+.card { background: var(--card); border-radius: 16px; padding: 24px 24px 26px; box-shadow: 0 6px 24px -18px rgba(11, 21, 48, .35); border: 1px solid var(--line); position: relative; display: flex; flex-direction: column; gap: 8px; }
 .card .tag { font: 700 .62rem/1.3 var(--display); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
 .card h3 { font: 800 1.12rem/1.25 var(--display); letter-spacing: -.01em; color: var(--ink); }
 .card p, .card li { font-size: .9rem; color: var(--ink-2); }
 .card ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
 .card ul li { padding-left: 20px; position: relative; }
 .card ul li::before { content: ""; position: absolute; left: 0; top: .6em; width: 8px; height: 8px; border-radius: 2px; background: var(--gold); transform: rotate(45deg); }
-.card .n { width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; font: 800 1.05rem/1 var(--display); color: #fff; background: linear-gradient(145deg, var(--eu-blue-2), var(--eu-blue)); box-shadow: 0 10px 20px -8px rgba(0,51,153,.6); margin-bottom: 6px; }
-.card.gold .n { background: linear-gradient(145deg, #FFD84D, var(--gold-2)); color: var(--ink); box-shadow: 0 10px 20px -8px rgba(242,183,0,.7); }
-.card.red .n { background: linear-gradient(145deg, #F05A52, var(--vn-red)); }
-.card.hl { background: linear-gradient(160deg, var(--eu-blue-2), var(--eu-blue)); color: #fff; border: 0; }
+.card .n { width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; font: 800 .95rem/1 var(--display); color: #fff; background: var(--eu-blue); margin-bottom: 4px; }
+.card.hl { background: var(--eu-blue); color: #fff; border: 0; }
+.card.hl .n { background: var(--gold); color: var(--ink); }
 .card.hl h3, .card.hl p, .card.hl li { color: #fff; }
 .card.hl .tag { color: rgba(255,255,255,.7); }
 .card.hl strong { color: var(--gold); }
@@ -156,26 +162,23 @@ h1 { font-size: clamp(2.4rem, 4vw, 5rem); }
 /* Bullets */
 .bul { list-style: none; display: flex; flex-direction: column; gap: 16px; margin-top: 28px; }
 .bul li { position: relative; padding-left: 34px; font-size: 1rem; color: var(--ink-2); }
-.bul li::before { content: ""; position: absolute; left: 4px; top: .5em; width: 12px; height: 12px; border-radius: 3px; background: var(--gold); transform: rotate(45deg); box-shadow: 0 0 0 4px rgba(255,204,0,.2); }
+.bul li::before { content: ""; position: absolute; left: 6px; top: .62em; width: 8px; height: 8px; border-radius: 50%; background: var(--eu-blue); }
 .dark .bul li { color: rgba(255,255,255,.85); }
 
 /* Stats */
-.stat { background: var(--card); border-radius: var(--radius); padding: 26px 28px; box-shadow: var(--shadow); border: 1px solid var(--line); }
-.stat .v { font: 800 clamp(1.9rem, 2.6vw, 3rem)/1 var(--display); letter-spacing: -.03em; color: var(--eu-blue); }
+.stat { background: var(--card); border-radius: 16px; padding: 22px 24px; border: 1px solid var(--line); border-left: 4px solid var(--eu-blue); }
+.stat .v { font: 800 clamp(1.5rem, 1.9vw, 2.4rem)/1.1 var(--display); letter-spacing: -.02em; color: var(--eu-blue); }
 .stat .l { font-size: .84rem; color: var(--ink-2); margin-top: 10px; }
-.stat.gold .v { color: var(--ink); background: linear-gradient(transparent 62%, rgba(255,204,0,.55) 62%); display: inline; }
-.stat.gold .l { margin-top: 14px; }
 
 /* Callout */
-.callout { border-radius: var(--radius); padding: 26px 30px; background: var(--ink); color: rgba(255,255,255,.88); font-size: .95rem; box-shadow: var(--shadow); position: relative; overflow: hidden; }
-.callout::after { content: ""; position: absolute; right: -40px; top: -40px; width: 140px; height: 140px; border-radius: 50%; background: radial-gradient(circle, rgba(255,204,0,.35), transparent 70%); }
-.callout h4 { font: 800 1rem/1.2 var(--display); color: var(--gold); margin-bottom: 8px; }
+.callout { border-radius: 16px; padding: 22px 26px; background: var(--ink); color: rgba(255,255,255,.9); font-size: .95rem; }
+.callout h3 { font: 800 1rem/1.2 var(--display); color: var(--gold); margin-bottom: 8px; }
 .callout strong { color: var(--gold); }
-.callout.soft { background: var(--eu-blue-50); color: var(--ink-2); border: 1px solid rgba(0,51,153,.12); }
-.callout.soft h4, .callout.soft strong { color: var(--eu-blue); }
+
 
 /* Tables */
-.tbl-wrap { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--line); background: var(--card); overflow-x: auto; }
+.tbl-wrap { border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: var(--card); overflow-x: auto; }
+.tbl caption { caption-side: top; text-align: left; padding: 16px 22px 14px; font: 700 .86rem/1.35 var(--display); color: var(--ink); background: var(--card); }
 table.tbl { width: 100%; border-collapse: collapse; font-size: .86rem; min-width: 640px; }
 .tbl th { background: var(--eu-blue); color: #fff; text-align: left; font: 700 .66rem/1.2 var(--display); letter-spacing: .12em; text-transform: uppercase; padding: 18px 22px; }
 .tbl td { padding: 15px 22px; border-top: 1px solid var(--line); vertical-align: top; color: var(--ink-2); }
@@ -187,9 +190,9 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .86rem; min-width
 /* Timeline */
 .tl { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
 @media (max-width: 1100px) { .tl { grid-template-columns: repeat(2, 1fr); } }
-.tl .m { background: var(--card); border-radius: 18px; padding: 20px 22px; border: 1px solid var(--line); box-shadow: var(--shadow); position: relative; }
+.tl .m { background: var(--card); border-radius: 12px; padding: 16px 18px; border: 1px solid var(--line); border-top: 3px solid var(--eu-blue); }
 .tl .y { font: 800 1.15rem/1 var(--display); color: var(--eu-blue); letter-spacing: -.01em; display: flex; align-items: center; gap: 10px; }
-.tl .y::before { content: ""; width: 9px; height: 9px; background: var(--gold); transform: rotate(45deg); }
+
 .tl .t { font: 700 .9rem/1.3 var(--display); margin-top: 10px; }
 .tl .d { font-size: .82rem; color: var(--ink-2); margin-top: 4px; }
 .tl.five { grid-template-columns: repeat(5, 1fr); }
@@ -204,22 +207,46 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .86rem; min-width
 .flow .ar { display: grid; place-items: center; font: 800 1.8rem/1 var(--display); color: var(--gold-2); }
 @media (max-width: 900px) { .flow { grid-template-columns: 1fr; } .flow .ar { transform: rotate(90deg); } }
 .chips { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; }
-.chip { background: var(--card); border-radius: 999px; padding: 12px 20px; font: 700 .8rem/1.2 var(--display); box-shadow: var(--shadow); border: 1px solid var(--line); }
+.chip { background: var(--card); border-radius: 999px; padding: 12px 20px; font: 700 .8rem/1.2 var(--display); border: 1px solid var(--line); }
 .chip b { color: var(--eu-blue); margin-right: 6px; }
 
 /* Share bar */
 .share { height: 18px; border-radius: 999px; background: var(--eu-blue-50); overflow: hidden; margin-top: 16px; }
-.share span { display: block; height: 100%; background: linear-gradient(90deg, var(--eu-blue), var(--eu-blue-2)); border-radius: 999px; }
+.share span { display: block; height: 100%; background: var(--eu-blue); border-radius: 999px; }
 .share-l { display: flex; justify-content: space-between; font-size: .76rem; color: var(--ink-3); margin-top: 8px; }
 
 /* Charts */
-.chart { background: var(--card); border-radius: var(--radius); padding: 28px 30px 22px; box-shadow: var(--shadow); border: 1px solid var(--line); }
-.chart h4 { font: 800 1rem/1.3 var(--display); margin-bottom: 14px; }
+.chart { background: var(--card); border-radius: 16px; padding: 24px 26px 18px; border: 1px solid var(--line); }
+.chart figcaption { font: 700 .92rem/1.35 var(--display); margin-bottom: 4px; }
+.chart .unit { font-size: .74rem; color: var(--ink-3); margin-bottom: 12px; }
 .chart svg { width: 100%; height: auto; display: block; overflow: visible; }
 .chart svg text { font-family: var(--sans); }
 .bar-mark { transition: opacity .2s; } .bar-mark:hover { opacity: .8; }
 .legend { display: flex; flex-wrap: wrap; gap: 8px 26px; font-size: .78rem; color: var(--ink-2); margin-top: 10px; }
 .legend i { display: inline-block; width: 14px; height: 14px; border-radius: 4px; margin-right: 8px; vertical-align: -2px; }
+
+/* Text blocks added for the report content */
+.note { font-size: .92rem; color: var(--ink-2); border-left: 3px solid var(--line); padding-left: 16px; max-width: 110ch; }
+.tnote { font-size: .76rem; color: var(--ink-3); margin-top: 12px; }
+.cap { font: 700 .86rem/1.35 var(--display); color: var(--ink); margin-top: 22px; }
+.olist { list-style: none; counter-reset: o; display: flex; flex-direction: column; gap: 14px; }
+.olist li { counter-increment: o; position: relative; padding: 18px 22px 18px 64px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; font-size: .95rem; color: var(--ink-2); }
+.olist li::before { content: counter(o); position: absolute; left: 20px; top: 16px; width: 30px; height: 30px; border-radius: 8px; background: var(--eu-blue); color: #fff; font: 800 .85rem/30px var(--display); text-align: center; }
+.refs { list-style: none; columns: 2 420px; column-gap: 48px; font-size: .84rem; color: var(--ink-2); }
+.refs li { break-inside: avoid; padding: 6px 0 6px 28px; text-indent: -28px; }
+.toc { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px 40px; }
+@media (max-width: 1000px) { .toc { grid-template-columns: 1fr; } }
+.toc a { display: block; font-size: .84rem; color: var(--ink-2); padding: 6px 0; border-bottom: 1px solid var(--line); }
+.toc a:hover { color: var(--eu-blue); }
+.toc a.toc-h { font: 700 .9rem/1.35 var(--display); color: var(--ink); padding-top: 14px; border-bottom-color: rgba(0,51,153,.25); }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+/* 3D stays behind the text: dimmed behind full-width panels and on small screens */
+body.dim3d #scene { opacity: .55; }
+@media (max-width: 760px) {
+  #scene { opacity: .12 !important; }                 /* text first on phones */
+  body.night #scene { opacity: .6 !important; }       /* chapter openings: object above the text */
+  body.at-home #scene { opacity: .3 !important; }
+}
 
 /* Two-column helpers */
 .cols { display: grid; gap: 28px; align-items: start; }
@@ -229,22 +256,12 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .86rem; min-width
 /* =========================================================
    5. Hero (reference 1) and dark chapter intros (reference 2)
    ========================================================= */
-.hero .lead { font-size: 1.2rem; }
-.hero .actions { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 42px; }
-.presenters { margin-top: 64px; }
-.presenters .lbl { font: 700 .72rem/1 var(--display); color: var(--ink-2); margin-bottom: 18px; }
-.presenters .row { display: flex; flex-wrap: wrap; gap: 14px 34px; align-items: center; }
-.person { display: flex; align-items: center; gap: 12px; }
-.person i { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; font: 800 .75rem/1 var(--display); font-style: normal; color: #fff; background: linear-gradient(145deg, var(--eu-blue-2), var(--eu-blue)); }
-.person b { display: block; font: 700 .82rem/1.2 var(--display); color: var(--ink); }
-.person span { font-size: .7rem; color: var(--ink-3); }
-.meta-line { margin-top: 22px; font-size: .78rem; color: var(--ink-3); display: flex; flex-wrap: wrap; gap: 8px 28px; }
-.meta-line b { color: var(--ink); font-weight: 700; }
-.deco { position: absolute; pointer-events: none; }
-.deco.tri { width: 0; height: 0; border-left: 34px solid transparent; border-top: 58px solid var(--eu-blue-2); left: 44%; bottom: 16%; transform: rotate(-8deg); animation: float 6s ease-in-out infinite; }
-.deco.drop { width: 58px; height: 58px; background: var(--gold); border-radius: 50% 0 50% 50%; left: 58%; bottom: 7%; transform: rotate(-45deg); animation: float 7s ease-in-out infinite reverse; }
-@keyframes float { 50% { translate: 0 -14px; } }
-@media (max-width: 1100px) { .deco { display: none; } }
+.hero .actions { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 36px; }
+.course { font: 600 .9rem/1.4 var(--display); color: var(--ink-2); margin-bottom: 26px; }
+.hero h1 { font-size: clamp(1.9rem, 2.7vw, 3.3rem); line-height: 1.16; letter-spacing: -.02em; }
+.cover-meta { display: grid; grid-template-columns: auto 1fr; gap: 10px 28px; margin-top: 40px; font-size: .9rem; color: var(--ink); }
+.cover-meta dt { font: 700 .7rem/1.9 var(--display); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+.cover-meta dd { line-height: 1.6; }
 
 .intro { text-align: center; align-items: center; justify-content: flex-end; padding-bottom: 9vh; }
 .intro::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 62%; pointer-events: none;
@@ -253,33 +270,31 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .86rem; min-width
 @media (max-height: 900px) { .intro .eyebrow { display: none; } }
 .intro .wrap { display: flex; flex-direction: column; align-items: center; }
 .intro .no { font: 800 clamp(3.4rem, 6vw, 7rem)/.9 var(--display); letter-spacing: -.05em;
-  background: linear-gradient(180deg, #FFE27A, var(--gold-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  color: var(--gold); }
 .intro .h { font-size: clamp(2rem, 3.4vw, 4.2rem); max-width: 24ch; margin-top: 14px; color: #fff; }
 .intro .subs { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 26px; margin-top: 28px; font-size: .85rem; color: rgba(255,255,255,.72); max-width: 980px; }
 .intro .subs b { color: var(--gold); margin-right: 6px; }
 .intro .btn-pill { margin-top: 34px; }
-.intro .pager { display: flex; gap: 12px; margin-top: 30px; }
-.intro .pager i { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.3); }
-.intro .pager i.on { background: #fff; }
+
 .dark { color: #fff; }
 .dark .h { color: #fff; }
 
 /* =========================================================
    6. Reveal on scroll
    ========================================================= */
-.rv { opacity: 0; transform: translateY(26px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); transition-delay: calc(var(--d, 0) * 80ms); }
-.rv.in { opacity: 1; transform: none; }
-@media (prefers-reduced-motion: reduce) { .rv { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } .deco { animation: none; } }
+.js .rv { opacity: 0; transform: translateY(26px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); transition-delay: calc(var(--d, 0) * 80ms); }
+.js .rv.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .js .rv { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } }
 
 /* =========================================================
    7. Print (backup): content only, no 3D
    ========================================================= */
 @media print {
-  #scene, .nav, .dots, .scroll-hint, .counter, #progress, .deco, .fallback-bg { display: none !important; }
+  #scene, .nav, .dots, .scroll-hint, .counter, #progress, .fallback-bg { display: none !important; }
   body { background: #fff; }
   .sec { min-height: auto; padding: 40px 30px; break-inside: avoid; }
   .dark, .dark .h { color: var(--ink); } .intro .h { color: var(--ink); }
-  .rv { opacity: 1; transform: none; }
+  .js .rv { opacity: 1; transform: none; }
   .panel { box-shadow: none; backdrop-filter: none; background: #fff; }
   * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 }
@@ -289,284 +304,336 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .86rem; min-width
 <canvas id="scene" aria-hidden="true"></canvas>
 <!-- Fallback decoration when WebGL / Three.js is unavailable -->
 <div class="fallback-bg" aria-hidden="true">
-  <svg viewBox="-110 -110 220 220"><g fill="#FFCC00" id="ring"></g></svg>
+  <svg viewBox="-110 -110 220 220" role="img" aria-label="Circle of twelve gold stars (decoration)"><g fill="#FFCC00" id="ring"></g></svg>
 </div>
 <div id="progress"></div>
 
 <!-- ============ NAVIGATION ============ -->
 <header class="nav" id="nav">
-  <a href="#home" class="brand" aria-label="Back to top">
-    <svg viewBox="-20 -20 40 40" aria-hidden="true"><circle r="19" fill="#003399"/><g fill="#FFCC00" id="mini-ring"></g></svg>
+  <a href="#home" class="brand" aria-label="Back to cover">
+    <svg viewBox="-20 -20 40 40" role="img" aria-label="Circle of twelve gold stars"><circle r="19" fill="#003399"/><g fill="#FFCC00" id="mini-ring"></g></svg>
     <span>European Union<small>NEU · Group 4</small></span>
   </a>
-  <nav class="nav-links">
-    <a href="#ch1">Overview</a>
-    <a href="#ch2">Region &amp; World</a>
-    <a href="#ch3">Vietnam</a>
-    <a href="#takeaways">Takeaways</a>
-    <a href="#qa" class="btn-soft">Q&amp;A <span class="arrow">→</span></a>
+  <nav class="nav-links" aria-label="Chapters">
+    <a href="#ch1">Chapter 1</a>
+    <a href="#ch2">Chapter 2</a>
+    <a href="#ch3">Chapter 3</a>
+    <a href="#references">References</a>
+    <a href="#contents" class="btn-soft">Contents</a>
   </nav>
 </header>
 <nav class="dots" id="dots" aria-label="Chapters">
-  <a href="#home"><span>Home</span></a>
-  <a href="#ch1"><span>01 · Overview of the EU</span></a>
-  <a href="#ch2"><span>02 · Region &amp; world</span></a>
-  <a href="#ch3"><span>03 · Vietnam</span></a>
-  <a href="#takeaways"><span>Takeaways</span></a>
-  <a href="#qa"><span>Q&amp;A</span></a>
+  <a href="#home"><span>Cover</span></a>
+  <a href="#contents"><span>Contents and Introduction</span></a>
+  <a href="#ch1"><span>Chapter 1</span></a>
+  <a href="#ch2"><span>Chapter 2</span></a>
+  <a href="#ch3"><span>Chapter 3</span></a>
+  <a href="#references"><span>References</span></a>
 </nav>
 <div class="scroll-hint">SCROLL</div>
 <div class="counter" id="counter"></div>
 
 <main>
 <!-- ======================================================
-     data-scene: which 3D scene shows behind the section
-       hub | ladder | members | globe | bridge | stars (dark)
+     Each section: data-scene = 3D scene behind it
+     (hub | ladder | members | globe | bridge | stars),
+     data-pdf = matching heading in "BTL Đa biên - Nhóm 4.pdf"
      ====================================================== -->
 
-<!-- ============ HERO ============ -->
-<section class="sec hero" id="home" data-scene="hub">
+<!-- ============ COVER ============ -->
+<section class="sec hero" id="home" data-scene="hub" data-pdf="Cover page">
   <div class="wrap">
     <div class="copy">
-      <div class="eyebrow rv">Multilateral Investment System &amp; Multinational Enterprises</div>
-      <h1 class="rv" style="--d:1">Understanding the<br><span class="accent">European Union</span></h1>
-      <p class="lead rv" style="--d:2">Its role and influence on the integration and linkage of the region, the world and Vietnam.</p>
-      <div class="actions rv" style="--d:3">
-        <a class="btn btn-dark" href="#agenda">Start the journey <span class="arrow">→</span></a>
-        <a class="btn btn-ghost" href="#ch3">Jump to Vietnam</a>
-      </div>
-      <div class="presenters rv" style="--d:4">
-        <div class="lbl">Presented by Group 4</div>
-        <div class="row">
-          <div class="person"><i>ĐH</i><div><b>Đặng Việt Hoàng</b><span>11232291</span></div></div>
-          <div class="person"><i>LK</i><div><b>Lê Trung Kiên</b><span>11235799</span></div></div>
-          <div class="person"><i>NT</i><div><b>Ngô Anh Tuấn</b><span>11234533</span></div></div>
-        </div>
-        <div class="meta-line"><span>National Economics University — <b>School of Advanced Education Programs</b></span><span>Class <b>Investment Economics 65</b></span><span>Lecturer <b>Nguyễn Thị Mai Hoa</b></span></div>
-      </div>
+      <p class="eyebrow rv">National Economics University</p>
+      <p class="course rv" style="--d:1">Multilateral Investment System and Multinational Enterprises</p>
+      <h1 class="rv" style="--d:2">Describe your understanding of the <span class="accent">European Union (EU)</span>. Analyze the role and influence of the EU on the integration and linkage of the region, the world and Vietnam.</h1>
+      <dl class="cover-meta rv" style="--d:3">
+        <dt>Group 4</dt><dd>Đặng Việt Hoàng (11232291)<br>Lê Trung Kiên (11235799)<br>Ngô Anh Tuấn (11234533)</dd>
+        <dt>Class</dt><dd>Investment Economics 65</dd>
+        <dt>Lecturer</dt><dd>Nguyễn Thị Mai Hoa</dd>
+      </dl>
+      <div class="actions rv" style="--d:4"><a class="btn btn-dark" href="#contents">Contents</a></div>
     </div>
   </div>
-  <div class="deco tri" aria-hidden="true"></div>
-  <div class="deco drop" aria-hidden="true"></div>
 </section>
 
-<!-- ============ AGENDA ============ -->
-<section class="sec" id="agenda" data-scene="hub">
+<!-- ============ TABLE OF CONTENTS ============ -->
+<section class="sec auto" id="contents" data-scene="hub" data-pdf="Table of Contents">
+  <div class="wrap panel">
+    <h2 class="h rv">Table of Contents</h2>
+    <nav class="toc mt" aria-label="Table of contents">
+      <div class="rv">
+        <a class="toc-h" href="#introduction">Introduction</a>
+        <a class="toc-h" href="#ch1">Chapter 1: Theoretical basis and overview of the European Union</a>
+        <a href="#c1-concept">1.1.1 Concept of international/regional economic integration</a>
+        <a href="#c1-theories">1.1 Foundational theories of economic integration</a>
+        <a href="#c1-levels">1.1.2 Levels of regional economic integration</a>
+        <a href="#c1-model">1.1.3 The EU as a Model of Deep Regional Integration</a>
+        <a href="#c1-history">1.2.1 Formation and development process</a>
+        <a href="#c1-institutions">1.2.2 Institutional structure</a>
+        <a href="#c1-principles">1.2.3 Objectives, Principles and Fundamental Values</a>
+        <a href="#c1-mechanisms">1.2.4 Core Mechanisms of European Integration</a>
+      </div>
+      <div class="rv" style="--d:1">
+        <a class="toc-h" href="#ch2">Chapter 2: The EU's role and influence on regional and global integration</a>
+        <a href="#c2-deepening">2.1.1 Deepening integration</a>
+        <a href="#c2-enlargement">2.1.2 Enlargement and Neighborhood Policy</a>
+        <a href="#c2-challenges">2.1.3 Challenges to integration</a>
+        <a href="#c2-trade">2.2.1 The EU as a Global Trade Power</a>
+        <a href="#c2-regulatory">2.2.2 Regulatory Power</a>
+        <a href="#c2-development">2.2.3 Development cooperation</a>
+        <a href="#c2-climate">2.3.1 Climate Leadership and Sustainability</a>
+        <a href="#c2-security">2.3.2 Security and External Action</a>
+        <a href="#c2-model">2.3.3 The EU as a Model for Other Regional Organizations</a>
+        <a href="#c2-assessment">2.4.1 Strengths and Limitations</a>
+        <a href="#c2-prospects">2.4.2 Future Prospects</a>
+      </div>
+      <div class="rv" style="--d:2">
+        <a class="toc-h" href="#ch3">Chapter 3: The EU's influence on Vietnam</a>
+        <a href="#c3-milestones">3.1.1 Milestones</a>
+        <a href="#c3-trade">3.1.2 Trade and investment status</a>
+        <a href="#c3-evfta">3.2.1 Content and timeline</a>
+        <a href="#c3-reform">3.2.2 Impact on institutional reform</a>
+        <a href="#c3-impact-trade">3.2.3 Impacts on trade and investment</a>
+        <a href="#c3-broader">3.3 EU's Broader Influence on Vietnam's Development</a>
+        <a href="#c3-standards">3.3.1 Standards, Sustainability and Regulatory Alignment</a>
+        <a href="#c3-cooperation">3.3.2 Development Cooperation and Green Transition</a>
+        <a href="#c3-opportunities">3.4.1 Opportunities</a>
+        <a href="#c3-challenges">3.4.2 Challenges</a>
+        <a href="#c3-recommendations">3.4.3 Recommendations</a>
+        <a class="toc-h" href="#references">References</a>
+      </div>
+    </nav>
+  </div>
+</section>
+
+<!-- ============ INTRODUCTION ============ -->
+<section class="sec" id="introduction" data-scene="hub" data-pdf="Introduction (page empty in the PDF; text composed from the report)">
   <div class="wrap">
     <div class="copy">
-      <div class="eyebrow rv">Agenda</div>
-      <h2 class="h rv" style="--d:1">Three chapters, <span class="accent">one union</span></h2>
-    </div>
-    <div class="grid g4 mt">
-      <a class="card rv" style="--d:1" href="#ch1"><div class="n">01</div><h3>Theoretical basis &amp; overview of the EU</h3><p>Regional integration · levels of integration · history · institutions · principles · core mechanisms</p></a>
-      <a class="card rv" style="--d:2" href="#ch2"><div class="n">02</div><h3>The EU in regional &amp; global integration</h3><p>Deepening &amp; enlargement · trade power · Brussels Effect · development · climate · security · prospects</p></a>
-      <a class="card red rv" style="--d:3" href="#ch3"><div class="n">03</div><h3>The EU's influence on Vietnam</h3><p>Relations · EVFTA &amp; EVIPA · standards &amp; green transition · opportunities · challenges · policy</p></a>
-      <a class="card gold rv" style="--d:4" href="#takeaways"><div class="n">04</div><h3>Conclusion</h3><p>Key takeaways · Questions &amp; Answers</p></a>
+      <h2 class="h rv">Introduction</h2>
+      <p class="lead rv" style="--d:1">This report addresses the topic: describe your understanding of the European Union (EU) and analyze the role and influence of the EU on the integration and linkage of the region, the world and Vietnam.</p>
+      <p class="lead rv" style="--d:2">The European Union represents one of the most advanced examples of regional economic integration. What began primarily as an initiative to promote economic cooperation among European countries gradually developed into a highly institutionalized system involving a single market, common policies, a common currency for many members, and supranational institutions.</p>
+      <p class="lead rv" style="--d:3">Chapter 1 presents the theoretical basis of regional economic integration and an overview of the EU. Chapter 2 analyzes the EU's role and influence on regional and global integration. Chapter 3 examines the EU's influence on Vietnam, with the EVFTA and EVIPA as key channels of influence.</p>
     </div>
   </div>
 </section>
 
 <!-- ======================= CHAPTER 1 ======================= -->
-<section class="sec intro dark" id="ch1" data-scene="stars">
+<section class="sec intro dark" id="ch1" data-scene="stars" data-pdf="CHAPTER 1: THEORETICAL BASIS AND OVERVIEW OF THE EUROPEAN UNION">
   <div class="wrap">
-    <div class="eyebrow rv">Chapter</div>
-    <div class="no rv" style="--d:1">01</div>
-    <h2 class="h rv" style="--d:2">Theoretical basis and overview of the European Union</h2>
-    <div class="subs rv" style="--d:3"><span><b>1.1</b>Theoretical basis of regional economic integration</span><span><b>1.2</b>Overview of the European Union</span></div>
-    <a class="btn btn-pill rv" style="--d:4" href="#c1-concept">◈ Explore chapter</a>
-    <div class="pager rv" style="--d:5"><i class="on"></i><i></i><i></i></div>
+    <p class="eyebrow rv">Chapter 1</p>
+    <h2 class="h rv" style="--d:1">Theoretical basis and overview of the European Union</h2>
+    <p class="subs rv" style="--d:2"><span><b>1.1</b>Theoretical basis of regional economic integration</span><span><b>1.2</b>Overview of the European Union</span></p>
+    <a class="btn btn-pill rv" style="--d:3" href="#contents">Contents</a>
   </div>
 </section>
 
-<section class="sec" id="c1-concept" data-scene="hub">
+<section class="sec" id="c1-concept" data-scene="hub" data-pdf="1.1.1. Concept of international/regional economic integration">
   <div class="wrap">
     <div class="copy">
-      <div class="eyebrow rv">1.1.1 · Concept</div>
-      <h2 class="h rv" style="--d:1">Regional economic <span class="accent">integration</span></h2>
+      <p class="eyebrow rv">1.1.1</p>
+      <h2 class="h rv" style="--d:1">Concept of international/regional economic integration</h2>
       <ul class="bul">
-        <li class="rv" style="--d:2"><strong>Definition:</strong> countries progressively reduce barriers to goods, services, capital and people — and increasingly coordinate policies.</li>
-        <li class="rv" style="--d:3"><strong>Two levels:</strong> global (multilateral rules for trade and investment) and regional (neighbouring countries deepen ties).</li>
-        <li class="rv" style="--d:4"><strong>Economic aims:</strong> efficiency, larger markets, economies of scale, trade and investment, competitiveness.</li>
-        <li class="rv" style="--d:5"><strong>Political aims:</strong> peace, stability and stronger collective bargaining power.</li>
+        <li class="rv" style="--d:2"><strong>International economic integration</strong> refers to the process through which countries increasingly reduce barriers to the movement of goods, services, capital, people, and, in some cases, economic policies across national borders.</li>
+        <li class="rv" style="--d:3"><strong>Regional economic integration</strong>: neighboring or geographically connected countries remove economic barriers and coordinate their policies in order to create a more integrated regional market.</li>
+        <li class="rv" style="--d:4">The primary objective is to increase economic efficiency, expand market access, promote trade and investment, and enhance the competitiveness of participating economies.</li>
+        <li class="rv" style="--d:5">Regional integration can also contribute to broader political objectives, such as maintaining peace, strengthening political stability, and increasing the collective bargaining power of member countries.</li>
       </ul>
-      <div class="callout rv mt" style="--d:6"><h4>The costs of integration</h4>Stronger competition for domestic firms · adjustment costs for workers as production shifts · transfer of some policy responsibilities to regional institutions.</div>
+      <div class="callout rv mt" style="--d:6"><h3>Costs and challenges</h3>Greater market openness may expose domestic firms to stronger competition from foreign enterprises. Workers may face adjustment costs as production shifts between countries, and deeper integration may require governments to transfer certain policy responsibilities to regional institutions.</div>
     </div>
   </div>
 </section>
 
-<section class="sec" id="c1-levels" data-scene="ladder">
+<section class="sec" id="c1-theories" data-scene="hub" data-pdf="1.1.2. Foundational theories of economic integration (listed in the PDF table of contents, no body text) [ADDED CONTENT]">
   <div class="wrap">
     <div class="copy">
-      <div class="eyebrow rv">1.1.2 · Levels</div>
-      <h2 class="h rv" style="--d:1">Five steps up the <span class="accent">integration ladder</span></h2>
-      <p class="lead rv" style="--d:2">Political union is deeper still but rarely achieved. The stages are <strong>not a rigid sequence</strong> — arrangements can mix features of different stages.</p>
+      <p class="eyebrow rv">1.1</p>
+      <h2 class="h rv" style="--d:1">Foundational theories of economic integration</h2>
+      <div class="stack mt">
+        <div class="card rv" style="--d:2"><p class="tag">Viner (1950)</p><h3>Trade creation and trade diversion</h3>
+          <p>Trade creation occurs when a preferential agreement shifts purchases from higher-cost domestic production to lower-cost producers in a partner country. Trade diversion occurs when imports shift from a lower-cost non-member to a higher-cost member because of the preferential tariff. The welfare effect of an integration agreement depends on which effect dominates.</p></div>
+        <div class="card rv" style="--d:3"><p class="tag">Balassa (1961)</p><h3>Stages of economic integration</h3>
+          <p>Integration is described as a sequence of stages of increasing depth: free trade area, customs union, common market, economic union and complete economic integration. Each stage removes further barriers and requires more policy coordination among members.</p></div>
+      </div>
+      <p class="src rv"><b>Source:</b> Viner (1950); Balassa (1961).</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="c1-levels" data-scene="ladder" data-pdf="1.1.2. Levels of regional economic integration">
+  <div class="wrap">
+    <div class="copy">
+      <p class="eyebrow rv">1.1.2</p>
+      <h2 class="h rv" style="--d:1">Levels of regional economic integration</h2>
+      <p class="lead rv" style="--d:2">Political union can be considered an even deeper form of integration, although it is rarely achieved in practice. These stages should not necessarily be understood as a rigid sequence that every regional organization must follow.</p>
     </div>
     <div class="ladder mt">
-      <div class="card rv" style="--d:1;min-height:220px"><div class="n">1</div><h3>Free Trade Area</h3><p>Internal tariffs removed; each member keeps its own external trade policy (e.g. USMCA, AFTA)</p></div>
-      <div class="card rv" style="--d:2;min-height:260px"><div class="n">2</div><h3>Customs Union</h3><p>+ Common external tariff toward non-members</p></div>
-      <div class="card rv" style="--d:3;min-height:300px"><div class="n">3</div><h3>Common Market</h3><p>+ Free movement of capital, labour and services</p></div>
-      <div class="card rv" style="--d:4;min-height:340px"><div class="n">4</div><h3>Economic Union</h3><p>+ Coordinated tax, competition, spending and employment policies</p></div>
-      <div class="card hl rv" style="--d:5;min-height:380px"><div class="n" style="background:var(--gold);color:var(--ink)">5</div><h3>Economic &amp; Monetary Union</h3><p>+ Common currency and common central bank — the euro area and the <strong>ECB</strong></p></div>
+      <div class="card rv" style="--d:1;min-height:220px"><p class="n">1</p><h3>Free Trade Area</h3><p>Members eliminate or reduce tariffs on goods traded among themselves; each member retains its own trade policy toward non-member countries.</p></div>
+      <div class="card rv" style="--d:2;min-height:260px"><p class="n">2</p><h3>Customs Union</h3><p>Establishes a common external tariff toward non-member countries.</p></div>
+      <div class="card rv" style="--d:3;min-height:300px"><p class="n">3</p><h3>Common Market</h3><p>Restrictions on the movement of capital, labor, and services are substantially reduced.</p></div>
+      <div class="card rv" style="--d:4;min-height:340px"><p class="n">4</p><h3>Economic Union</h3><p>Members may coordinate policies concerning taxation, competition, government spending and employment.</p></div>
+      <div class="card hl rv" style="--d:5;min-height:380px"><p class="n">5</p><h3>Economic and Monetary Union</h3><p>Members may adopt a common currency managed by a common central bank. The euro area is the most prominent contemporary example.</p></div>
     </div>
   </div>
 </section>
 
-<section class="sec" id="c1-model" data-scene="hub">
+<section class="sec" id="c1-model" data-scene="hub" data-pdf="1.1.3. The EU as a Model of Deep Regional Integration">
   <div class="wrap">
     <div class="copy">
-      <div class="eyebrow rv">1.1.3 · The EU as a model</div>
-      <h2 class="h rv" style="--d:1">A model of <span class="accent">deep</span> regional integration</h2>
-      <p class="lead rv" style="--d:2">The EU is <strong>not simply a trade bloc</strong>: it combines economic integration, legal cooperation, institutional governance, political coordination and external relations.</p>
+      <p class="eyebrow rv">1.1.3</p>
+      <h2 class="h rv" style="--d:1">The EU as a Model of Deep Regional Integration</h2>
+      <p class="lead rv" style="--d:2">The EU should not be understood simply as a trade bloc. It represents a multidimensional form of regional integration combining economic integration, legal cooperation, institutional governance, political coordination, and external relations.</p>
     </div>
     <div class="grid g5 mt">
-      <div class="card rv" style="--d:1"><div class="n">€</div><h3>Single Market</h3><p>Free movement of goods, services, capital and people</p></div>
-      <div class="card rv" style="--d:2"><div class="n">≡</div><h3>Common policies</h3><p>Trade, agriculture, competition, regional development, environment, consumers</p></div>
-      <div class="card rv" style="--d:3"><div class="n">◎</div><h3>Monetary union</h3><p>The euro; monetary policy run by the European Central Bank</p></div>
-      <div class="card rv" style="--d:4"><div class="n">⚖</div><h3>Supranational institutions</h3><p>Commission, Parliament, Court of Justice; EU law can bind member states</p></div>
-      <div class="card gold rv" style="--d:5"><div class="n">★</div><h3>External influence</h3><p>Market size lets EU rules shape firms and countries abroad — the "Brussels Effect"</p></div>
+      <div class="card rv" style="--d:1"><h3>Single European Market</h3><p>Based on the free movement of goods, services, capital, and people.</p></div>
+      <div class="card rv" style="--d:2"><h3>Common policies</h3><p>Trade, agriculture, competition, regional development, environmental protection, and consumer protection.</p></div>
+      <div class="card rv" style="--d:3"><h3>Economic and Monetary Union</h3><p>Many member states have adopted the euro; monetary policy for the euro area is conducted by the European Central Bank.</p></div>
+      <div class="card rv" style="--d:4"><h3>Supranational institutional structure</h3><p>The European Commission, the European Parliament, and the Court of Justice of the European Union exercise powers at the EU level.</p></div>
+      <div class="card rv" style="--d:5"><h3>External influence</h3><p>EU rules and standards can influence companies and countries outside its borders, the "Brussels Effect".</p></div>
     </div>
   </div>
 </section>
 
-<section class="sec auto" id="c1-history" data-scene="members">
+<section class="sec auto" id="c1-history" data-scene="members" data-pdf="1.2.1. Formation and development process (Table 1)">
   <div class="wrap panel">
-    <div class="eyebrow rv">1.2.1 · Formation and development</div>
-    <h2 class="h rv" style="--d:1">From coal and steel to a <span class="accent">union of 27</span></h2>
-    <div class="tl mt">
-      <div class="m rv"><div class="y">1950</div><div class="t">Schuman Declaration</div><div class="d">Pool French and German coal and steel — a foundation for peace</div></div>
-      <div class="m rv" style="--d:1"><div class="y">1951–1952</div><div class="t">ECSC</div><div class="d">Six founders create the first supranational community</div></div>
-      <div class="m rv" style="--d:2"><div class="y">1957–1958</div><div class="t">Treaties of Rome</div><div class="d">EEC and Euratom: toward a common market</div></div>
-      <div class="m rv" style="--d:3"><div class="y">1965–1967</div><div class="t">Merger Treaty</div><div class="d">Single Commission and Council for the three communities</div></div>
-      <div class="m rv"><div class="y">1973</div><div class="t">First enlargement</div><div class="d">Denmark, Ireland and the United Kingdom join</div></div>
-      <div class="m rv" style="--d:1"><div class="y">1979</div><div class="t">First direct EP elections</div><div class="d">Citizens elect the European Parliament</div></div>
-      <div class="m rv" style="--d:2"><div class="y">1981</div><div class="t">Greece joins</div><div class="d">Tenth member; supports democratic consolidation</div></div>
-      <div class="m rv" style="--d:3"><div class="y">1986</div><div class="t">Spain and Portugal join</div><div class="d">The Communities grow to 12 members</div></div>
-      <div class="m rv"><div class="y">1986–1987</div><div class="t">Single European Act</div><div class="d">Legal basis to complete the Single Market</div></div>
-      <div class="m rv" style="--d:1"><div class="y">1992–1993</div><div class="t">Maastricht Treaty</div><div class="d">EU created; basis for EMU, foreign policy, justice &amp; home affairs</div></div>
-      <div class="m rv" style="--d:2"><div class="y">1993</div><div class="t">Single Market launched</div><div class="d">The four freedoms in operation</div></div>
-      <div class="m rv" style="--d:3"><div class="y">1995</div><div class="t">Austria, Finland, Sweden</div><div class="d">Membership rises to 15</div></div>
-      <div class="m rv"><div class="y">1999</div><div class="t">Euro launched</div><div class="d">For accounting and financial transactions</div></div>
-      <div class="m rv" style="--d:1"><div class="y">2002</div><div class="t">Euro cash</div><div class="d">Banknotes and coins in 12 countries</div></div>
-      <div class="m rv" style="--d:2"><div class="y">2004</div><div class="t">Largest enlargement</div><div class="d">Ten countries, mainly Central and Eastern Europe</div></div>
-      <div class="m rv" style="--d:3"><div class="y">2007</div><div class="t">Bulgaria and Romania</div><div class="d">Membership reaches 27</div></div>
-      <div class="m rv"><div class="y">2009</div><div class="t">Treaty of Lisbon</div><div class="d">Reformed institutions and decision-making</div></div>
-      <div class="m rv" style="--d:1"><div class="y">2013</div><div class="t">Croatia joins</div><div class="d">28th member — last accession before Brexit</div></div>
-      <div class="m rv" style="--d:2"><div class="y">2016</div><div class="t">UK referendum</div><div class="d">A majority votes to leave the EU</div></div>
-      <div class="m rv" style="--d:3"><div class="y">2020</div><div class="t">Brexit</div><div class="d">UK leaves on 31 January 2020; the EU has 27 members</div></div>
-      <div class="m rv"><div class="y">2020–now</div><div class="t">A resilient, strategic EU</div><div class="d">Climate, digital transformation, energy security, geopolitics</div></div>
+    <p class="eyebrow rv">1.2.1</p>
+    <h2 class="h rv" style="--d:1">Formation and development process</h2>
+    <p class="cap rv" style="--d:2">Table 1. Key Milestones in the Historical Development of the European Union</p>
+    <div class="tl mt" role="list" aria-label="Table 1. Key Milestones in the Historical Development of the European Union">
+      <div class="m rv" role="listitem"><p class="y">1950</p><p class="t">Schuman Declaration</p><p class="d">Pooling of French and German coal and steel production</p></div>
+      <div class="m rv" role="listitem" style="--d:1"><p class="y">1951–1952</p><p class="t">European Coal and Steel Community</p><p class="d">The first supranational European community</p></div>
+      <div class="m rv" role="listitem" style="--d:2"><p class="y">1957–1958</p><p class="t">Treaties of Rome: EEC and Euratom</p><p class="d">Integration extended to broader economic cooperation and a common market</p></div>
+      <div class="m rv" role="listitem" style="--d:3"><p class="y">1965–1967</p><p class="t">Merger Treaty</p><p class="d">A single Commission and Council for the ECSC, EEC, and Euratom</p></div>
+      <div class="m rv" role="listitem"><p class="y">1973</p><p class="t">First enlargement</p><p class="d">Denmark, Ireland, and the United Kingdom join</p></div>
+      <div class="m rv" role="listitem" style="--d:1"><p class="y">1979</p><p class="t">First direct European Parliament elections</p><p class="d">Citizens directly elect members of the European Parliament</p></div>
+      <div class="m rv" role="listitem" style="--d:2"><p class="y">1981</p><p class="t">Greece joins</p><p class="d">The tenth member of the European Communities</p></div>
+      <div class="m rv" role="listitem" style="--d:3"><p class="y">1986</p><p class="t">Spain and Portugal join</p><p class="d">The Communities expand to 12 members</p></div>
+      <div class="m rv" role="listitem"><p class="y">1986-1987</p><p class="t">Single European Act</p><p class="d">Legal basis for completing the Single Market</p></div>
+      <div class="m rv" role="listitem" style="--d:1"><p class="y">1992–1993</p><p class="t">Maastricht Treaty</p><p class="d">Creation of the EU; foundations for Economic and Monetary Union</p></div>
+      <div class="m rv" role="listitem" style="--d:2"><p class="y">1993</p><p class="t">Single Market launched</p><p class="d">Based on the four freedoms</p></div>
+      <div class="m rv" role="listitem" style="--d:3"><p class="y">1995</p><p class="t">Austria, Finland and Sweden join</p><p class="d">EU membership increases to 15</p></div>
+      <div class="m rv" role="listitem"><p class="y">1999</p><p class="t">Euro introduced</p><p class="d">For accounting and financial transactions</p></div>
+      <div class="m rv" role="listitem" style="--d:1"><p class="y">2002</p><p class="t">Euro banknotes and coins</p><p class="d">Euro cash enters circulation in 12 countries</p></div>
+      <div class="m rv" role="listitem" style="--d:2"><p class="y">2004</p><p class="t">Major EU enlargement</p><p class="d">Ten countries, mainly from Central and Eastern Europe</p></div>
+      <div class="m rv" role="listitem" style="--d:3"><p class="y">2007</p><p class="t">Bulgaria and Romania join</p><p class="d">EU membership expands to 27 countries</p></div>
+      <div class="m rv" role="listitem"><p class="y">2009</p><p class="t">Treaty of Lisbon enters into force</p><p class="d">Reform of EU institutions and decision-making mechanisms</p></div>
+      <div class="m rv" role="listitem" style="--d:1"><p class="y">2013</p><p class="t">Croatia joins the EU</p><p class="d">The 28th member, the final accession before Brexit</p></div>
+      <div class="m rv" role="listitem" style="--d:2"><p class="y">2016</p><p class="t">UK referendum on EU membership</p><p class="d">A majority of UK voters vote to leave the EU</p></div>
+      <div class="m rv" role="listitem" style="--d:3"><p class="y">2020</p><p class="t">Brexit</p><p class="d">The UK leaves on 31 January 2020; the EU operates with 27 member states</p></div>
+      <div class="m rv" role="listitem"><p class="y">2020–present</p><p class="t">A more resilient and strategic EU</p><p class="d">Economic resilience, climate change, digital transformation, energy security</p></div>
     </div>
-    <p class="src"><b>Source:</b> Table 1 — European Union, European Parliament, European Council and European Central Bank materials.</p>
+    <p class="src"><b>Source:</b> European Union, European Parliament, European Council, and European Central Bank materials.</p>
   </div>
 </section>
 
-<section class="sec auto" id="c1-institutions" data-scene="hub">
+<section class="sec auto" id="c1-institutions" data-scene="hub" data-pdf="1.2.2. Institutional structure">
   <div class="wrap panel">
-    <div class="eyebrow rv">1.2.2 · Institutional structure</div>
-    <h2 class="h rv" style="--d:1">Who <span class="accent">decides</span> in the EU?</h2>
+    <p class="eyebrow rv">1.2.2</p>
+    <h2 class="h rv" style="--d:1">Institutional structure</h2>
     <div class="grid g3 mt">
-      <div class="card rv"><div class="tag">General EU interest</div><h3>European Commission</h3><p>Proposes legislation, implements policies, manages the budget, ensures EU law is applied</p></div>
-      <div class="card rv" style="--d:1"><div class="tag">EU citizens</div><h3>European Parliament</h3><p>Directly elected; co-legislates, approves the budget with the Council, oversees institutions</p></div>
-      <div class="card rv" style="--d:2"><div class="tag">Member-state governments</div><h3>Council of the EU</h3><p>National ministers by policy area; adopts legislation with the Parliament</p></div>
-      <div class="card rv"><div class="tag">Heads of state or government</div><h3>European Council</h3><p>Sets overall political direction and priorities; no ordinary legislation</p></div>
-      <div class="card rv" style="--d:1"><div class="tag">Rule of law</div><h3>Court of Justice (CJEU)</h3><p>Ensures EU law is interpreted and applied consistently across member states</p></div>
-      <div class="card rv" style="--d:2"><div class="tag">Euro area</div><h3>European Central Bank</h3><p>Monetary policy and price stability; forms the Eurosystem with national central banks</p></div>
+      <div class="card rv"><p class="tag">General interests of the EU</p><h3>European Commission</h3><p>Proposes legislation, implements EU policies, manages the EU budget, and ensures that EU law is properly applied.</p></div>
+      <div class="card rv" style="--d:1"><p class="tag">EU citizens</p><h3>European Parliament</h3><p>Elected by citizens; participates in the legislative process, approves the budget together with the Council, and exercises democratic oversight.</p></div>
+      <div class="card rv" style="--d:2"><p class="tag">Governments of the member states</p><h3>Council of the European Union</h3><p>National ministers meet depending on the policy area; adopts EU legislation together with the European Parliament.</p></div>
+      <div class="card rv"><p class="tag">Heads of state or government</p><h3>European Council</h3><p>Defines the Union's overall political direction and priorities; generally does not adopt ordinary legislation.</p></div>
+      <div class="card rv" style="--d:1"><p class="tag">EU law</p><h3>Court of Justice of the European Union</h3><p>Ensures that EU law is interpreted and applied consistently across member states.</p></div>
+      <div class="card rv" style="--d:2"><p class="tag">Euro area</p><h3>European Central Bank</h3><p>Responsible for monetary policy in the euro area; its primary objective is to maintain price stability.</p></div>
     </div>
-    <div class="callout soft rv mt">EU decision-making balances <strong>supranational</strong> and <strong>intergovernmental</strong> elements — member states keep key powers where national sovereignty remains central.</div>
+    <p class="note rv mt">EU decision-making involves a complex interaction between supranational and intergovernmental elements.</p>
   </div>
 </section>
 
-<section class="sec auto" id="c1-principles" data-scene="hub">
+<section class="sec auto" id="c1-principles" data-scene="hub" data-pdf="1.2.3. Objectives, Principles and Fundamental Values">
   <div class="wrap panel">
-    <div class="eyebrow rv">1.2.3 · Objectives and principles</div>
-    <h2 class="h rv" style="--d:1">Objectives, principles and <span class="accent">fundamental values</span></h2>
+    <p class="eyebrow rv">1.2.3</p>
+    <h2 class="h rv" style="--d:1">Objectives, Principles and Fundamental Values</h2>
     <div class="cols c2 mt">
       <div class="stack">
-        <div class="card rv"><div class="tag">Objective</div><h3>Economic</h3><p>An internal market with minimal barriers; sustainable growth, jobs, competitiveness, social and territorial cohesion</p></div>
-        <div class="card rv" style="--d:1"><div class="tag">Objective</div><h3>Political</h3><p>Peace and stability; cooperation in foreign policy, security and justice</p></div>
-        <div class="card hl rv" style="--d:2"><div class="tag">Values</div><h3>Fundamental values</h3><p>Human dignity, freedom, democracy, equality, the rule of law and human rights</p></div>
+        <div class="card rv"><p class="tag">Objective</p><h3>Economic</h3><p>An internal market in which economic barriers between member states are minimized; sustainable economic growth, employment, competitiveness, social and territorial cohesion.</p></div>
+        <div class="card rv" style="--d:1"><p class="tag">Objective</p><h3>Political</h3><p>Maintaining peace and stability; cooperation in foreign policy, security, justice, and other areas.</p></div>
+        <div class="card rv" style="--d:2"><p class="tag">Values</p><h3>Fundamental values</h3><p>Respect for human dignity, freedom, democracy, equality, the rule of law, and human rights.</p></div>
       </div>
       <div class="stack">
-        <div class="card gold rv"><div class="n">S</div><h3>Subsidiarity</h3><p>Act at EU level only when it achieves objectives better than national, regional or local action</p></div>
-        <div class="card gold rv" style="--d:1"><div class="n">P</div><h3>Proportionality</h3><p>EU action must not go beyond what the treaties' objectives require</p></div>
-        <div class="card gold rv" style="--d:2"><div class="n">S</div><h3>Solidarity</h3><p>Financial and regional policies reduce disparities and share adjustment costs</p></div>
+        <div class="card rv"><p class="tag">Principle</p><h3>Subsidiarity</h3><p>Decisions are taken at the EU level only when Union action can achieve objectives more effectively than action at the national, regional, or local level.</p></div>
+        <div class="card rv" style="--d:1"><p class="tag">Principle</p><h3>Proportionality</h3><p>EU action should not go beyond what is necessary to achieve the objectives established by the treaties.</p></div>
+        <div class="card rv" style="--d:2"><p class="tag">Principle</p><h3>Solidarity</h3><p>Financial and regional policies are designed to reduce disparities and support less-developed regions.</p></div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="sec auto" id="c1-mechanisms" data-scene="hub">
+<section class="sec auto" id="c1-mechanisms" data-scene="hub" data-pdf="1.2.4 Core Mechanisms of European Integration">
   <div class="wrap panel">
-    <div class="eyebrow rv">1.2.4 · Core mechanisms</div>
-    <h2 class="h rv" style="--d:1">How integration <span class="accent">actually works</span></h2>
+    <p class="eyebrow rv">1.2.4</p>
+    <h2 class="h rv" style="--d:1">Core Mechanisms of European Integration</h2>
     <div class="grid g5 mt">
-      <div class="card rv"><div class="n">1</div><h3>The Single Market</h3><ul><li>Free movement of goods, services, capital and people</li><li>Common standards cut transaction costs</li></ul></div>
-      <div class="card rv" style="--d:1"><div class="n">2</div><h3>Common policies</h3><ul><li>Common Agricultural Policy</li><li>Competition: cartels, dominance, state aid</li><li>Cohesion funds; environment &amp; climate</li></ul></div>
-      <div class="card rv" style="--d:2"><div class="n">3</div><h3>Economic &amp; Monetary Union</h3><ul><li>Euro removes exchange-rate risk, adds price transparency</li><li>Trade-off: no national monetary policy</li></ul></div>
-      <div class="card rv" style="--d:3"><div class="n">4</div><h3>Common trade policy</h3><ul><li>The EU negotiates agreements collectively</li><li>Market size strengthens bargaining power</li></ul></div>
-      <div class="card rv" style="--d:4"><div class="n">5</div><h3>Supranational governance</h3><ul><li>EU-level rules legally binding in member states</li><li>Ongoing debate over national sovereignty</li></ul></div>
+      <div class="card rv"><h3>The European Single Market</h3><ul><li>Free movement of goods, services, capital, and people</li><li>Common product standards reduce transaction costs</li></ul></div>
+      <div class="card rv" style="--d:1"><h3>Common Policies</h3><ul><li>Common Agricultural Policy (CAP)</li><li>Competition policy: cartels, abuse of dominant positions, state aid</li><li>Regional and cohesion policies; environmental and climate policies</li></ul></div>
+      <div class="card rv" style="--d:2"><h3>Economic and Monetary Union</h3><ul><li>The euro eliminates exchange-rate uncertainty and increases price transparency</li><li>Euro-area countries cannot independently conduct national monetary policy</li></ul></div>
+      <div class="card rv" style="--d:3"><h3>Common Trade Policy</h3><ul><li>The EU negotiates many trade agreements collectively</li><li>The size of the integrated market strengthens its bargaining position</li></ul></div>
+      <div class="card rv" style="--d:4"><h3>Supranational Governance</h3><ul><li>EU-level rules can be legally binding within member states</li><li>A political debate concerning national sovereignty</li></ul></div>
     </div>
   </div>
 </section>
 
 <!-- ======================= CHAPTER 2 ======================= -->
-<section class="sec intro dark" id="ch2" data-scene="globe">
+<section class="sec intro dark" id="ch2" data-scene="globe" data-pdf="CHAPTER 2: THE EU'S ROLE AND INFLUENCE ON REGIONAL AND GLOBAL INTEGRATION">
   <div class="wrap">
-    <div class="eyebrow rv">Chapter</div>
-    <div class="no rv" style="--d:1">02</div>
-    <h2 class="h rv" style="--d:2">The EU's role and influence on regional and global integration</h2>
-    <div class="subs rv" style="--d:3"><span><b>2.1</b>European regional integration</span><span><b>2.2</b>Global economic integration</span><span><b>2.3</b>Global governance &amp; other regions</span><span><b>2.4</b>Strengths, limits &amp; prospects</span></div>
-    <a class="btn btn-pill rv" style="--d:4" href="#c2-deepening">◈ Explore chapter</a>
-    <div class="pager rv" style="--d:5"><i></i><i class="on"></i><i></i></div>
+    <p class="eyebrow rv">Chapter 2</p>
+    <h2 class="h rv" style="--d:1">The EU's role and influence on regional and global integration</h2>
+    <p class="subs rv" style="--d:2"><span><b>2.1</b>Role and influence in European regional integration</span><span><b>2.2</b>Role and influence in global economic integration</span><span><b>2.3</b>Role and influence in global governance and other regions</span><span><b>2.4</b>Assessment: strengths, limitations and future prospect</span></p>
+    <a class="btn btn-pill rv" style="--d:3" href="#contents">Contents</a>
   </div>
 </section>
 
-<section class="sec" id="c2-deepening" data-scene="ladder">
+<section class="sec" id="c2-deepening" data-scene="ladder" data-pdf="2.1.1 Deepening integration">
   <div class="wrap">
     <div class="copy">
-      <div class="eyebrow rv">2.1.1 · Deepening integration</div>
-      <h2 class="h rv" style="--d:1">Further than any other <span class="accent">regional group</span></h2>
+      <p class="eyebrow rv">2.1.1</p>
+      <h2 class="h rv" style="--d:1">Deepening integration</h2>
       <ul class="bul">
-        <li class="rv" style="--d:2">Along Balassa's (1961) ladder: <strong>customs union 1968</strong>, <strong>single market 1993</strong>, then economic and monetary union.</li>
-        <li class="rv" style="--d:3"><strong>Schengen</strong> removed most internal border checks; <strong>Lisbon (2009)</strong> gave a single legal personality, a permanent European Council President and a High Representative.</li>
-        <li class="rv" style="--d:4"><strong>"Failing forward"</strong> (Jones et al., 2016): euro crisis 2010–12 → ESM and banking union; COVID-19 → NextGenerationEU, financed by joint borrowing.</li>
-        <li class="rv" style="--d:5"><strong>Social side:</strong> cohesion policy helps lower-income members catch up.</li>
+        <li class="rv" style="--d:2">Using the stages set out by Balassa (1961): a customs union (completed in 1968), a single market (in place from 1993), and an economic and monetary union.</li>
+        <li class="rv" style="--d:3">The Schengen area removed most internal border checks; the Treaty of Lisbon (in force since 2009) gave the Union a single legal personality, a permanent President of the European Council and a High Representative for foreign policy.</li>
+        <li class="rv" style="--d:4">"Failing forward" (Jones et al., 2016): the euro crisis of 2010–2012 produced the European Stability Mechanism and the banking union; the COVID-19 shock produced NextGenerationEU, financed by joint EU borrowing.</li>
+        <li class="rv" style="--d:5">Cohesion policy transfers funds to poorer regions, and it has helped lower-income members catch up.</li>
       </ul>
       <div class="grid g2 mt">
-        <div class="stat rv" style="--d:5"><div class="v">21 / 27</div><div class="l">member states use the euro</div></div>
-        <div class="stat rv" style="--d:6"><div class="v">&gt; €800 bn</div><div class="l">NextGenerationEU in current prices (€750 bn in 2018 prices)</div></div>
+        <div class="stat rv" style="--d:5"><p class="v">21 of 27</p><p class="l">member states use the euro as official currency</p></div>
+        <div class="stat rv" style="--d:6"><p class="v">EUR 800 bn+</p><p class="l">NextGenerationEU in current prices (EUR 750 billion in 2018 prices)</p></div>
       </div>
-      <p class="src"><b>Source:</b> European Union (n.d.-a); European Commission (n.d.-h); Jones et al. (2016).</p>
+      <p class="src"><b>Source:</b> Balassa (1961); European Union (n.d.-a); Jones et al. (2016); European Commission (n.d.-h).</p>
     </div>
   </div>
 </section>
 
-<section class="sec" id="c2-enlargement" data-scene="members">
+<section class="sec" id="c2-enlargement" data-scene="members" data-pdf="2.1.2 Enlargement and Neighborhood Policy (Figure 2.1)">
   <div class="wrap">
     <div class="cols c12">
       <div>
-        <div class="eyebrow rv">2.1.2 · Enlargement</div>
-        <h2 class="h rv" style="--d:1">Governance by <span class="accent">conditionality</span></h2>
+        <p class="eyebrow rv">2.1.2a</p>
+        <h2 class="h rv" style="--d:1">Enlargement and Neighborhood Policy</h2>
         <ul class="bul">
-          <li class="rv" style="--d:2">Enlargement is the EU's <strong>most effective foreign-policy tool</strong>: candidates change their own laws to join.</li>
-          <li class="rv" style="--d:3"><strong>Copenhagen criteria (1993):</strong> stable democracy, a functioning market economy, capacity to adopt EU law.</li>
-          <li class="rv" style="--d:4">Schimmelfennig &amp; Sedelmeier (2004): membership is the reward, rule adoption the price.</li>
-          <li class="rv" style="--d:5"><strong>2004:</strong> ten countries, mostly Central and Eastern Europe — the clearest example.</li>
+          <li class="rv" style="--d:2">Enlargement is the EU's most effective foreign policy tool, in the sense that candidates change their own laws and institutions in order to join.</li>
+          <li class="rv" style="--d:3">The Copenhagen criteria of 1993 require stable democratic institutions, a functioning market economy and the capacity to take on the EU's body of law.</li>
+          <li class="rv" style="--d:4">Schimmelfennig and Sedelmeier (2004): "governance by conditionality"; the prospect of membership is the reward, and rule adoption is the price.</li>
+          <li class="rv" style="--d:5">The 2004 enlargement, which brought in ten countries, mostly from Central and Eastern Europe, is the clearest example.</li>
         </ul>
       </div>
-      <div class="chart rv" style="--d:2">
-        <h4>Number of EU members after each enlargement (incl. 2020 UK withdrawal)</h4>
-        <div data-chart="members"></div>
-        <p class="src"><b>Source:</b> Figure 2.1 — compiled by the author from the European Union (n.d.-b).</p>
-      </div>
+      <figure class="chart rv" style="--d:2">
+        <figcaption>Figure 2.1. Number of EU members after each enlargement (including the 2020 UK withdrawal)</figcaption>
+        <div data-chart="members"><noscript><table class="tbl"><caption>Figure 2.1 data: number of EU members</caption><tr><th>Year</th><th>Members</th></tr><tr><td>1957</td><td>6</td></tr><tr><td>1973</td><td>9</td></tr><tr><td>1981</td><td>10</td></tr><tr><td>1986</td><td>12</td></tr><tr><td>1995</td><td>15</td></tr><tr><td>2004</td><td>25</td></tr><tr><td>2007</td><td>27</td></tr><tr><td>2013</td><td>28</td></tr><tr><td>2020</td><td>27</td></tr></table></noscript></div>
+        <p class="src"><b>Source:</b> Compiled by the authors from the European Union (n.d.-b).</p>
+      </figure>
     </div>
   </div>
 </section>
 
-<section class="sec auto" id="c2-waves" data-scene="members">
+<section class="sec auto" id="c2-waves" data-scene="members" data-pdf="2.1.2 Enlargement and Neighborhood Policy (Table 2.1)">
   <div class="wrap panel">
-    <div class="eyebrow rv">2.1.2 · Enlargement waves</div>
-    <h2 class="h rv" style="--d:1">Enlargement waves and <span class="accent">current candidates</span></h2>
+    <p class="eyebrow rv">2.1.2b</p>
+    <h2 class="h rv" style="--d:1">Enlargement and Neighborhood Policy</h2>
     <div class="tbl-wrap rv mt"><table class="tbl">
+      <caption>Table 2.1. Enlargement waves and current candidates</caption>
       <thead><tr><th style="width:22%">Stage</th><th>Countries / status</th></tr></thead>
       <tbody>
         <tr><td>1957</td><td>Founding six: Belgium, France, Germany, Italy, Luxembourg, Netherlands</td></tr>
@@ -576,71 +643,74 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .86rem; min-width
         <tr><td>2020</td><td>The United Kingdom leaves; the EU has 27 members</td></tr>
         <tr><td>Candidates (2026)</td><td>Albania, Bosnia and Herzegovina, Georgia, Moldova, Montenegro, North Macedonia, Serbia, Türkiye, Ukraine; Kosovo is a potential candidate. Negotiations were opened with Ukraine and Moldova in June 2024.</td></tr>
       </tbody></table></div>
-    <p class="src"><b>Source:</b> Table 2.1 — European Union (n.d.-b); European Commission (n.d.-a).</p>
+    <p class="src"><b>Source:</b> European Union (n.d.-b); European Commission (n.d.-a).</p>
   </div>
 </section>
 
-<section class="sec auto" id="c2-neighbourhood" data-scene="globe">
+<section class="sec auto" id="c2-neighbourhood" data-scene="globe" data-pdf="2.1.2 Enlargement and Neighborhood Policy (current round and neighbourhood)">
   <div class="wrap panel">
-    <div class="eyebrow rv">2.1.2 · Neighbourhood</div>
-    <h2 class="h rv" style="--d:1">Today's enlargement and the <span class="accent">neighbourhood</span></h2>
+    <p class="eyebrow rv">2.1.2c</p>
+    <h2 class="h rv" style="--d:1">Enlargement and Neighborhood Policy</h2>
     <div class="grid g2 mt">
-      <div class="card rv"><div class="tag">Shaped by security</div><h3>The current enlargement round</h3><ul>
-        <li>Ukraine and Moldova applied after Russia's 2022 invasion; candidates since June 2022</li>
-        <li>2025 Enlargement Package (4 Nov 2025): enlargement is a priority of the Union</li>
-        <li>Still depends on reform and unanimity; some Western Balkan applicants have waited a decade or more</li>
-        <li>Georgia (candidate 2023): conditionality works only if the government wants to comply</li></ul></div>
-      <div class="card gold rv" style="--d:1"><div class="tag">"External governance" (Lavenex, 2004)</div><h3>European Neighbourhood Policy</h3><ul>
-        <li>Launched 2004; Union for the Mediterranean (2008), Eastern Partnership (2009)</li>
-        <li>Single-market rules extended without membership</li>
-        <li>Mixed results: Moldova and Ukraine moved closer; the southern neighbourhood changed little</li>
-        <li>European Political Community (2022): influence wider than legal borders</li></ul></div>
+      <div class="card rv"><p class="tag">The current round</p><h3>Shaped by security more than by economics</h3><ul>
+        <li>Ukraine and Moldova applied after Russia's full-scale invasion in 2022 and received candidate status in June 2022</li>
+        <li>The Commission's 2025 Enlargement Package, adopted on 4 November 2025, describes enlargement as a priority of the Union</li>
+        <li>Progress depends on reform in the candidates and on unanimity among existing members</li>
+        <li>Georgia's candidate status, granted in 2023: the incentive works only when the government wants to meet the conditions</li></ul></div>
+      <div class="card rv" style="--d:1"><p class="tag">Lavenex (2004): "external governance"</p><h3>European Neighbourhood Policy</h3><ul>
+        <li>Launched in 2004, with the Eastern Partnership (2009) and the Union for the Mediterranean (2008) as regional tracks</li>
+        <li>The EU extends parts of its single-market rules to its neighbours without offering them membership</li>
+        <li>Mixed results: Moldova and Ukraine moved closer to the Union, while others in the southern neighbourhood changed little</li>
+        <li>In 2022 the EU also created the European Political Community</li></ul></div>
     </div>
+    <p class="src"><b>Source:</b> European Commission (n.d.-a); Lavenex (2004).</p>
   </div>
 </section>
 
-<section class="sec auto" id="c2-challenges" data-scene="globe">
+<section class="sec auto" id="c2-challenges" data-scene="globe" data-pdf="2.1.3 Challenges to integration">
   <div class="wrap panel">
-    <div class="eyebrow rv">2.1.3 · Challenges</div>
-    <h2 class="h rv" style="--d:1">Challenges to <span class="accent">integration</span></h2>
+    <p class="eyebrow rv">2.1.3</p>
+    <h2 class="h rv" style="--d:1">Challenges to integration</h2>
     <div class="grid g4 mt">
-      <div class="card red rv"><div class="n">1</div><h3>Euro crisis</h3><p>A common currency without a common fiscal policy; a lasting north–south divide</p></div>
-      <div class="card red rv" style="--d:1"><div class="n">2</div><h3>Migration 2015–16</h3><p>Split over burden sharing; pressure on Schengen</p></div>
-      <div class="card red rv" style="--d:2"><div class="n">3</div><h3>Brexit</h3><p>2016 referendum, exit on 31 January 2020: membership is reversible</p></div>
-      <div class="card red rv" style="--d:3"><div class="n">4</div><h3>Rule of law</h3><p>Hungary and Poland; Article 7 procedures; EU funds linked to the rule of law</p></div>
+      <div class="card rv"><p class="n">1</p><h3>Euro crisis</h3><p>A common currency without a common fiscal policy leaves weaker economies exposed; a lasting north–south divide over solidarity.</p></div>
+      <div class="card rv" style="--d:1"><p class="n">2</p><h3>Migration 2015–2016</h3><p>Member states split over burden sharing; pressure on Schengen.</p></div>
+      <div class="card rv" style="--d:2"><p class="n">3</p><h3>Brexit</h3><p>The UK referendum of 2016 and its departure on 31 January 2020 showed that membership is reversible.</p></div>
+      <div class="card rv" style="--d:3"><p class="n">4</p><h3>Rule of law</h3><p>Disputes in Hungary and Poland led to Article 7 procedures and a mechanism that links EU funds to respect for the rule of law.</p></div>
     </div>
-    <div class="callout rv mt"><h4>The economic dimension: competitiveness</h4>The 2022 energy crisis and a widening productivity gap with the US and China. <strong>Draghi (2024):</strong> investment of €750–800 bn a year (4.4–4.7% of 2023 GDP). <strong>Letta (2024):</strong> complete the single market in services, energy and capital.</div>
+    <div class="callout rv mt"><h3>Competitiveness</h3>The 2022 energy crisis and the widening gap with the United States and China. Draghi (2024) estimates that the EU needs to invest EUR 750–800 billion a year, equal to 4.4–4.7% of its GDP in 2023; Letta (2024) argues for completing the single market in services, energy and capital.</div>
+    <p class="src"><b>Source:</b> Draghi (2024); Letta (2024).</p>
   </div>
 </section>
 
-<section class="sec" id="c2-trade" data-scene="globe">
+<section class="sec" id="c2-trade" data-scene="globe" data-pdf="2.2.1 The EU as a Global Trade Power">
   <div class="wrap">
     <div class="copy">
-      <div class="eyebrow rv">2.2.1 · Global trade power</div>
-      <h2 class="h rv" style="--d:1">One voice in <span class="accent">world trade</span></h2>
+      <p class="eyebrow rv">2.2.1a</p>
+      <h2 class="h rv" style="--d:1">The EU as a Global Trade Power</h2>
       <div class="grid g2 mt">
-        <div class="stat rv" style="--d:1"><div class="v">15.8%</div><div class="l">share of world trade in goods &amp; services (2024)</div></div>
-        <div class="stat rv" style="--d:2"><div class="v">40+</div><div class="l">agreements with about 80 partners</div></div>
-        <div class="stat rv" style="--d:3"><div class="v">€18.8 tn</div><div class="l">size of the EU economy (2025)</div></div>
-        <div class="stat rv" style="--d:4"><div class="v">30 m+</div><div class="l">EU jobs depend on exports</div></div>
+        <div class="stat rv" style="--d:1"><p class="v">15.8%</p><p class="l">share of world trade in goods and services combined (2024)</p></div>
+        <div class="stat rv" style="--d:2"><p class="v">40+</p><p class="l">agreements in place with about 80 partners</p></div>
+        <div class="stat rv" style="--d:3"><p class="v">EUR 18.8 trillion</p><p class="l">value of the EU economy (2025)</p></div>
+        <div class="stat rv" style="--d:4"><p class="v">30 million+</p><p class="l">jobs in the EU depend on exports</p></div>
       </div>
       <ul class="bul">
-        <li class="rv" style="--d:3"><strong>One actor:</strong> the Commission negotiates for all; tariffs set at Union level (Art. 207 TFEU).</li>
-        <li class="rv" style="--d:4">A "conflicted trade power" (Meunier &amp; Nicolaïdis, 2006); "Market Power Europe" (Damro, 2012).</li>
-        <li class="rv" style="--d:5"><strong>Region-to-region:</strong> Mercosur is bloc-to-bloc; the EVFTA was first conceived as part of an EU–ASEAN plan.</li>
-        <li class="rv" style="--d:6"><strong>Trade meets strategy:</strong> diversifying from the US and China after the 2025 tariff increases; trade defence (anti-dumping duties on Chinese pea protein, Sept 2026).</li>
+        <li class="rv" style="--d:3">Under the common commercial policy (Article 207 TFEU), the Commission negotiates trade agreements on behalf of all members, and tariffs are set at Union level.</li>
+        <li class="rv" style="--d:4">A "conflicted trade power" (Meunier and Nicolaïdis, 2006); "Market Power Europe" (Damro, 2012).</li>
+        <li class="rv" style="--d:5">The EU prefers deals with regions and groups: the Mercosur agreement is a bloc-to-bloc arrangement.</li>
+        <li class="rv" style="--d:6">Trade policy is mixed with strategy: diversification away from the United States and China after the tariff increases of 2025; trade defence tools such as the anti-dumping duties on Chinese pea protein announced in September 2026.</li>
       </ul>
-      <p class="src"><b>Source:</b> Council of the European Union (n.d.-c); Brussels Times (2026), reporting Eurostat; European Commission (n.d.-b).</p>
+      <p class="src"><b>Source:</b> Council of the European Union (n.d.-c); Brussels Times (2026), reporting Eurostat; Meunier and Nicolaïdis (2006); Damro (2012); European Commission (n.d.-b).</p>
     </div>
   </div>
 </section>
 
-<section class="sec auto" id="c2-agreements" data-scene="globe">
+<section class="sec auto" id="c2-agreements" data-scene="globe" data-pdf="2.2.1 The EU as a Global Trade Power (Table 2.2)">
   <div class="wrap panel">
-    <div class="eyebrow rv">2.2.1 · Trade agreements</div>
-    <h2 class="h rv" style="--d:1">Selected EU trade agreements <span class="accent">(October 2026)</span></h2>
+    <p class="eyebrow rv">2.2.1b</p>
+    <h2 class="h rv" style="--d:1">The EU as a Global Trade Power</h2>
     <div class="tbl-wrap rv mt"><table class="tbl">
-      <thead><tr><th style="width:15%">Partner</th><th style="width:50%">Status</th><th>Why it matters</th></tr></thead>
+      <caption>Table 2.2. Selected EU trade agreements and their status</caption>
+      <thead><tr><th style="width:15%">Partner</th><th style="width:50%">Status (as of October 2026)</th><th>Why it matters</th></tr></thead>
       <tbody>
         <tr><td>Japan</td><td>In force since 1 February 2019 (EU–Japan Economic Partnership Agreement)</td><td>Large developed-market partner; sets rules on non-tariff barriers</td></tr>
         <tr><td>Vietnam</td><td>EVFTA in force since 1 August 2020; the investment protection agreement (EVIPA) still awaits ratification by all member states</td><td>First FTA with a lower-middle-income ASEAN country</td></tr>
@@ -648,365 +718,397 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .86rem; min-width
         <tr><td>India</td><td>Negotiations concluded 27 January 2026; presented to the Council for signature and conclusion on 11 September 2026</td><td>Described by the Commission as the largest deal either side has concluded</td></tr>
         <tr><td>Philippines</td><td>Substantial agreement on an FTA announced on 22 September 2026</td><td>Extends the network in Southeast Asia</td></tr>
       </tbody></table></div>
-    <p class="src"><b>Source:</b> Table 2.2 — European Commission (n.d.-b, n.d.-c, n.d.-d).</p>
+    <p class="src"><b>Source:</b> European Commission (n.d.-b, n.d.-c, n.d.-d).</p>
   </div>
 </section>
 
-<section class="sec auto" id="c2-brussels" data-scene="globe">
+<section class="sec auto" id="c2-regulatory" data-scene="globe" data-pdf="2.2.2 Regulatory Power">
   <div class="wrap panel">
-    <div class="eyebrow rv">2.2.2 · Regulatory power</div>
-    <h2 class="h rv" style="--d:1">The <span class="accent">"Brussels Effect"</span></h2>
-    <p class="lead rv" style="--d:2">Bradford (2020): firms that want to sell in the EU must meet its standards — and many apply them everywhere.</p>
+    <p class="eyebrow rv">2.2.2</p>
+    <h2 class="h rv" style="--d:1">Regulatory Power</h2>
+    <p class="lead rv" style="--d:2">Bradford (2020) calls this the "Brussels Effect": firms that want to sell in the EU must meet its standards, and many of them apply the same standards everywhere.</p>
     <div class="flow mt">
-      <div class="card rv"><div class="tag">Step 1</div><h3>The EU sets strict rules</h3><p>Access to a large single market requires compliance</p></div>
-      <div class="ar rv" style="--d:1">→</div>
-      <div class="card rv" style="--d:2"><div class="tag">Step 2 · de facto</div><h3>Firms go global with them</h3><p>One EU-compliant production line is cheaper than several</p></div>
-      <div class="ar rv" style="--d:3">→</div>
-      <div class="card hl rv" style="--d:4"><div class="tag">Step 3 · de jure</div><h3>Governments copy the rules</h3><p>So that their exporters meet EU requirements at home</p></div>
+      <div class="card rv"><p class="tag">De facto effect</p><h3>Firms apply EU standards everywhere</h3><p>It is cheaper than running separate production lines.</p></div>
+      <div class="ar rv" style="--d:1" aria-hidden="true">→</div>
+      <div class="card rv" style="--d:2"><p class="tag">De jure effect</p><h3>Governments copy the rules</h3><p>So that their exporters meet EU requirements at home.</p></div>
+      <div class="ar rv" style="--d:3" aria-hidden="true">→</div>
+      <div class="card rv" style="--d:4"><p class="tag">Five conditions (Bradford, 2020)</p><h3>When the effect is strongest</h3><p>A large market, strong regulatory capacity, a preference for strict rules, targets that cannot easily leave the market, and products that are hard to divide by jurisdiction.</p></div>
     </div>
-    <div class="rv mt"><div class="tag" style="font:700 .66rem/1 var(--display);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)">Strongest when five conditions hold</div>
-      <div class="chips"><span class="chip"><b>1</b>Large market</span><span class="chip"><b>2</b>Strong regulatory capacity</span><span class="chip"><b>3</b>Preference for strict rules</span><span class="chip"><b>4</b>Targets that cannot easily leave</span><span class="chip"><b>5</b>Products hard to divide by jurisdiction</span></div></div>
     <div class="cols c21 mt">
       <div class="grid g2">
-        <div class="card rv"><h3>GDPR (2018)</h3><p>A reference point for privacy laws; global tech firms adjusted their data policies</p></div>
-        <div class="card rv" style="--d:1"><h3>REACH &amp; product rules</h3><p>Chemicals, food safety and product standards</p></div>
-        <div class="card rv" style="--d:2"><h3>Digital &amp; AI (2024)</h3><p>Digital Markets Act, Digital Services Act and AI Act</p></div>
-        <div class="card gold rv" style="--d:3"><h3>CBAM (definitive 1 Jan 2026)</h3><p>Certificates for carbon in cement, iron &amp; steel, aluminium, fertilisers, electricity, hydrogen</p></div>
+        <div class="card rv"><h3>GDPR</h3><p>In application since May 2018; a reference point for privacy laws in many countries.</p></div>
+        <div class="card rv" style="--d:1"><h3>REACH and product standards</h3><p>Rules on chemicals, food safety and product standards work in the same way.</p></div>
+        <div class="card rv" style="--d:2"><h3>Digital and AI regulation</h3><p>Digital Markets Act, Digital Services Act and AI Act, which entered into force in 2024.</p></div>
+        <div class="card rv" style="--d:3"><h3>CBAM</h3><p>Definitive regime from 1 January 2026: importers of cement, iron and steel, aluminium, fertilisers, electricity and hydrogen must buy certificates.</p></div>
       </div>
       <div class="stack">
-        <div class="callout soft rv"><h4>Two sides</h4><strong>For the EU:</strong> a low-cost way to spread values and protect firms from lower-standard competition. <strong>For developing-country exporters:</strong> a burden — technology, testing and finance that small firms often lack.</div>
-        <div class="callout rv" style="--d:1"><strong>Digital Omnibus (19 Nov 2025):</strong> proposal to delay the AI Act's high-risk rules to December 2027 and simplify parts of the GDPR — still to be agreed.</div>
+        <div class="callout rv"><h3>Two sides</h3>For the EU it is a low-cost way to spread its values. For exporters in developing countries it can be a burden, since compliance requires technology, testing and finance that small firms often lack.</div>
+        <p class="note rv">On 19 November 2025 the Commission proposed a Digital Omnibus that would delay the AI Act's rules for high-risk systems until December 2027 and simplify parts of the GDPR (Akin Gump, 2025).</p>
       </div>
     </div>
     <p class="src"><b>Source:</b> Bradford (2020); European Commission (n.d.-e); Akin Gump (2025).</p>
   </div>
 </section>
 
-<section class="sec auto" id="c2-development" data-scene="globe">
+<section class="sec auto" id="c2-development" data-scene="globe" data-pdf="2.2.3 Development cooperation">
   <div class="wrap panel">
-    <div class="eyebrow rv">2.2.3 · Development cooperation</div>
-    <h2 class="h rv" style="--d:1">The world's largest <span class="accent">aid provider</span></h2>
+    <p class="eyebrow rv">2.2.3</p>
+    <h2 class="h rv" style="--d:1">Development cooperation</h2>
     <div class="cols c2 mt">
       <div class="stack">
-        <div class="stat rv"><div class="v">USD 88.7 bn</div><div class="l">EU DAC members' ODA in 2024 ≈ 42% of global ODA of USD 212 bn (−8.6% vs 2023)</div>
-          <div class="share"><span style="width:41.8%"></span></div><div class="share-l"><span>EU DAC members: USD 88.7 bn</span><span>Global: USD 212 bn</span></div></div>
+        <div class="stat rv"><p class="v">USD 88.7 billion</p><p class="l">given in 2024 by the EU countries in the OECD's Development Assistance Committee: 42% of global assistance of USD 212 billion, 8.6% less than in 2023</p>
+          <div class="share" role="img" aria-label="USD 88.7 billion of USD 212 billion"><span style="width:41.8%"></span></div></div>
         <ul class="bul" style="margin-top:0">
-          <li class="rv"><strong>NDICI–Global Europe:</strong> main external funding instrument for 2021–2027.</li>
-          <li class="rv" style="--d:1"><strong>Everything But Arms:</strong> duty- and quota-free access for least-developed countries.</li>
-          <li class="rv" style="--d:2"><strong>GSP:</strong> lower tariffs in return for labour and environmental commitments.</li>
+          <li class="rv">NDICI–Global Europe: the main funding instrument for 2021–2027.</li>
+          <li class="rv" style="--d:1">Everything But Arms: least-developed countries can export almost everything to the EU free of duty and quota.</li>
+          <li class="rv" style="--d:2">Generalised Scheme of Preferences: lower tariffs in return for commitments on labour and environmental conventions.</li>
         </ul>
       </div>
       <div class="stack">
-        <div class="card hl rv"><div class="tag">Launched 1 December 2021</div><h3>Global Gateway</h3><ul>
-          <li>Target: mobilise up to €300 bn</li>
-          <li>Team Europe: more than €306 bn for 250+ projects by 2026, incl. a ~€150 bn Africa–Europe package</li>
-          <li>Seen as a response to China's Belt and Road, with stronger governance, environmental and labour standards</li></ul></div>
-        <div class="card red rv" style="--d:1"><div class="tag">Critics</div><h3>Two concerns</h3><ul>
-          <li>Counts financing that would have happened anyway</li>
-          <li>Aid increasingly serves EU interests: migration, critical raw materials, energy</li></ul></div>
+        <div class="card rv"><p class="tag">Launched on 1 December 2021</p><h3>Global Gateway</h3><ul>
+          <li>Target of mobilising up to EUR 300 billion</li>
+          <li>Team Europe had mobilised more than EUR 306 billion for over 250 projects by 2026, including an Africa–Europe Investment Package of around EUR 150 billion</li>
+          <li>Widely seen as a response to China's Belt and Road Initiative</li></ul></div>
+        <div class="card rv" style="--d:1"><p class="tag">Critics</p><h3>Two points</h3><ul>
+          <li>The Global Gateway counts private and public financing that would have occurred anyway</li>
+          <li>Development cooperation increasingly serves EU interests: migration management, critical raw materials and energy supply</li></ul></div>
       </div>
     </div>
     <p class="src"><b>Source:</b> Finnish Government (2025); European Commission (n.d.-f).</p>
   </div>
 </section>
 
-<section class="sec" id="c2-climate" data-scene="globe">
+<section class="sec" id="c2-climate" data-scene="globe" data-pdf="2.3.1 Climate Leadership and Sustainability">
   <div class="wrap">
     <div class="copy">
-      <div class="eyebrow rv">2.3.1 · Climate leadership</div>
-      <h2 class="h rv" style="--d:1">Climate leadership and <span class="accent">sustainability</span></h2>
+      <p class="eyebrow rv">2.3.1</p>
+      <h2 class="h rv" style="--d:1">Climate Leadership and Sustainability</h2>
       <div class="grid g3 mt">
-        <div class="stat rv" style="--d:1"><div class="v">−55%</div><div class="l">net GHG by 2030 vs 1990 (European Climate Law)</div></div>
-        <div class="stat rv" style="--d:2"><div class="v">−90%</div><div class="l">by 2040 (adopted March 2026): 85% domestic + up to 5% credits</div></div>
-        <div class="stat rv" style="--d:3"><div class="v">2050</div><div class="l">climate neutrality — legally binding</div></div>
+        <div class="stat rv" style="--d:1"><p class="v">55%</p><p class="l">reduction of net greenhouse-gas emissions by at least 55% by 2030 compared with 1990 (European Climate Law)</p></div>
+        <div class="stat rv" style="--d:2"><p class="v">90%</p><p class="l">net reduction by 2040: 85% domestic and up to 5% international carbon credits (March 2026)</p></div>
+        <div class="stat rv" style="--d:3"><p class="v">2050</p><p class="l">climate neutrality</p></div>
       </div>
       <ul class="bul">
-        <li class="rv" style="--d:3"><strong>Track record:</strong> first large carbon market (ETS, 2005); central role in the Paris Agreement (2015).</li>
-        <li class="rv" style="--d:4"><strong>Three channels:</strong> example &amp; negotiation at UN climate conferences · market power (ETS, CBAM) · finance &amp; standards (taxonomies, reporting, Global Gateway).</li>
+        <li class="rv" style="--d:3">The EU launched the first large carbon market, the Emissions Trading System, in 2005, and played a central role in bringing about the Paris Agreement of 2015.</li>
+        <li class="rv" style="--d:4">Influence works through example and negotiation, market power (the Emissions Trading System and CBAM), and finance and standards.</li>
       </ul>
-      <div class="callout soft rv mt" style="--d:5"><h4>Limits</h4>EU share of global emissions: <strong>6.1% (2023) → 5.9% (2024)</strong>; emissions about <strong>35% below 1990</strong>. Leadership now depends on whether the transition is seen as affordable at home.</div>
+      <div class="callout rv mt" style="--d:5"><h3>Limits</h3>The EU's share of global greenhouse-gas emissions fell from 6.1% in 2023 to 5.9% in 2024, and its emissions were about 35% below 1990 levels, so its goals cannot be reached without larger emitters.</div>
       <p class="src"><b>Source:</b> European Commission (n.d.-g); European Commission Joint Research Centre (2025).</p>
     </div>
   </div>
 </section>
 
-<section class="sec auto" id="c2-security" data-scene="globe">
+<section class="sec auto" id="c2-security" data-scene="globe" data-pdf="2.3.2 Security and External Action">
   <div class="wrap panel">
-    <div class="eyebrow rv">2.3.2 · Security and external action</div>
-    <h2 class="h rv" style="--d:1">From civilian power to a <span class="accent">strategic actor</span></h2>
+    <p class="eyebrow rv">2.3.2</p>
+    <h2 class="h rv" style="--d:1">Security and External Action</h2>
     <div class="grid g3 mt">
-      <div class="card rv"><div class="tag">Bull (1982) · Manners (2002)</div><h3>"Civilian" / "normative" power</h3><ul>
-        <li>Common Foreign and Security Policy decided mostly by unanimity</li><li>The High Representative leads the EEAS</li>
-        <li>CSDP: 22 missions and operations today (13 civilian, 8 military); 40+ launched since 2003</li></ul></div>
-      <div class="card gold rv" style="--d:1"><div class="tag">Since Russia's 2022 invasion</div><h3>Hard-security turn</h3><ul>
-        <li>21 sanctions packages by 23 July 2026: oil, coal and LNG bans; financial restrictions</li>
-        <li>~€210 bn of Russian central bank assets immobilised</li>
-        <li>European Peace Facility; Strategic Compass (2022); SAFE loans of €150 bn (27 May 2025)</li></ul></div>
-      <div class="card red rv" style="--d:2"><div class="tag">Not a military power</div><h3>Limits</h3><ul>
-        <li>NATO remains the core of collective defence</li><li>Defence budgets and procurement remain national</li>
-        <li>Unanimity slows decisions</li><li>"Civilian power" or "soft imperialism"? (Hettne &amp; Söderbaum, 2005)</li></ul></div>
+      <div class="card rv"><p class="tag">Bull (1982); Manners (2002)</p><h3>"Civilian power" and "normative power"</h3><ul>
+        <li>The Common Foreign and Security Policy is decided mostly by unanimity</li>
+        <li>The High Representative leads the European External Action Service</li>
+        <li>CSDP: 22 missions and operations: 13 civilian, 8 military, 1 civilian-military; more than 40 launched since 2003</li></ul></div>
+      <div class="card rv" style="--d:1"><p class="tag">Since 2022</p><h3>Sanctions and defence</h3><ul>
+        <li>By July 2026 the Council had adopted 21 packages against Russia, the latest on 23 July 2026</li>
+        <li>About EUR 210 billion in Russian central bank assets immobilised in the EU</li>
+        <li>European Peace Facility; Strategic Compass (2022); SAFE loan instrument of EUR 150 billion, adopted on 27 May 2025</li></ul></div>
+      <div class="card rv" style="--d:2"><p class="tag">Limits</p><h3>Not a military power</h3><ul>
+        <li>NATO remains the core of collective defence for most members</li>
+        <li>Defence budgets and procurement remain national</li>
+        <li>Unanimity can slow decisions</li>
+        <li>"Civilian power" or "soft imperialism" (Hettne and Söderbaum, 2005)</li></ul></div>
     </div>
-    <p class="src"><b>Source:</b> Council of the European Union (n.d.-a, n.d.-b, 2025).</p>
+    <p class="src"><b>Source:</b> Bull (1982); Manners (2002); Council of the European Union (n.d.-a, n.d.-b, 2025); Hettne and Söderbaum (2005).</p>
   </div>
 </section>
 
-<section class="sec" id="c2-model" data-scene="globe">
+<section class="sec" id="c2-model" data-scene="globe" data-pdf="2.3.3 The EU as a Model for Other Regional Organizations">
   <div class="wrap">
     <div class="copy">
-      <div class="eyebrow rv">2.3.3 · A model for other regions</div>
-      <h2 class="h rv" style="--d:1">A template others <span class="accent">borrow from</span></h2>
+      <p class="eyebrow rv">2.3.3</p>
+      <h2 class="h rv" style="--d:1">The EU as a Model for Other Regional Organizations</h2>
       <ul class="bul">
-        <li class="rv" style="--d:2"><strong>Three diffusion mechanisms</strong> (Börzel &amp; Risse, 2012): active promotion, learning, borrowing for legitimacy.</li>
-        <li class="rv" style="--d:3"><strong>African Union (2002):</strong> commission, assembly and court borrowed from European forms.</li>
-        <li class="rv" style="--d:4"><strong>Mercosur (1991):</strong> customs-union goal; parliament and dispute settlement follow European ideas.</li>
-        <li class="rv" style="--d:5"><strong>"Interregionalism"</strong> (Hettne &amp; Söderbaum, 2005): the EU prefers agreements with regional blocs.</li>
-        <li class="rv" style="--d:6"><strong>ASEAN:</strong> Economic Community (2015) built on consensus and non-interference, with no supranational court; EU–ASEAN strategic partnership since December 2020.</li>
+        <li class="rv" style="--d:2">Börzel and Risse (2012) separate three mechanisms of diffusion: active promotion through funding and agreements, learning, and borrowing institutional forms because they carry legitimacy.</li>
+        <li class="rv" style="--d:3">The African Union (2002), whose structure includes a commission, an assembly and a court, borrowed visibly from European forms.</li>
+        <li class="rv" style="--d:4">Mercosur (1991) set a customs union as a goal; its Parliament and dispute-settlement mechanisms follow European ideas.</li>
+        <li class="rv" style="--d:5">The EU prefers to sign agreements with regional blocs where it can, described by Hettne and Söderbaum (2005) as "interregionalism".</li>
+        <li class="rv" style="--d:6">ASEAN built an Economic Community in 2015 on a different philosophy: consensus, non-interference and no supranational court.</li>
       </ul>
-      <div class="callout rv mt" style="--d:6"><strong>Lesson:</strong> the EU exports ideas and practices more successfully than its institutional design, which reflects post-war European conditions.</div>
+      <p class="note rv mt">The EU exports ideas and practices more successfully than its institutional design (Börzel and Risse, 2012).</p>
+      <p class="src"><b>Source:</b> Börzel and Risse (2012); Hettne and Söderbaum (2005).</p>
     </div>
   </div>
 </section>
 
-<section class="sec auto" id="c2-assessment" data-scene="hub">
+<section class="sec auto" id="c2-assessment" data-scene="hub" data-pdf="2.4.1 Strengths and Limitations (Table 2.3)">
   <div class="wrap panel">
-    <div class="eyebrow rv">2.4.1 · Assessment</div>
-    <h2 class="h rv" style="--d:1">Strengths and <span class="accent">limitations</span></h2>
+    <p class="eyebrow rv">2.4.1</p>
+    <h2 class="h rv" style="--d:1">Strengths and Limitations</h2>
     <div class="tbl-wrap rv mt"><table class="tbl">
+      <caption>Table 2.3. Strengths and limitations of the EU's role in integration</caption>
       <thead><tr><th style="width:20%">Area</th><th style="width:40%">Strengths</th><th>Limitations</th></tr></thead>
       <tbody>
-        <tr><td>European integration</td><td>Single market, euro, Schengen; ability to repair gaps after crises; cohesion policy</td><td>Uneven participation; democratic deficit and Euroscepticism; Brexit shows membership is reversible</td></tr>
-        <tr><td>Enlargement &amp; neighbourhood</td><td>Conditionality changed the 2004 entrants; candidate list is long and includes Ukraine and Moldova</td><td>Unanimity and enlargement fatigue; weak leverage over governments that do not want to reform</td></tr>
+        <tr><td>European integration</td><td>Single market, euro, Schengen; ability to repair gaps after crises; cohesion policy</td><td>Uneven participation; democratic-deficit and Euroscepticism; Brexit shows membership is reversible</td></tr>
+        <tr><td>Enlargement and neighbourhood</td><td>Conditionality changed the 2004 entrants; candidate list is long and includes Ukraine and Moldova</td><td>Unanimity and enlargement fatigue; weak leverage over governments that do not want to reform</td></tr>
         <tr><td>Trade</td><td>Single negotiating voice; about 15.8% of world goods trade; widening network (Japan, Vietnam, Mercosur, India)</td><td>Slow ratification; agricultural and national interests; exposure to US and Chinese trade pressures</td></tr>
         <tr><td>Regulation</td><td>Brussels Effect in data, chemicals, AI and carbon</td><td>Compliance burden on exporters; recent moves to simplify rules weaken the signal</td></tr>
         <tr><td>Development</td><td>Large aid and preferences; Global Gateway links finance and strategy</td><td>Financing partly repackaged; aid increasingly tied to EU interests</td></tr>
         <tr><td>Climate</td><td>Legally binding 2030, 2040 and 2050 targets; carbon market; CBAM</td><td>Small share of global emissions; political pressure over costs</td></tr>
         <tr><td>Security</td><td>Sanctions, missions and growing defence funding</td><td>Dependence on NATO; unanimity in foreign policy; fragmented defence markets</td></tr>
       </tbody></table></div>
-    <div class="callout rv mt"><strong>The pattern:</strong> strengths are <strong>structural</strong> (a large market and a body of law); limitations are <strong>political</strong> (shared decisions among 27 governments). Influence is greatest in trade and regulation, weakest in foreign policy and defence.</div>
-    <p class="src"><b>Source:</b> Table 2.3 — compiled by the author from the sources cited in Sections 2.1 to 2.3.</p>
+    <p class="note rv mt">The EU's strengths are structural (a large market and a body of law), while its limitations are political (shared decision-making among 27 governments).</p>
+    <p class="src"><b>Source:</b> Compiled by the authors from the sources cited in Sections 2.1 to 2.3.</p>
   </div>
 </section>
 
-<section class="sec auto" id="c2-prospects" data-scene="hub">
+<section class="sec auto" id="c2-prospects" data-scene="hub" data-pdf="2.4.2 Future Prospects">
   <div class="wrap panel">
-    <div class="eyebrow rv">2.4.2 · Future prospects</div>
-    <h2 class="h rv" style="--d:1">Four developments that will <span class="accent">shape the EU</span></h2>
+    <p class="eyebrow rv">2.4.2</p>
+    <h2 class="h rv" style="--d:1">Future Prospects</h2>
     <div class="grid g4 mt">
-      <div class="card rv"><div class="n">1</div><h3>Institutions</h3><p>Admitting Ukraine, Moldova and the Western Balkans means rethinking decision rules, the budget, agriculture and cohesion</p></div>
-      <div class="card rv" style="--d:1"><div class="n">2</div><h3>Competitiveness</h3><p>Draghi and Letta: less single-market fragmentation, more investment in technology, energy and defence — without lowering standards</p></div>
-      <div class="card rv" style="--d:2"><div class="n">3</div><h3>Strategic autonomy</h3><p>Deals with Mercosur, India and Southeast Asia; supply-chain and critical raw materials measures</p></div>
-      <div class="card rv" style="--d:3"><div class="n">4</div><h3>Green ambition vs cost</h3><p>The 2040 target and CBAM depend on the transition raising growth, not only costs</p></div>
+      <div class="card rv"><p class="n">1</p><h3>Institutional</h3><p>Welcoming Ukraine, Moldova and the Western Balkans would require rethinking decision rules, the budget and agricultural and cohesion policies.</p></div>
+      <div class="card rv" style="--d:1"><p class="n">2</p><h3>Competitiveness</h3><p>Following Draghi (2024) and Letta (2024): reduce fragmentation of the single market and raise investment in technology, energy and defence.</p></div>
+      <div class="card rv" style="--d:2"><p class="n">3</p><h3>Strategic autonomy</h3><p>Trade diversification through agreements with Mercosur, India and Southeast Asian partners; measures on supply chains and critical raw materials.</p></div>
+      <div class="card rv" style="--d:3"><p class="n">4</p><h3>Green ambition and cost</h3><p>The 2040 climate target and CBAM define the European line; the political space to maintain them depends on whether the transition raises growth.</p></div>
     </div>
-    <div class="callout rv mt"><h4>What it means for Vietnam and the world</h4>The EU will remain a major source of <strong>market access, capital and rules</strong> — but will ask more in return: stricter environmental and labour standards, supply-chain due diligence and political alignment on some strategic issues.</div>
+    <p class="note rv mt">For the rest of the world, including Vietnam, the EU will probably remain a major source of market access, capital and rules, but it will ask more in return: stricter environmental and labour standards, supply-chain due diligence and political alignment on some strategic issues.</p>
+    <p class="src"><b>Source:</b> Draghi (2024); Letta (2024).</p>
   </div>
 </section>
 
 <!-- ======================= CHAPTER 3 ======================= -->
-<section class="sec intro dark" id="ch3" data-scene="bridge">
+<section class="sec intro dark" id="ch3" data-scene="bridge" data-pdf="CHAPTER 3: THE EU'S INFLUENCE ON VIETNAM">
   <div class="wrap">
-    <div class="eyebrow rv">Chapter</div>
-    <div class="no rv" style="--d:1">03</div>
-    <h2 class="h rv" style="--d:2">The EU's influence on Vietnam</h2>
-    <div class="subs rv" style="--d:3"><span><b>3.1</b>Vietnam–EU relations</span><span><b>3.2</b>EVFTA &amp; EVIPA</span><span><b>3.3</b>Standards &amp; green transition</span><span><b>3.4</b>Opportunities, challenges, recommendations</span></div>
-    <a class="btn btn-pill rv" style="--d:4" href="#c3-milestones">◈ Explore chapter</a>
-    <div class="pager rv" style="--d:5"><i></i><i></i><i class="on"></i></div>
+    <p class="eyebrow rv">Chapter 3</p>
+    <h2 class="h rv" style="--d:1">The EU's influence on Vietnam</h2>
+    <p class="subs rv" style="--d:2"><span><b>3.1</b>Overview of Vietnam–EU relations</span><span><b>3.2</b>The EVFTA and EVIPA as Key Channels of Influence</span><span><b>3.3</b>EU's Broader Influence on Vietnam's Development</span><span><b>3.4</b>Opportunities, challenges and policy recommendations</span></p>
+    <a class="btn btn-pill rv" style="--d:3" href="#contents">Contents</a>
   </div>
 </section>
 
-<section class="sec auto" id="c3-milestones" data-scene="bridge">
+<section class="sec auto" id="c3-milestones" data-scene="bridge" data-pdf="3.1.1 Milestones (Table 3.1)">
   <div class="wrap panel">
-    <div class="eyebrow rv">3.1.1 · Milestones</div>
-    <h2 class="h rv" style="--d:1">Key milestones in <span class="accent">Vietnam–EU</span> relations</h2>
-    <div class="tl mt">
-      <div class="m rv"><div class="y">1990</div><div class="t">Diplomatic relations established</div></div>
-      <div class="m rv" style="--d:1"><div class="y">1995</div><div class="t">Framework cooperation arrangements</div></div>
-      <div class="m rv" style="--d:2"><div class="y">27 Jun 2012</div><div class="t">Partnership and Cooperation Agreement signed in Brussels</div></div>
-      <div class="m rv" style="--d:3"><div class="y">Jun 2018</div><div class="t">Final EVFTA text agreed after a lengthy legal review</div></div>
-      <div class="m rv"><div class="y">30 Jun 2019</div><div class="t">EVFTA and EVIPA signed in Hanoi</div></div>
-      <div class="m rv" style="--d:1"><div class="y">12 Feb 2020</div><div class="t">European Parliament approves EVFTA and EVIPA</div></div>
-      <div class="m rv" style="--d:2"><div class="y">1 Aug 2020</div><div class="t">EVFTA enters into force</div></div>
-      <div class="m rv" style="--d:3"><div class="y">2022–2025</div><div class="t">JETP launched with an initial US$15.5 bn pledge; first flagship projects announced in 2025</div></div>
-      <div class="m rv"><div class="y">29 Jan 2026</div><div class="t">Upgrade to a Comprehensive Strategic Partnership during President António Costa's visit to Hanoi</div></div>
-      <div class="m rv" style="--d:1"><div class="y">24 Mar 2026</div><div class="t">More than €560 million in new Global Gateway commitments</div></div>
-      <div class="m rv" style="--d:2"><div class="y">1 Aug 2026</div><div class="t">EVFTA completes six years in force</div></div>
+    <p class="eyebrow rv">3.1.1</p>
+    <h2 class="h rv" style="--d:1">Milestones</h2>
+    <p class="cap rv" style="--d:2">Table 3.1 Key milestones in Vietnam–EU relations</p>
+    <div class="tl mt" role="list" aria-label="Table 3.1 Key milestones in Vietnam–EU relations">
+      <div class="m rv" role="listitem"><p class="y">1990</p><p class="t">Diplomatic relations established</p></div>
+      <div class="m rv" role="listitem" style="--d:1"><p class="y">1995</p><p class="t">Framework cooperation arrangements</p></div>
+      <div class="m rv" role="listitem" style="--d:2"><p class="y">27 Jun 2012</p><p class="t">Partnership and Cooperation Agreement signed in Brussels</p></div>
+      <div class="m rv" role="listitem" style="--d:3"><p class="y">Jun 2018</p><p class="t">Final EVFTA text agreed after a lengthy legal review</p></div>
+      <div class="m rv" role="listitem"><p class="y">30 Jun 2019</p><p class="t">EVFTA and EVIPA signed in Hanoi</p></div>
+      <div class="m rv" role="listitem" style="--d:1"><p class="y">12 Feb 2020</p><p class="t">European Parliament approves EVFTA and EVIPA</p></div>
+      <div class="m rv" role="listitem" style="--d:2"><p class="y">1 Aug 2020</p><p class="t">EVFTA enters into force</p></div>
+      <div class="m rv" role="listitem" style="--d:3"><p class="y">2022–2025</p><p class="t">JETP launched with an initial US$15.5 billion pledge; first flagship projects announced in 2025</p></div>
+      <div class="m rv" role="listitem"><p class="y">29 Jan 2026</p><p class="t">Relations upgraded to a Comprehensive Strategic Partnership during European Council President António Costa's visit to Hanoi</p></div>
+      <div class="m rv" role="listitem" style="--d:1"><p class="y">24 Mar 2026</p><p class="t">EU announces more than €560 million in new Global Gateway commitments for Vietnam</p></div>
+      <div class="m rv" role="listitem" style="--d:2"><p class="y">1 Aug 2026</p><p class="t">EVFTA completed six years in force</p></div>
     </div>
-    <p class="src"><b>Source:</b> Table 3.1 — Key milestones in Vietnam–EU relations.</p>
   </div>
 </section>
 
-<section class="sec" id="c3-trade" data-scene="bridge">
+<section class="sec" id="c3-trade" data-scene="bridge" data-pdf="3.1.2 Trade and investment status (Figure 3.1)">
   <div class="wrap">
     <div class="cols c12">
       <div>
-        <div class="eyebrow rv">3.1.2 · Trade status</div>
-        <h2 class="h rv" style="--d:1">Vietnam–EU trade, <span class="accent">2020–2024</span></h2>
-        <div class="stack mt">
-          <div class="stat rv" style="--d:2"><div class="v">≈ US$68.4 bn</div><div class="l">bilateral trade in 2024</div></div>
-          <div class="grid g2">
-            <div class="stat rv" style="--d:3"><div class="v">US$51.72 bn</div><div class="l">Vietnam's exports to the EU</div></div>
-            <div class="stat rv" style="--d:4"><div class="v">≈ US$35 bn</div><div class="l">trade surplus (imports US$16.73 bn)</div></div>
-          </div>
-          <p class="lead rv" style="--d:5;margin-top:0">Up from ~US$55 bn in 2020; a dip in 2023, a strong recovery in 2024. The EU is central to Vietnam's <strong>export-oriented</strong> growth.</p>
+        <p class="eyebrow rv">3.1.2a</p>
+        <h2 class="h rv" style="--d:1">Trade and investment status</h2>
+        <div class="grid g2 mt">
+          <div class="stat rv" style="--d:2"><p class="v">US$68.3 bn</p><p class="l">total Vietnam–EU trade, 2024</p></div>
+          <div class="stat rv" style="--d:3"><p class="v">US$51.6 bn</p><p class="l">Vietnam's exports to the EU, 2024</p></div>
+          <div class="stat rv" style="--d:4"><p class="v">US$16.7 bn</p><p class="l">Vietnam's imports from the EU, 2024</p></div>
+          <div class="stat rv" style="--d:5"><p class="v">US$34.9 bn</p><p class="l">Vietnam's trade surplus with the EU, 2024</p></div>
         </div>
+        <p class="lead rv" style="--d:5">Total bilateral trade increased from about US$55 billion in 2020 to more than US$68 billion in 2024. Although trade declined in 2023 compared with the previous year, it recovered strongly in 2024.</p>
       </div>
-      <div class="chart rv" style="--d:2">
-        <h4>Vietnam–EU trade (billion USD)</h4>
-        <div data-chart="trade"></div>
-        <p class="src"><b>Source:</b> Figure 3.1 — Vietnam Customs and Ministry of Industry and Trade of Vietnam. Bar values read from the report's figure (approximate).</p>
-      </div>
+      <figure class="chart rv" style="--d:2">
+        <figcaption>Figure 3.1 Vietnam–EU Trade</figcaption>
+        <p class="unit">billion USD</p>
+        <div data-chart="trade"><noscript><table class="tbl"><caption>Figure 3.1 data (billion USD)</caption><tr><th>Year</th><th>Exports to EU</th><th>Imports from EU</th></tr><tr><td>2020</td><td>40</td><td>15</td></tr><tr><td>2021</td><td>40</td><td>16</td></tr><tr><td>2022</td><td>47</td><td>17</td></tr><tr><td>2023</td><td>44</td><td>16</td></tr><tr><td>2024</td><td>51.6</td><td>16.7</td></tr></table></noscript></div>
+        <p class="src">Figures are rounded. <b>Source:</b> Vietnam Customs and Ministry of Industry and Trade of Vietnam.</p>
+      </figure>
     </div>
   </div>
 </section>
 
-<section class="sec" id="c3-structure" data-scene="bridge">
+<section class="sec" id="c3-structure" data-scene="bridge" data-pdf="3.1.2 Trade and investment status (Figure 3.2)">
   <div class="wrap">
     <div class="cols c12">
       <div>
-        <div class="eyebrow rv">3.1.2 · Trade structure</div>
-        <h2 class="h rv" style="--d:1">Complementary <span class="accent">trade structures</span></h2>
+        <p class="eyebrow rv">3.1.2b</p>
+        <h2 class="h rv" style="--d:1">Trade and investment status</h2>
         <ul class="bul">
-          <li class="rv" style="--d:2"><strong>Vietnam sells:</strong> machinery &amp; electrical equipment, textiles &amp; footwear, furniture, agri-food.</li>
-          <li class="rv" style="--d:3"><strong>The EU sells:</strong> machinery &amp; transport equipment, chemicals, pharmaceuticals and other technology-intensive goods.</li>
-          <li class="rv" style="--d:4">Reflects <strong>comparative advantage</strong>: labour-intensive, increasingly tech-oriented manufacturing vs capital- and technology-intensive production.</li>
-          <li class="rv" style="--d:5"><strong>Risk:</strong> export concentration leaves Vietnam exposed to EU demand and regulation.</li>
+          <li class="rv" style="--d:2">Vietnam's exports to the EU are concentrated in machinery and electrical equipment, textiles and footwear, furniture, and agricultural and food products.</li>
+          <li class="rv" style="--d:3">The EU supplies Vietnam with machinery and transport equipment, chemicals, pharmaceuticals, and other technologically intensive products.</li>
+          <li class="rv" style="--d:4">The structure reflects the different comparative advantages of the two sides.</li>
+          <li class="rv" style="--d:5">The concentration of exports in several major product groups means that Vietnam remains exposed to changes in European consumer demand and regulatory requirements.</li>
         </ul>
       </div>
-      <div class="chart rv" style="--d:2">
-        <h4>Major product groups in Vietnam–EU trade, 2024 (billion EUR)</h4>
-        <div data-chart="products"></div>
-        <p class="src"><b>Source:</b> Figure 3.2 — European Commission and Eurostat. Values read from the report's figure (approximate).</p>
-      </div>
+      <figure class="chart rv" style="--d:2">
+        <figcaption>Figure 3.2. Major Product Groups in Vietnam-EU Trade in 2024</figcaption>
+        <p class="unit">billion EUR (other trade figures on this page are in USD)</p>
+        <div data-chart="products"><noscript><table class="tbl"><caption>Figure 3.2 data (billion EUR)</caption><tr><th>Product group</th><th>EU imports from Vietnam</th><th>EU exports to Vietnam</th></tr><tr><td>Machinery &amp; transport equipment</td><td>26.6</td><td>4.2</td></tr><tr><td>Textiles &amp; clothing</td><td>5.0</td><td>0.6</td></tr><tr><td>Food &amp; agricultural products</td><td>5.0</td><td>1.8</td></tr><tr><td>Chemicals</td><td>1.0</td><td>3.7</td></tr><tr><td>Fuels &amp; mining</td><td>0.4</td><td>0.2</td></tr></table></noscript></div>
+        <p class="src">Figures are rounded. <b>Source:</b> European Commission and Eurostat.</p>
+      </figure>
     </div>
   </div>
 </section>
 
-<section class="sec auto" id="c3-investment" data-scene="bridge">
+<section class="sec auto" id="c3-investment" data-scene="bridge" data-pdf="3.1.2 Trade and investment status (Table 3.2)">
   <div class="wrap panel">
-    <div class="eyebrow rv">3.1.2 · Investment status</div>
-    <h2 class="h rv" style="--d:1">EU investment <span class="accent">in Vietnam</span></h2>
+    <p class="eyebrow rv">3.1.2c</p>
+    <h2 class="h rv" style="--d:1">Trade and investment status</h2>
     <div class="cols c21 mt">
       <div class="tbl-wrap rv"><table class="tbl">
-        <thead><tr><th style="width:42%">Indicator</th><th>Value</th></tr></thead>
+        <caption>Table 3.2. EU Investment in Vietnam in 2024</caption>
+        <thead><tr><th style="width:48%">Indicator</th><th>Value</th></tr></thead>
         <tbody>
           <tr><td>Number of EU investment projects</td><td>~2,450</td></tr>
-          <tr><td>Cumulative EU investment</td><td>≈ US$30.6 bn (2024); &gt; US$27.8 bn (end of 2022)</td></tr>
-          <tr><td>Share of investment in manufacturing</td><td>&gt; 60%</td></tr>
+          <tr><td>Cumulative EU investment, end of 2022</td><td>&gt;US$27.8 billion</td></tr>
+          <tr><td>Cumulative EU investment, 2024</td><td>≈US$30.6 billion</td></tr>
+          <tr><td>Share of investment in manufacturing</td><td>&gt;60%</td></tr>
           <tr><td>Major sectors</td><td>Manufacturing, energy, infrastructure, services</td></tr>
-          <tr><td>Major EU investors</td><td>Netherlands, France, Germany, Denmark and others</td></tr>
+          <tr><td>Major EU investors</td><td>Netherlands, France, Germany, Denmark, and others</td></tr>
         </tbody></table></div>
       <div class="stack">
-        <div class="card gold rv"><div class="tag">Contribution</div><h3>More than capital</h3><p>Technology, management practices, expertise, international quality standards, jobs and links to global production networks</p></div>
-        <div class="card red rv" style="--d:1"><div class="tag">Below potential</div><h3>What holds it back</h3><p>Administrative procedures, regulatory transparency, infrastructure, skilled labour, policy consistency — and SMEs' difficulty meeting EU standards</p></div>
+        <div class="card rv"><p class="tag">Channels</p><h3>Contribution of European investment</h3><p>Financial capital, advanced technologies, management practices, professional expertise and international quality standards.</p></div>
+        <div class="card rv" style="--d:1"><p class="tag">Constraints</p><h3>Below its potential</h3><p>Administrative procedures, regulatory transparency, infrastructure quality, availability of skilled labour, and the consistency of policy implementation.</p></div>
       </div>
     </div>
-    <p class="src"><b>Source:</b> Table 3.2 — European External Action Service (EEAS).</p>
+    <p class="src"><b>Source:</b> European External Action Service (EEAS).</p>
   </div>
 </section>
 
-<section class="sec auto" id="c3-evfta" data-scene="bridge">
+<section class="sec auto" id="c3-evfta" data-scene="bridge" data-pdf="3.2.1 Content and timeline (Table 3.3)">
   <div class="wrap panel">
-    <div class="eyebrow rv">3.2.1 · Content and timeline</div>
-    <h2 class="h rv" style="--d:1">EVFTA &amp; EVIPA: <span class="accent">two agreements, one package</span></h2>
-    <p class="lead rv" style="--d:2">CJEU Opinion 2/15 (May 2017): investment protection with arbitration-style dispute settlement is a shared competence — so the package was split.</p>
+    <p class="eyebrow rv">3.2.1</p>
+    <h2 class="h rv" style="--d:1">Content and timeline</h2>
+    <p class="lead rv" style="--d:2">In Opinion 2/15 (May 2017), the Court of Justice of the EU ruled that investment protection with arbitration-style dispute settlement falls under shared competence. In response, the EU split the package into two instruments.</p>
     <div class="grid g2 mt">
-      <div class="card rv"><div class="tag">Trade · EU-only agreement · in force 1 Aug 2020</div><h3>EVFTA — a "new-generation" FTA</h3><ul>
-        <li>Goods: tariffs, rules of origin, customs, TBT and SPS measures</li><li>Services and investment liberalisation</li>
-        <li>Procurement, competition, state-owned enterprises, IP incl. geographical indications</li>
-        <li>Trade &amp; Sustainable Development: ILO standards, environment, civil society</li><li>Institutional provisions and dispute settlement</li></ul></div>
-      <div class="card gold rv" style="--d:1"><div class="tag">Investment · needs all 27 ratifications</div><h3>EVIPA — investment protection</h3><ul>
-        <li>Fair and equitable treatment; protection against expropriation</li>
-        <li>4 chapters, 92 articles, 13 annexes; replaces 21 bilateral investment agreements</li>
-        <li>Court-style dispute settlement instead of investor–state arbitration</li>
-        <li>Poland became the 20th ratifying state (Nov 2025); France submitted a bill (Aug 2026) — not yet in force</li></ul></div>
+      <div class="card rv"><p class="tag">Trade; EU-only agreement</p><h3>EVFTA: a "new-generation" agreement</h3><ul>
+        <li>Trade in goods: tariff elimination, rules of origin, customs and trade facilitation, trade remedies, TBT and SPS measures</li>
+        <li>Services and investment liberalisation</li>
+        <li>Government procurement, competition policy, state-owned enterprises and intellectual property, including geographical indications</li>
+        <li>Trade and Sustainable Development: core ILO conventions, environmental protection and climate action</li>
+        <li>Institutional provisions and dispute settlement</li></ul></div>
+      <div class="card rv" style="--d:1"><p class="tag">Investment protection; requires ratification by every member state</p><h3>EVIPA</h3><ul>
+        <li>Fair and equitable treatment and protection against expropriation</li>
+        <li>Four chapters, 92 articles and 13 annexes; designed to replace 21 existing bilateral investment agreements</li>
+        <li>A court-style dispute settlement mechanism replaces traditional investor–state arbitration</li>
+        <li>Poland became the 20th member state to ratify it in November 2025; the EVIPA is not yet in force</li></ul></div>
     </div>
-    <div class="tl five mt">
-      <div class="m rv"><div class="y">2010</div><div class="t">Scoping exercise</div><div class="d">Decision to negotiate</div></div>
-      <div class="m rv" style="--d:1"><div class="y">2012</div><div class="t">Negotiations launched</div></div>
-      <div class="m rv" style="--d:2"><div class="y">Dec 2015</div><div class="t">Concluded in principle</div></div>
-      <div class="m rv" style="--d:3"><div class="y">May 2017</div><div class="t">CJEU Opinion 2/15</div><div class="d">Split into EVFTA and EVIPA</div></div>
-      <div class="m rv" style="--d:4"><div class="y">30 Jun 2019</div><div class="t">Signed in Hanoi</div><div class="d">EVFTA and EVIPA</div></div>
-      <div class="m rv"><div class="y">Feb–Mar 2020</div><div class="t">EU approval</div><div class="d">Parliament consent; Council approval</div></div>
-      <div class="m rv" style="--d:1"><div class="y">Jun 2020</div><div class="t">Vietnam ratifies</div><div class="d">National Assembly, both agreements</div></div>
-      <div class="m rv" style="--d:2"><div class="y">1 Aug 2020</div><div class="t">EVFTA in force</div></div>
-      <div class="m rv" style="--d:3"><div class="y">Nov 2025</div><div class="t">Poland ratifies EVIPA</div><div class="d">20th member state</div></div>
-      <div class="m rv" style="--d:4"><div class="y">Aug 2026</div><div class="t">France</div><div class="d">EVIPA ratification bill to Parliament</div></div>
+    <p class="cap rv mt">Table 3.3 Milestones in EVFT</p>
+    <div class="tl five" role="list" aria-label="Table 3.3 Milestones in EVFT">
+      <div class="m rv" role="listitem"><p class="y">2010</p><p class="t">Scoping exercise; decision to negotiate</p></div>
+      <div class="m rv" role="listitem" style="--d:1"><p class="y">2012</p><p class="t">Formal negotiations launched</p></div>
+      <div class="m rv" role="listitem" style="--d:2"><p class="y">Dec 2015</p><p class="t">Negotiations concluded in principle</p></div>
+      <div class="m rv" role="listitem" style="--d:3"><p class="y">May 2017</p><p class="t">CJEU Opinion 2/15; agreement split into EVFTA and EVIPA</p></div>
+      <div class="m rv" role="listitem" style="--d:4"><p class="y">30 Jun 2019</p><p class="t">EVFTA and EVIPA signed in Hanoi</p></div>
+      <div class="m rv" role="listitem"><p class="y">Feb–Mar 2020</p><p class="t">European Parliament consent; Council approval</p></div>
+      <div class="m rv" role="listitem" style="--d:1"><p class="y">Jun 2020</p><p class="t">Vietnam's National Assembly ratifies both agreements</p></div>
+      <div class="m rv" role="listitem" style="--d:2"><p class="y">1 Aug 2020</p><p class="t">EVFTA enters into force</p></div>
+      <div class="m rv" role="listitem" style="--d:3"><p class="y">Nov 2025</p><p class="t">Poland becomes the 20th member state to ratify the EVIPA</p></div>
+      <div class="m rv" role="listitem" style="--d:4"><p class="y">Aug 2026</p><p class="t">France submits its EVIPA ratification bill to Parliament</p></div>
     </div>
-    <p class="src"><b>Source:</b> Section 3.2.1 and Table 3.3 — Milestones of the EVFTA.</p>
   </div>
 </section>
 
-<section class="sec auto" id="c3-reform" data-scene="bridge">
+<section class="sec auto" id="c3-reform" data-scene="bridge" data-pdf="3.2.2 Impact on institutional reform">
   <div class="wrap panel">
-    <div class="eyebrow rv">3.2.2 · Institutional reform</div>
-    <h2 class="h rv" style="--d:1">An external driver of <span class="accent">institutional reform</span></h2>
+    <p class="eyebrow rv">3.2.2</p>
+    <h2 class="h rv" style="--d:1">Impact on institutional reform</h2>
     <div class="grid g5 mt">
-      <div class="card rv"><div class="n">1</div><h3>Legal review</h3><p>The Government's implementation plan requires ministries to review and amend regulations to match commitments</p></div>
-      <div class="card rv" style="--d:1"><div class="n">2</div><h3>Transparency</h3><p>Customs, technical regulations, services and investment: more predictable rules, less uncertainty for firms</p></div>
-      <div class="card rv" style="--d:2"><div class="n">3</div><h3>Public procurement</h3><p>Parts opened to EU suppliers; more disclosure and fairer access</p></div>
-      <div class="card rv" style="--d:3"><div class="n">4</div><h3>Dialogue mechanisms</h3><p>Trade Committee and specialised bodies handle obstacles — re-emphasised in 2026</p></div>
-      <div class="card gold rv" style="--d:4"><div class="n">5</div><h3>EVIPA</h3><p>Safeguards against discrimination and unlawful expropriation; ratification keeps the focus on legal certainty</p></div>
+      <div class="card rv"><h3>Legal and institutional reform</h3><p>The implementation plan requires ministries and agencies to review existing regulations and make amendments in accordance with the agreement.</p></div>
+      <div class="card rv" style="--d:1"><h3>Transparency and predictability</h3><p>Commitments on customs procedures, technical regulations, government procurement, services and investment.</p></div>
+      <div class="card rv" style="--d:2"><h3>Government procurement</h3><p>Parts of the public procurement market opened to European suppliers, with more transparent procedures.</p></div>
+      <div class="card rv" style="--d:3"><h3>Consultation and coordination</h3><p>A Trade Committee and specialized institutional structures monitor implementation and address trade-related problems.</p></div>
+      <div class="card rv" style="--d:4"><h3>EVIPA</h3><p>Safeguards against discriminatory treatment and unlawful expropriation; a modernized investment dispute settlement mechanism.</p></div>
     </div>
   </div>
 </section>
 
-<section class="sec auto" id="c3-impact-trade" data-scene="bridge">
+<section class="sec auto" id="c3-impact-trade" data-scene="bridge" data-pdf="3.2.3 Impacts on trade and investment (Table 3.4)">
   <div class="wrap panel">
-    <div class="eyebrow rv">3.2.3 · Impact on trade</div>
-    <h2 class="h rv" style="--d:1">Trade: <span class="accent">before and after</span> the EVFTA</h2>
+    <p class="eyebrow rv">3.2.3a</p>
+    <h2 class="h rv" style="--d:1">Impacts on trade and investment</h2>
     <div class="tbl-wrap rv mt"><table class="tbl">
+      <caption>Table 3.4 Changes in Vietnam-EU trade</caption>
       <thead><tr><th style="width:40%">Indicator</th><th class="num">2019</th><th class="num">2024</th><th class="num">Change</th></tr></thead>
       <tbody>
-        <tr><td>Total Vietnam–EU trade</td><td class="num">US$49.8 bn</td><td class="num">US$68.3 bn</td><td class="num up">+37.1%</td></tr>
-        <tr><td>Vietnam's exports to the EU</td><td class="num">US$35.8 bn</td><td class="num">US$51.6 bn</td><td class="num up">+44.1%</td></tr>
-        <tr><td>Vietnam's trade surplus with the EU</td><td class="num">≈ US$21.8 bn</td><td class="num">US$34.9 bn</td><td class="num up">+60.1%</td></tr>
-      </tbody></table></div>
-    <div class="grid g3 mt">
-      <div class="stat rv"><div class="v">85.6%</div><div class="l">of EU tariff lines duty-free at entry into force (70.3% of Vietnam's export value)</div></div>
-      <div class="stat rv" style="--d:1"><div class="v">99.2%</div><div class="l">after seven years (99.7% of Vietnam's export value)</div></div>
-      <div class="callout soft rv" style="--d:2">Growing use of EVFTA preferences in footwear, seafood, agriculture and textiles. <strong>Caveat:</strong> COVID-19, geopolitics and global demand also shaped trade.</div>
-    </div>
-    <p class="src"><b>Source:</b> Table 3.4 — Ministry of Industry and Trade of Vietnam.</p>
-  </div>
-</section>
-
-<section class="sec auto" id="c3-impact-investment" data-scene="bridge">
-  <div class="wrap panel">
-    <div class="eyebrow rv">3.2.3 · Impact on investment</div>
-    <h2 class="h rv" style="--d:1">Investment: <span class="accent">before and after</span> the EVFTA</h2>
-    <div class="tbl-wrap rv mt"><table class="tbl">
-      <thead><tr><th style="width:28%">Indicator</th><th>2019</th><th>2024</th><th>Development</th></tr></thead>
-      <tbody>
-        <tr><td>EU investment projects in Vietnam</td><td>&gt; 2,240</td><td>≈ 2,450</td><td>Continued expansion</td></tr>
-        <tr><td>EU cumulative registered investment</td><td>≈ US$24.67 bn</td><td>≈ US$30.6 bn</td><td>+ ≈ US$5.9 bn</td></tr>
-        <tr><td>EU share of Vietnam's total FDI</td><td>≈ 7.6%</td><td>Still a relatively modest share</td><td>Limited compared with major Asian investors</td></tr>
-        <tr><td>Main investment orientation</td><td>Manufacturing, infrastructure, services</td><td>Manufacturing and higher-value activities</td><td>Gradual upgrading</td></tr>
+        <tr><td>Total Vietnam–EU trade</td><td class="num">US$49.8 bn</td><td class="num">US$68.3 bn</td><td class="num">+37.1%</td></tr>
+        <tr><td>Vietnam's exports to EU</td><td class="num">US$35.8 bn</td><td class="num">US$51.6 bn</td><td class="num">+44.1%</td></tr>
+        <tr><td>Vietnam's trade surplus with EU</td><td class="num">Approx. US$21.8 bn</td><td class="num">US$34.9 bn</td><td class="num">+60.1%</td></tr>
       </tbody></table></div>
     <div class="grid g2 mt">
-      <div class="callout soft rv"><strong>Still modest:</strong> at the end of 2024, South Korea had more than US$92 bn and Singapore ≈ US$83.13 bn in cumulative registered investment in Vietnam.</div>
-      <div class="callout rv" style="--d:1"><strong>EVIPA's impact is potential, not yet realised:</strong> its Investment Court System could reduce perceived legal risk and encourage larger, longer-term EU investment.</div>
+      <div class="stat rv"><p class="v">85.6%</p><p class="l">of tariff lines (70.3% of Vietnam's export value) eliminated by the EU upon entry into force</p></div>
+      <div class="stat rv" style="--d:1"><p class="v">99.2%</p><p class="l">of tariff lines (99.7% of Vietnam's export value) scheduled to be eliminated after seven years</p></div>
     </div>
-    <p class="src"><b>Source:</b> Table 3.5 — Foreign Investment Agency/MPI and European External Action Service.</p>
+    <p class="note rv mt">The changes cannot be attributed entirely to the EVFTA, because trade flows were also affected by COVID-19, geopolitical tensions, global demand and other economic factors.</p>
+    <p class="src"><b>Source:</b> Ministry of Industry and Trade of Vietnam.</p>
   </div>
 </section>
 
-<section class="sec auto" id="c3-standards" data-scene="bridge">
+<section class="sec auto" id="c3-impact-investment" data-scene="bridge" data-pdf="3.2.3 Impacts on trade and investment (Table 3.5)">
   <div class="wrap panel">
-    <div class="eyebrow rv">3.3.1 · Standards and regulatory alignment</div>
-    <h2 class="h rv" style="--d:1">EU standards and <span class="accent">regulatory influence</span></h2>
-    <p class="lead rv" style="--d:2">EVFTA Chapter 13 links trade with labour rights, environment, climate, natural resources and CSR, with Domestic Advisory Groups for dialogue.</p>
+    <p class="eyebrow rv">3.2.3b</p>
+    <h2 class="h rv" style="--d:1">Impacts on trade and investment</h2>
     <div class="tbl-wrap rv mt"><table class="tbl">
-      <thead><tr><th style="width:22%">Area</th><th style="width:40%">EU requirements / influence</th><th>Implications for Vietnam</th></tr></thead>
+      <caption>Table 3.5 Changes in Vietnam-EU investment</caption>
+      <thead><tr><th style="width:28%">Indicator</th><th>2019</th><th>2024</th><th>Development</th></tr></thead>
+      <tbody>
+        <tr><td>EU investment projects in Vietnam</td><td>&gt;2,240</td><td>≈2,450</td><td>Continued expansion</td></tr>
+        <tr><td>EU cumulative registered investment</td><td>≈US$24.67 bn</td><td>≈US$30.6 bn</td><td>+≈US$5.9 bn</td></tr>
+        <tr><td>EU share of Vietnam's total FDI</td><td>≈7.6%</td><td>n/a<sup>*</sup></td><td>Limited compared with major Asian investors</td></tr>
+        <tr><td>Main investment orientation</td><td>Manufacturing, infrastructure, services</td><td>Manufacturing and higher-value activities</td><td>Gradual upgrading</td></tr>
+      </tbody></table></div>
+    <p class="tnote rv"><sup>*</sup> n/a: no comparable 2024 figure in the sources. The 2019 figures are from the Foreign Investment Agency/MPI and the 2024 figures from the EEAS, so they may not be directly comparable.</p>
+    <div class="callout rv mt"><h3>EVIPA</h3>The impact of the EVIPA should currently be considered potential rather than fully realized, because the agreement has not yet entered into force at the EU level. At the end of 2024, South Korea had more than US$92 billion and Singapore about US$83.13 billion in cumulative registered investment in Vietnam.</div>
+    <p class="src"><b>Source:</b> Foreign Investment Agency/MPI and European External Action Service.</p>
+  </div>
+</section>
+
+<section class="sec" id="c3-broader" data-scene="bridge" data-pdf="3.3 EU's Broader Influence on Vietnam's Development [ADDED CONTENT: CBAM, EUDR and IUU block]">
+  <div class="wrap">
+    <div class="copy">
+      <p class="eyebrow rv">3.3</p>
+      <h2 class="h rv" style="--d:1">EU's Broader Influence on Vietnam's Development</h2>
+      <p class="lead rv" style="--d:2">European standards and regulatory requirements increasingly affect how Vietnamese businesses operate and access international markets. Three requirements discussed in the report are CBAM, EUDR and IUU.</p>
+      <div class="stack mt">
+        <div class="card rv" style="--d:3"><p class="tag">CBAM</p><h3>Carbon content of imports</h3><p>The definitive regime applies from 1 January 2026, after a transitional phase from 2023 to 2025: importers of cement, iron and steel, aluminium, fertilisers, electricity and hydrogen must buy certificates reflecting the carbon content of their goods (European Commission, n.d.-e). A national system for measuring, reporting and verifying emissions would let Vietnamese firms supply credible data to EU importers (East Asia Forum, 2026; S&amp;P Global, 2025).</p></div>
+        <div class="card rv" style="--d:4"><p class="tag">EUDR</p><h3>Traceability of commodities</h3><p>Priorities include digital forest-plot mapping and geolocation for coffee, rubber and timber (Trung tâm WTO và Hội nhập, 2026b; Vietnam News Agency, 2026).</p></div>
+        <div class="card rv" style="--d:5"><p class="tag">IUU</p><h3>Fisheries</h3><p>Full implementation of fleet monitoring, traceability and enforcement measures requested by the Commission (Trung tâm WTO và Hội nhập, 2026b; Vietnam News Agency, 2026).</p></div>
+      </div>
+      <p class="src"><b>Source:</b> European Commission (n.d.-e); East Asia Forum (2026); S&amp;P Global (2025); Trung tâm WTO và Hội nhập (2026b); Vietnam News Agency (2026).</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec auto" id="c3-standards" data-scene="bridge" data-pdf="3.3.1 Standards, Sustainability and Regulatory Alignment (Table 3.6)">
+  <div class="wrap panel">
+    <p class="eyebrow rv">3.3.1a</p>
+    <h2 class="h rv" style="--d:1">Standards, Sustainability and Regulatory Alignment</h2>
+    <p class="lead rv" style="--d:2">Chapter 13 of the EVFTA covers labour rights, environmental protection, climate change, sustainable management of natural resources and corporate social responsibility, with dialogue through Domestic Advisory Groups.</p>
+    <div class="tbl-wrap rv mt"><table class="tbl">
+      <caption>Table 3.6. Major Areas of EU Standards and Regulatory Influence on Vietnam</caption>
+      <thead><tr><th style="width:22%">Area</th><th style="width:40%">EU requirements/influence</th><th>Implications for Vietnam</th></tr></thead>
       <tbody>
         <tr><td>Environmental standards</td><td>Higher requirements for environmental protection and resource management</td><td>Firms need to improve environmental management and production processes</td></tr>
         <tr><td>Labour standards</td><td>Respect for fundamental labour rights and ILO standards</td><td>Greater attention to working conditions and workers' rights</td></tr>
         <tr><td>Product quality and safety</td><td>Strict technical, health and safety requirements</td><td>Greater investment in quality control and certification</td></tr>
-        <tr><td>Traceability</td><td>Increasing importance of supply-chain transparency</td><td>Better tracking of raw materials and production processes</td></tr>
+        <tr><td>Traceability</td><td>Increasing importance of supply-chain transparency</td><td>Firms need better tracking of raw materials and production processes</td></tr>
         <tr><td>Sustainable production</td><td>Greater emphasis on resource efficiency and low-carbon production</td><td>Incentives to adopt cleaner technologies</td></tr>
         <tr><td>Carbon and climate policy</td><td>Increasing role of carbon pricing and emissions reduction</td><td>Pressure to measure and reduce greenhouse-gas emissions</td></tr>
-        <tr><td>Circular economy</td><td>Promotion of resource efficiency, recycling and waste reduction</td><td>Changes in production and consumption models</td></tr>
+        <tr><td>Circular economy</td><td>Promotion of resource efficiency, recycling and waste reduction</td><td>Encourages changes in production and consumption models</td></tr>
       </tbody></table></div>
-    <p class="src"><b>Source:</b> Table 3.6 — compiled from EU–Vietnam cooperation documents and the EVFTA sustainable development framework.</p>
+    <p class="src"><b>Source:</b> Compiled from EU–Vietnam cooperation documents and the EVFTA sustainable development framework.</p>
+  </div>
+</section>
+
+<section class="sec auto" id="c3-standards-b" data-scene="bridge" data-pdf="3.3.1 Standards, Sustainability and Regulatory Alignment (Table 3.7)">
+  <div class="wrap panel">
+    <p class="eyebrow rv">3.3.1b</p>
+    <h2 class="h rv" style="--d:1">Standards, Sustainability and Regulatory Alignment</h2>
     <div class="tbl-wrap rv mt"><table class="tbl">
+      <caption>Table 3.7. Opportunities and Challenges from EU Standards for Vietnam</caption>
       <thead><tr><th style="width:24%">Dimension</th><th style="width:40%">Opportunities</th><th>Challenges</th></tr></thead>
       <tbody>
         <tr><td>Export competitiveness</td><td>Better quality and access to demanding markets</td><td>Higher compliance costs</td></tr>
@@ -1016,17 +1118,17 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .86rem; min-width
         <tr><td>Environment</td><td>Stronger environmental management</td><td>Additional costs for emissions and waste control</td></tr>
         <tr><td>Governance</td><td>Greater transparency and regulatory capacity</td><td>Need for stronger enforcement institutions</td></tr>
       </tbody></table></div>
-    <div class="callout soft rv mt"><strong>Regulatory alignment, not full harmonisation:</strong> Vietnam keeps its policy autonomy; SMEs bear the heaviest adjustment, which EU technical assistance helps reduce.</div>
-    <p class="src"><b>Source:</b> Table 3.7 — Opportunities and challenges from EU standards for Vietnam.</p>
+    <p class="note rv mt">The EU's influence on standards can be viewed as a form of regulatory alignment rather than complete regulatory harmonisation.</p>
   </div>
 </section>
 
-<section class="sec auto" id="c3-cooperation" data-scene="bridge">
+<section class="sec auto" id="c3-cooperation" data-scene="bridge" data-pdf="3.3.2 Development Cooperation and Green Transition (Table 3.8)">
   <div class="wrap panel">
-    <div class="eyebrow rv">3.3.2 · Development cooperation</div>
-    <h2 class="h rv" style="--d:1">Cooperation channels <span class="accent">in Vietnam</span></h2>
-    <p class="lead rv" style="--d:2">From grants since 1990 and the PCA (in force 2016) to Global Gateway: more than €560 million for sustainable transport and clean energy (March 2026).</p>
+    <p class="eyebrow rv">3.3.2a</p>
+    <h2 class="h rv" style="--d:1">Development Cooperation and Green Transition</h2>
+    <p class="lead rv" style="--d:2">Since 1990, the EU has provided grants and development assistance to Vietnam. In March 2026, the EU and Vietnam announced an investment package of more than €560 million for sustainable transport and clean energy.</p>
     <div class="tbl-wrap rv mt"><table class="tbl">
+      <caption>Table 3.8. Major EU Development Cooperation Channels in Vietnam</caption>
       <thead><tr><th style="width:24%">Cooperation channel</th><th style="width:40%">Main focus</th><th>Contribution to Vietnam</th></tr></thead>
       <tbody>
         <tr><td>Development assistance</td><td>Poverty reduction, governance and sustainable development</td><td>Strengthens social and institutional capacity</td></tr>
@@ -1036,104 +1138,143 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .86rem; min-width
         <tr><td>Climate cooperation</td><td>Emissions reduction and climate resilience</td><td>Supports Vietnam's net-zero pathway</td></tr>
         <tr><td>Education and skills</td><td>Human capital and vocational training</td><td>Develops skills for green and digital industries</td></tr>
       </tbody></table></div>
-    <p class="src"><b>Source:</b> Table 3.8 — European External Action Service and European Commission.</p>
+    <p class="src"><b>Source:</b> European External Action Service and European Commission.</p>
   </div>
 </section>
 
-<section class="sec auto" id="c3-green" data-scene="bridge">
+<section class="sec auto" id="c3-green" data-scene="bridge" data-pdf="3.3.2 Development Cooperation and Green Transition (JETP, Table 3.9)">
   <div class="wrap panel">
-    <div class="eyebrow rv">3.3.2 · Green transition</div>
-    <h2 class="h rv" style="--d:1">The Just Energy <span class="accent">Transition Partnership</span></h2>
+    <p class="eyebrow rv">3.3.2b</p>
+    <h2 class="h rv" style="--d:1">Development Cooperation and Green Transition</h2>
     <div class="cols c12 mt">
       <div class="stack">
-        <div class="stat rv"><div class="v">US$15.5 bn</div><div class="l">initial JETP pledge (launched 2022; first flagship projects 2025)</div></div>
-        <div class="card gold rv" style="--d:1"><div class="tag">Flagship projects</div><h3>Integrating renewables</h3><ul>
-          <li>Bac Ai pumped-storage hydropower plant — 1,200 MW</li><li>Expansion of the Tri An hydropower plant</li><li>Tra Vinh near-shore wind project</li></ul></div>
-        <div class="card hl rv" style="--d:2"><div class="tag">Three mechanisms</div><h3>How the EU supports the transition</h3><ul>
-          <li><strong>Financing</strong> eases capital constraints for green infrastructure</li>
-          <li><strong>Technology</strong> via European firms and expertise</li>
-          <li><strong>Institutional capacity</strong>: policy design, regulatory reform, project selection</li></ul></div>
+        <div class="card rv"><p class="tag">Just Energy Transition Partnership (JETP)</p><h3>Projects under the JETP framework</h3><ul>
+          <li>The 1,200 MW Bac Ai pumped-storage hydropower plant</li>
+          <li>The expansion of the Tri An hydropower plant</li>
+          <li>The Tra Vinh near-shore wind project</li></ul></div>
+        <div class="card rv" style="--d:1"><p class="tag">Three interconnected mechanisms</p><h3>Financing, technology and institutional capacity building</h3><p>Financial resources reduce capital constraints; technical cooperation strengthens policy design and implementation; cooperation with European institutions and firms facilitates access to technology.</p></div>
       </div>
-      <div>
-        <div class="tbl-wrap rv"><table class="tbl" style="min-width:0">
-          <thead><tr><th style="width:26%">Area</th><th style="width:38%">Main EU-supported direction</th><th>Expected contribution</th></tr></thead>
-          <tbody>
-            <tr><td>Renewable energy</td><td>Solar, wind and hydropower integration</td><td>Increase clean-energy capacity</td></tr>
-            <tr><td>Electricity grid</td><td>Grid development and flexibility</td><td>Integrate intermittent renewables</td></tr>
-            <tr><td>Energy efficiency</td><td>Policy and technical support</td><td>Reduce energy intensity</td></tr>
-            <tr><td>Sustainable transport</td><td>Railways, public transport, low-carbon mobility</td><td>Reduce transport emissions</td></tr>
-            <tr><td>Green finance</td><td>Blended finance and investment mobilisation</td><td>More capital for sustainable projects</td></tr>
-            <tr><td>Carbon markets</td><td>Carbon pricing and emissions trading cooperation</td><td>Incentives for emissions reduction</td></tr>
-            <tr><td>Circular economy</td><td>Resource efficiency and waste management</td><td>Reduce resource use and pollution</td></tr>
-            <tr><td>Climate resilience</td><td>Adaptation and environmental protection</td><td>Reduce vulnerability to climate change</td></tr>
-          </tbody></table></div>
-        <p class="src"><b>Source:</b> Table 3.9 — European Commission and EEAS.</p>
-      </div>
+      <div class="tbl-wrap rv"><table class="tbl" style="min-width:0">
+        <caption>Table 3.9. EU Support for Vietnam's Green Transition</caption>
+        <thead><tr><th style="width:26%">Area</th><th style="width:38%">Main EU-supported direction</th><th>Expected contribution</th></tr></thead>
+        <tbody>
+          <tr><td>Renewable energy</td><td>Solar, wind and hydropower integration</td><td>Increase clean-energy capacity</td></tr>
+          <tr><td>Electricity grid</td><td>Grid development and flexibility</td><td>Improve integration of intermittent renewables</td></tr>
+          <tr><td>Energy efficiency</td><td>Policy and technical support</td><td>Reduce energy intensity</td></tr>
+          <tr><td>Sustainable transport</td><td>Railways, public transport and low-carbon mobility</td><td>Reduce transport emissions</td></tr>
+          <tr><td>Green finance</td><td>Blended finance and investment mobilisation</td><td>Increase capital for sustainable projects</td></tr>
+          <tr><td>Carbon markets</td><td>Carbon pricing and emissions trading cooperation</td><td>Create incentives for emissions reduction</td></tr>
+          <tr><td>Circular economy</td><td>Resource efficiency and waste management</td><td>Reduce resource use and pollution</td></tr>
+          <tr><td>Climate resilience</td><td>Climate adaptation and environmental protection</td><td>Reduce vulnerability to climate change</td></tr>
+        </tbody></table></div>
     </div>
+    <p class="src"><b>Source:</b> European Commission and EEAS.</p>
   </div>
 </section>
 
-<section class="sec auto" id="c3-opportunities" data-scene="bridge">
+<section class="sec auto" id="c3-opportunities" data-scene="bridge" data-pdf="3.4.1 Opportunities">
   <div class="wrap panel">
-    <div class="eyebrow rv">3.4.1 – 3.4.2 · Opportunities and challenges</div>
-    <h2 class="h rv" style="--d:1">What the EU means <span class="accent">for Vietnam</span></h2>
-    <div class="grid g2 mt">
-      <div class="card gold rv"><div class="tag">3.4.1</div><h3>Opportunities</h3><ul>
-        <li>Greater access to the European market and export diversification</li>
-        <li>Higher-quality investment and technology transfer</li>
-        <li>Finance and know-how for the green transition (JETP, Global Gateway)</li>
-        <li>Improvements in institutional and regulatory quality</li>
-        <li>Human-capital and technological development</li></ul></div>
-      <div class="card red rv" style="--d:1"><div class="tag">3.4.2</div><h3>Challenges</h3><ul>
-        <li>Rising compliance costs, especially for SMEs</li>
-        <li>Limited domestic capacity to capture high-value investment and technology</li>
-        <li>Constant pressure for institutional and regulatory adjustment</li>
-        <li>Financing and infrastructure constraints for the green transition</li>
-        <li>Shortages of skilled human resources and innovation capacity</li></ul></div>
-    </div>
+    <p class="eyebrow rv">3.4.1</p>
+    <h2 class="h rv" style="--d:1">Opportunities</h2>
+    <ol class="olist mt">
+      <li class="rv"><strong>Greater access to the European market and export diversification:</strong> lower tariffs and clearer market-access conditions, particularly for textiles and garments, footwear, electronics, furniture, agricultural products and seafood.</li>
+      <li class="rv" style="--d:1"><strong>Higher-quality investment and technology:</strong> advanced manufacturing, renewable energy, logistics, digital infrastructure, semiconductors, sustainable agriculture and the circular economy.</li>
+      <li class="rv" style="--d:2"><strong>Stronger support for Vietnam's green transition:</strong> through the Just Energy Transition Partnership and Global Gateway.</li>
+      <li class="rv" style="--d:3"><strong>Improvements in institutional and regulatory quality:</strong> transparency, regulatory predictability, market access and labour and environmental standards.</li>
+      <li class="rv" style="--d:4"><strong>Human-capital and technological development:</strong> demand for skilled workers in advanced manufacturing, digital technology, renewable energy, environmental management, logistics and sustainable finance.</li>
+    </ol>
   </div>
 </section>
 
-<section class="sec auto" id="c3-recommendations" data-scene="bridge">
+<section class="sec auto" id="c3-challenges" data-scene="bridge" data-pdf="3.4.2 Challenges">
   <div class="wrap panel">
-    <div class="eyebrow rv">3.4.3 · Recommendations</div>
-    <h2 class="h rv" style="--d:1">Policy <span class="accent">recommendations</span></h2>
+    <p class="eyebrow rv">3.4.2</p>
+    <h2 class="h rv" style="--d:1">Challenges</h2>
+    <ol class="olist mt">
+      <li class="rv"><strong>Increasing compliance costs for Vietnamese enterprises:</strong> small and medium-sized enterprises often have limited financial resources, technological capacity and access to compliance services.</li>
+      <li class="rv" style="--d:1"><strong>Limited domestic capacity to capture high-value investment and technology:</strong> weak supporting industries, limited research and development capacity and shortages of highly skilled labour.</li>
+      <li class="rv" style="--d:2"><strong>Increasing pressure for institutional and regulatory adjustment:</strong> European regulations on climate, carbon emissions, digitalisation and supply-chain responsibility are continuously evolving.</li>
+      <li class="rv" style="--d:3"><strong>Financing and infrastructure constraints for the green transition:</strong> renewable energy, electricity grids, energy storage, sustainable transport and climate-resilient infrastructure.</li>
+      <li class="rv" style="--d:4"><strong>Shortages of skilled human resources and innovation capacity:</strong> gaps between the skills demanded by businesses and those provided by education and vocational training.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec auto" id="c3-recommendations" data-scene="bridge" data-pdf="3.4.3 Recommendations">
+  <div class="wrap panel">
+    <p class="eyebrow rv">3.4.3</p>
+    <h2 class="h rv" style="--d:1">Recommendations</h2>
     <div class="grid g4 mt">
-      <div class="card rv"><div class="n">1</div><h3>Complete the EVIPA</h3><p>Engage the remaining member states; manage the trade surplus diplomatically</p></div>
-      <div class="card rv" style="--d:1"><div class="n">2</div><h3>Carbon pricing &amp; data</h3><p>Launch the pilot emissions trading exchange on schedule; build a national MRV system</p></div>
-      <div class="card rv" style="--d:2"><div class="n">3</div><h3>Traceability</h3><p>Geolocation for coffee, rubber and timber (EUDR); fleet monitoring and enforcement (IUU)</p></div>
-      <div class="card rv" style="--d:3"><div class="n">4</div><h3>Raise EVFTA utilisation</h3><p>Simpler customs and origin procedures, faster tax refunds, digital documents; help SMEs become suppliers</p></div>
-      <div class="card gold rv"><div class="n">5</div><h3>Bankable green projects</h3><p>A pipeline of grid, storage and transport projects for JETP and Global Gateway funds</p></div>
-      <div class="card gold rv" style="--d:1"><div class="n">6</div><h3>Higher-quality EU FDI</h3><p>Tie incentives to technology transfer, R&amp;D and supplier development; stay predictable</p></div>
-      <div class="card hl rv" style="--d:2"><div class="n" style="background:var(--gold);color:var(--ink)">7</div><h3>For firms</h3><p>Map supply chains, measure product emissions, get certified and move into higher-value segments</p></div>
+      <div class="card rv"><p class="n">1</p><h3>Complete the EVIPA and manage the surplus diplomatically</h3><p>Continue parliamentary and diplomatic engagement with the remaining member states.</p></div>
+      <div class="card rv" style="--d:1"><p class="n">2</p><h3>Operationalise carbon pricing and emissions data</h3><p>Launch the pilot emissions trading exchange on schedule and build a national measuring, reporting and verification system.</p></div>
+      <div class="card rv" style="--d:2"><p class="n">3</p><h3>Build traceability systems for EUDR and IUU compliance</h3><p>Digital forest-plot mapping and geolocation for coffee, rubber and timber; fleet monitoring and enforcement.</p></div>
+      <div class="card rv" style="--d:3"><p class="n">4</p><h3>Raise EVFTA utilisation</h3><p>Simplify customs and certificate-of-origin procedures, speed up tax refunds, digitalise documentation and apply rules of origin uniformly.</p></div>
+      <div class="card rv"><p class="n">5</p><h3>Make JETP and Global Gateway funds bankable</h3><p>A pipeline of prepared grid, storage and transport projects, with clear regulation and coordination among ministries.</p></div>
+      <div class="card rv" style="--d:1"><p class="n">6</p><h3>Attract higher-quality EU investment and stay predictable</h3><p>Link incentives to technology transfer, R&amp;D and supplier development.</p></div>
+      <div class="card rv" style="--d:2"><p class="n">7</p><h3>For firms: invest in compliance and diversification</h3><p>Map supply chains, measure product-level emissions, obtain certifications and gradually move into higher-value segments.</p></div>
     </div>
-    <p class="src"><b>Source:</b> East Asia Forum (2026); S&amp;P Global (2025); Climate Policy Initiative (n.d.); Italian Trade Agency (2026); Vietnam Investment Review (2025); and others cited in Section 3.4.3.</p>
+    <p class="src"><b>Source:</b> East Asia Forum (2026); S&amp;P Global (2025); Trung tâm WTO và Hội nhập (2026b, 2026c); Vietnam News Agency (2026); Thương hiệu &amp; Công luận (2026); Climate Policy Initiative (n.d.); Italian Trade Agency (2026); Vietnam Investment Review (2025).</p>
   </div>
 </section>
 
-<!-- ======================= CONCLUSION ======================= -->
-<section class="sec" id="takeaways" data-scene="hub">
-  <div class="wrap">
-    <div class="copy">
-      <div class="eyebrow rv">Conclusion</div>
-      <h2 class="h rv" style="--d:1">Key <span class="accent">takeaways</span></h2>
-      <div class="stack mt">
-        <div class="card rv" style="--d:2"><div class="n">1</div><h3>The deepest model of regional integration</h3><p>Single market, euro and supranational institutions — built through both deepening and widening since 1950.</p></div>
-        <div class="card rv" style="--d:3"><div class="n">2</div><h3>Influence built on market power and rules</h3><p>40+ trade agreements, the Brussels Effect, CBAM, binding climate targets and the world's largest aid effort.</p></div>
-        <div class="card rv" style="--d:4"><div class="n">3</div><h3>Strengths are structural, limits are political</h3><p>Unanimity, Euroscepticism, reliance on NATO and the compliance burden abroad constrain its role.</p></div>
-        <div class="card red rv" style="--d:5"><div class="n">4</div><h3>For Vietnam: a partner for growth and standards</h3><p>EVFTA-era trade rose from US$49.8 bn (2019) to US$68.3 bn (2024); next come standards, the green transition and EVIPA ratification.</p></div>
-      </div>
-    </div>
+<!-- ============ REFERENCES ============ -->
+<section class="sec auto" id="references" data-scene="hub" data-pdf="References (compiled from the in-text citations of the PDF; the PDF has no reference list)">
+  <div class="wrap panel">
+    <h2 class="h rv">References</h2>
+    <p class="note rv mt">Compiled from the in-text citations of the report. The report gives only author and year for these sources; [to be completed] marks missing initials, titles, publishers and URLs.</p>
+    <ul class="refs mt">
+      <li>Akin Gump. (2025). [to be completed]</li>
+      <li>Balassa, [initials]. (1961). [to be completed]</li>
+      <li>Börzel, [initials], &amp; Risse, [initials]. (2012). [to be completed]</li>
+      <li>Bradford, [initials]. (2020). [to be completed]</li>
+      <li>Brussels Times. (2026). [to be completed]</li>
+      <li>Bull, [initials]. (1982). [to be completed]</li>
+      <li>Climate Policy Initiative. (n.d.). [to be completed]</li>
+      <li>Council of the European Union. (n.d.-a). [to be completed]</li>
+      <li>Council of the European Union. (n.d.-b). [to be completed]</li>
+      <li>Council of the European Union. (n.d.-c). [to be completed]</li>
+      <li>Council of the European Union. (2025). [to be completed]</li>
+      <li>Damro, [initials]. (2012). [to be completed]</li>
+      <li>Draghi, [initials]. (2024). [to be completed]</li>
+      <li>East Asia Forum. (2026). [to be completed]</li>
+      <li>European Commission. (n.d.-a). [to be completed]</li>
+      <li>European Commission. (n.d.-b). [to be completed]</li>
+      <li>European Commission. (n.d.-c). [to be completed]</li>
+      <li>European Commission. (n.d.-d). [to be completed]</li>
+      <li>European Commission. (n.d.-e). [to be completed]</li>
+      <li>European Commission. (n.d.-f). [to be completed]</li>
+      <li>European Commission. (n.d.-g). [to be completed]</li>
+      <li>European Commission. (n.d.-h). [to be completed]</li>
+      <li>European Commission Joint Research Centre. (2025). [to be completed]</li>
+      <li>European Union. (n.d.-a). [to be completed]</li>
+      <li>European Union. (n.d.-b). [to be completed]</li>
+      <li>Finnish Government. (2025). [to be completed]</li>
+      <li>Hettne, [initials], &amp; Söderbaum, [initials]. (2005). [to be completed]</li>
+      <li>Italian Trade Agency. (2026). [to be completed]</li>
+      <li>Jones, [initials], et al. (2016). [to be completed]</li>
+      <li>Lavenex, [initials]. (2004). [to be completed]</li>
+      <li>Letta, [initials]. (2024). [to be completed]</li>
+      <li>Manners, [initials]. (2002). [to be completed]</li>
+      <li>Meunier, [initials], &amp; Nicolaïdis, [initials]. (2006). [to be completed]</li>
+      <li>Schimmelfennig, [initials], &amp; Sedelmeier, [initials]. (2004). [to be completed]</li>
+      <li>S&amp;P Global. (2025). [to be completed]</li>
+      <li>Thương hiệu &amp; Công luận. (2026). [to be completed]</li>
+      <li>Trung tâm WTO và Hội nhập. (2026b). [to be completed]</li>
+      <li>Trung tâm WTO và Hội nhập. (2026c). [to be completed]</li>
+      <li>Vietnam Investment Review. (2025). [to be completed]</li>
+      <li>Vietnam News Agency. (2026). [to be completed]</li>
+      <li>Viner, [initials]. (1950). [to be completed]</li>
+    </ul>
   </div>
 </section>
 
-<section class="sec intro dark" id="qa" data-scene="stars">
+<section class="sec intro dark" id="qa" data-scene="stars" data-pdf="Closing slide (not in the PDF)">
   <div class="wrap">
-    <div class="eyebrow rv">Group 4 · Investment Economics 65</div>
-    <div class="no rv" style="--d:1;font-size:clamp(3.6rem,7vw,8rem)">Thank you</div>
-    <h2 class="h rv" style="--d:2;font-size:clamp(1.6rem,2.4vw,2.8rem)">Questions &amp; Answers</h2>
-    <div class="subs rv" style="--d:3"><span>Đặng Việt Hoàng</span><span>Lê Trung Kiên</span><span>Ngô Anh Tuấn</span><span>Lecturer: Nguyễn Thị Mai Hoa</span></div>
-    <a class="btn btn-pill rv" style="--d:4" href="#home">↑ Back to top</a>
+    <p class="eyebrow rv">Group 4 · Investment Economics 65</p>
+    <h2 class="no rv" style="--d:1">Thank you</h2>
+    <p class="h rv" style="--d:2;font-size:clamp(1.5rem,2.2vw,2.6rem)">Questions and answers</p>
+    <p class="subs rv" style="--d:3"><span>Đặng Việt Hoàng (11232291)</span><span>Lê Trung Kiên (11235799)</span><span>Ngô Anh Tuấn (11234533)</span></p>
+    <a class="btn btn-pill rv" style="--d:4" href="#contents">Contents</a>
   </div>
 </section>
 </main>
@@ -1145,9 +1286,9 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .86rem; min-width
 /* ---- Chart data taken from the report's figures ---- */
 const DATA = {
   members: { labels: ["1957","1973","1981","1986","1995","2004","2007","2013","2020"], values: [6,9,10,12,15,25,27,28,27] },
-  // Figure 3.1 (billion USD, bar heights read from the figure)
-  trade: { labels: ["2020","2021","2022","2023","2024"], exports: [40,40,47,44,52], imports: [15,16,17,16,17] },
-  // Figure 3.2 (billion EUR, read from the figure)
+  // Figure 3.1 (billion USD). 2020–2023: rounded bar heights of the report's figure; 2024: Table 3.4 values
+  trade: { labels: ["2020","2021","2022","2023","2024"], exports: [40,40,47,44,51.6], imports: [15,16,17,16,16.7] },
+  // Figure 3.2 (billion EUR, rounded bar lengths of the report's figure)
   products: {
     labels: ["Machinery & transport equipment","Textiles & clothing","Food & agricultural products","Chemicals","Fuels & mining"],
     euImports: [26.6,5.0,5.0,1.0,0.4],   // EU imports from Vietnam
@@ -1167,17 +1308,16 @@ const CHARTS = {
     const pw = W - L - R, ph = H - T - B, st = pw / labels.length, bw = st * .56, y = v => T + ph - v / max * ph;
     let g = ""; for (let v = 0; v <= max; v += 10) g += `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}" stroke="${GRID}"/><text x="${L - 10}" y="${y(v) + 6}" text-anchor="end" font-size="17" fill="${AXIS}">${v}</text>`;
     const bars = values.map((v, i) => { const x = L + i * st + (st - bw) / 2, t = y(v);
-      return `<g class="bar-mark"><title>${labels[i]}: ${v} members</title><path d="${roundTop(x, t, bw, T + ph - t, 6)}" fill="${i === 7 ? C2 : C1}"/>
+      return `<g class="bar-mark"><title>${labels[i]}: ${v} members</title><path d="${roundTop(x, t, bw, T + ph - t, 6)}" fill="${C1}"/>
       <text x="${x + bw / 2}" y="${t - 10}" text-anchor="middle" font-size="19" font-weight="700" fill="${INK}">${v}</text>
       <text x="${x + bw / 2}" y="${H - B + 28}" text-anchor="middle" font-size="16" fill="${AXIS}">${labels[i]}</text></g>`; }).join("");
-    return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="EU members: ${labels.map((l, i) => l + " " + values[i]).join(", ")}">${g}<line x1="${L}" x2="${W - R}" y1="${T + ph}" y2="${T + ph}" stroke="${AXIS}"/>${bars}</svg>
-      <div class="legend"><span><i style="background:${C1}"></i>Members after each wave</span><span><i style="background:${C2}"></i>Peak: 28 (2013)</span></div>`;
+    return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="EU members: ${labels.map((l, i) => l + " " + values[i]).join(", ")}">${g}<line x1="${L}" x2="${W - R}" y1="${T + ph}" y2="${T + ph}" stroke="${AXIS}"/>${bars}</svg>`;
   },
   trade() {
     const { labels, exports, imports } = DATA.trade, W = 820, H = 470, L = 50, R = 8, T = 40, B = 46, max = 80;
     const pw = W - L - R, ph = H - T - B, st = pw / labels.length, bw = st * .5, y = v => T + ph - v / max * ph;
     let g = ""; for (let v = 0; v <= max; v += 20) g += `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}" stroke="${GRID}"/><text x="${L - 10}" y="${y(v) + 6}" text-anchor="end" font-size="17" fill="${AXIS}">${v}</text>`;
-    const bars = labels.map((lab, i) => { const x = L + i * st + (st - bw) / 2, e = exports[i], m = imports[i], tot = e + m, yE = y(e), yT = y(tot);
+    const bars = labels.map((lab, i) => { const x = L + i * st + (st - bw) / 2, e = exports[i], m = imports[i], tot = Math.round((e + m) * 10) / 10, yE = y(e), yT = y(tot);
       return `<g class="bar-mark"><title>${lab}: exports ${e}, imports ${m}, total ≈ ${tot} (billion USD)</title>
         <rect x="${x}" y="${yE}" width="${bw}" height="${T + ph - yE}" fill="${C1}"/>
         <path d="${roundTop(x, yT, bw, yE - yT - 3, 6)}" fill="${C2}"/>
@@ -1186,7 +1326,7 @@ const CHARTS = {
         <text x="${x + bw / 2}" y="${yT - 10}" text-anchor="middle" font-size="19" font-weight="800" fill="${INK}">${tot}</text>
         <text x="${x + bw / 2}" y="${H - B + 28}" text-anchor="middle" font-size="16" fill="${AXIS}">${lab}</text></g>`; }).join("");
     return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Vietnam–EU trade 2020–2024">${g}<line x1="${L}" x2="${W - R}" y1="${T + ph}" y2="${T + ph}" stroke="${AXIS}"/>${bars}</svg>
-      <div class="legend"><span><i style="background:${C1}"></i>Vietnam's exports to EU</span><span><i style="background:${C2}"></i>Vietnam's imports from EU</span><span>Number above bar = total</span></div>`;
+      <div class="legend"><span><i style="background:${C1}"></i>Vietnam's exports to EU</span><span><i style="background:${C2}"></i>Vietnam's imports from EU</span><span>Total above each bar</span></div>`;
   },
   products() {
     const { labels, euImports, euExports } = DATA.products, W = 820, H = 470, L = 290, R = 52, T = 8, B = 40, max = 30;
@@ -1212,7 +1352,7 @@ ring(document.getElementById("ring"), 80, 14, 5.6);
 const sections = [...document.querySelectorAll("main > section")];
 const nav = document.getElementById("nav"), progress = document.getElementById("progress"), counter = document.getElementById("counter");
 const dotLinks = [...document.querySelectorAll("#dots a")], navLinks = [...document.querySelectorAll(".nav-links a")];
-const chapterOf = id => { const order = ["home", "ch1", "ch2", "ch3", "takeaways", "qa"]; let cur = "home";
+const chapterOf = id => { const order = ["home", "contents", "ch1", "ch2", "ch3", "references"]; let cur = "home";
   for (const s of sections) { if (order.includes(s.id)) cur = s.id; if (s.id === id) break; } return cur; };
 window.currentScene = "hub";
 function activeSection() { const mid = innerHeight * .5; let best = sections[0];
@@ -1227,6 +1367,8 @@ function onScroll() {
   window.currentScene = s.dataset.scene || "hub";
   window.currentLayout = s.classList.contains("intro") ? "intro" : s.classList.contains("auto") ? "center" : "right";
   window.currentNight = s.classList.contains("dark");
+  document.body.classList.toggle("dim3d", window.currentLayout === "center");
+  document.body.classList.toggle("at-home", s.id === "home");
   const ch = chapterOf(s.id);
   dotLinks.forEach(a => a.classList.toggle("on", a.getAttribute("href") === "#" + ch));
   navLinks.forEach(a => a.classList.toggle("on", a.getAttribute("href") === "#" + ch));
@@ -1261,7 +1403,7 @@ addEventListener("keydown", e => {
 <script>window.THREE || document.write('<script src="https://cdn.jsdelivr.net/npm/three@0.159.0/build/three.min.js"><\/script>');</script>
 
 <!-- ======================================================
-     3D SCENE (Three.js) — clay-style isometric objects that
+     3D SCENE (Three.js): clay-style isometric objects that
      change with the section being read
      ====================================================== -->
 <script>
@@ -1492,7 +1634,7 @@ addEventListener("keydown", e => {
     const goods = []; for (let i = 0; i < 10; i++) goods.push(mesh(new THREE.SphereGeometry(i % 2 ? .2 : .24, 16, 12), i % 2 ? M.blue : M.gold, 0, 0, 0, g));
     // trade bars 2020–2024 (exports blue + imports gold), on a slab in front
     mesh(rbox(8, .3, 2.2, .15), M.clay2, 0, .15, -5.6, g);
-    const ex = [40, 40, 47, 44, 52], im = [15, 16, 17, 16, 17], bars = [];
+    const ex = [40, 40, 47, 44, 51.6], im = [15, 16, 17, 16, 16.7], bars = [];
     ex.forEach((e, i) => { const x = -3 + i * 1.5, he = e * .07, hi = im[i] * .07;
       bars.push([mesh(rbox(.8, he, .8, .12), M.blue, x, .3 + he / 2, -5.6, g), he, .3], [mesh(rbox(.8, hi, .8, .12), M.gold, x, .3 + he + hi / 2, -5.6, g), hi, .3 + he]); });
     let grow = 0;
