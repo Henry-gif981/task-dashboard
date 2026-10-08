@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The European Union – Group 4 | NEU</title>
+<!-- Web fonts (optional): if offline, the system fallbacks in --serif / --sans are used -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   1. Design tokens
+   ========================================================= */
+:root {
+  --navy-900: #0F2747;
+  --navy-800: #14325C;
+  --navy-700: #1F4E8C;   /* primary brand navy */
+  --navy-500: #2A5DA8;   /* chart series 1 */
+  --navy-100: #E6EDF7;
+  --navy-50:  #F2F6FB;
+  --red:      #C8102E;   /* NEU red accent */
+  --gold:     #D19A1F;   /* NEU gold accent / chart series 2 */
+  --gold-soft:#F6E7C1;
+  --ink:      #16202E;
+  --ink-2:    #3D4A5C;
+  --ink-3:    #6B778A;
+  --line:     #D9DFE8;
+  --paper:    #F7F8FA;
+  --white:    #FFFFFF;
+  --serif: "Playfair Display", "Libre Baskerville", Georgia, "Times New Roman", serif;
+  --sans:  "Inter", "Source Sans 3", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: #0B1626; }
+body { font-family: var(--sans); color: var(--ink); -webkit-font-smoothing: antialiased; font-variant-numeric: lining-nums; }
+/* Playfair Display defaults to old-style figures; force lining figures everywhere.
+   !important is needed because every `font:` shorthand below resets font-feature-settings. */
+body, body * { font-feature-settings: "lnum" 1 !important; }
+
+/* =========================================================
+   2. Stage: fixed 1920x1080 canvas, scaled to fit the window
+   ========================================================= */
+#stage {
+  position: absolute; left: 50%; top: 50%;
+  width: 1920px; height: 1080px;
+  transform-origin: 0 0;
+  overflow: hidden;
+  background: var(--paper);
+}
+.slide {
+  position: absolute; inset: 0;
+  padding: 88px 120px 0;
+  background: var(--paper);
+  opacity: 0; visibility: hidden;
+  transform: translateX(28px);
+  transition: opacity .45s ease, transform .45s ease, visibility 0s linear .45s;
+  display: flex; flex-direction: column;
+}
+.slide.active { opacity: 1; visibility: visible; transform: none; transition: opacity .45s ease, transform .45s ease; }
+.slide.before { transform: translateX(-28px); }
+
+/* Staggered reveal of content blocks on the active slide */
+.slide.active .r { animation: rise .55s cubic-bezier(.2,.7,.2,1) both; animation-delay: calc(var(--i, 0) * 90ms + 120ms); }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .slide, .slide.active { transition: none; transform: none; }
+  .slide.active .r { animation: none; }
+}
+
+/* Header */
+.kicker {
+  font: 600 22px/1 var(--sans); letter-spacing: .14em; text-transform: uppercase;
+  color: var(--red); display: flex; align-items: center; gap: 16px; margin-bottom: 18px;
+}
+.kicker::before { content: ""; width: 44px; height: 3px; background: var(--gold); }
+.title {
+  font: 800 54px/1.12 var(--serif); text-transform: uppercase; letter-spacing: .01em;
+  color: var(--navy-700); max-width: 1500px;
+}
+.lead { font: 400 28px/1.45 var(--sans); color: var(--ink-2); margin-top: 18px; max-width: 1560px; }
+.body { flex: 1; min-height: 0; margin-top: 40px; display: flex; flex-direction: column; }
+.fit { display: flex; flex-direction: column; gap: 28px; }   /* natural height; zoomed by fitSlides() */
+
+/* Footer: source line + group label + slide number */
+.foot {
+  height: 92px; flex: none; display: flex; align-items: center; justify-content: space-between;
+  border-top: 1px solid var(--line); margin-top: 20px;
+  font: 500 18px/1.3 var(--sans); color: var(--ink-3);
+}
+.foot .src { max-width: 1380px; font-style: italic; }
+.foot .src b { font-style: normal; font-weight: 600; color: var(--ink-2); }
+.foot .num { font-variant-numeric: lining-nums tabular-nums; letter-spacing: .06em; }
+.corner-logo { position: absolute; top: 56px; right: 120px; height: 72px; width: auto; }
+
+/* =========================================================
+   3. Content blocks
+   ========================================================= */
+.cols { display: grid; gap: 56px; flex: 1; min-height: 0; align-items: start; }
+.col { display: flex; flex-direction: column; gap: 28px; min-width: 0; }
+
+/* Bullets */
+ul.bul { list-style: none; display: flex; flex-direction: column; gap: 22px; }
+ul.bul li { position: relative; padding-left: 40px; font: 400 28px/1.42 var(--sans); color: var(--ink); }
+ul.bul li::before { content: ""; position: absolute; left: 4px; top: .58em; width: 14px; height: 14px; background: var(--gold); transform: rotate(45deg); }
+ul.bul li strong { color: var(--navy-700); font-weight: 700; }
+ul.bul.sm li { font-size: 25px; }
+ul.bul.sm { gap: 16px; }
+
+/* Cards */
+.cards { display: grid; gap: 24px; }
+.card {
+  background: var(--white); border: 1px solid var(--line); border-top: 5px solid var(--navy-700);
+  border-radius: 6px; padding: 26px 28px; display: flex; flex-direction: column; gap: 10px;
+}
+.card.gold { border-top-color: var(--gold); }
+.card.red { border-top-color: var(--red); }
+.card .tag { font: 600 18px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+.card h3 { font: 700 29px/1.2 var(--serif); color: var(--navy-700); }
+.card p, .card li { font: 400 24px/1.42 var(--sans); color: var(--ink-2); }
+.card ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.card ul li { padding-left: 22px; position: relative; }
+.card ul li::before { content: "–"; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+.card .n { font: 800 44px/1 var(--serif); color: var(--gold); }
+
+/* Callout */
+.callout {
+  background: var(--navy-700); color: var(--white); border-radius: 6px; padding: 26px 32px;
+  font: 400 26px/1.45 var(--sans); border-left: 8px solid var(--gold);
+}
+.callout strong { color: var(--gold-soft); }
+.callout.light { background: var(--navy-50); color: var(--ink); border: 1px solid var(--line); border-left: 8px solid var(--gold); }
+.callout.light strong { color: var(--navy-700); }
+.callout h4 { font: 700 26px/1.2 var(--serif); margin-bottom: 10px; color: inherit; }
+
+/* Stat tiles */
+.stats { display: grid; gap: 24px; }
+.stat { background: var(--white); border: 1px solid var(--line); border-radius: 6px; padding: 24px 28px; border-left: 6px solid var(--navy-700); }
+.stat .v { font: 800 52px/1.05 var(--serif); color: var(--navy-700); font-variant-numeric: lining-nums; }
+.stat .l { font: 500 24px/1.35 var(--sans); color: var(--ink-2); margin-top: 8px; }
+.stat.gold { border-left-color: var(--gold); }
+.stat.red { border-left-color: var(--red); }
+
+/* Tables */
+table.t { width: 100%; border-collapse: collapse; background: var(--white); font: 400 24px/1.36 var(--sans); }
+table.t th {
+  background: var(--navy-700); color: var(--white); text-align: left; padding: 16px 22px;
+  font: 600 21px/1.2 var(--sans); letter-spacing: .08em; text-transform: uppercase;
+}
+table.t td { padding: 14px 22px; border-bottom: 1px solid var(--line); vertical-align: top; color: var(--ink); }
+table.t tr:nth-child(even) td { background: var(--navy-50); }
+table.t td:first-child { font-weight: 700; color: var(--navy-700); }
+table.t td.num, table.t th.num { text-align: right; font-variant-numeric: lining-nums tabular-nums; white-space: nowrap; }
+table.t td.up { color: #1C6B3A; font-weight: 700; }
+table.t.compact td { padding: 11px 20px; }
+
+/* Timeline (grid of milestone cards on a rail) */
+.tl { display: grid; gap: 22px 26px; }
+.tl .m { background: var(--white); border: 1px solid var(--line); border-radius: 6px; padding: 18px 22px 20px; position: relative; }
+.tl .m::before { content: ""; position: absolute; left: 22px; top: -7px; width: 12px; height: 12px; background: var(--gold); transform: rotate(45deg); }
+.tl .y { font: 800 30px/1.1 var(--serif); color: var(--navy-700); }
+.tl .h { font: 700 24px/1.25 var(--sans); color: var(--ink); margin-top: 6px; }
+.tl .d { font: 400 24px/1.35 var(--sans); color: var(--ink-2); margin-top: 4px; }
+
+/* Date list (two-column milestones) */
+.dl { display: grid; grid-template-columns: 1fr 1fr; gap: 0 56px; }
+.dl .row { display: grid; grid-template-columns: 190px 1fr; gap: 20px; padding: 15px 0; border-bottom: 1px solid var(--line); }
+.dl .row .dt { font: 700 24px/1.35 var(--sans); color: var(--navy-700); white-space: nowrap; }
+.dl .row .ev { font: 400 24px/1.35 var(--sans); color: var(--ink); }
+
+/* Integration ladder */
+.ladder { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; align-items: end; flex: 1; }
+.step { background: var(--white); border: 1px solid var(--line); border-radius: 6px; padding: 22px 22px 24px; display: flex; flex-direction: column; gap: 10px; position: relative; overflow: hidden; }
+.step .lvl { font: 800 40px/1 var(--serif); color: var(--gold); }
+.step h3 { font: 700 26px/1.2 var(--serif); color: var(--navy-700); }
+.step p { font: 400 24px/1.38 var(--sans); color: var(--ink-2); }
+.step .bar { position: absolute; left: 0; right: 0; bottom: 0; height: 8px; background: var(--navy-700); }
+
+/* Flow diagram (Brussels Effect) */
+.flow { display: grid; grid-template-columns: 1fr 70px 1fr 70px 1fr; align-items: stretch; }
+.flow .arrow { display: flex; align-items: center; justify-content: center; color: var(--gold); font: 700 52px/1 var(--sans); }
+.chips { display: flex; flex-wrap: wrap; gap: 14px; }
+.chip { background: var(--white); border: 2px solid var(--navy-700); color: var(--navy-700); border-radius: 999px; padding: 12px 24px; font: 600 24px/1.2 var(--sans); }
+
+/* Share bar (development aid) */
+.share { height: 56px; border-radius: 6px; background: var(--navy-100); position: relative; overflow: hidden; }
+.share > span { position: absolute; left: 0; top: 0; bottom: 0; background: var(--navy-500); }
+.share-l { display: flex; justify-content: space-between; font: 500 24px/1.3 var(--sans); color: var(--ink-2); margin-top: 10px; }
+
+/* Charts */
+.chart { background: var(--white); border: 1px solid var(--line); border-radius: 6px; padding: 24px 28px 16px; display: flex; flex-direction: column; gap: 12px; }
+.chart .ct { font: 700 26px/1.25 var(--serif); color: var(--navy-700); }
+.chart svg { width: 100%; height: auto; display: block; overflow: visible; }
+.chart svg text { font-family: var(--sans); }
+.chart .bar-mark:hover { opacity: .82; }
+.legend { display: flex; flex-wrap: wrap; gap: 10px 32px; font: 500 24px/1.2 var(--sans); color: var(--ink-2); }
+.legend i { display: inline-block; width: 18px; height: 18px; border-radius: 3px; margin-right: 10px; vertical-align: -2px; }
+
+/* =========================================================
+   4. Dark slides: cover, chapter dividers, closing
+   ========================================================= */
+.slide.dark { background: radial-gradient(1200px 800px at 85% 10%, #255597 0%, var(--navy-800) 45%, var(--navy-900) 100%); color: var(--white); }
+.slide.dark .foot { border-top-color: rgba(255,255,255,.18); color: rgba(255,255,255,.62); }
+.slide.dark .corner-logo { display: none; }
+
+.cover { justify-content: center; padding-top: 0; }
+.cover .inst { font: 600 24px/1.4 var(--sans); letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.82); }
+.cover .inst b { display: block; color: var(--white); font-size: 28px; }
+.cover .rule { width: 120px; height: 4px; background: var(--gold); margin: 40px 0 34px; }
+.cover .course { font: 600 26px/1.3 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+.cover .topic { font: 800 58px/1.16 var(--serif); text-transform: uppercase; margin-top: 22px; max-width: 1480px; }
+.cover .meta { display: grid; grid-template-columns: auto 1fr; gap: 12px 40px; margin-top: 56px; font: 400 26px/1.35 var(--sans); color: rgba(255,255,255,.9); }
+.cover .meta dt { font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); font-size: 22px; padding-top: 3px; }
+.cover .meta dd span { display: inline-block; margin-right: 36px; }
+.cover-logo { position: absolute; right: 140px; top: 120px; width: 240px; height: auto; }
+.cover .redline { position: absolute; left: 0; top: 0; bottom: 0; width: 14px; background: linear-gradient(var(--red), var(--red) 60%, var(--gold) 60%); }
+
+.chapter { justify-content: center; padding-top: 0; }
+.chapter .no { font: 800 200px/0.9 var(--serif); color: var(--gold); }
+.chapter .lbl { font: 600 24px/1 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.7); margin-top: 26px; }
+.chapter h2 { font: 800 68px/1.12 var(--serif); text-transform: uppercase; margin-top: 18px; max-width: 1500px; }
+.chapter ul { list-style: none; margin-top: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px 64px; max-width: 1560px; }
+.chapter li { font: 400 27px/1.35 var(--sans); color: rgba(255,255,255,.9); padding-left: 76px; position: relative; }
+.chapter li b { position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+
+/* Agenda */
+.agenda-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; flex: 1; align-items: stretch; }
+.agenda-grid .a { background: var(--white); border: 1px solid var(--line); border-radius: 6px; padding: 34px 30px; display: flex; flex-direction: column; gap: 14px; border-top: 6px solid var(--navy-700); }
+.agenda-grid .a .no { font: 800 64px/1 var(--serif); color: var(--gold); }
+.agenda-grid .a h3 { font: 700 30px/1.22 var(--serif); color: var(--navy-700); text-transform: uppercase; }
+.agenda-grid .a ul { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 6px; }
+.agenda-grid .a li { font: 400 24px/1.35 var(--sans); color: var(--ink-2); }
+
+/* Closing */
+.closing { justify-content: center; align-items: center; text-align: center; padding-top: 0; }
+.closing h2 { font: 800 132px/1 var(--serif); text-transform: uppercase; letter-spacing: .02em; }
+.closing .rule { width: 140px; height: 4px; background: var(--gold); margin: 44px auto; }
+.closing p { font: 500 34px/1.4 var(--sans); color: rgba(255,255,255,.85); }
+.closing .names { margin-top: 40px; font: 400 26px/1.6 var(--sans); color: rgba(255,255,255,.75); }
+
+/* =========================================================
+   5. Presenter UI (outside the scaled stage)
+   ========================================================= */
+#progress { position: fixed; left: 0; bottom: 0; height: 5px; background: var(--gold); width: 0; transition: width .35s ease; z-index: 20; }
+#hud {
+  position: fixed; right: 18px; top: 16px; z-index: 21; display: flex; gap: 6px; align-items: center;
+  font: 600 14px/1 var(--sans); color: #fff; opacity: 0; transition: opacity .3s;
+}
+body.show-hud #hud { opacity: .9; }
+#hud button { background: rgba(15,39,71,.85); color: #fff; border: 1px solid rgba(255,255,255,.25); border-radius: 4px; padding: 8px 12px; font: inherit; cursor: pointer; }
+#hud button:hover { background: var(--navy-700); }
+
+#overview {
+  position: fixed; inset: 0; z-index: 30; background: rgba(9,20,38,.96); overflow-y: auto;
+  padding: 40px 48px 60px; display: none;
+}
+#overview.open { display: block; }
+#overview h2 { font: 700 26px/1 var(--serif); color: #fff; margin-bottom: 8px; }
+#overview .hint { font: 400 15px/1.4 var(--sans); color: rgba(255,255,255,.6); margin-bottom: 26px; }
+#overview .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(288px, 1fr)); gap: 22px; }
+.thumb { cursor: pointer; border-radius: 4px; outline: 2px solid transparent; transition: outline-color .15s, transform .15s; }
+.thumb:hover { outline-color: rgba(209,154,31,.7); transform: translateY(-2px); }
+.thumb.cur { outline-color: var(--gold); }
+.thumb .frame { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 4px; background: var(--paper); }
+.thumb .frame .slide { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 0 0; opacity: 1; visibility: visible; transition: none; }
+.thumb .frame .slide .r { animation: none !important; }
+.thumb .cap { font: 500 14px/1.3 var(--sans); color: rgba(255,255,255,.75); margin-top: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.thumb .cap b { color: var(--gold); margin-right: 6px; }
+
+/* =========================================================
+   6. Print: one slide per page (File → Print → Save as PDF)
+   ========================================================= */
+@page { size: 1920px 1080px; margin: 0; }
+@media print {
+  html, body { overflow: visible; height: auto; background: #fff; }
+  #stage { position: static; transform: none !important; width: 1920px; height: auto; overflow: visible; background: none; }
+  .slide { position: relative; opacity: 1; visibility: visible; transform: none; transition: none;
+           width: 1920px; height: 1080px; page-break-after: always; break-after: page; }
+  .slide .r { animation: none !important; }
+  #progress, #hud, #overview { display: none !important; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+</style>
+</head>
+<body>
+<div id="stage" aria-live="polite"></div>
+<div id="progress"></div>
+<div id="hud">
+  <button type="button" data-act="prev" title="Previous (←)">◀</button>
+  <button type="button" data-act="next" title="Next (→)">▶</button>
+  <button type="button" data-act="overview" title="Overview (O / G)">Overview</button>
+  <button type="button" data-act="full" title="Fullscreen (F)">Fullscreen</button>
+</div>
+<div id="overview" role="dialog" aria-label="Slide overview">
+  <h2>All slides</h2>
+  <p class="hint">Click a slide to jump to it · Esc, O or G to close</p>
+  <div class="grid"></div>
+</div>
+
+<script>
+/* =========================================================
+   SLIDE DATA
+   Every slide is one object. Common fields:
+     type:   "cover" | "agenda" | "chapter" | "content" | "closing"
+     kicker: small label above the title (section number)
+     title:  slide title
+     lead:   optional one-line intro under the title
+     blocks: array of content blocks (see renderBlock below)
+     source: optional source line shown in the footer
+   Inline markup: **bold** is supported in all text strings.
+   ========================================================= */
+
+// ---- Chart data (taken from the report's figures) ----
+const DATA = {
+  // Figure 2.1 – number of EU members after each enlargement
+  members: {
+    labels: ["1957", "1973", "1981", "1986", "1995", "2004", "2007", "2013", "2020"],
+    values: [6, 9, 10, 12, 15, 25, 27, 28, 27]
+  },
+  // Figure 3.1 – Vietnam–EU trade, billion USD (bar heights read from the report's figure)
+  trade: {
+    labels: ["2020", "2021", "2022", "2023", "2024"],
+    exports: [40, 40, 47, 44, 52],
+    imports: [15, 16, 17, 16, 17]
+  },
+  // Figure 3.2 – major product groups in Vietnam–EU trade, 2024, billion EUR (read from the report's figure)
+  products: {
+    labels: ["Machinery & transport equipment", "Textiles & clothing", "Food & agricultural products", "Chemicals", "Fuels & mining"],
+    euImports: [26.6, 5.0, 5.0, 1.0, 0.4],   // EU imports from Vietnam
+    euExports: [4.2, 0.6, 1.8, 3.7, 0.2]     // EU exports to Vietnam
+  }
+};
+
+const SLIDES = [
+  /* ---------------- Opening ---------------- */
+  { type: "cover" },
+
+  { type: "agenda", kicker: "Agenda", title: "Structure of the presentation",
+    items: [
+      { no: "01", h: "Theoretical basis & overview of the EU", sub: ["Regional economic integration", "Levels of integration", "History, institutions, principles", "Core integration mechanisms"] },
+      { no: "02", h: "The EU in regional & global integration", sub: ["Deepening & enlargement", "Trade power & Brussels Effect", "Development, climate, security", "Strengths, limits, prospects"] },
+      { no: "03", h: "The EU's influence on Vietnam", sub: ["Vietnam–EU relations", "EVFTA & EVIPA", "Standards & green transition", "Opportunities, challenges, policy"] },
+      { no: "04", h: "Conclusion", sub: ["Key takeaways", "Q&A"] }
+    ] },
+
+  /* ---------------- Chapter 1 ---------------- */
+  { type: "chapter", no: "01", title: "Theoretical basis and overview of the European Union",
+    sections: [["1.1", "Theoretical basis of regional economic integration"], ["1.2", "Overview of the European Union"]] },
+
+  { type: "content", kicker: "1.1.1 · Concept", title: "Regional economic integration",
+    blocks: [{ cols: "1.35fr 1fr", children: [
+      [{ bullets: [
+        "**Definition:** countries progressively reduce barriers to goods, services, capital and people — and increasingly coordinate policies",
+        "**Two levels:** global (multilateral rules for trade and investment) and regional (neighbouring countries deepen ties)",
+        "**Economic aims:** efficiency, larger markets, economies of scale, trade and investment, competitiveness",
+        "**Political aims:** peace, stability and stronger collective bargaining power"
+      ] }],
+      [{ callout: { h: "The costs of integration", text: "Stronger competition for domestic firms · adjustment costs for workers as production shifts · transfer of some policy responsibilities to regional institutions" } },
+       { callout: { light: true, text: "The **EU** is one of the most advanced examples: from economic cooperation to a single market, a common currency and supranational institutions." } }]
+    ] }] },
+
+  { type: "content", kicker: "1.1.2 · Levels", title: "Levels of regional economic integration",
+    blocks: [
+      { ladder: [
+        { h: "Free Trade Area", p: "Internal tariffs removed; each member keeps its own external trade policy (e.g. USMCA, AFTA)" },
+        { h: "Customs Union", p: "+ Common external tariff toward non-members" },
+        { h: "Common Market", p: "+ Free movement of capital, labour and services" },
+        { h: "Economic Union", p: "+ Coordinated tax, competition, spending and employment policies" },
+        { h: "Economic & Monetary Union", p: "+ Common currency and common central bank (euro area, ECB)" }
+      ] },
+      { callout: { light: true, text: "**Political union** is deeper still but rarely achieved. The stages are **not a rigid sequence** — arrangements can mix features of different stages." } }
+    ] },
+
+  { type: "content", kicker: "1.1.3 · The EU as a model", title: "The EU: a model of deep regional integration",
+    blocks: [
+      { cards: { cols: 5, items: [
+        { h: "Single Market", p: "Free movement of goods, services, capital and people" },
+        { h: "Common policies", p: "Trade, agriculture, competition, regional development, environment, consumers" },
+        { h: "Monetary union", p: "The euro; monetary policy run by the European Central Bank" },
+        { h: "Supranational institutions", p: "Commission, Parliament, Court of Justice; EU law can bind member states" },
+        { h: "External influence", p: "Market size lets EU rules shape firms and countries abroad — the \"Brussels Effect\"" }
+      ] } },
+      { callout: { text: "The EU is **not simply a trade bloc**: it combines economic integration, legal cooperation, institutional governance, political coordination and external relations." } }
+    ] },
+
+  { type: "content", kicker: "1.2.1 · Formation and development (I)", title: "From coal and steel to the Single European Act",
+    blocks: [{ timeline: { cols: 3, items: [
+      { y: "1950", h: "Schuman Declaration", d: "Pool French and German coal and steel — a foundation for peace" },
+      { y: "1951–1952", h: "ECSC", d: "Six founders create the first supranational community" },
+      { y: "1957–1958", h: "Treaties of Rome", d: "EEC and Euratom: toward a common market" },
+      { y: "1965–1967", h: "Merger Treaty", d: "Single Commission and Council for the three communities" },
+      { y: "1973", h: "First enlargement", d: "Denmark, Ireland and the United Kingdom join" },
+      { y: "1979", h: "First direct EP elections", d: "Citizens elect the European Parliament" },
+      { y: "1981", h: "Greece joins", d: "Tenth member; supports democratic consolidation" },
+      { y: "1986", h: "Spain and Portugal join", d: "The Communities grow to 12 members" },
+      { y: "1986–1987", h: "Single European Act", d: "Legal basis to complete the Single Market" }
+    ] } }],
+    source: "Table 1 — European Union, European Parliament, European Council and European Central Bank materials." },
+
+  { type: "content", kicker: "1.2.1 · Formation and development (II)", title: "Union, euro, enlargement — and Brexit",
+    blocks: [{ timeline: { cols: 4, compact: true, items: [
+      { y: "1992–1993", h: "Maastricht Treaty", d: "EU created; basis for EMU and foreign policy" },
+      { y: "1993", h: "Single Market", d: "The four freedoms in operation" },
+      { y: "1995", h: "Austria, Finland, Sweden", d: "Membership rises to 15" },
+      { y: "1999", h: "Euro launched", d: "For accounting and financial transactions" },
+      { y: "2002", h: "Euro cash", d: "Banknotes and coins in 12 countries" },
+      { y: "2004", h: "Largest enlargement", d: "Ten countries, mainly Central & Eastern Europe" },
+      { y: "2007", h: "Bulgaria, Romania", d: "Membership reaches 27" },
+      { y: "2009", h: "Treaty of Lisbon", d: "Reformed institutions and decision-making" },
+      { y: "2013", h: "Croatia joins", d: "28th member — last accession before Brexit" },
+      { y: "2016", h: "UK referendum", d: "Majority votes to leave the EU" },
+      { y: "2020", h: "Brexit", d: "UK leaves on 31 January 2020; EU of 27" },
+      { y: "2020–now", h: "A strategic EU", d: "Resilience, climate, digital, energy security" }
+    ] } }],
+    source: "Table 1 — European Union, European Parliament, European Council and European Central Bank materials." },
+
+  { type: "content", kicker: "1.2.2 · Institutional structure", title: "Who decides in the EU?",
+    blocks: [
+      { cards: { cols: 3, items: [
+        { tag: "General EU interest", h: "European Commission", p: "Proposes legislation, implements policies, manages the budget, ensures EU law is applied" },
+        { tag: "EU citizens", h: "European Parliament", p: "Directly elected; co-legislates, approves the budget with the Council, oversees institutions" },
+        { tag: "Member-state governments", h: "Council of the EU", p: "National ministers by policy area; adopts legislation with the Parliament" },
+        { tag: "Heads of state or government", h: "European Council", p: "Sets overall political direction and priorities; no ordinary legislation", c: "gold" },
+        { tag: "Rule of law", h: "Court of Justice (CJEU)", p: "Ensures EU law is interpreted and applied consistently", c: "gold" },
+        { tag: "Euro area", h: "European Central Bank", p: "Monetary policy and price stability; forms the Eurosystem with national central banks", c: "gold" }
+      ] } },
+      { callout: { light: true, text: "EU decision-making balances **supranational** and **intergovernmental** elements — member states keep key powers where national sovereignty remains central." } }
+    ] },
+
+  { type: "content", kicker: "1.2.3 · Objectives and principles", title: "Objectives, principles and fundamental values",
+    blocks: [{ cols: "1fr 1fr", children: [
+      [{ cards: { cols: 1, items: [
+        { tag: "Objectives", h: "Economic", p: "An internal market with minimal barriers; sustainable growth, jobs, competitiveness, social and territorial cohesion" },
+        { tag: "Objectives", h: "Political", p: "Peace and stability; cooperation in foreign policy, security and justice" },
+        { tag: "Values", h: "Fundamental values", p: "Human dignity, freedom, democracy, equality, the rule of law and human rights" }
+      ] } }],
+      [{ cards: { cols: 1, items: [
+        { tag: "Principle", h: "Subsidiarity", p: "Act at EU level only when it achieves objectives better than national, regional or local action", c: "gold" },
+        { tag: "Principle", h: "Proportionality", p: "EU action must not go beyond what the treaties' objectives require", c: "gold" },
+        { tag: "Principle", h: "Solidarity", p: "Financial and regional policies reduce disparities and share adjustment costs", c: "gold" }
+      ] } }]
+    ] }] },
+
+  { type: "content", kicker: "1.2.4 · Core mechanisms", title: "Core mechanisms of European integration",
+    blocks: [{ cards: { cols: 3, items: [
+      { n: "1", h: "The Single Market", ul: ["Free movement of goods, services, capital and people", "Common standards cut transaction costs"] },
+      { n: "2", h: "Common policies", ul: ["Common Agricultural Policy", "Competition: cartels, dominance, state aid", "Cohesion funds; environment & climate"] },
+      { n: "3", h: "Economic & Monetary Union", ul: ["Euro removes exchange-rate risk, adds price transparency", "Trade-off: no national monetary policy"] },
+      { n: "4", h: "Common trade policy", ul: ["The EU negotiates agreements collectively", "Market size strengthens bargaining power"] },
+      { n: "5", h: "Supranational governance", ul: ["EU-level rules legally binding in member states", "Ongoing debate over national sovereignty"] }
+    ] } }] },
+
+  /* ---------------- Chapter 2 ---------------- */
+  { type: "chapter", no: "02", title: "The EU's role and influence on regional and global integration",
+    sections: [["2.1", "Role in European regional integration"], ["2.2", "Role in global economic integration"], ["2.3", "Global governance and other regions"], ["2.4", "Strengths, limitations and prospects"]] },
+
+  { type: "content", kicker: "2.1.1 · Deepening integration", title: "Deepening: further than any other regional group",
+    blocks: [{ cols: "1.55fr 1fr", children: [
+      [{ bullets: [
+        "Along Balassa's (1961) ladder: **customs union 1968**, **single market 1993**, then economic and monetary union",
+        "**Schengen** removed most internal border checks; **Lisbon (2009)** created a single legal personality, a permanent European Council President and a High Representative",
+        "**\"Failing forward\"** (Jones et al., 2016): euro crisis 2010–12 → ESM and banking union; COVID-19 → NextGenerationEU, financed by joint borrowing",
+        "**Social side:** cohesion policy helps lower-income members catch up"
+      ] }],
+      [{ stats: { cols: 1, items: [
+        { v: "21 of 27", l: "member states use the euro" },
+        { v: "> €800 bn", l: "NextGenerationEU in current prices (€750 bn in 2018 prices)", c: "gold" }
+      ] } }]
+    ] }],
+    source: "European Union (n.d.-a); European Commission (n.d.-h); Jones et al. (2016)." },
+
+  { type: "content", kicker: "2.1.2 · Enlargement", title: "Enlargement: governance by conditionality",
+    blocks: [{ cols: "1.45fr 1fr", children: [
+      [{ chart: { kind: "members", title: "Number of EU members after each enlargement (incl. 2020 UK withdrawal)" } }],
+      [{ bullets: { sm: true, items: [
+        "Enlargement is the EU's **most effective foreign-policy tool**: candidates change their own laws to join",
+        "**Copenhagen criteria (1993):** stable democracy, functioning market economy, capacity to adopt EU law",
+        "**\"Governance by conditionality\"** (Schimmelfennig & Sedelmeier, 2004): membership is the reward, rule adoption the price",
+        "**2004:** ten countries, mostly Central and Eastern Europe — the clearest example"
+      ] } }]
+    ] }],
+    source: "Figure 2.1 — compiled by the author from the European Union (n.d.-b)." },
+
+  { type: "content", kicker: "2.1.2 · Enlargement waves", title: "Enlargement waves and current candidates",
+    blocks: [{ table: { cols: ["Stage", "Countries / status"], widths: ["22%", "78%"], rows: [
+      ["1957", "Founding six: Belgium, France, Germany, Italy, Luxembourg, Netherlands"],
+      ["1973 – 1986", "Denmark, Ireland, UK (1973); Greece (1981); Spain, Portugal (1986)"],
+      ["1995", "Austria, Finland, Sweden"],
+      ["2004 – 2013", "Ten countries in 2004; Bulgaria and Romania in 2007; Croatia in 2013"],
+      ["2020", "The United Kingdom leaves; the EU has 27 members"],
+      ["Candidates (2026)", "Albania, Bosnia and Herzegovina, Georgia, Moldova, Montenegro, North Macedonia, Serbia, Türkiye, Ukraine; Kosovo is a potential candidate. Negotiations opened with Ukraine and Moldova in June 2024."]
+    ] } }],
+    source: "Table 2.1 — European Union (n.d.-b); European Commission (n.d.-a)." },
+
+  { type: "content", kicker: "2.1.2 · Neighbourhood", title: "Today's enlargement and the neighbourhood policy",
+    blocks: [{ cols: "1fr 1fr", children: [
+      [{ cards: { cols: 1, items: [
+        { tag: "Shaped by security", h: "The current enlargement round", ul: [
+          "Ukraine and Moldova applied after Russia's 2022 invasion; candidates since June 2022",
+          "2025 Enlargement Package (4 Nov 2025): enlargement is a priority",
+          "Still depends on reform and unanimity; some Western Balkan applicants have waited a decade or more",
+          "Georgia (candidate 2023): conditionality works only if the government wants to comply"
+        ] }
+      ] } }],
+      [{ cards: { cols: 1, items: [
+        { tag: "\"External governance\" (Lavenex, 2004)", h: "European Neighbourhood Policy", c: "gold", ul: [
+          "Launched 2004; Union for the Mediterranean (2008), Eastern Partnership (2009)",
+          "Single-market rules extended without membership",
+          "Mixed results: Moldova and Ukraine moved closer; the southern neighbourhood changed little",
+          "European Political Community (2022): influence wider than legal borders"
+        ] }
+      ] } }]
+    ] }],
+    source: "European Commission (n.d.-a); Lavenex (2004)." },
+
+  { type: "content", kicker: "2.1.3 · Challenges", title: "Challenges to integration",
+    blocks: [
+      { cards: { cols: 4, items: [
+        { n: "1", h: "Euro crisis", p: "A common currency without a common fiscal policy; lasting north–south divide", c: "red" },
+        { n: "2", h: "Migration 2015–16", p: "Split over burden sharing; pressure on Schengen", c: "red" },
+        { n: "3", h: "Brexit", p: "2016 referendum, exit on 31 January 2020: membership is reversible", c: "red" },
+        { n: "4", h: "Rule of law", p: "Hungary and Poland; Article 7 procedures; EU funds linked to the rule of law", c: "red" }
+      ] } },
+      { callout: { h: "The economic dimension: competitiveness", text: "2022 energy crisis and a widening productivity gap with the US and China. **Draghi (2024):** investment of €750–800 bn a year (4.4–4.7% of 2023 GDP). **Letta (2024):** complete the single market in services, energy and capital." } }
+    ],
+    source: "Draghi (2024); Letta (2024)." },
+
+  { type: "content", kicker: "2.2.1 · Global trade power", title: "The EU as a global trade power",
+    blocks: [{ cols: "1fr 1.25fr", children: [
+      [{ stats: { cols: 2, items: [
+        { v: "15.8%", l: "share of world trade in goods & services (2024)" },
+        { v: "40+", l: "agreements with about 80 partners", c: "gold" },
+        { v: "€18.8 tn", l: "size of the EU economy (2025)", c: "gold" },
+        { v: "30 m+", l: "EU jobs depend on exports" }
+      ] } }],
+      [{ bullets: { sm: true, items: [
+        "**One actor:** the Commission negotiates for all; tariffs set at Union level (Art. 207 TFEU)",
+        "A **\"conflicted trade power\"** (Meunier & Nicolaïdis, 2006) and **\"Market Power Europe\"** (Damro, 2012)",
+        "**Region-to-region preference:** Mercosur is bloc-to-bloc; the EVFTA was first conceived as part of an EU–ASEAN plan",
+        "**Trade meets strategy:** diversifying away from the US and China after the 2025 tariff increases; trade defence (anti-dumping duties on Chinese pea protein, Sept 2026)"
+      ] } }]
+    ] }],
+    source: "Council of the European Union (n.d.-c); Brussels Times (2026), reporting Eurostat; European Commission (n.d.-b)." },
+
+  { type: "content", kicker: "2.2.1 · Trade agreements", title: "Selected EU trade agreements (October 2026)",
+    blocks: [{ table: { compact: true, cols: ["Partner", "Status", "Why it matters"], widths: ["15%", "52%", "33%"], rows: [
+      ["Japan", "In force since 1 February 2019 (EU–Japan Economic Partnership Agreement)", "Large developed-market partner; rules on non-tariff barriers"],
+      ["Vietnam", "EVFTA in force since 1 August 2020; EVIPA still awaits ratification by all member states", "First FTA with a lower-middle-income ASEAN country"],
+      ["Mercosur", "Political agreement 6 Dec 2024; signed 17 Jan 2026; interim trade agreement provisionally applied from 1 May 2026", "Links two regional blocs; sensitive for agriculture"],
+      ["India", "Negotiations concluded 27 Jan 2026; presented to the Council on 11 Sep 2026", "The largest deal either side has concluded"],
+      ["Philippines", "Substantial agreement on an FTA announced 22 Sep 2026", "Extends the network in Southeast Asia"]
+    ] } }],
+    source: "Table 2.2 — European Commission (n.d.-b, n.d.-c, n.d.-d)." },
+
+  { type: "content", kicker: "2.2.2 · Regulatory power", title: "The \"Brussels Effect\"",
+    lead: "Bradford (2020): firms that want to sell in the EU must meet its standards — and often apply them everywhere.",
+    blocks: [
+      { flow: [
+        { tag: "Step 1", h: "EU sets strict rules", p: "Access to a large single market requires compliance" },
+        { tag: "Step 2 · de facto", h: "Firms go global with them", p: "One EU-compliant production line is cheaper than several" },
+        { tag: "Step 3 · de jure", h: "Governments copy the rules", p: "So that their exporters meet EU requirements at home" }
+      ] },
+      { chipsTitle: "Strongest when five conditions hold", chips: ["Large market", "Strong regulatory capacity", "Preference for strict rules", "Targets that cannot easily leave", "Products hard to divide by jurisdiction"] }
+    ],
+    source: "Bradford (2020)." },
+
+  { type: "content", kicker: "2.2.2 · Regulatory power", title: "The Brussels Effect in practice",
+    blocks: [{ cols: "1.3fr 1fr", children: [
+      [{ cards: { cols: 2, items: [
+        { h: "GDPR (2018)", p: "A reference point for privacy laws; global tech firms adjusted data policies" },
+        { h: "REACH & product rules", p: "Chemicals, food safety and product standards" },
+        { h: "Digital & AI (2024)", p: "Digital Markets Act, Digital Services Act and AI Act" },
+        { h: "CBAM (definitive 1 Jan 2026)", p: "Certificates for carbon in cement, iron & steel, aluminium, fertilisers, electricity, hydrogen" }
+      ] } }],
+      [{ callout: { light: true, h: "Two sides", text: "**For the EU:** a low-cost way to spread values and protect firms from lower-standard competition.<br><br>**For developing-country exporters:** a burden — technology, testing and finance that small firms often lack." } },
+       { callout: { text: "**Digital Omnibus (19 Nov 2025):** proposal to delay AI Act high-risk rules to December 2027 and simplify parts of the GDPR — still to be agreed." } }]
+    ] }],
+    source: "European Commission (n.d.-e); Akin Gump (2025)." },
+
+  { type: "content", kicker: "2.2.3 · Development cooperation", title: "The world's largest provider of development aid",
+    blocks: [{ cols: "1fr 1fr", children: [
+      [{ share: { v: 88.7, total: 212, label: "EU DAC members' ODA, 2024", big: "USD 88.7 bn", sub: "≈ 42% of global ODA of USD 212 bn (−8.6% vs 2023)" } },
+       { bullets: { sm: true, items: [
+        "**NDICI–Global Europe:** main external funding instrument for 2021–2027",
+        "**Everything But Arms:** duty- and quota-free access for least-developed countries",
+        "**GSP:** lower tariffs in return for labour and environmental commitments"
+      ] } }],
+      [{ cards: { cols: 1, items: [
+        { tag: "Launched 1 December 2021", h: "Global Gateway", c: "gold", ul: [
+          "Target: mobilise up to €300 bn",
+          "Team Europe: > €306 bn for 250+ projects by 2026, incl. ~€150 bn Africa–Europe package",
+          "Seen as a response to China's Belt and Road, with stronger governance standards"
+        ] },
+        { tag: "Critics", h: "Two concerns", c: "red", ul: [
+          "Counts financing that would have happened anyway",
+          "Aid increasingly serves EU interests: migration, raw materials, energy"
+        ] }
+      ] } }]
+    ] }],
+    source: "Finnish Government (2025); European Commission (n.d.-f)." },
+
+  { type: "content", kicker: "2.3.1 · Climate leadership", title: "Climate leadership and sustainability",
+    blocks: [
+      { stats: { cols: 3, items: [
+        { v: "−55%", l: "net GHG emissions by 2030 vs 1990 (European Climate Law)" },
+        { v: "−90%", l: "by 2040 (adopted March 2026): 85% domestic + up to 5% international credits", c: "gold" },
+        { v: "2050", l: "climate neutrality — legally binding" }
+      ] } },
+      { cols: "1.2fr 1fr", children: [
+        [{ bullets: { sm: true, items: [
+          "**Track record:** first large carbon market (ETS, 2005); central role in the Paris Agreement (2015)",
+          "**Three channels:** example & negotiation at UN climate conferences · market power (ETS, CBAM) · finance & standards (taxonomies, reporting, Global Gateway)"
+        ] } }],
+        [{ callout: { light: true, h: "Limits", text: "EU share of global emissions: **6.1% (2023) → 5.9% (2024)**; emissions about **35% below 1990**. Leadership now depends on whether the transition is seen as affordable at home." } }]
+      ] }
+    ],
+    source: "European Commission (n.d.-g); European Commission Joint Research Centre (2025)." },
+
+  { type: "content", kicker: "2.3.2 · Security and external action", title: "From civilian power to a more strategic actor",
+    blocks: [{ cols: "1fr 1fr 1fr", children: [
+      [{ cards: { cols: 1, items: [
+        { tag: "Bull (1982) · Manners (2002)", h: "\"Civilian\" / \"normative\" power", ul: [
+          "CFSP decided mostly by unanimity",
+          "High Representative leads the EEAS",
+          "CSDP: 22 missions and operations today (13 civilian, 8 military); 40+ launched since 2003"
+        ] }
+      ] } }],
+      [{ cards: { cols: 1, items: [
+        { tag: "Since Russia's 2022 invasion", h: "Hard-security turn", c: "gold", ul: [
+          "21 sanctions packages by 23 July 2026: oil, coal, LNG bans; financial restrictions",
+          "~€210 bn of Russian central bank assets immobilised",
+          "European Peace Facility; Strategic Compass (2022); SAFE loans of €150 bn (27 May 2025)"
+        ] }
+      ] } }],
+      [{ cards: { cols: 1, items: [
+        { tag: "Not a military power", h: "Limits", c: "red", ul: [
+          "NATO remains the core of collective defence",
+          "Defence budgets and procurement remain national",
+          "Unanimity slows decisions",
+          "\"Civilian power\" or \"soft imperialism\"? (Hettne & Söderbaum, 2005)"
+        ] }
+      ] } }]
+    ] }],
+    source: "Council of the European Union (n.d.-a, n.d.-b, 2025)." },
+
+  { type: "content", kicker: "2.3.3 · A model for other regions", title: "The EU as a model for other regional organizations",
+    blocks: [{ cols: "1fr 1fr", children: [
+      [{ bullets: { sm: true, items: [
+        "**Three diffusion mechanisms** (Börzel & Risse, 2012): active promotion, learning, borrowing for legitimacy",
+        "**African Union (2002):** commission, assembly and court borrowed from European forms",
+        "**Mercosur (1991):** customs-union goal; parliament and dispute settlement follow European ideas",
+        "**\"Interregionalism\"** (Hettne & Söderbaum, 2005): the EU prefers agreements with regional blocs"
+      ] } }],
+      [{ cards: { cols: 1, items: [
+        { tag: "Selective adoption", h: "ASEAN: a different philosophy", c: "gold", p: "ASEAN Economic Community (2015) built on consensus and non-interference, with no supranational court. EU–ASEAN strategic partnership since December 2020." }
+      ] } },
+       { callout: { text: "**Lesson:** the EU exports ideas and practices more successfully than its institutional design, which reflects post-war European conditions." } }]
+    ] }],
+    source: "Börzel & Risse (2012); Hettne & Söderbaum (2005)." },
+
+  { type: "content", kicker: "2.4.1 · Assessment (I)", title: "Strengths and limitations of the EU's role",
+    blocks: [{ table: { cols: ["Area", "Strengths", "Limitations"], widths: ["20%", "40%", "40%"], rows: [
+      ["European integration", "Single market, euro, Schengen; ability to repair gaps after crises; cohesion policy", "Uneven participation; democratic deficit and Euroscepticism; Brexit shows membership is reversible"],
+      ["Enlargement & neighbourhood", "Conditionality changed the 2004 entrants; long candidate list incl. Ukraine and Moldova", "Unanimity and enlargement fatigue; weak leverage over governments unwilling to reform"],
+      ["Trade", "Single negotiating voice; about 15.8% of world goods trade; widening network (Japan, Vietnam, Mercosur, India)", "Slow ratification; agricultural and national interests; exposure to US and Chinese pressure"],
+      ["Regulation", "Brussels Effect in data, chemicals, AI and carbon", "Compliance burden on exporters; simplification weakens the signal"]
+    ] } }],
+    source: "Table 2.3 — compiled by the author from the sources cited in Sections 2.1 to 2.3." },
+
+  { type: "content", kicker: "2.4.1 · Assessment (II)", title: "Strengths and limitations of the EU's role",
+    blocks: [
+      { table: { cols: ["Area", "Strengths", "Limitations"], widths: ["20%", "40%", "40%"], rows: [
+        ["Development", "Large aid and preferences; Global Gateway links finance and strategy", "Financing partly repackaged; aid increasingly tied to EU interests"],
+        ["Climate", "Legally binding 2030, 2040 and 2050 targets; carbon market; CBAM", "Small share of global emissions; political pressure over costs"],
+        ["Security", "Sanctions, missions and growing defence funding", "Dependence on NATO; unanimity in foreign policy; fragmented defence markets"]
+      ] } },
+      { callout: { text: "**The pattern:** the EU's strengths are **structural** (a large market and a body of law); its limitations are **political** (shared decisions among 27 governments). Influence is greatest in trade and regulation, weakest in foreign policy and defence." } }
+    ],
+    source: "Table 2.3 — compiled by the author from the sources cited in Sections 2.1 to 2.3." },
+
+  { type: "content", kicker: "2.4.2 · Future prospects", title: "Four developments that will shape the EU's role",
+    blocks: [
+      { cards: { cols: 4, items: [
+        { n: "1", h: "Institutions", p: "Admitting Ukraine, Moldova and the Western Balkans means rethinking decision rules, the budget, agriculture and cohesion" },
+        { n: "2", h: "Competitiveness", p: "Draghi and Letta: less single-market fragmentation, more investment in technology, energy and defence — without lowering standards" },
+        { n: "3", h: "Strategic autonomy", p: "Deals with Mercosur, India and Southeast Asia; supply-chain and critical raw materials measures" },
+        { n: "4", h: "Green ambition vs cost", p: "The 2040 target and CBAM depend on the transition raising growth, not only costs" }
+      ] } },
+      { callout: { h: "What it means for Vietnam and the world", text: "The EU will remain a major source of **market access, capital and rules** — but will ask more in return: stricter environmental and labour standards, supply-chain due diligence and political alignment on some strategic issues." } }
+    ] },
+
+  /* ---------------- Chapter 3 ---------------- */
+  { type: "chapter", no: "03", title: "The EU's influence on Vietnam",
+    sections: [["3.1", "Overview of Vietnam–EU relations"], ["3.2", "The EVFTA and EVIPA as key channels"], ["3.3", "Standards, cooperation and green transition"], ["3.4", "Opportunities, challenges and recommendations"]] },
+
+  { type: "content", kicker: "3.1.1 · Milestones", title: "Key milestones in Vietnam–EU relations",
+    blocks: [{ datelist: [
+      ["1990", "Diplomatic relations established"],
+      ["1995", "Framework cooperation arrangements"],
+      ["27 Jun 2012", "Partnership and Cooperation Agreement signed in Brussels"],
+      ["Jun 2018", "Final EVFTA text agreed after a lengthy legal review"],
+      ["30 Jun 2019", "EVFTA and EVIPA signed in Hanoi"],
+      ["12 Feb 2020", "European Parliament approves EVFTA and EVIPA"],
+      ["1 Aug 2020", "EVFTA enters into force"],
+      ["2022–2025", "JETP launched with an initial US$15.5 bn pledge; first flagship projects announced in 2025"],
+      ["29 Jan 2026", "Upgrade to a Comprehensive Strategic Partnership during President António Costa's visit to Hanoi"],
+      ["24 Mar 2026", "More than €560 million in new Global Gateway commitments"],
+      ["1 Aug 2026", "EVFTA completes six years in force"]
+    ] }],
+    source: "Table 3.1 — Key milestones in Vietnam–EU relations." },
+
+  { type: "content", kicker: "3.1.2 · Trade status", title: "Vietnam–EU trade, 2020–2024",
+    blocks: [{ cols: "1.5fr 1fr", children: [
+      [{ chart: { kind: "trade", title: "Vietnam–EU trade (billion USD)" } }],
+      [{ stats: { cols: 1, items: [
+        { v: "≈ US$68.4 bn", l: "bilateral trade in 2024" },
+        { v: "US$51.72 bn", l: "Vietnam's exports to the EU", c: "gold" },
+        { v: "≈ US$35 bn", l: "Vietnam's trade surplus (imports US$16.73 bn)" }
+      ] } },
+       { callout: { light: true, text: "Up from ~US$55 bn in 2020; a dip in 2023, strong recovery in 2024. The EU is central to Vietnam's **export-oriented** growth." } }]
+    ] }],
+    source: "Figure 3.1 — Vietnam Customs and Ministry of Industry and Trade of Vietnam. Bar values read from the report's figure (approximate)." },
+
+  { type: "content", kicker: "3.1.2 · Trade structure", title: "Complementary trade structures (2024)",
+    blocks: [{ cols: "1.55fr 1fr", children: [
+      [{ chart: { kind: "products", title: "Major product groups in Vietnam–EU trade, 2024 (billion EUR)" } }],
+      [{ bullets: { sm: true, items: [
+        "**Vietnam sells:** machinery & electrical equipment, textiles & footwear, furniture, agri-food",
+        "**The EU sells:** machinery & transport equipment, chemicals, pharmaceuticals and other technology-intensive goods",
+        "Reflects **comparative advantage**: labour-intensive and increasingly tech-oriented manufacturing vs capital- and technology-intensive production",
+        "**Risk:** export concentration leaves Vietnam exposed to EU demand and regulation"
+      ] } }]
+    ] }],
+    source: "Figure 3.2 — European Commission and Eurostat. Values read from the report's figure (approximate)." },
+
+  { type: "content", kicker: "3.1.2 · Investment status", title: "EU investment in Vietnam",
+    blocks: [{ cols: "1.1fr 1fr", children: [
+      [{ table: { cols: ["Indicator", "Value"], widths: ["45%", "55%"], rows: [
+        ["EU investment projects", "~2,450"],
+        ["Cumulative EU investment", "≈ US$30.6 bn (2024); > US$27.8 bn (end of 2022)"],
+        ["Share in manufacturing", "> 60%"],
+        ["Major sectors", "Manufacturing, energy, infrastructure, services"],
+        ["Major EU investors", "Netherlands, France, Germany, Denmark and others"]
+      ] } }],
+      [{ cards: { cols: 1, items: [
+        { tag: "Contribution", h: "More than capital", c: "gold", p: "Technology, management practices, expertise, international quality standards, jobs and links to global production networks" },
+        { tag: "Below potential", h: "What holds it back", c: "red", p: "Administrative procedures, regulatory transparency, infrastructure, skilled labour, policy consistency — and SMEs' difficulty meeting EU standards" }
+      ] } }]
+    ] }],
+    source: "Table 3.2 — European External Action Service (EEAS)." },
+
+  { type: "content", kicker: "3.2.1 · Content", title: "EVFTA and EVIPA: two agreements, one package",
+    lead: "CJEU Opinion 2/15 (May 2017): investment protection with arbitration-style dispute settlement is a shared competence — so the package was split.",
+    blocks: [{ cols: "1fr 1fr", children: [
+      [{ cards: { cols: 1, items: [
+        { tag: "Trade · EU-only agreement · in force 1 Aug 2020", h: "EVFTA — a \"new-generation\" FTA", ul: [
+          "Goods: tariffs, rules of origin, customs, TBT and SPS",
+          "Services and investment liberalisation",
+          "Procurement, competition, SOEs, IP incl. geographical indications",
+          "Trade & Sustainable Development: ILO standards, environment, civil society"
+        ] }
+      ] } }],
+      [{ cards: { cols: 1, items: [
+        { tag: "Investment · needs all 27 ratifications", h: "EVIPA — investment protection", c: "gold", ul: [
+          "Fair and equitable treatment; protection against expropriation",
+          "4 chapters, 92 articles, 13 annexes; replaces 21 bilateral treaties",
+          "Court-style dispute settlement instead of investor–state arbitration",
+          "20th ratification: Poland (Nov 2025); France bill (Aug 2026) — not yet in force"
+        ] }
+      ] } }]
+    ] }] },
+
+  { type: "content", kicker: "3.2.1 · Timeline", title: "Milestones of the EVFTA and EVIPA",
+    blocks: [{ timeline: { cols: 5, items: [
+      { y: "2010", h: "Scoping exercise", d: "Decision to negotiate" },
+      { y: "2012", h: "Negotiations launched", d: "" },
+      { y: "Dec 2015", h: "Concluded in principle", d: "" },
+      { y: "May 2017", h: "CJEU Opinion 2/15", d: "Split into EVFTA and EVIPA" },
+      { y: "30 Jun 2019", h: "Signed in Hanoi", d: "EVFTA and EVIPA" },
+      { y: "Feb–Mar 2020", h: "EU approval", d: "Parliament consent; Council approval" },
+      { y: "Jun 2020", h: "Vietnam ratifies", d: "National Assembly, both agreements" },
+      { y: "1 Aug 2020", h: "EVFTA in force", d: "" },
+      { y: "Nov 2025", h: "Poland ratifies EVIPA", d: "20th member state" },
+      { y: "Aug 2026", h: "France", d: "EVIPA ratification bill to Parliament" }
+    ] } }],
+    source: "Table 3.3 — Milestones of the EVFTA." },
+
+  { type: "content", kicker: "3.2.2 · Institutional reform", title: "An external driver of institutional reform",
+    blocks: [{ cards: { cols: 3, items: [
+      { n: "1", h: "Legal review", p: "The Government's implementation plan requires ministries to review and amend regulations to match commitments" },
+      { n: "2", h: "Transparency", p: "Customs, technical regulations, services and investment: more predictable rules, less uncertainty for firms" },
+      { n: "3", h: "Public procurement", p: "Parts opened to EU suppliers; more disclosure and fairer access" },
+      { n: "4", h: "Dialogue mechanisms", p: "Trade Committee and specialised bodies handle obstacles — re-emphasised in 2026" },
+      { n: "5", h: "EVIPA", p: "Safeguards against discrimination and unlawful expropriation; ratification keeps the focus on legal certainty" }
+    ] } }] },
+
+  { type: "content", kicker: "3.2.3 · Impact on trade", title: "Trade: before and after the EVFTA",
+    blocks: [
+      { table: { cols: ["Indicator", "2019", "2024", "Change"], widths: ["43%", "20%", "20%", "17%"], numeric: [1, 2, 3], up: [3], rows: [
+        ["Total Vietnam–EU trade", "US$49.8 bn", "US$68.3 bn", "+37.1%"],
+        ["Vietnam's exports to the EU", "US$35.8 bn", "US$51.6 bn", "+44.1%"],
+        ["Vietnam's trade surplus with the EU", "≈ US$21.8 bn", "US$34.9 bn", "+60.1%"]
+      ] } },
+      { cols: "1fr 1fr 1.25fr", children: [
+        [{ stats: { cols: 1, items: [{ v: "85.6%", l: "of EU tariff lines duty-free at entry (70.3% of Vietnam's export value)" }] } }],
+        [{ stats: { cols: 1, items: [{ v: "99.2%", l: "after seven years (99.7% of export value)", c: "gold" }] } }],
+        [{ callout: { light: true, text: "Growing use of EVFTA preferences in footwear, seafood, agriculture and textiles. **Caveat:** COVID-19, geopolitics and global demand also shaped trade." } }]
+      ] }
+    ],
+    source: "Table 3.4 — Ministry of Industry and Trade of Vietnam." },
+
+  { type: "content", kicker: "3.2.3 · Impact on investment", title: "Investment: before and after the EVFTA",
+    blocks: [
+      { table: { compact: true, cols: ["Indicator", "2019", "2024", "Development"], widths: ["28%", "22%", "25%", "25%"], rows: [
+        ["EU investment projects", "> 2,240", "≈ 2,450", "Continued expansion"],
+        ["EU cumulative registered investment", "≈ US$24.67 bn", "≈ US$30.6 bn", "+ ≈ US$5.9 bn"],
+        ["EU share of Vietnam's total FDI", "≈ 7.6%", "Still a relatively modest share", "Limited vs major Asian investors"],
+        ["Main orientation", "Manufacturing, infrastructure, services", "Manufacturing and higher-value activities", "Gradual upgrading"]
+      ] } },
+      { cols: "1fr 1fr", children: [
+        [{ callout: { light: true, text: "**Still modest:** by end-2024, South Korea had > US$92 bn and Singapore ≈ US$83.13 bn in cumulative registered investment in Vietnam." } }],
+        [{ callout: { text: "**EVIPA's impact is potential, not yet realised:** its Investment Court System could cut legal risk and encourage larger, longer-term EU investment." } }]
+      ] }
+    ],
+    source: "Table 3.5 — Foreign Investment Agency/MPI and European External Action Service." },
+
+  { type: "content", kicker: "3.3.1 · Standards", title: "EU standards and regulatory influence",
+    lead: "EVFTA Chapter 13 links trade with labour, environment, climate, natural resources and CSR, with Domestic Advisory Groups for dialogue.",
+    blocks: [{ table: { compact: true, cols: ["Area", "EU requirement / influence", "Implication for Vietnam"], widths: ["22%", "40%", "38%"], rows: [
+      ["Environmental standards", "Higher environmental protection and resource management", "Better environmental management and processes"],
+      ["Labour standards", "Fundamental labour rights and ILO standards", "More attention to working conditions and rights"],
+      ["Product quality & safety", "Strict technical, health and safety requirements", "Investment in quality control and certification"],
+      ["Traceability", "Supply-chain transparency", "Tracking of raw materials and production"],
+      ["Sustainable production", "Resource efficiency, low-carbon production", "Incentives for cleaner technologies"],
+      ["Carbon & climate policy", "Carbon pricing and emissions reduction", "Pressure to measure and cut emissions"],
+      ["Circular economy", "Recycling and waste reduction", "New production and consumption models"]
+    ] } }],
+    source: "Table 3.6 — compiled from EU–Vietnam cooperation documents and the EVFTA sustainable development framework." },
+
+  { type: "content", kicker: "3.3.1 · Standards", title: "Opportunities and challenges from EU standards",
+    blocks: [
+      { table: { compact: true, cols: ["Dimension", "Opportunities", "Challenges"], widths: ["26%", "40%", "34%"], rows: [
+        ["Export competitiveness", "Better quality and access to demanding markets", "Higher compliance costs"],
+        ["Technology", "Incentives for cleaner, more efficient technologies", "High initial investment"],
+        ["Supply chains", "Deeper integration into European value chains", "Stricter traceability requirements"],
+        ["Labour practices", "Better working conditions and labour standards", "Compliance and monitoring costs"],
+        ["Environment", "Stronger environmental management", "Extra costs for emissions and waste control"],
+        ["Governance", "Transparency and regulatory capacity", "Need for stronger enforcement institutions"]
+      ] } },
+      { callout: { light: true, text: "**Regulatory alignment, not full harmonisation:** Vietnam keeps its policy autonomy; SMEs bear the heaviest adjustment, which EU technical assistance helps reduce." } }
+    ],
+    source: "Table 3.7 — Opportunities and challenges from EU standards for Vietnam." },
+
+  { type: "content", kicker: "3.3.2 · Development cooperation", title: "EU development cooperation channels in Vietnam",
+    lead: "From grants since 1990 and the PCA (in force 2016) to Global Gateway: €560 m+ for sustainable transport and clean energy (March 2026).",
+    blocks: [{ table: { compact: true, cols: ["Channel", "Main focus", "Contribution to Vietnam"], widths: ["24%", "40%", "36%"], rows: [
+      ["Development assistance", "Poverty reduction, governance, sustainable development", "Social and institutional capacity"],
+      ["Global Gateway", "Sustainable infrastructure and connectivity", "Mobilises public and private investment"],
+      ["JETP", "Energy transition and decarbonisation", "Renewables and power-sector reform"],
+      ["Technical assistance", "Policy, regulatory and institutional capacity", "Implementing international commitments"],
+      ["Climate cooperation", "Emissions reduction and climate resilience", "Supports the net-zero pathway"],
+      ["Education and skills", "Human capital and vocational training", "Skills for green and digital industries"]
+    ] } }],
+    source: "Table 3.8 — European External Action Service and European Commission." },
+
+  { type: "content", kicker: "3.3.2 · Green transition", title: "The Just Energy Transition Partnership (JETP)",
+    blocks: [{ cols: "1fr 1fr", children: [
+      [{ stats: { cols: 1, items: [{ v: "US$15.5 bn", l: "initial JETP pledge (launched 2022; first flagship projects 2025)" }] } },
+       { cards: { cols: 1, items: [
+        { tag: "Flagship projects", h: "Integrating renewables", c: "gold", ul: [
+          "Bac Ai pumped-storage hydropower plant — 1,200 MW",
+          "Expansion of the Tri An hydropower plant",
+          "Tra Vinh near-shore wind project"
+        ] }
+      ] } }],
+      [{ cards: { cols: 1, items: [
+        { tag: "Three mechanisms", h: "How the EU supports the transition", ul: [
+          "**Financing:** eases capital constraints for green infrastructure",
+          "**Technology:** access to European firms and expertise",
+          "**Institutional capacity:** policy design, regulatory reform, project selection"
+        ] }
+      ] } },
+       { callout: { text: "Cooperation also covers sustainable transport, carbon markets, biodiversity and the circular economy — supporting Vietnam's **net-zero by 2050** goal." } }]
+    ] }],
+    source: "European Commission and EEAS." },
+
+  { type: "content", kicker: "3.3.2 · Green transition", title: "EU support for Vietnam's green transition",
+    blocks: [{ table: { compact: true, cols: ["Area", "Main EU-supported direction", "Expected contribution"], widths: ["24%", "40%", "36%"], rows: [
+      ["Renewable energy", "Solar, wind and hydropower integration", "More clean-energy capacity"],
+      ["Electricity grid", "Grid development and flexibility", "Integrating intermittent renewables"],
+      ["Energy efficiency", "Policy and technical support", "Lower energy intensity"],
+      ["Sustainable transport", "Railways, public transport, low-carbon mobility", "Lower transport emissions"],
+      ["Green finance", "Blended finance and investment mobilisation", "More capital for sustainable projects"],
+      ["Carbon markets", "Carbon pricing and emissions trading", "Incentives to cut emissions"],
+      ["Circular economy", "Resource efficiency and waste management", "Less resource use and pollution"],
+      ["Climate resilience", "Adaptation and environmental protection", "Less vulnerability to climate change"]
+    ] } }],
+    source: "Table 3.9 — European Commission and EEAS." },
+
+  { type: "content", kicker: "3.4.1 – 3.4.2", title: "Opportunities and challenges for Vietnam",
+    blocks: [{ cols: "1fr 1fr", children: [
+      [{ listCard: { h: "Opportunities", c: "gold", items: [
+        "Wider EU market access and export diversification",
+        "Higher-quality investment and technology transfer",
+        "Finance and know-how for the green transition (JETP, Global Gateway)",
+        "Better institutional and regulatory quality",
+        "Human-capital and technological development"
+      ] } }],
+      [{ listCard: { h: "Challenges", c: "red", items: [
+        "Rising compliance costs, especially for SMEs",
+        "Limited domestic capacity to capture high-value investment",
+        "Constant pressure to adjust institutions and rules",
+        "Financing and infrastructure gaps for the green transition",
+        "Shortages of skilled workers and innovation capacity"
+      ] } }]
+    ] }] },
+
+  { type: "content", kicker: "3.4.3 · Recommendations", title: "Policy recommendations",
+    blocks: [{ cards: { cols: 4, small: true, items: [
+      { n: "1", h: "Complete the EVIPA", p: "Engage remaining member states; manage the trade surplus diplomatically" },
+      { n: "2", h: "Carbon pricing & data", p: "Launch the pilot ETS on schedule; build a national MRV system" },
+      { n: "3", h: "Traceability", p: "Geolocation for coffee, rubber, timber (EUDR); fleet monitoring (IUU)" },
+      { n: "4", h: "Raise EVFTA use", p: "Simpler customs and origin rules, faster refunds; help SMEs become suppliers" },
+      { n: "5", h: "Bankable green projects", p: "A pipeline of grid, storage and transport projects for JETP and Global Gateway funds", c: "gold" },
+      { n: "6", h: "Higher-quality FDI", p: "Tie incentives to technology transfer, R&D and supplier development; stay predictable", c: "gold" },
+      { n: "7", h: "For firms", p: "Map supply chains, measure emissions, get certified, move up the value chain", c: "gold" }
+    ] } }],
+    source: "East Asia Forum (2026); S&P Global (2025); Climate Policy Initiative (n.d.); Italian Trade Agency (2026); Vietnam Investment Review (2025); and others cited in Section 3.4.3." },
+
+  /* ---------------- Conclusion ---------------- */
+  { type: "content", kicker: "Conclusion", title: "Key takeaways",
+    blocks: [{ cards: { cols: 1, rows: true, items: [
+      { n: "1", h: "The deepest model of regional integration", p: "Single market, euro and supranational institutions — built through both deepening and widening since 1950." },
+      { n: "2", h: "Influence built on market power and rules", p: "A trade network of 40+ agreements, the Brussels Effect, CBAM, binding climate targets and the world's largest aid effort." },
+      { n: "3", h: "Strengths are structural, limits are political", p: "Unanimity, Euroscepticism, reliance on NATO and the compliance burden abroad constrain its role." },
+      { n: "4", h: "For Vietnam: a partner for growth and standards", p: "EVFTA trade rose from US$49.8 bn (2019) to US$68.3 bn (2024); the next stage is standards, green transition and EVIPA ratification." }
+    ] } }] },
+
+  { type: "closing" }
+];
+
+/* =========================================================
+   RENDERING
+   ========================================================= */
+const GROUP = {
+  members: [["Đặng Việt Hoàng", "11232291"], ["Lê Trung Kiên", "11235799"], ["Ngô Anh Tuấn", "11234533"]],
+  klass: "Investment Economics 65",
+  lecturer: "Nguyễn Thị Mai Hoa"
+};
+
+// **bold** → <strong>
+const md = s => String(s).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+// optional NEU logo: only shown if logo.png exists next to this file
+const logo = cls => `<img class="${cls}" src="logo.png" alt="NEU logo" onerror="this.remove()">`;
+
+let revealIndex = 0;                      // stagger counter, reset per slide
+const r = (extra = "") => `r" style="--i:${revealIndex++};${extra}`;   // helper for class="..." attributes (adds stagger index + optional inline style)
+
+function renderBlock(b) {
+  if (b.cols) {
+    return `<div class="cols" style="grid-template-columns:${b.cols}">` +
+      b.children.map(col => `<div class="col">${col.map(renderBlock).join("")}</div>`).join("") + `</div>`;
+  }
+  if (b.bullets) {
+    const items = Array.isArray(b.bullets) ? b.bullets : b.bullets.items;
+    const sm = !Array.isArray(b.bullets) && b.bullets.sm ? " sm" : "";
+    return `<ul class="bul${sm}">` + items.map(t => `<li class="${r()}">${md(t)}</li>`).join("") + `</ul>`;
+  }
+  if (b.cards) {
+    const c = b.cards;
+    const cols = c.rows ? "1fr" : `repeat(${c.cols}, 1fr)`;
+    return `<div class="cards" style="grid-template-columns:${cols}">` + c.items.map(it => {
+      const inner = (it.n ? `<div class="n">${it.n}</div>` : "") +
+        (it.tag ? `<div class="tag">${it.tag}</div>` : "") +
+        `<h3>${md(it.h)}</h3>` +
+        (it.p ? `<p>${md(it.p)}</p>` : "") +
+        (it.ul ? `<ul>${it.ul.map(x => `<li>${md(x)}</li>`).join("")}</ul>` : "");
+      if (c.rows) {  // horizontal row card: number on the left
+        return `<div class="card ${it.c || ""} ${r("flex-direction:row; align-items:center; gap:28px; padding:20px 30px")}">
+          <div class="n" style="min-width:48px">${it.n}</div><div><h3>${md(it.h)}</h3><p>${md(it.p)}</p></div></div>`;
+      }
+      return `<div class="card ${it.c || ""} ${r()}">${inner}</div>`;
+    }).join("") + `</div>`;
+  }
+  if (b.callout) {
+    const c = b.callout;
+    return `<div class="callout ${c.light ? "light" : ""} ${r()}">${c.h ? `<h4>${c.h}</h4>` : ""}${md(c.text)}</div>`;
+  }
+  if (b.stats) {
+    return `<div class="stats" style="grid-template-columns:repeat(${b.stats.cols},1fr)">` +
+      b.stats.items.map(s => `<div class="stat ${s.c || ""} ${r()}"><div class="v">${s.v}</div><div class="l">${md(s.l)}</div></div>`).join("") + `</div>`;
+  }
+  if (b.table) {
+    const t = b.table, num = t.numeric || [], up = t.up || [];
+    const cg = t.widths ? `<colgroup>${t.widths.map(w => `<col style="width:${w}">`).join("")}</colgroup>` : "";
+    return `<table class="t ${t.compact ? "compact" : ""} ${r()}">${cg}<thead><tr>` +
+      t.cols.map((h, i) => `<th class="${num.includes(i) ? "num" : ""}">${h}</th>`).join("") + `</tr></thead><tbody>` +
+      t.rows.map(row => `<tr>${row.map((cell, i) =>
+        `<td class="${num.includes(i) ? "num" : ""} ${up.includes(i) ? "up" : ""}">${md(cell)}</td>`).join("")}</tr>`).join("") +
+      `</tbody></table>`;
+  }
+  if (b.timeline) {
+    const t = b.timeline;
+    return `<div class="tl" style="grid-template-columns:repeat(${t.cols},1fr)">` + t.items.map(m =>
+      `<div class="m ${r()}"><div class="y">${m.y}</div><div class="h">${m.h}</div>${m.d ? `<div class="d">${m.d}</div>` : ""}</div>`).join("") + `</div>`;
+  }
+  if (b.datelist) {
+    const half = Math.ceil(b.datelist.length / 2);
+    const col = list => `<div>${list.map(([d, e]) => `<div class="row ${r()}"><div class="dt">${d}</div><div class="ev">${md(e)}</div></div>`).join("")}</div>`;
+    return `<div class="dl">${col(b.datelist.slice(0, half))}${col(b.datelist.slice(half))}</div>`;
+  }
+  if (b.ladder) {
+    const n = b.ladder.length;
+    return `<div class="ladder">` + b.ladder.map((s, i) =>
+      `<div class="step ${r(`min-height:${300 + i * 70}px; background:${i === n - 1 ? "var(--navy-50)" : "var(--white)"}`)}">
+        <div class="lvl">${i + 1}</div><h3>${s.h}</h3><p>${md(s.p)}</p><div class="bar" style="opacity:${0.35 + i * 0.16}"></div></div>`).join("") + `</div>`;
+  }
+  if (b.flow) {
+    return `<div class="flow">` + b.flow.map((f, i) =>
+      (i ? `<div class="arrow ${r()}">→</div>` : "") +
+      `<div class="card ${i ? "gold" : ""} ${r()}"><div class="tag">${f.tag}</div><h3>${f.h}</h3><p>${f.p}</p></div>`).join("") + `</div>`;
+  }
+  if (b.chips) {
+    return `<div class="${r()}"><div class="tag" style="font:600 20px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:18px">${b.chipsTitle}</div>
+      <div class="chips">${b.chips.map((c, i) => `<span class="chip">${i + 1}. ${c}</span>`).join("")}</div></div>`;
+  }
+  if (b.share) {
+    const s = b.share, pct = (s.v / s.total * 100).toFixed(1);
+    return `<div class="${r()}"><div class="stat"><div class="v">${s.big}</div><div class="l">${s.label} — ${s.sub}</div>
+      <div class="share" style="margin-top:18px" role="img" aria-label="${s.v} of ${s.total} billion USD"><span style="width:${pct}%"></span></div>
+      <div class="share-l"><span>EU DAC members: USD ${s.v} bn</span><span>Global: USD ${s.total} bn</span></div></div></div>`;
+  }
+  if (b.listCard) {
+    const l = b.listCard;
+    return `<div class="card ${l.c} ${r("padding:30px 34px")}"><h3 style="font-size:36px">${l.h}</h3>
+      <ul class="bul sm" style="margin-top:12px">${l.items.map((x, i) => `<li>${x}</li>`).join("")}</ul></div>`;
+  }
+  if (b.chart) {
+    return `<div class="chart ${r()}"><div class="ct">${b.chart.title}</div>${CHARTS[b.chart.kind]()}</div>`;
+  }
+  return "";
+}
+
+function renderSlide(s, i, total) {
+  revealIndex = 0;
+  const num = `<span class="num">${String(i + 1).padStart(2, "0")} / ${total}</span>`;
+  const foot = (src) => `<div class="foot"><span class="src">${src ? `<b>Source:</b> ${src}` : "Group 4 · Multilateral Investment System and Multinational Enterprises"}</span>${num}</div>`;
+
+  if (s.type === "cover") {
+    return `<div class="redline"></div>${logo("cover-logo")}
+      <div class="inst ${r()}"><b>National Economics University</b>School of Advanced Education Programs</div>
+      <div class="rule ${r()}"></div>
+      <div class="course ${r()}">Multilateral Investment System and Multinational Enterprises</div>
+      <h1 class="topic ${r()}">Describe your understanding of the European Union (EU). Analyze the role and influence of the EU on the integration and linkage of the region, the world and Vietnam</h1>
+      <dl class="meta ${r()}">
+        <dt>Group 4</dt><dd>${GROUP.members.map(([n, id]) => `<span>${n} (${id})</span>`).join("")}</dd>
+        <dt>Class</dt><dd>${GROUP.klass}</dd>
+        <dt>Lecturer</dt><dd>${GROUP.lecturer}</dd>
+      </dl>`;
+  }
+  if (s.type === "chapter") {
+    return `<div class="no ${r()}">${s.no}</div><div class="lbl ${r()}">Chapter ${Number(s.no)}</div>
+      <h2 class="${r()}">${s.title}</h2>
+      <ul>${s.sections.map(([n, t]) => `<li class="${r()}"><b>${n}</b>${t}</li>`).join("")}</ul>`;
+  }
+  if (s.type === "closing") {
+    return `<h2 class="${r()}">Thank you</h2><div class="rule ${r()}"></div>
+      <p class="${r()}">Questions &amp; Answers</p>
+      <div class="names ${r()}">Group 4 · ${GROUP.members.map(m => m[0]).join(" · ")}<br>${GROUP.klass} · National Economics University</div>`;
+  }
+  if (s.type === "agenda") {
+    return `${logo("corner-logo")}<div class="kicker">${s.kicker}</div><h2 class="title">${s.title}</h2>
+      <div class="body"><div class="fit"><div class="agenda-grid">${s.items.map(a =>
+        `<div class="a ${r()}"><div class="no">${a.no}</div><h3>${a.h}</h3><ul>${a.sub.map(x => `<li>${x}</li>`).join("")}</ul></div>`).join("")}</div></div></div>${foot()}`;
+  }
+  // content slide
+  return `${logo("corner-logo")}<div class="kicker">${s.kicker}</div><h2 class="title">${s.title}</h2>
+    ${s.lead ? `<p class="lead">${md(s.lead)}</p>` : ""}
+    <div class="body"><div class="fit">${(s.blocks || []).map(renderBlock).join("")}</div></div>${foot(s.source)}`;
+}
+
+/* =========================================================
+   CHARTS (inline SVG – no external library, works offline)
+   ========================================================= */
+const C1 = "#2A5DA8", C2 = "#D19A1F", GRID = "#E3E8EF", AXIS = "#6B778A", INK = "#16202E";
+
+const CHARTS = {
+  // (a) vertical bars: members after each enlargement
+  members() {
+    const { labels, values } = DATA.members;
+    const W = 900, H = 520, L = 56, R = 10, T = 34, B = 54, max = 30;
+    const pw = W - L - R, ph = H - T - B, step = pw / labels.length, bw = step * 0.58;
+    const y = v => T + ph - v / max * ph;
+    let g = "";
+    for (let v = 0; v <= max; v += 10) g += `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}" stroke="${GRID}"/><text x="${L - 12}" y="${y(v) + 7}" text-anchor="end" font-size="23" fill="${AXIS}">${v}</text>`;
+    const bars = values.map((v, i) => {
+      const x = L + i * step + (step - bw) / 2, top = y(v), h = T + ph - top;
+      return `<g class="bar-mark"><title>${labels[i]}: ${v} members</title>
+        <path d="${roundTop(x, top, bw, h, 4)}" fill="${C1}"/>
+        <text x="${x + bw / 2}" y="${top - 10}" text-anchor="middle" font-size="25" font-weight="700" fill="${INK}">${v}</text>
+        <text x="${x + bw / 2}" y="${H - B + 32}" text-anchor="middle" font-size="23" fill="${AXIS}">${labels[i]}</text></g>`;
+    }).join("");
+    return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="EU member count: ${labels.map((l, i) => l + " " + values[i]).join(", ")}">${g}<line x1="${L}" x2="${W - R}" y1="${T + ph}" y2="${T + ph}" stroke="${AXIS}"/>${bars}</svg>`;
+  },
+
+  // (b) stacked columns: Vietnam exports + imports
+  trade() {
+    const { labels, exports, imports } = DATA.trade;
+    const W = 880, H = 560, L = 60, R = 10, T = 38, B = 54, max = 80;
+    const pw = W - L - R, ph = H - T - B, step = pw / labels.length, bw = step * 0.5;
+    const y = v => T + ph - v / max * ph;
+    let g = "";
+    for (let v = 0; v <= max; v += 20) g += `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}" stroke="${GRID}"/><text x="${L - 12}" y="${y(v) + 7}" text-anchor="end" font-size="23" fill="${AXIS}">${v}</text>`;
+    const bars = labels.map((lab, i) => {
+      const x = L + i * step + (step - bw) / 2, e = exports[i], m = imports[i], tot = e + m;
+      const yE = y(e), yT = y(tot);
+      return `<g class="bar-mark"><title>${lab}: exports ${e}, imports ${m}, total ≈ ${tot} (billion USD)</title>
+        <rect x="${x}" y="${yE}" width="${bw}" height="${T + ph - yE}" fill="${C1}"/>
+        <path d="${roundTop(x, yT, bw, yE - yT - 2, 4)}" fill="${C2}"/>
+        <text x="${x + bw / 2}" y="${(yE + T + ph) / 2 + 8}" text-anchor="middle" font-size="25" font-weight="700" fill="#fff">${e}</text>
+        <text x="${x + bw / 2}" y="${(yT + yE) / 2 + 7}" text-anchor="middle" font-size="23" font-weight="700" fill="${INK}">${m}</text>
+        <text x="${x + bw / 2}" y="${yT - 10}" text-anchor="middle" font-size="25" font-weight="700" fill="${INK}">${tot}</text>
+        <text x="${x + bw / 2}" y="${H - B + 32}" text-anchor="middle" font-size="23" fill="${AXIS}">${lab}</text></g>`;
+    }).join("");
+    return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Vietnam–EU trade 2020–2024">${g}<line x1="${L}" x2="${W - R}" y1="${T + ph}" y2="${T + ph}" stroke="${AXIS}"/>${bars}</svg>
+      <div class="legend"><span><i style="background:${C1}"></i>Vietnam's exports to EU</span><span><i style="background:${C2}"></i>Vietnam's imports from EU</span><span style="color:var(--ink-3)">Label above bar = total</span></div>`;
+  },
+
+  // (c) grouped horizontal bars: product groups 2024
+  products() {
+    const { labels, euImports, euExports } = DATA.products;
+    const W = 900, H = 540, L = 330, R = 60, T = 10, B = 46, max = 30;
+    const pw = W - L - R, rowH = (H - T - B) / labels.length, bh = rowH * 0.3;
+    const x = v => L + v / max * pw;
+    let g = "";
+    for (let v = 0; v <= max; v += 5) g += `<line x1="${x(v)}" x2="${x(v)}" y1="${T}" y2="${H - B}" stroke="${GRID}"/><text x="${x(v)}" y="${H - B + 30}" text-anchor="middle" font-size="22" fill="${AXIS}">${v}</text>`;
+    const rows = labels.map((lab, i) => {
+      const y0 = T + i * rowH + (rowH - 2 * bh - 3) / 2;
+      const bar = (v, yy, col, who) => `<g class="bar-mark"><title>${lab} – ${who}: ≈ ${v.toFixed(1)} bn EUR</title>
+        <path d="${roundRight(L, yy, Math.max(x(v) - L, 2), bh, 4)}" fill="${col}"/>
+        <text x="${x(v) + 10}" y="${yy + bh / 2 + 7}" font-size="22" font-weight="700" fill="${INK}">${v.toFixed(1)}</text></g>`;
+      return `<text x="${L - 16}" y="${y0 + bh + 8}" text-anchor="end" font-size="23" fill="${INK}">${lab}</text>` +
+        bar(euImports[i], y0, C1, "EU imports from Vietnam") + bar(euExports[i], y0 + bh + 3, C2, "EU exports to Vietnam");
+    }).join("");
+    return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Product groups in Vietnam–EU trade 2024">${g}<line x1="${L}" x2="${L}" y1="${T}" y2="${H - B}" stroke="${AXIS}"/>${rows}</svg>
+      <div class="legend"><span><i style="background:${C1}"></i>EU imports from Vietnam</span><span><i style="background:${C2}"></i>EU exports to Vietnam</span></div>`;
+  }
+};
+
+// bar with rounded top corners (data end), square at the baseline
+function roundTop(x, y, w, h, rad) {
+  rad = Math.min(rad, h, w / 2);
+  return `M${x},${y + h} V${y + rad} Q${x},${y} ${x + rad},${y} H${x + w - rad} Q${x + w},${y} ${x + w},${y + rad} V${y + h} Z`;
+}
+// horizontal bar with rounded right corners
+function roundRight(x, y, w, h, rad) {
+  rad = Math.min(rad, w, h / 2);
+  return `M${x},${y} H${x + w - rad} Q${x + w},${y} ${x + w},${y + rad} V${y + h - rad} Q${x + w},${y + h} ${x + w - rad},${y + h} H${x} Z`;
+}
+
+/* =========================================================
+   DECK CONTROLLER: build, scale, navigate, overview, fullscreen
+   ========================================================= */
+const stage = document.getElementById("stage");
+const progress = document.getElementById("progress");
+const overview = document.getElementById("overview");
+let current = 0;
+
+SLIDES.forEach((s, i) => {
+  const el = document.createElement("section");
+  const dark = ["cover", "chapter", "closing"].includes(s.type);
+  el.className = `slide ${dark ? "dark" : ""} ${s.type}`;
+  el.setAttribute("aria-label", `Slide ${i + 1}`);
+  el.innerHTML = renderSlide(s, i, SLIDES.length);
+  stage.appendChild(el);
+});
+const slideEls = [...stage.children];
+
+// Scale the 1920x1080 stage to fit the window (letterboxed, centred)
+function fit() {
+  const s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+  stage.style.transform = `translate(${-960 * s}px, ${-540 * s}px) scale(${s})`;
+}
+window.addEventListener("resize", fit);
+fit();
+
+// Enlarge each slide's content (up to 130%) while it still fits above the footer
+function fitSlides() {
+  slideEls.forEach(sl => {
+    const body = sl.querySelector(".body"), fit = sl.querySelector(".fit");
+    if (!fit) return;
+    for (let z = 1.3; z >= 1; z = Math.round((z - 0.025) * 1000) / 1000) {
+      fit.style.zoom = z;
+      const f = fit.getBoundingClientRect(), b = body.getBoundingClientRect();
+      if (f.height <= b.height + 0.5 && f.width <= b.width + 0.5 && fit.scrollWidth <= fit.clientWidth + 1) return;
+    }
+    fit.style.zoom = 1;
+  });
+}
+fitSlides();
+document.fonts?.ready.then(fitSlides);   // re-fit once web fonts have loaded
+
+function go(n) {
+  n = Math.max(0, Math.min(SLIDES.length - 1, n));
+  current = n;
+  slideEls.forEach((el, i) => {
+    el.classList.toggle("active", i === n);
+    el.classList.toggle("before", i < n);
+  });
+  progress.style.width = `${(n + 1) / SLIDES.length * 100}%`;
+  if (location.hash !== `#${n + 1}`) history.replaceState(null, "", `#${n + 1}`);
+}
+
+function toggleFullscreen() {
+  if (!document.fullscreenElement) document.documentElement.requestFullscreen?.().catch(() => {});
+  else document.exitFullscreen?.();
+}
+
+// Overview: thumbnails are clones of the slides, scaled down
+function buildOverview() {
+  const grid = overview.querySelector(".grid");
+  if (grid.childElementCount) return;
+  slideEls.forEach((el, i) => {
+    const t = document.createElement("div");
+    t.className = "thumb";
+    const frame = document.createElement("div");
+    frame.className = "frame";
+    const clone = el.cloneNode(true);
+    clone.classList.remove("before");
+    clone.classList.add("active");
+    frame.appendChild(clone);
+    const s = SLIDES[i];
+    const cap = s.title || (s.type === "cover" ? "Cover" : s.type === "closing" ? "Thank you / Q&A" : "");
+    t.innerHTML = `<div class="cap"><b>${i + 1}</b>${cap.replace(/\*\*/g, "")}</div>`;
+    t.prepend(frame);
+    t.addEventListener("click", () => { toggleOverview(false); go(i); });
+    grid.appendChild(t);
+  });
+}
+function scaleThumbs() {
+  overview.querySelectorAll(".thumb .frame").forEach(f => {
+    f.firstChild.style.transform = `scale(${f.clientWidth / 1920})`;
+  });
+}
+function toggleOverview(force) {
+  const open = force ?? !overview.classList.contains("open");
+  if (open) { buildOverview(); overview.classList.add("open"); scaleThumbs();
+    overview.querySelectorAll(".thumb").forEach((t, i) => t.classList.toggle("cur", i === current));
+    overview.querySelectorAll(".thumb")[current].scrollIntoView({ block: "center" });
+  } else overview.classList.remove("open");
+}
+window.addEventListener("resize", () => overview.classList.contains("open") && scaleThumbs());
+
+document.addEventListener("keydown", e => {
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+  const k = e.key;
+  if (overview.classList.contains("open")) {
+    if (k === "Escape" || k === "o" || k === "O" || k === "g" || k === "G") { toggleOverview(false); e.preventDefault(); }
+    return;
+  }
+  if (["ArrowRight", "ArrowDown", "PageDown", "Enter"].includes(k) || (k === " " && !e.shiftKey)) { go(current + 1); e.preventDefault(); }
+  else if (["ArrowLeft", "ArrowUp", "PageUp", "Backspace"].includes(k) || (k === " " && e.shiftKey)) { go(current - 1); e.preventDefault(); }
+  else if (k === "Home") { go(0); e.preventDefault(); }
+  else if (k === "End") { go(SLIDES.length - 1); e.preventDefault(); }
+  else if (k === "f" || k === "F") toggleFullscreen();
+  else if (["o", "O", "g", "G"].includes(k)) toggleOverview(true);
+});
+
+// Small on-screen controls that appear when the mouse moves
+let hudTimer;
+document.addEventListener("mousemove", () => {
+  document.body.classList.add("show-hud");
+  clearTimeout(hudTimer);
+  hudTimer = setTimeout(() => document.body.classList.remove("show-hud"), 2000);
+});
+document.getElementById("hud").addEventListener("click", e => {
+  const a = e.target.dataset.act;
+  if (a === "prev") go(current - 1);
+  if (a === "next") go(current + 1);
+  if (a === "overview") toggleOverview(true);
+  if (a === "full") toggleFullscreen();
+});
+
+// Simple swipe support for touch screens
+let touchX = null;
+document.addEventListener("touchstart", e => { touchX = e.touches[0].clientX; }, { passive: true });
+document.addEventListener("touchend", e => {
+  if (touchX === null) return;
+  const dx = e.changedTouches[0].clientX - touchX;
+  if (Math.abs(dx) > 50) go(current + (dx < 0 ? 1 : -1));
+  touchX = null;
+});
+
+// Start at the slide in the URL hash (e.g. index.html#12), else slide 1
+go((parseInt(location.hash.slice(1), 10) || 1) - 1);
+</script>
+</body>
+</html>
