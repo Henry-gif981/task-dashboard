@@ -232,12 +232,14 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .86rem; min-width
 .olist { list-style: none; counter-reset: o; display: flex; flex-direction: column; gap: 14px; }
 .olist li { counter-increment: o; position: relative; padding: 18px 22px 18px 64px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; font-size: .95rem; color: var(--ink-2); }
 .olist li::before { content: counter(o); position: absolute; left: 20px; top: 16px; width: 30px; height: 30px; border-radius: 8px; background: var(--eu-blue); color: #fff; font: 800 .85rem/30px var(--display); text-align: center; }
-.refs { list-style: none; columns: 2 420px; column-gap: 48px; font-size: .84rem; color: var(--ink-2); }
-.refs li { break-inside: avoid; padding: 6px 0 6px 28px; text-indent: -28px; }
+.refs { list-style: none; columns: 2 520px; column-gap: 56px; font-size: .9rem; line-height: 1.5; color: var(--ink); }
+.refs li { break-inside: avoid; padding: 0 0 12px 32px; text-indent: -32px; overflow-wrap: anywhere; }
+.refs a { color: var(--eu-blue); text-decoration: none; }
 .toc { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px 40px; }
 @media (max-width: 1000px) { .toc { grid-template-columns: 1fr; } }
 .toc a { display: block; font-size: .84rem; color: var(--ink-2); padding: 6px 0; border-bottom: 1px solid var(--line); }
 .toc a:hover { color: var(--eu-blue); }
+.toc a.toc-sub { padding-left: 18px; font-style: italic; }
 .toc a.toc-h { font: 700 .9rem/1.35 var(--display); color: var(--ink); padding-top: 14px; border-bottom-color: rgba(0,51,153,.25); }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 /* 3D stays behind the text: dimmed behind full-width panels and on small screens */
@@ -366,7 +368,7 @@ body.dim3d #scene { opacity: .55; }
         <a class="toc-h" href="#introduction">Introduction</a>
         <a class="toc-h" href="#ch1">Chapter 1: Theoretical basis and overview of the European Union</a>
         <a href="#c1-concept">1.1.1 Concept of international/regional economic integration</a>
-        <a href="#c1-theories">1.1 Foundational theories of economic integration</a>
+        <a href="#c1-theories" class="toc-sub">Supplement: Foundational theories of economic integration</a>
         <a href="#c1-levels">1.1.2 Levels of regional economic integration</a>
         <a href="#c1-model">1.1.3 The EU as a Model of Deep Regional Integration</a>
         <a href="#c1-history">1.2.1 Formation and development process</a>
@@ -408,7 +410,7 @@ body.dim3d #scene { opacity: .55; }
 </section>
 
 <!-- ============ INTRODUCTION ============ -->
-<section class="sec" id="introduction" data-scene="hub" data-pdf="Introduction (page empty in the PDF; text composed from the report)">
+<section class="sec" id="introduction" data-scene="hub" data-pdf="Introduction (page empty in the PDF; listed in added_content.md)">
   <div class="wrap">
     <div class="copy">
       <h2 class="h rv">Introduction</h2>
@@ -445,10 +447,11 @@ body.dim3d #scene { opacity: .55; }
   </div>
 </section>
 
-<section class="sec" id="c1-theories" data-scene="hub" data-pdf="1.1.2. Foundational theories of economic integration (listed in the PDF table of contents, no body text) [ADDED CONTENT]">
+<!-- Supplementary text (not in the PDF body); listed in added_content.md -->
+<section class="sec" id="c1-theories" data-scene="hub" data-pdf="1.1.1 Supplement (foundational theories; listed in added_content.md)">
   <div class="wrap">
     <div class="copy">
-      <p class="eyebrow rv">1.1</p>
+      <p class="eyebrow rv">1.1.1 · Supplement</p>
       <h2 class="h rv" style="--d:1">Foundational theories of economic integration</h2>
       <div class="stack mt">
         <div class="card rv" style="--d:2"><p class="tag">Viner (1950)</p><h3>Trade creation and trade diversion</h3>
@@ -601,7 +604,7 @@ body.dim3d #scene { opacity: .55; }
         <div class="stat rv" style="--d:5"><p class="v">21 of 27</p><p class="l">member states use the euro as official currency</p></div>
         <div class="stat rv" style="--d:6"><p class="v">EUR 800 bn+</p><p class="l">NextGenerationEU in current prices (EUR 750 billion in 2018 prices)</p></div>
       </div>
-      <p class="src"><b>Source:</b> Balassa (1961); European Union (n.d.-a); Jones et al. (2016); European Commission (n.d.-h).</p>
+      <p class="src"><b>Source:</b> Balassa (1961); European Union (2026); Jones et al. (2016); European Commission (n.d.-e).</p>
     </div>
   </div>
 </section>
@@ -622,7 +625,7 @@ body.dim3d #scene { opacity: .55; }
       <figure class="chart rv" style="--d:2">
         <figcaption>Figure 2.1. Number of EU members after each enlargement (including the 2020 UK withdrawal)</figcaption>
         <div data-chart="members"><noscript><table class="tbl"><caption>Figure 2.1 data: number of EU members</caption><tr><th>Year</th><th>Members</th></tr><tr><td>1957</td><td>6</td></tr><tr><td>1973</td><td>9</td></tr><tr><td>1981</td><td>10</td></tr><tr><td>1986</td><td>12</td></tr><tr><td>1995</td><td>15</td></tr><tr><td>2004</td><td>25</td></tr><tr><td>2007</td><td>27</td></tr><tr><td>2013</td><td>28</td></tr><tr><td>2020</td><td>27</td></tr></table></noscript></div>
-        <p class="src"><b>Source:</b> Compiled by the authors from the European Union (n.d.-b).</p>
+        <p class="src"><b>Source:</b> Compiled by the authors from the European Union (n.d.).</p>
       </figure>
     </div>
   </div>
@@ -643,7 +646,7 @@ body.dim3d #scene { opacity: .55; }
         <tr><td>2020</td><td>The United Kingdom leaves; the EU has 27 members</td></tr>
         <tr><td>Candidates (2026)</td><td>Albania, Bosnia and Herzegovina, Georgia, Moldova, Montenegro, North Macedonia, Serbia, Türkiye, Ukraine; Kosovo is a potential candidate. Negotiations were opened with Ukraine and Moldova in June 2024.</td></tr>
       </tbody></table></div>
-    <p class="src"><b>Source:</b> European Union (n.d.-b); European Commission (n.d.-a).</p>
+    <p class="src"><b>Source:</b> European Union (n.d.); European Commission (n.d.-b).</p>
   </div>
 </section>
 
@@ -663,7 +666,7 @@ body.dim3d #scene { opacity: .55; }
         <li>Mixed results: Moldova and Ukraine moved closer to the Union, while others in the southern neighbourhood changed little</li>
         <li>In 2022 the EU also created the European Political Community</li></ul></div>
     </div>
-    <p class="src"><b>Source:</b> European Commission (n.d.-a); Lavenex (2004).</p>
+    <p class="src"><b>Source:</b> European Commission (n.d.-b); Lavenex (2004).</p>
   </div>
 </section>
 
@@ -688,7 +691,7 @@ body.dim3d #scene { opacity: .55; }
       <p class="eyebrow rv">2.2.1a</p>
       <h2 class="h rv" style="--d:1">The EU as a Global Trade Power</h2>
       <div class="grid g2 mt">
-        <div class="stat rv" style="--d:1"><p class="v">15.8%</p><p class="l">share of world trade in goods and services combined (2024)</p></div>
+        <div class="stat rv" style="--d:1"><p class="v">15.8%</p><p class="l">of world trade in goods and services combined (2024) (Council of the European Union, 2026c)</p></div>
         <div class="stat rv" style="--d:2"><p class="v">40+</p><p class="l">agreements in place with about 80 partners</p></div>
         <div class="stat rv" style="--d:3"><p class="v">EUR 18.8 trillion</p><p class="l">value of the EU economy (2025)</p></div>
         <div class="stat rv" style="--d:4"><p class="v">30 million+</p><p class="l">jobs in the EU depend on exports</p></div>
@@ -699,7 +702,7 @@ body.dim3d #scene { opacity: .55; }
         <li class="rv" style="--d:5">The EU prefers deals with regions and groups: the Mercosur agreement is a bloc-to-bloc arrangement.</li>
         <li class="rv" style="--d:6">Trade policy is mixed with strategy: diversification away from the United States and China after the tariff increases of 2025; trade defence tools such as the anti-dumping duties on Chinese pea protein announced in September 2026.</li>
       </ul>
-      <p class="src"><b>Source:</b> Council of the European Union (n.d.-c); Brussels Times (2026), reporting Eurostat; Meunier and Nicolaïdis (2006); Damro (2012); European Commission (n.d.-b).</p>
+      <p class="src"><b>Source:</b> Council of the European Union (2026c); Brussels Times (2026), reporting Eurostat; Meunier and Nicolaïdis (2006); Damro (2012); European Commission (n.d.-f).</p>
     </div>
   </div>
 </section>
@@ -718,7 +721,7 @@ body.dim3d #scene { opacity: .55; }
         <tr><td>India</td><td>Negotiations concluded 27 January 2026; presented to the Council for signature and conclusion on 11 September 2026</td><td>Described by the Commission as the largest deal either side has concluded</td></tr>
         <tr><td>Philippines</td><td>Substantial agreement on an FTA announced on 22 September 2026</td><td>Extends the network in Southeast Asia</td></tr>
       </tbody></table></div>
-    <p class="src"><b>Source:</b> European Commission (n.d.-b, n.d.-c, n.d.-d).</p>
+    <p class="src"><b>Source:</b> European Commission (n.d.-c, n.d.-d, n.d.-f).</p>
   </div>
 </section>
 
@@ -746,7 +749,7 @@ body.dim3d #scene { opacity: .55; }
         <p class="note rv">On 19 November 2025 the Commission proposed a Digital Omnibus that would delay the AI Act's rules for high-risk systems until December 2027 and simplify parts of the GDPR (Akin Gump, 2025).</p>
       </div>
     </div>
-    <p class="src"><b>Source:</b> Bradford (2020); European Commission (n.d.-e); Akin Gump (2025).</p>
+    <p class="src"><b>Source:</b> Bradford (2020); European Commission (n.d.-a); Akin Gump (2025).</p>
   </div>
 </section>
 
@@ -774,7 +777,7 @@ body.dim3d #scene { opacity: .55; }
           <li>Development cooperation increasingly serves EU interests: migration management, critical raw materials and energy supply</li></ul></div>
       </div>
     </div>
-    <p class="src"><b>Source:</b> Finnish Government (2025); European Commission (n.d.-f).</p>
+    <p class="src"><b>Source:</b> Finnish Government (2025); European Commission (2026b).</p>
   </div>
 </section>
 
@@ -793,7 +796,7 @@ body.dim3d #scene { opacity: .55; }
         <li class="rv" style="--d:4">Influence works through example and negotiation, market power (the Emissions Trading System and CBAM), and finance and standards.</li>
       </ul>
       <div class="callout rv mt" style="--d:5"><h3>Limits</h3>The EU's share of global greenhouse-gas emissions fell from 6.1% in 2023 to 5.9% in 2024, and its emissions were about 35% below 1990 levels, so its goals cannot be reached without larger emitters.</div>
-      <p class="src"><b>Source:</b> European Commission (n.d.-g); European Commission Joint Research Centre (2025).</p>
+      <p class="src"><b>Source:</b> European Commission (2026a); European Commission Joint Research Centre (2025).</p>
     </div>
   </div>
 </section>
@@ -806,7 +809,7 @@ body.dim3d #scene { opacity: .55; }
       <div class="card rv"><p class="tag">Bull (1982); Manners (2002)</p><h3>"Civilian power" and "normative power"</h3><ul>
         <li>The Common Foreign and Security Policy is decided mostly by unanimity</li>
         <li>The High Representative leads the European External Action Service</li>
-        <li>CSDP: 22 missions and operations: 13 civilian, 8 military, 1 civilian-military; more than 40 launched since 2003</li></ul></div>
+        <li>22 CSDP missions and operations (13 civilian, 8 military, 1 civilian-military); more than 40 launched since 2003 (Council of the European Union, 2026a)</li></ul></div>
       <div class="card rv" style="--d:1"><p class="tag">Since 2022</p><h3>Sanctions and defence</h3><ul>
         <li>By July 2026 the Council had adopted 21 packages against Russia, the latest on 23 July 2026</li>
         <li>About EUR 210 billion in Russian central bank assets immobilised in the EU</li>
@@ -817,7 +820,7 @@ body.dim3d #scene { opacity: .55; }
         <li>Unanimity can slow decisions</li>
         <li>"Civilian power" or "soft imperialism" (Hettne and Söderbaum, 2005)</li></ul></div>
     </div>
-    <p class="src"><b>Source:</b> Bull (1982); Manners (2002); Council of the European Union (n.d.-a, n.d.-b, 2025); Hettne and Söderbaum (2005).</p>
+    <p class="src"><b>Source:</b> Bull (1982); Manners (2002); Council of the European Union (2025, 2026a, 2026b); Hettne and Söderbaum (2005).</p>
   </div>
 </section>
 
@@ -849,7 +852,7 @@ body.dim3d #scene { opacity: .55; }
       <tbody>
         <tr><td>European integration</td><td>Single market, euro, Schengen; ability to repair gaps after crises; cohesion policy</td><td>Uneven participation; democratic-deficit and Euroscepticism; Brexit shows membership is reversible</td></tr>
         <tr><td>Enlargement and neighbourhood</td><td>Conditionality changed the 2004 entrants; candidate list is long and includes Ukraine and Moldova</td><td>Unanimity and enlargement fatigue; weak leverage over governments that do not want to reform</td></tr>
-        <tr><td>Trade</td><td>Single negotiating voice; about 15.8% of world goods trade; widening network (Japan, Vietnam, Mercosur, India)</td><td>Slow ratification; agricultural and national interests; exposure to US and Chinese trade pressures</td></tr>
+        <tr><td>Trade</td><td>Single negotiating voice; 15.8% of world trade in goods and services combined (2024) (Council of the European Union, 2026c); widening network (Japan, Vietnam, Mercosur, India)</td><td>Slow ratification; agricultural and national interests; exposure to US and Chinese trade pressures</td></tr>
         <tr><td>Regulation</td><td>Brussels Effect in data, chemicals, AI and carbon</td><td>Compliance burden on exporters; recent moves to simplify rules weaken the signal</td></tr>
         <tr><td>Development</td><td>Large aid and preferences; Global Gateway links finance and strategy</td><td>Financing partly repackaged; aid increasingly tied to EU interests</td></tr>
         <tr><td>Climate</td><td>Legally binding 2030, 2040 and 2050 targets; carbon market; CBAM</td><td>Small share of global emissions; political pressure over costs</td></tr>
@@ -918,13 +921,14 @@ body.dim3d #scene { opacity: .55; }
           <div class="stat rv" style="--d:4"><p class="v">US$16.7 bn</p><p class="l">Vietnam's imports from the EU, 2024</p></div>
           <div class="stat rv" style="--d:5"><p class="v">US$34.9 bn</p><p class="l">Vietnam's trade surplus with the EU, 2024</p></div>
         </div>
+        <p class="src">2024 values. <b>Source:</b> Ministry of Industry and Trade of Vietnam.</p>
         <p class="lead rv" style="--d:5">Total bilateral trade increased from about US$55 billion in 2020 to more than US$68 billion in 2024. Although trade declined in 2023 compared with the previous year, it recovered strongly in 2024.</p>
       </div>
       <figure class="chart rv" style="--d:2">
         <figcaption>Figure 3.1 Vietnam–EU Trade</figcaption>
         <p class="unit">billion USD</p>
         <div data-chart="trade"><noscript><table class="tbl"><caption>Figure 3.1 data (billion USD)</caption><tr><th>Year</th><th>Exports to EU</th><th>Imports from EU</th></tr><tr><td>2020</td><td>40</td><td>15</td></tr><tr><td>2021</td><td>40</td><td>16</td></tr><tr><td>2022</td><td>47</td><td>17</td></tr><tr><td>2023</td><td>44</td><td>16</td></tr><tr><td>2024</td><td>51.6</td><td>16.7</td></tr></table></noscript></div>
-        <p class="src">Figures are rounded. <b>Source:</b> Vietnam Customs and Ministry of Industry and Trade of Vietnam.</p>
+        <p class="src">Values for 2020–2023 are approximate, read from the original chart; 2024 values (51.6 and 16.7) are from the Ministry of Industry and Trade of Vietnam. <b>Source:</b> Vietnam Customs and Ministry of Industry and Trade of Vietnam.</p>
       </figure>
     </div>
   </div>
@@ -945,9 +949,9 @@ body.dim3d #scene { opacity: .55; }
       </div>
       <figure class="chart rv" style="--d:2">
         <figcaption>Figure 3.2. Major Product Groups in Vietnam-EU Trade in 2024</figcaption>
-        <p class="unit">billion EUR (other trade figures on this page are in USD)</p>
+        <p class="unit">Billion EUR. Values are approximate, read from the original chart.</p>
         <div data-chart="products"><noscript><table class="tbl"><caption>Figure 3.2 data (billion EUR)</caption><tr><th>Product group</th><th>EU imports from Vietnam</th><th>EU exports to Vietnam</th></tr><tr><td>Machinery &amp; transport equipment</td><td>26.6</td><td>4.2</td></tr><tr><td>Textiles &amp; clothing</td><td>5.0</td><td>0.6</td></tr><tr><td>Food &amp; agricultural products</td><td>5.0</td><td>1.8</td></tr><tr><td>Chemicals</td><td>1.0</td><td>3.7</td></tr><tr><td>Fuels &amp; mining</td><td>0.4</td><td>0.2</td></tr></table></noscript></div>
-        <p class="src">Figures are rounded. <b>Source:</b> European Commission and Eurostat.</p>
+        <p class="src"><b>Source:</b> European Commission and Eurostat.</p>
       </figure>
     </div>
   </div>
@@ -996,8 +1000,8 @@ body.dim3d #scene { opacity: .55; }
         <li>A court-style dispute settlement mechanism replaces traditional investor–state arbitration</li>
         <li>Poland became the 20th member state to ratify it in November 2025; the EVIPA is not yet in force</li></ul></div>
     </div>
-    <p class="cap rv mt">Table 3.3 Milestones in EVFT</p>
-    <div class="tl five" role="list" aria-label="Table 3.3 Milestones in EVFT">
+    <p class="cap rv mt">Table 3.3 Key milestones in the EVFTA and EVIPA</p>
+    <div class="tl five" role="list" aria-label="Table 3.3 Key milestones in the EVFTA and EVIPA">
       <div class="m rv" role="listitem"><p class="y">2010</p><p class="t">Scoping exercise; decision to negotiate</p></div>
       <div class="m rv" role="listitem" style="--d:1"><p class="y">2012</p><p class="t">Formal negotiations launched</p></div>
       <div class="m rv" role="listitem" style="--d:2"><p class="y">Dec 2015</p><p class="t">Negotiations concluded in principle</p></div>
@@ -1036,7 +1040,7 @@ body.dim3d #scene { opacity: .55; }
       <tbody>
         <tr><td>Total Vietnam–EU trade</td><td class="num">US$49.8 bn</td><td class="num">US$68.3 bn</td><td class="num">+37.1%</td></tr>
         <tr><td>Vietnam's exports to EU</td><td class="num">US$35.8 bn</td><td class="num">US$51.6 bn</td><td class="num">+44.1%</td></tr>
-        <tr><td>Vietnam's trade surplus with EU</td><td class="num">Approx. US$21.8 bn</td><td class="num">US$34.9 bn</td><td class="num">+60.1%</td></tr>
+        <tr><td>Vietnam's trade surplus with EU</td><td class="num">≈US$21.8 bn</td><td class="num">US$34.9 bn</td><td class="num">+60.1%</td></tr>
       </tbody></table></div>
     <div class="grid g2 mt">
       <div class="stat rv"><p class="v">85.6%</p><p class="l">of tariff lines (70.3% of Vietnam's export value) eliminated by the EU upon entry into force</p></div>
@@ -1057,27 +1061,21 @@ body.dim3d #scene { opacity: .55; }
       <tbody>
         <tr><td>EU investment projects in Vietnam</td><td>&gt;2,240</td><td>≈2,450</td><td>Continued expansion</td></tr>
         <tr><td>EU cumulative registered investment</td><td>≈US$24.67 bn</td><td>≈US$30.6 bn</td><td>+≈US$5.9 bn</td></tr>
-        <tr><td>EU share of Vietnam's total FDI</td><td>≈7.6%</td><td>n/a<sup>*</sup></td><td>Limited compared with major Asian investors</td></tr>
+        <tr><td>EU share of Vietnam's total FDI</td><td>≈7.6%</td><td>Still a relatively modest share</td><td>Limited compared with major Asian investors</td></tr>
         <tr><td>Main investment orientation</td><td>Manufacturing, infrastructure, services</td><td>Manufacturing and higher-value activities</td><td>Gradual upgrading</td></tr>
       </tbody></table></div>
-    <p class="tnote rv"><sup>*</sup> n/a: no comparable 2024 figure in the sources. The 2019 figures are from the Foreign Investment Agency/MPI and the 2024 figures from the EEAS, so they may not be directly comparable.</p>
+    <p class="tnote rv">No 2024 percentage is reported in the sources. The 2019 figure (about 7.6%) is from FIA/MPI; the 2024 assessment is from EEAS. The two sources may not be directly comparable.</p>
     <div class="callout rv mt"><h3>EVIPA</h3>The impact of the EVIPA should currently be considered potential rather than fully realized, because the agreement has not yet entered into force at the EU level. At the end of 2024, South Korea had more than US$92 billion and Singapore about US$83.13 billion in cumulative registered investment in Vietnam.</div>
     <p class="src"><b>Source:</b> Foreign Investment Agency/MPI and European External Action Service.</p>
   </div>
 </section>
 
-<section class="sec" id="c3-broader" data-scene="bridge" data-pdf="3.3 EU's Broader Influence on Vietnam's Development [ADDED CONTENT: CBAM, EUDR and IUU block]">
+<section class="sec" id="c3-broader" data-scene="bridge" data-pdf="3.3 EU's Broader Influence on Vietnam's Development">
   <div class="wrap">
     <div class="copy">
       <p class="eyebrow rv">3.3</p>
       <h2 class="h rv" style="--d:1">EU's Broader Influence on Vietnam's Development</h2>
-      <p class="lead rv" style="--d:2">European standards and regulatory requirements increasingly affect how Vietnamese businesses operate and access international markets. Three requirements discussed in the report are CBAM, EUDR and IUU.</p>
-      <div class="stack mt">
-        <div class="card rv" style="--d:3"><p class="tag">CBAM</p><h3>Carbon content of imports</h3><p>The definitive regime applies from 1 January 2026, after a transitional phase from 2023 to 2025: importers of cement, iron and steel, aluminium, fertilisers, electricity and hydrogen must buy certificates reflecting the carbon content of their goods (European Commission, n.d.-e). A national system for measuring, reporting and verifying emissions would let Vietnamese firms supply credible data to EU importers (East Asia Forum, 2026; S&amp;P Global, 2025).</p></div>
-        <div class="card rv" style="--d:4"><p class="tag">EUDR</p><h3>Traceability of commodities</h3><p>Priorities include digital forest-plot mapping and geolocation for coffee, rubber and timber (Trung tâm WTO và Hội nhập, 2026b; Vietnam News Agency, 2026).</p></div>
-        <div class="card rv" style="--d:5"><p class="tag">IUU</p><h3>Fisheries</h3><p>Full implementation of fleet monitoring, traceability and enforcement measures requested by the Commission (Trung tâm WTO và Hội nhập, 2026b; Vietnam News Agency, 2026).</p></div>
-      </div>
-      <p class="src"><b>Source:</b> European Commission (n.d.-e); East Asia Forum (2026); S&amp;P Global (2025); Trung tâm WTO và Hội nhập (2026b); Vietnam News Agency (2026).</p>
+      <p class="lead rv" style="--d:2">European standards and regulatory requirements increasingly affect how Vietnamese businesses operate and access international markets.</p>
     </div>
   </div>
 </section>
@@ -1100,6 +1098,7 @@ body.dim3d #scene { opacity: .55; }
         <tr><td>Circular economy</td><td>Promotion of resource efficiency, recycling and waste reduction</td><td>Encourages changes in production and consumption models</td></tr>
       </tbody></table></div>
     <p class="src"><b>Source:</b> Compiled from EU–Vietnam cooperation documents and the EVFTA sustainable development framework.</p>
+    <p class="note rv mt">CBAM: see <a href="#c2-regulatory">Section 2.2.2</a>.</p>
   </div>
 </section>
 
@@ -1207,63 +1206,63 @@ body.dim3d #scene { opacity: .55; }
     <div class="grid g4 mt">
       <div class="card rv"><p class="n">1</p><h3>Complete the EVIPA and manage the surplus diplomatically</h3><p>Continue parliamentary and diplomatic engagement with the remaining member states.</p></div>
       <div class="card rv" style="--d:1"><p class="n">2</p><h3>Operationalise carbon pricing and emissions data</h3><p>Launch the pilot emissions trading exchange on schedule and build a national measuring, reporting and verification system.</p></div>
-      <div class="card rv" style="--d:2"><p class="n">3</p><h3>Build traceability systems for EUDR and IUU compliance</h3><p>Digital forest-plot mapping and geolocation for coffee, rubber and timber; fleet monitoring and enforcement.</p></div>
-      <div class="card rv" style="--d:3"><p class="n">4</p><h3>Raise EVFTA utilisation</h3><p>Simplify customs and certificate-of-origin procedures, speed up tax refunds, digitalise documentation and apply rules of origin uniformly.</p></div>
-      <div class="card rv"><p class="n">5</p><h3>Make JETP and Global Gateway funds bankable</h3><p>A pipeline of prepared grid, storage and transport projects, with clear regulation and coordination among ministries.</p></div>
-      <div class="card rv" style="--d:1"><p class="n">6</p><h3>Attract higher-quality EU investment and stay predictable</h3><p>Link incentives to technology transfer, R&amp;D and supplier development.</p></div>
+      <div class="card rv" style="--d:2"><p class="n">3</p><h3>Build traceability systems for EUDR and IUU compliance</h3><p>Priorities include digitising production plots and geolocation data for EUDR-covered products such as coffee, rubber and timber (Thế Hải, 2026), and the full implementation of vessel monitoring, electronic traceability and enforcement measures to address the European Commission's IUU recommendations (Viet Nam News, 2026).</p></div>
+      <div class="card rv" style="--d:3"><p class="n">4</p><h3>Raise EVFTA utilisation</h3><p>Authorities should simplify customs and certificate-of-origin procedures, including electronic registration and self-certification of origin, clarify guidance on HS codes and customs valuation, and apply rules of origin consistently across agencies, as EuroCham has recommended (Kiều Mai, 2025; Báo Công Thương, 2025).</p></div>
+      <div class="card rv"><p class="n">5</p><h3>Make JETP and Global Gateway funds bankable</h3><p>A pipeline of prepared grid and storage projects, with clear regulation (several rules are still in draft) and coordination among the JETP working groups and ministries, would improve the absorption of JETP and Global Gateway finance and attract co-investment (Climate Policy Initiative, 2024; European Investment Bank, 2025).</p></div>
+      <div class="card rv" style="--d:1"><p class="n">6</p><h3>Attract higher-quality EU investment and stay predictable</h3><p>Prioritising investors that transfer technology, innovate and work with domestic suppliers, and keeping the regulatory environment stable, would reinforce the benefits of EU FDI, whose scale remains modest compared with major Asian investors (OECD, n.d.; Vietnam News Agency, 2025).</p></div>
       <div class="card rv" style="--d:2"><p class="n">7</p><h3>For firms: invest in compliance and diversification</h3><p>Map supply chains, measure product-level emissions, obtain certifications and gradually move into higher-value segments.</p></div>
     </div>
-    <p class="src"><b>Source:</b> East Asia Forum (2026); S&amp;P Global (2025); Trung tâm WTO và Hội nhập (2026b, 2026c); Vietnam News Agency (2026); Thương hiệu &amp; Công luận (2026); Climate Policy Initiative (n.d.); Italian Trade Agency (2026); Vietnam Investment Review (2025).</p>
+    <p class="src"><b>Source:</b> East Asia Forum (2026); S&amp;P Global (2025); Thế Hải (2026); Viet Nam News (2026); Kiều Mai (2025); Báo Công Thương (2025); Climate Policy Initiative (2024); European Investment Bank (2025); OECD (n.d.); Vietnam News Agency (2025).</p>
   </div>
 </section>
 
 <!-- ============ REFERENCES ============ -->
-<section class="sec auto" id="references" data-scene="hub" data-pdf="References (compiled from the in-text citations of the PDF; the PDF has no reference list)">
+<section class="sec auto" id="references" data-scene="hub" data-pdf="References (from references.md, 42 entries)">
   <div class="wrap panel">
     <h2 class="h rv">References</h2>
-    <p class="note rv mt">Compiled from the in-text citations of the report. The report gives only author and year for these sources; [to be completed] marks missing initials, titles, publishers and URLs.</p>
     <ul class="refs mt">
-      <li>Akin Gump. (2025). [to be completed]</li>
-      <li>Balassa, [initials]. (1961). [to be completed]</li>
-      <li>Börzel, [initials], &amp; Risse, [initials]. (2012). [to be completed]</li>
-      <li>Bradford, [initials]. (2020). [to be completed]</li>
-      <li>Brussels Times. (2026). [to be completed]</li>
-      <li>Bull, [initials]. (1982). [to be completed]</li>
-      <li>Climate Policy Initiative. (n.d.). [to be completed]</li>
-      <li>Council of the European Union. (n.d.-a). [to be completed]</li>
-      <li>Council of the European Union. (n.d.-b). [to be completed]</li>
-      <li>Council of the European Union. (n.d.-c). [to be completed]</li>
-      <li>Council of the European Union. (2025). [to be completed]</li>
-      <li>Damro, [initials]. (2012). [to be completed]</li>
-      <li>Draghi, [initials]. (2024). [to be completed]</li>
-      <li>East Asia Forum. (2026). [to be completed]</li>
-      <li>European Commission. (n.d.-a). [to be completed]</li>
-      <li>European Commission. (n.d.-b). [to be completed]</li>
-      <li>European Commission. (n.d.-c). [to be completed]</li>
-      <li>European Commission. (n.d.-d). [to be completed]</li>
-      <li>European Commission. (n.d.-e). [to be completed]</li>
-      <li>European Commission. (n.d.-f). [to be completed]</li>
-      <li>European Commission. (n.d.-g). [to be completed]</li>
-      <li>European Commission. (n.d.-h). [to be completed]</li>
-      <li>European Commission Joint Research Centre. (2025). [to be completed]</li>
-      <li>European Union. (n.d.-a). [to be completed]</li>
-      <li>European Union. (n.d.-b). [to be completed]</li>
-      <li>Finnish Government. (2025). [to be completed]</li>
-      <li>Hettne, [initials], &amp; Söderbaum, [initials]. (2005). [to be completed]</li>
-      <li>Italian Trade Agency. (2026). [to be completed]</li>
-      <li>Jones, [initials], et al. (2016). [to be completed]</li>
-      <li>Lavenex, [initials]. (2004). [to be completed]</li>
-      <li>Letta, [initials]. (2024). [to be completed]</li>
-      <li>Manners, [initials]. (2002). [to be completed]</li>
-      <li>Meunier, [initials], &amp; Nicolaïdis, [initials]. (2006). [to be completed]</li>
-      <li>Schimmelfennig, [initials], &amp; Sedelmeier, [initials]. (2004). [to be completed]</li>
-      <li>S&amp;P Global. (2025). [to be completed]</li>
-      <li>Thương hiệu &amp; Công luận. (2026). [to be completed]</li>
-      <li>Trung tâm WTO và Hội nhập. (2026b). [to be completed]</li>
-      <li>Trung tâm WTO và Hội nhập. (2026c). [to be completed]</li>
-      <li>Vietnam Investment Review. (2025). [to be completed]</li>
-      <li>Vietnam News Agency. (2026). [to be completed]</li>
-      <li>Viner, [initials]. (1950). [to be completed]</li>
+      <li>Akin Gump. (2025, November 19). EU unveils 'Digital Omnibus' bill streamlining GDPR and AI Act rules. <a href="https://www.akingump.com/en/insights/ai-law-and-regulation-tracker/eu-unveils-digital-omnibus-bill-streamlining-gdpr-and-ai-act-rules" rel="noopener">https://www.akingump.com/en/insights/ai-law-and-regulation-tracker/eu-unveils-digital-omnibus-bill-streamlining-gdpr-and-ai-act-rules</a></li>
+      <li>Balassa, B. (1961). The theory of economic integration. Richard D. Irwin.</li>
+      <li>Báo Công Thương. (2025, December 17). EuroCham đề xuất doanh nghiệp được tự chứng nhận xuất xứ hàng hóa [Article in Vietnamese]. Vietnam Chamber of Commerce and Industry. <a href="https://www.vcci.com.vn/tin-tuc/eurocham-de-xuat-doanh-nghiep-duoc-tu-chung-nhan-xuat-xu-hang-hoa" rel="noopener">https://www.vcci.com.vn/tin-tuc/eurocham-de-xuat-doanh-nghiep-duoc-tu-chung-nhan-xuat-xu-hang-hoa</a></li>
+      <li>Börzel, T. A., &amp; Risse, T. (2012). From Europeanisation to diffusion: Introduction. West European Politics, 35(1), 1–19.</li>
+      <li>Bradford, A. (2020). The Brussels effect: How the European Union rules the world. Oxford University Press.</li>
+      <li>Brussels Times. (2026). EU GDP hits €18.8 trillion as wealth gaps between nations persist. <a href="https://www.brusselstimes.com/2261095/eu-gdp-hits-e18-8-trillion-as-wealth-gaps-between-nations-persist" rel="noopener">https://www.brusselstimes.com/2261095/eu-gdp-hits-e18-8-trillion-as-wealth-gaps-between-nations-persist</a></li>
+      <li>Bull, H. (1982). Civilian power Europe: A contradiction in terms? Journal of Common Market Studies, 21(2), 149–164.</li>
+      <li>Climate Policy Initiative. (2024, April 4). JETP resource mobilization plan: How Viet Nam can turn ambition into action. <a href="https://www.climatepolicyinitiative.org/jetp-resource-mobilization-plan-how-viet-nam-can-turn-ambition-into-action" rel="noopener">https://www.climatepolicyinitiative.org/jetp-resource-mobilization-plan-how-viet-nam-can-turn-ambition-into-action</a></li>
+      <li>Council of the European Union. (2025, May 27). SAFE: Council adopts €150 billion boost for joint procurement on European security and defence [Press release]. <a href="https://www.eeas.europa.eu/delegations/ukraine/safe-council-adopts-%E2%82%AC150-billion-boost-joint-procurement-european-security-and-defence_en" rel="noopener">https://www.eeas.europa.eu/delegations/ukraine/safe-council-adopts-%E2%82%AC150-billion-boost-joint-procurement-european-security-and-defence_en</a></li>
+      <li>Council of the European Union. (2026a, April 21). Defence and security. Retrieved October 4, 2026, from <a href="https://www.consilium.europa.eu/en/policies/defence-security/" rel="noopener">https://www.consilium.europa.eu/en/policies/defence-security/</a></li>
+      <li>Council of the European Union. (2026b, September 22). EU sanctions against Russia. Retrieved October 4, 2026, from <a href="https://www.consilium.europa.eu/en/policies/sanctions-against-russia/" rel="noopener">https://www.consilium.europa.eu/en/policies/sanctions-against-russia/</a></li>
+      <li>Council of the European Union. (2026c, August 13). EU trade policy. Retrieved October 4, 2026, from <a href="https://www.consilium.europa.eu/en/topics/trade/" rel="noopener">https://www.consilium.europa.eu/en/topics/trade/</a></li>
+      <li>Damro, C. (2012). Market power Europe. Journal of European Public Policy, 19(5), 682–699.</li>
+      <li>Draghi, M. (2024). The future of European competitiveness. European Commission. <a href="https://commission.europa.eu/topics/eu-competitiveness/draghi-report_en" rel="noopener">https://commission.europa.eu/topics/eu-competitiveness/draghi-report_en</a></li>
+      <li>East Asia Forum. (2026, March 6). Vietnam's carbon market faces a reality check. <a href="https://eastasiaforum.org/2026/03/06/vietnams-carbon-market-faces-a-reality-check/" rel="noopener">https://eastasiaforum.org/2026/03/06/vietnams-carbon-market-faces-a-reality-check/</a></li>
+      <li>European Commission. (n.d.-a). Carbon Border Adjustment Mechanism. Retrieved October 4, 2026, from <a href="https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism_en" rel="noopener">https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism_en</a></li>
+      <li>European Commission. (n.d.-b). Enlargement policy. Retrieved October 4, 2026, from <a href="https://enlargement.ec.europa.eu/index_en" rel="noopener">https://enlargement.ec.europa.eu/index_en</a></li>
+      <li>European Commission. (n.d.-c). EU–India trade relations. Retrieved October 4, 2026, from <a href="https://policy.trade.ec.europa.eu/eu-trade-relationships-country-and-region/countries-and-regions/india_en" rel="noopener">https://policy.trade.ec.europa.eu/eu-trade-relationships-country-and-region/countries-and-regions/india_en</a></li>
+      <li>European Commission. (n.d.-d). EU–Mercosur trade relations. Retrieved October 4, 2026, from <a href="https://policy.trade.ec.europa.eu/eu-trade-relationships-country-and-region/countries-and-regions/mercosur_en" rel="noopener">https://policy.trade.ec.europa.eu/eu-trade-relationships-country-and-region/countries-and-regions/mercosur_en</a></li>
+      <li>European Commission. (n.d.-e). Recovery plan for Europe (NextGenerationEU). Retrieved October 4, 2026, from <a href="https://commission.europa.eu/strategy-and-policy/recovery-plan-europe_en" rel="noopener">https://commission.europa.eu/strategy-and-policy/recovery-plan-europe_en</a></li>
+      <li>European Commission. (n.d.-f). Trade policy. Retrieved October 4, 2026, from <a href="https://policy.trade.ec.europa.eu/index_en" rel="noopener">https://policy.trade.ec.europa.eu/index_en</a></li>
+      <li>European Commission. (2026a, April 7). 2040 climate target. Retrieved October 4, 2026, from <a href="https://climate.ec.europa.eu/eu-action/climate-strategies-targets/2040-climate-target_en" rel="noopener">https://climate.ec.europa.eu/eu-action/climate-strategies-targets/2040-climate-target_en</a></li>
+      <li>European Commission. (2026b, May 8). Global Gateway. Retrieved October 4, 2026, from <a href="https://commission.europa.eu/strategy-and-policy/priorities-2019-2024/stronger-europe-world/global-gateway_en" rel="noopener">https://commission.europa.eu/strategy-and-policy/priorities-2019-2024/stronger-europe-world/global-gateway_en</a></li>
+      <li>European Commission Joint Research Centre. (2025). EDGAR – Emissions Database for Global Atmospheric Research: 2025 report. <a href="https://edgar.jrc.ec.europa.eu/report_2025" rel="noopener">https://edgar.jrc.ec.europa.eu/report_2025</a></li>
+      <li>European Investment Bank. (2025, October 9). EU reinforces support for Vietnam's just energy transition with €430 million package [Press release 2025-377-EN]. <a href="https://www.eib.org/en/press/all/2025-377-eu-reinforces-support-for-vietnam-s-just-energy-transition-with-eur430-million-package" rel="noopener">https://www.eib.org/en/press/all/2025-377-eu-reinforces-support-for-vietnam-s-just-energy-transition-with-eur430-million-package</a></li>
+      <li>European Union. (n.d.). EU enlargement. Retrieved October 4, 2026, from <a href="https://european-union.europa.eu/principles-countries-history/eu-enlargement_en" rel="noopener">https://european-union.europa.eu/principles-countries-history/eu-enlargement_en</a></li>
+      <li>European Union. (2026, January 12). Countries using the euro. Retrieved October 4, 2026, from <a href="https://european-union.europa.eu/institutions-law-budget/euro/countries-using-euro_en" rel="noopener">https://european-union.europa.eu/institutions-law-budget/euro/countries-using-euro_en</a></li>
+      <li>Finnish Government. (2025). Global official development assistance declined in 2024. <a href="https://valtioneuvosto.fi/en/-/global-official-development-assistance-declined-in-2024" rel="noopener">https://valtioneuvosto.fi/en/-/global-official-development-assistance-declined-in-2024</a></li>
+      <li>Hettne, B., &amp; Söderbaum, F. (2005). Civilian power or soft imperialism? EU as a global actor and the role of interregionalism. European Foreign Affairs Review, 10(4), 535–552.</li>
+      <li>Jones, E., Kelemen, R. D., &amp; Meunier, S. (2016). Failing forward? The euro crisis and the incomplete nature of European integration. Comparative Political Studies, 49(7), 1010–1034.</li>
+      <li>Kiều Mai. (2025, August 8). Rào cản ngăn doanh nghiệp tiếp cận các ưu đãi thuế quan [Article in Vietnamese]. TheLEADER. <a href="https://theleader.vn/rao-can-ngan-doanh-nghiep-tiep-can-cac-uu-dai-thue-quan-d41425.html" rel="noopener">https://theleader.vn/rao-can-ngan-doanh-nghiep-tiep-can-cac-uu-dai-thue-quan-d41425.html</a></li>
+      <li>Lavenex, S. (2004). EU external governance in "wider Europe". Journal of European Public Policy, 11(4), 680–700.</li>
+      <li>Letta, E. (2024). Much more than a market: Speed, security, solidarity. Report to the European Council.</li>
+      <li>Manners, I. (2002). Normative power Europe: A contradiction in terms? Journal of Common Market Studies, 40(2), 235–258.</li>
+      <li>Meunier, S., &amp; Nicolaïdis, K. (2006). The European Union as a conflicted trade power. Journal of European Public Policy, 13(6), 906–925.</li>
+      <li>OECD. (n.d.). Key assessment and recommendations. In FDI qualities review of Viet Nam. OECD Publishing. Retrieved October 9, 2026, from <a href="https://www.oecd.org/en/publications/fdi-qualities-review-of-viet-nam_a3c78dac-en/full-report/key-assessment-and-recommendations_81422553.html" rel="noopener">https://www.oecd.org/en/publications/fdi-qualities-review-of-viet-nam_a3c78dac-en/full-report/key-assessment-and-recommendations_81422553.html</a></li>
+      <li>Schimmelfennig, F., &amp; Sedelmeier, U. (2004). Governance by conditionality: EU rule transfer to the candidate countries of Central and Eastern Europe. Journal of European Public Policy, 11(4), 661–679.</li>
+      <li>S&amp;P Global. (2025, June 11). Vietnam to start pilot emission trading in 2025, allow offsetting 30% emissions. <a href="https://www.spglobal.com/energy/en/news-research/latest-news/energy-transition/061125-vietnam-to-start-pilot-emission-trading-in-2025-allow-offsetting-30-emissions" rel="noopener">https://www.spglobal.com/energy/en/news-research/latest-news/energy-transition/061125-vietnam-to-start-pilot-emission-trading-in-2025-allow-offsetting-30-emissions</a></li>
+      <li>Thế Hải. (2026, September 25). Trách nhiệm của nhà xuất khẩu Việt Nam tăng cao khi thực thi EUDR [Article in Vietnamese; originally published in Báo Đầu tư]. Trung tâm WTO và Hội nhập. <a href="https://trungtamwto.vn/chuyen-de/33512-trach-nhiem-cua-nha-xuat-khau-viet-nam-tang-cao-khi-thuc-thi-eudr" rel="noopener">https://trungtamwto.vn/chuyen-de/33512-trach-nhiem-cua-nha-xuat-khau-viet-nam-tang-cao-khi-thuc-thi-eudr</a></li>
+      <li>Viet Nam News. (2026, April 26). PM orders comprehensive fixes to shortcomings in fighting IUU fishing. <a href="https://vietnamnews.vn/society/1780247/pm-orders-comprehensive-fixes-to-shortcomings-in-fighting-iuu-fishing.html" rel="noopener">https://vietnamnews.vn/society/1780247/pm-orders-comprehensive-fixes-to-shortcomings-in-fighting-iuu-fishing.html</a></li>
+      <li>Vietnam News Agency. (2025, March 3). Vietnam welcomes European firms for shared successes: PM. Vietnam Investment Review. <a href="https://vir.com.vn/vietnam-welcomes-european-firms-for-shared-successes-pm-123777.html" rel="noopener">https://vir.com.vn/vietnam-welcomes-european-firms-for-shared-successes-pm-123777.html</a></li>
+      <li>Viner, J. (1950). The customs union issue. Carnegie Endowment for International Peace.</li>
     </ul>
   </div>
 </section>
@@ -1286,9 +1285,9 @@ body.dim3d #scene { opacity: .55; }
 /* ---- Chart data taken from the report's figures ---- */
 const DATA = {
   members: { labels: ["1957","1973","1981","1986","1995","2004","2007","2013","2020"], values: [6,9,10,12,15,25,27,28,27] },
-  // Figure 3.1 (billion USD). 2020–2023: rounded bar heights of the report's figure; 2024: Table 3.4 values
+  // Figure 3.1 (billion USD). 2020–2023: read from the original chart; 2024: Ministry of Industry and Trade of Vietnam
   trade: { labels: ["2020","2021","2022","2023","2024"], exports: [40,40,47,44,51.6], imports: [15,16,17,16,16.7] },
-  // Figure 3.2 (billion EUR, rounded bar lengths of the report's figure)
+  // Figure 3.2 (billion EUR, read from the original chart)
   products: {
     labels: ["Machinery & transport equipment","Textiles & clothing","Food & agricultural products","Chemicals","Fuels & mining"],
     euImports: [26.6,5.0,5.0,1.0,0.4],   // EU imports from Vietnam

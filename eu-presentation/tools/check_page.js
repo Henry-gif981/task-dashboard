@@ -1,5 +1,6 @@
 // Check the rendered page against the report PDF.
 //   1. every number / year / percentage shown on the page must appear in the PDF text
+//      (the References section is skipped: its source is references.md, see tools/check_citations.py)
 //   2. every href="#..." must point to an existing id
 // Usage (from eu-presentation/):  node tools/check_page.js "<path to BTL Đa biên - Nhóm 4.pdf>" [page.html]
 // Needs: Node, Playwright (npm i playwright) and pdftotext (poppler-utils).
@@ -25,7 +26,7 @@ const norm = t => t.replace(/[‐-―]/g, '-');
   await p.waitForTimeout(800);
   const res = await p.evaluate(() => {
     const out = [];
-    document.querySelectorAll('main > section').forEach(sec => {
+    document.querySelectorAll('main > section:not(#references)').forEach(sec => {   // References come from references.md
       const svgText = [...sec.querySelectorAll('svg text')].map(t => t.textContent).join(' ');
       out.push({ id: sec.id, text: sec.innerText + ' ' + svgText });
     });
