@@ -14,305 +14,290 @@
 @font-face { font-family: 'Inter'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(fonts/Inter-vietnamese.woff2) format('woff2'); unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB; }
 @font-face { font-family: 'Inter'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(fonts/Inter-latin-ext.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
 @font-face { font-family: 'Inter'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(fonts/Inter-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-@font-face { font-family: 'Source Serif 4'; font-style: italic; font-weight: 400 600; font-display: swap; src: url(fonts/SourceSerif4-Italic-vietnamese.woff2) format('woff2'); unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB; }
-@font-face { font-family: 'Source Serif 4'; font-style: italic; font-weight: 400 600; font-display: swap; src: url(fonts/SourceSerif4-Italic-latin-ext.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
-@font-face { font-family: 'Source Serif 4'; font-style: italic; font-weight: 400 600; font-display: swap; src: url(fonts/SourceSerif4-Italic-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-@font-face { font-family: 'Source Serif 4'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(fonts/SourceSerif4-vietnamese.woff2) format('woff2'); unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB; }
-@font-face { font-family: 'Source Serif 4'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(fonts/SourceSerif4-latin-ext.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
-@font-face { font-family: 'Source Serif 4'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(fonts/SourceSerif4-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 500 800; font-display: swap; src: url(fonts/PlusJakartaSans-vietnamese.woff2) format('woff2'); unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB; }
+@font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 500 800; font-display: swap; src: url(fonts/PlusJakartaSans-latin-ext.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 500 800; font-display: swap; src: url(fonts/PlusJakartaSans-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
 
 /* =========================================================
-   1. Tokens: EU-inspired institutional palette
+   1. Tokens: European Union palette
    ========================================================= */
 :root {
-  --blue: #003399;          /* EU blue, primary */
-  --navy: #001A57;          /* deep blue: hero, navigation, footer */
-  --navy-2: #00104A;        /* deepest blue: chapter openings */
-  --tint: #E8EEF9;          /* light blue: highlights, table hover */
-  --tint-2: #F4F7FC;        /* lighter blue: zebra rows, figure panels */
-  --gold: #FFCC00;          /* EU gold: accents only (rules, stars, numbers); text only on dark blue */
-  --ink: #0B1B3A;           /* body text */
-  --ink-2: #4A5A78;         /* secondary text */
-  --paper: #FBFCFE;         /* page background */
-  --white: #FFFFFF;
-  --line: #D3DCEC;          /* hairlines */
-  --on-dark: #FFFFFF;
-  --on-dark-2: #C9D5F0;     /* secondary text on dark blue */
-  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --eu-blue: #003399;      /* EU flag blue */
+  --eu-blue-2: #1F4FBF;    /* lighter blue for text accents */
+  --eu-blue-3: #6E8FD8;
+  --eu-blue-50: #EAF0FB;
+  --gold: #FFCC00;         /* EU flag gold */
+  --gold-2: #F2B700;
+  --vn-red: #DA251D;
+  --ink: #0B1530;
+  --ink-2: #3A4766;
+  --ink-3: #6B7794;
+  --bg: #EDF2FB;           /* pale blue clay background (matches 3D scene) */
+  --card: #FFFFFF;
+  --line: rgba(11, 21, 48, .09);
+  --night: #070E26;        /* dark "gallery" background */
+  --shadow: 0 24px 60px -28px rgba(0, 51, 153, .35), 0 2px 6px rgba(11, 21, 48, .05);
+  --display: "Plus Jakarta Sans", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   --sans: "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  /* 8px rhythm */
-  --s1: 8px; --s2: 16px; --s3: 24px; --s4: 32px; --s5: 40px; --s6: 48px; --s8: 64px; --s10: 80px; --s12: 96px; --s16: 128px;
-  --gutter: clamp(16px, 5vw, 96px);
-  --maxw: 1440px;
-  --radius: 4px;
-  --watermark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-110 -110 220 220'%3E%3Cg fill='#003399' fill-opacity='0.04'%3E%3Cpath d='M0.00,-94.00L3.29,-84.53L13.31,-84.33L5.33,-78.27L8.23,-68.67L0.00,-74.40L-8.23,-68.67L-5.33,-78.27L-13.31,-84.33L-3.29,-84.53Z'/%3E%3Cpath d='M40.00,-83.28L43.29,-73.81L53.31,-73.61L45.33,-67.55L48.23,-57.96L40.00,-63.68L31.77,-57.96L34.67,-67.55L26.69,-73.61L36.71,-73.81Z'/%3E%3Cpath d='M69.28,-54.00L72.57,-44.53L82.60,-44.33L74.61,-38.27L77.51,-28.67L69.28,-34.40L61.05,-28.67L63.96,-38.27L55.97,-44.33L65.99,-44.53Z'/%3E%3Cpath d='M80.00,-14.00L83.29,-4.53L93.31,-4.33L85.33,1.73L88.23,11.33L80.00,5.60L71.77,11.33L74.67,1.73L66.69,-4.33L76.71,-4.53Z'/%3E%3Cpath d='M69.28,26.00L72.57,35.47L82.60,35.67L74.61,41.73L77.51,51.33L69.28,45.60L61.05,51.33L63.96,41.73L55.97,35.67L65.99,35.47Z'/%3E%3Cpath d='M40.00,55.28L43.29,64.75L53.31,64.96L45.33,71.01L48.23,80.61L40.00,74.88L31.77,80.61L34.67,71.01L26.69,64.96L36.71,64.75Z'/%3E%3Cpath d='M0.00,66.00L3.29,75.47L13.31,75.67L5.33,81.73L8.23,91.33L0.00,85.60L-8.23,91.33L-5.33,81.73L-13.31,75.67L-3.29,75.47Z'/%3E%3Cpath d='M-40.00,55.28L-36.71,64.75L-26.69,64.96L-34.67,71.01L-31.77,80.61L-40.00,74.88L-48.23,80.61L-45.33,71.01L-53.31,64.96L-43.29,64.75Z'/%3E%3Cpath d='M-69.28,26.00L-65.99,35.47L-55.97,35.67L-63.96,41.73L-61.05,51.33L-69.28,45.60L-77.51,51.33L-74.61,41.73L-82.60,35.67L-72.57,35.47Z'/%3E%3Cpath d='M-80.00,-14.00L-76.71,-4.53L-66.69,-4.33L-74.67,1.73L-71.77,11.33L-80.00,5.60L-88.23,11.33L-85.33,1.73L-93.31,-4.33L-83.29,-4.53Z'/%3E%3Cpath d='M-69.28,-54.00L-65.99,-44.53L-55.97,-44.33L-63.96,-38.27L-61.05,-28.67L-69.28,-34.40L-77.51,-28.67L-74.61,-38.27L-82.60,-44.33L-72.57,-44.53Z'/%3E%3Cpath d='M-40.00,-83.28L-36.71,-73.81L-26.69,-73.61L-34.67,-67.55L-31.77,-57.96L-40.00,-63.68L-48.23,-57.96L-45.33,-67.55L-53.31,-73.61L-43.29,-73.81Z'/%3E%3C/g%3E%3C/svg%3E");
+  --radius: 22px;
+  --pad-x: clamp(20px, 6vw, 120px);
 }
-
 * { box-sizing: border-box; margin: 0; padding: 0; }
-/* body text: 18px on laptops, 24px at 1920px wide (projector) */
-html { font-size: clamp(18px, 0.6vw + 12.5px, 24px); scroll-behavior: smooth; scroll-padding-top: 72px; }
-body { font-family: var(--sans); color: var(--ink); background: var(--paper); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-body, body * { font-feature-settings: "lnum" 1, "kern" 1; }
+html { font-size: clamp(16px, 0.6vw + 9px, 22px); scroll-behavior: smooth; }
+body { font-family: var(--sans); color: var(--ink); background: var(--bg); line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 a { color: inherit; text-decoration: none; }
-strong { font-weight: 600; color: var(--blue); }
+strong { font-weight: 700; color: var(--eu-blue); }
 .dark strong { color: var(--gold); }
-:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 
 /* =========================================================
-   2. Fixed 3D canvas (only behind the dark sections) + fallback
+   2. Fixed 3D canvas + decorative fallback
    ========================================================= */
-#scene { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 0; display: block; }
+#scene { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 0; display: block; transition: opacity .6s ease; }
 body.no3d #scene { display: none; }
-.fallback-bg { position: fixed; inset: 0; z-index: 0; display: none; pointer-events: none; background: var(--navy); }
+.fallback-bg { position: fixed; inset: 0; z-index: 0; display: none; pointer-events: none;
+  background: radial-gradient(60vw 60vw at 78% 45%, #ffffff 0%, var(--bg) 60%); }
 body.no3d .fallback-bg { display: block; }
-.fallback-bg svg { position: absolute; right: 8vw; top: 50%; width: 34vw; max-width: 560px; transform: translateY(-50%); opacity: .35; }
-#progress { display: none; }
+.fallback-bg svg { position: absolute; right: 8vw; top: 50%; width: 36vw; max-width: 620px; transform: translateY(-50%); opacity: .9; animation: spin 60s linear infinite; }
+@keyframes spin { to { transform: translateY(-50%) rotate(360deg); } }
+/* dark-section tint for the fallback */
+body.no3d.night .fallback-bg { background: radial-gradient(60vw 60vw at 50% 50%, #12235a 0%, var(--night) 70%); }
+
 main { position: relative; z-index: 1; }
 
 /* =========================================================
-   3. Navigation, reading progress (12 stars), chapter dots
+   3. Navigation, progress, side dots
    ========================================================= */
 .nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 10; height: 72px;
-  display: flex; align-items: center; justify-content: space-between; padding: 0 var(--gutter);
-  background: var(--navy); color: var(--on-dark); border-bottom: 1px solid rgba(255,255,255,.08);
+  position: fixed; top: 0; left: 0; right: 0; z-index: 10; height: 84px;
+  display: flex; align-items: center; justify-content: space-between; padding: 0 var(--pad-x);
+  transition: background .35s, box-shadow .35s, color .35s;
 }
-.brand { display: flex; align-items: center; gap: 12px; font: 600 1.02rem/1 var(--serif); letter-spacing: .005em; color: var(--on-dark); }
-.brand svg { width: 34px; height: 34px; flex: none; }
-.brand small { display: block; font: 500 .62rem/1.2 var(--sans); letter-spacing: .1em; color: var(--on-dark-2); margin-top: 5px; font-variant-caps: all-small-caps; }
-.nav-links { display: flex; align-items: center; gap: clamp(16px, 2.4vw, 40px); font: 500 .8rem/1 var(--sans); }
-.nav-links a { color: var(--on-dark); padding: 26px 0 23px; border-bottom: 2px solid transparent; transition: border-color .2s, color .2s; }
-.nav-links a:hover, .nav-links a.on { border-bottom-color: var(--gold); }
-.btn-soft { border: 1px solid rgba(255,255,255,.5) !important; border-radius: var(--radius); padding: 10px 16px !important; }
-.btn-soft:hover, .btn-soft.on { border-color: var(--gold) !important; }
-.nav-toggle { display: none; width: 44px; height: 44px; border: 1px solid rgba(255,255,255,.4); border-radius: var(--radius); background: transparent; cursor: pointer; position: relative; }
-.nav-toggle span, .nav-toggle span::before, .nav-toggle span::after { position: absolute; left: 11px; right: 11px; height: 2px; background: #fff; content: ""; transition: transform .2s, opacity .2s; }
-.nav-toggle span { top: 21px; } .nav-toggle span::before { top: -7px; left: 0; right: 0; } .nav-toggle span::after { top: 7px; left: 0; right: 0; }
-.nav-toggle[aria-expanded="true"] span { background: transparent; }
-.nav-toggle[aria-expanded="true"] span::before { transform: translateY(7px) rotate(45deg); }
-.nav-toggle[aria-expanded="true"] span::after { transform: translateY(-7px) rotate(-45deg); }
-@media (max-width: 900px) {
-  .nav-toggle { display: block; }
-  .nav-links { position: absolute; top: 72px; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0; background: var(--navy); padding: 8px var(--gutter) 16px; display: none; border-bottom: 2px solid var(--gold); }
-  .nav-links.open { display: flex; }
-  .nav-links a { padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,.1); }
-  .btn-soft { border: 0 !important; padding: 14px 0 !important; border-radius: 0; }
-}
+.nav.scrolled { background: rgba(237, 242, 251, .78); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 1px 0 var(--line); }
+body.night .nav { color: #fff; }
+body.night .nav.scrolled { background: rgba(7, 14, 38, .6); box-shadow: 0 1px 0 rgba(255,255,255,.08); }
+.brand { display: flex; align-items: center; gap: 12px; font: 800 1.05rem/1 var(--display); letter-spacing: -.01em; }
+.brand svg { width: 38px; height: 38px; flex: none; }
+.brand small { display: block; font: 600 .62rem/1.2 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); margin-top: 4px; }
+body.night .brand small { color: rgba(255,255,255,.6); }
+.nav-links { display: flex; align-items: center; gap: clamp(14px, 2.4vw, 44px); font: 600 .8rem/1 var(--display); }
+.nav-links a { opacity: .8; transition: opacity .2s, color .2s; }
+.nav-links a:hover, .nav-links a.on { opacity: 1; color: var(--eu-blue-2); }
+body.night .nav-links a:hover, body.night .nav-links a.on { color: var(--gold); }
+.btn-soft { background: var(--eu-blue-50); color: var(--eu-blue-2) !important; opacity: 1 !important; padding: 14px 22px; border-radius: 12px; display: inline-flex; gap: 10px; align-items: center; }
+body.night .btn-soft { background: rgba(255,255,255,.1); color: #fff !important; }
+@media (max-width: 980px) { .nav-links a:not(.btn-soft) { display: none; } }
 
-/* reading progress: 12 stars light up gold, one per twelfth of the page */
-.star-progress { position: fixed; top: 88px; right: 20px; z-index: 9; width: 60px; height: 60px; border-radius: 50%; background: var(--navy); box-shadow: 0 0 0 1px rgba(255,255,255,.12); transition: opacity .3s; }
-.star-progress svg { width: 100%; height: 100%; display: block; }
-.star-progress .s { fill: rgba(255,255,255,.18); transition: fill .3s; }
-.star-progress .s.lit { fill: var(--gold); }
-.counter { position: fixed; top: 154px; right: 20px; width: 60px; z-index: 9; text-align: center; font: 600 .56rem/1 var(--sans); letter-spacing: .06em; color: var(--on-dark); background: var(--navy); border-radius: 999px; padding: 5px 0; }
-.dots { position: fixed; right: 44px; top: 50%; transform: translateY(-50%); z-index: 9; display: flex; flex-direction: column; gap: 14px; }
-.dots a { width: 8px; height: 8px; border-radius: 50%; background: rgba(0,51,153,.25); position: relative; transition: background .2s, transform .2s; }
-.dots a.on { background: var(--blue); transform: scale(1.4); }
+#progress { position: fixed; left: 0; top: 0; height: 3px; width: 0; background: var(--eu-blue); z-index: 11; }
+.dots { position: fixed; right: 26px; top: 50%; transform: translateY(-50%); z-index: 9; display: flex; flex-direction: column; gap: 16px; }
+.dots a { width: 10px; height: 10px; border-radius: 50%; background: rgba(11,21,48,.22); position: relative; transition: background .2s, transform .2s; }
+.dots a.on { background: var(--eu-blue); transform: scale(1.35); }
 body.night .dots a { background: rgba(255,255,255,.3); }
 body.night .dots a.on { background: var(--gold); }
-.dots a span { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); white-space: nowrap; font: 500 .66rem/1 var(--sans); opacity: 0; pointer-events: none; transition: opacity .2s; background: var(--navy); color: #fff; padding: 7px 10px; border-radius: var(--radius); }
-.dots a:hover span, .dots a:focus-visible span { opacity: 1; }
-.scroll-hint { position: fixed; right: 38px; bottom: 24px; z-index: 9; writing-mode: vertical-rl; font: 600 .56rem/1 var(--sans); letter-spacing: .3em; color: var(--on-dark-2); background: var(--navy); border-radius: 999px; padding: 12px 6px; display: flex; align-items: center; gap: 10px; }
-.scroll-hint::after { content: ""; width: 1px; height: 32px; background: var(--gold); }
-@media (max-width: 1100px) { .dots, .scroll-hint { display: none; } }
-@media (max-width: 760px) { .star-progress { width: 48px; height: 48px; top: 84px; right: 12px; } .counter { display: none; } }
+.dots a span { position: absolute; right: 22px; top: 50%; transform: translateY(-50%); white-space: nowrap; font: 600 .7rem/1 var(--display); opacity: 0; pointer-events: none; transition: opacity .2s; background: var(--ink); color: #fff; padding: 7px 10px; border-radius: 8px; }
+.dots a:hover span { opacity: 1; }
+.scroll-hint { position: fixed; right: 22px; bottom: 26px; z-index: 9; writing-mode: vertical-rl; font: 700 .6rem/1 var(--display); letter-spacing: .3em; color: var(--ink-3); display: flex; align-items: center; gap: 12px; }
+.scroll-hint::after { content: ""; width: 1px; height: 54px; background: currentColor; opacity: .5; }
+body.night .scroll-hint { color: rgba(255,255,255,.6); }
+.counter { position: fixed; right: 18px; top: 92px; z-index: 9; font: 700 .62rem/1 var(--display); letter-spacing: .12em; color: var(--ink-3); writing-mode: vertical-rl; }
+body.night .counter { color: rgba(255,255,255,.55); }
+@media (max-width: 760px) { .dots, .scroll-hint, .counter { display: none; } }
 
 /* =========================================================
-   4. Sections and the publication grid (12 columns)
+   4. Sections
    ========================================================= */
-.sec { position: relative; min-height: 100vh; padding: var(--s16) var(--gutter) var(--s12); display: flex; flex-direction: column; justify-content: center; background: var(--paper); border-top: 1px solid var(--line); }
-.sec:not(.dark):not(.hero) { background: var(--paper) var(--watermark) no-repeat right calc(var(--gutter) * -1) top 96px / min(46vw, 640px); }
-.sec.auto { min-height: auto; }
-.wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; position: relative; }
-.copy { max-width: calc(7 / 12 * 100%); }
+.sec { position: relative; min-height: 100vh; padding: 130px var(--pad-x) 110px; display: flex; flex-direction: column; justify-content: center; }
+.sec.auto { min-height: auto; padding-top: 110px; }
+.wrap { width: 100%; max-width: 1720px; margin: 0 auto; }
+.copy { max-width: min(46%, 860px); }
 @media (max-width: 1100px) { .copy { max-width: 100%; } }
 
-.eyebrow { display: inline-block; font: 600 .8rem/1 var(--sans); letter-spacing: .06em; color: var(--blue); padding-top: 12px; border-top: 2px solid var(--gold); margin-bottom: var(--s3); min-width: 48px; }
-.dark .eyebrow, .hero .eyebrow { color: var(--gold); }
-h1, .h { font-family: var(--serif); font-weight: 600; letter-spacing: -.01em; line-height: 1.14; color: var(--ink); }
-.h { font-size: clamp(1.9rem, 2.5vw, 3rem); max-width: 30ch; }
-.accent { color: var(--gold); }
-.lead { font-size: 1.05rem; color: var(--ink-2); margin-top: var(--s3); max-width: 68ch; }
-.dark .lead { color: var(--on-dark-2); }
-.src { margin-top: var(--s3); font-size: .74rem; color: var(--ink-2); font-style: italic; max-width: 110ch; }
-.src b { font-style: normal; font-weight: 600; color: var(--ink); }
-.dark .src { color: var(--on-dark-2); }
-.stack { display: flex; flex-direction: column; gap: var(--s3); }
-.mt { margin-top: var(--s5); }
-.panel { background: transparent; }
+.eyebrow { font: 700 .8rem/1 var(--display); letter-spacing: .08em; color: var(--eu-blue-2); margin-bottom: 18px; }
+.dark .eyebrow { color: var(--gold); }
+h1, .h { font-family: var(--display); font-weight: 800; letter-spacing: -.025em; line-height: 1.06; }
+h1 { font-size: clamp(2.4rem, 4vw, 5rem); }
+.h { font-size: clamp(2rem, 3.1vw, 3.6rem); }
+.h3 { font: 800 1.35rem/1.25 var(--display); letter-spacing: -.01em; }
+.accent { color: var(--eu-blue-2); }
+.dark .accent { color: var(--gold); }
+.lead { font-size: 1.12rem; color: var(--ink-2); margin-top: 22px; max-width: 64ch; }
+.dark .lead { color: rgba(255,255,255,.78); }
+.src { margin-top: 22px; font-size: .72rem; color: var(--ink-3); font-style: italic; }
+.src b { font-style: normal; color: var(--ink-2); }
+.dark .src { color: rgba(255,255,255,.55); }
+.stack { display: flex; flex-direction: column; gap: 28px; }
+.mt { margin-top: 36px; }
 
-/* =========================================================
-   5. Components
-   ========================================================= */
-/* buttons: understated links, not calls to action */
-.btn { display: inline-flex; align-items: center; gap: 10px; font: 500 .82rem/1 var(--sans); letter-spacing: .02em; padding: 14px 20px; border-radius: var(--radius); border: 1px solid currentColor; transition: border-color .2s; cursor: pointer; background: transparent; }
-.btn:hover { border-color: var(--gold); }
-.btn-dark, .btn-pill { color: var(--on-dark); border-color: rgba(255,255,255,.55); }
+/* Frosted panel for wide content (tables, grids) */
+.panel { background: #FBFCFE; border: 1px solid var(--line); border-radius: 24px; padding: clamp(22px, 3.2vw, 60px); box-shadow: 0 10px 40px -24px rgba(11, 21, 48, .25); }
 
-.grid { display: grid; gap: var(--s3); }
+/* Buttons */
+.btn { display: inline-flex; align-items: center; gap: 14px; font: 700 .9rem/1 var(--display); padding: 22px 30px; border-radius: 14px; transition: transform .2s, box-shadow .2s; cursor: pointer; border: 0; }
+.btn:hover { transform: translateY(-2px); }
+.btn-dark { background: var(--ink); color: #fff; box-shadow: 0 18px 34px -16px rgba(11,21,48,.6); }
+.btn-ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 2px rgba(11,21,48,.14); }
+.btn-pill { background: rgba(10, 16, 36, .82); color: #fff; border-radius: 999px; padding: 18px 34px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.18); }
+.arrow { transition: transform .2s; }
+.btn:hover .arrow { transform: translateX(4px); }
+
+/* Cards */
+.grid { display: grid; gap: 22px; }
 .g2 { grid-template-columns: repeat(2, 1fr); } .g3 { grid-template-columns: repeat(3, 1fr); }
 .g4 { grid-template-columns: repeat(4, 1fr); } .g5 { grid-template-columns: repeat(5, 1fr); }
 @media (max-width: 1100px) { .g4, .g5 { grid-template-columns: repeat(2, 1fr); } .g3 { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 680px) { .g2, .g3, .g4, .g5 { grid-template-columns: 1fr; } }
-
-.card { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--s3); display: flex; flex-direction: column; gap: var(--s1); transition: border-color .2s; }
-.card:hover { border-color: var(--gold); }
-.card .tag { font: 600 .74rem/1.3 var(--sans); letter-spacing: .06em; font-variant-caps: all-small-caps; color: var(--ink-2); }
-.card h3 { font: 600 1.12rem/1.3 var(--serif); color: var(--ink); }
+.card { background: var(--card); border-radius: 16px; padding: 24px 24px 26px; box-shadow: 0 6px 24px -18px rgba(11, 21, 48, .35); border: 1px solid var(--line); position: relative; display: flex; flex-direction: column; gap: 8px; }
+.card .tag { font: 700 .62rem/1.3 var(--display); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
+.card h3 { font: 800 1.12rem/1.25 var(--display); letter-spacing: -.01em; color: var(--ink); }
 .card p, .card li { font-size: .9rem; color: var(--ink-2); }
-.card ul { list-style: none; display: flex; flex-direction: column; gap: var(--s1); }
-.card ul li { padding-left: 18px; position: relative; }
-.card ul li::before { content: ""; position: absolute; left: 0; top: .72em; width: 6px; height: 6px; background: var(--blue); }
-.card .n { width: 36px; height: 36px; border-radius: 3px; display: grid; place-items: center; font: 600 .9rem/1 var(--serif); color: #fff; background: var(--blue); margin-bottom: 4px; }
-.card.hl { background: var(--navy); border-color: var(--navy); }
-.card.hl h3, .card.hl p, .card.hl li { color: var(--on-dark); }
-.card.hl .n { background: var(--gold); color: var(--navy); }
+.card ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.card ul li { padding-left: 20px; position: relative; }
+.card ul li::before { content: ""; position: absolute; left: 0; top: .6em; width: 8px; height: 8px; border-radius: 2px; background: var(--gold); transform: rotate(45deg); }
+.card .n { width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; font: 800 .95rem/1 var(--display); color: #fff; background: var(--eu-blue); margin-bottom: 4px; }
+.card.hl { background: var(--eu-blue); color: #fff; border: 0; }
+.card.hl .n { background: var(--gold); color: var(--ink); }
+.card.hl h3, .card.hl p, .card.hl li { color: #fff; }
+.card.hl .tag { color: rgba(255,255,255,.7); }
+.card.hl strong { color: var(--gold); }
 
-.bul { list-style: none; display: flex; flex-direction: column; gap: var(--s2); margin-top: var(--s4); }
-.bul li { position: relative; padding-left: 28px; font-size: 1rem; color: var(--ink); max-width: 68ch; }
-.bul li::before { content: ""; position: absolute; left: 4px; top: .7em; width: 7px; height: 7px; background: var(--blue); }
+/* Bullets */
+.bul { list-style: none; display: flex; flex-direction: column; gap: 16px; margin-top: 28px; }
+.bul li { position: relative; padding-left: 34px; font-size: 1rem; color: var(--ink-2); }
+.bul li::before { content: ""; position: absolute; left: 6px; top: .62em; width: 8px; height: 8px; border-radius: 50%; background: var(--eu-blue); }
+.dark .bul li { color: rgba(255,255,255,.85); }
 
-.stat { background: var(--white); border: 1px solid var(--line); border-top: 2px solid var(--gold); border-radius: var(--radius); padding: var(--s3); transition: border-color .2s; }
-.stat:hover { border-color: var(--gold); }
-.stat .v { font: 600 clamp(1.5rem, 1.9vw, 2.3rem)/1.1 var(--serif); color: var(--blue); }
-.stat .l { font-size: .84rem; color: var(--ink-2); margin-top: var(--s1); }
+/* Stats */
+.stat { background: var(--card); border-radius: 16px; padding: 22px 24px; border: 1px solid var(--line); border-left: 4px solid var(--eu-blue); }
+.stat .v { font: 800 clamp(1.5rem, 1.9vw, 2.4rem)/1.1 var(--display); letter-spacing: -.02em; color: var(--eu-blue); }
+.stat .l { font-size: .84rem; color: var(--ink-2); margin-top: 10px; }
 
-.callout { border-radius: var(--radius); padding: var(--s3) var(--s4); background: var(--navy); color: var(--on-dark); font-size: .95rem; border-left: 3px solid var(--gold); }
-.callout h3 { font: 600 1rem/1.3 var(--serif); color: var(--gold); margin-bottom: var(--s1); }
+/* Callout */
+.callout { border-radius: 16px; padding: 22px 26px; background: var(--ink); color: rgba(255,255,255,.9); font-size: .95rem; }
+.callout h3 { font: 800 1rem/1.2 var(--display); color: var(--gold); margin-bottom: 8px; }
 .callout strong { color: var(--gold); }
-.note { font-size: .92rem; color: var(--ink-2); border-left: 2px solid var(--gold); padding-left: var(--s2); max-width: 75ch; }
-.note a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
-.tnote { font-size: .74rem; color: var(--ink-2); margin-top: var(--s2); max-width: 110ch; font-style: italic; }
 
-/* tables: blue header, hairlines, numbers right-aligned */
-.tbl-wrap { border: 1px solid var(--line); border-radius: var(--radius); background: var(--white); overflow-x: auto; }
-table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width: 640px; }
-.tbl caption { caption-side: top; text-align: left; padding: var(--s2) 20px; font: 600 .95rem/1.4 var(--serif); color: var(--ink); background: var(--white); border-bottom: 1px solid var(--line); }
-.tbl th { background: var(--blue); color: #fff; text-align: left; font: 600 .78rem/1.3 var(--sans); letter-spacing: .04em; font-variant-caps: all-small-caps; padding: 14px 20px; }
-.tbl td { padding: 14px 20px; border-top: 1px solid var(--line); vertical-align: top; color: var(--ink-2); }
-.tbl tbody tr:nth-child(even) td { background: var(--tint-2); }
-.tbl tbody tr { transition: box-shadow .2s; }
-.tbl tbody tr:hover td { background: var(--tint); }
-.tbl tbody tr:hover td:first-child { box-shadow: inset 3px 0 0 var(--gold); }
-.tbl td:first-child { font-weight: 600; color: var(--ink); }
-.tbl .num { text-align: right; white-space: nowrap; font-variant-numeric: lining-nums tabular-nums; }
-/* "Table 2.1" / "Figure 2.1": small-caps label */
-.lbl { font-family: var(--sans); font-weight: 600; font-size: .9em; letter-spacing: .06em; font-variant-caps: all-small-caps; color: var(--blue); }
 
-/* timelines */
-.tl { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s2); }
+/* Tables */
+.tbl-wrap { border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: var(--card); overflow-x: auto; }
+.tbl caption { caption-side: top; text-align: left; padding: 16px 22px 14px; font: 700 .86rem/1.35 var(--display); color: var(--ink); background: var(--card); }
+table.tbl { width: 100%; border-collapse: collapse; font-size: .86rem; min-width: 640px; }
+.tbl th { background: var(--eu-blue); color: #fff; text-align: left; font: 700 .66rem/1.2 var(--display); letter-spacing: .12em; text-transform: uppercase; padding: 18px 22px; }
+.tbl td { padding: 15px 22px; border-top: 1px solid var(--line); vertical-align: top; color: var(--ink-2); }
+.tbl tr:nth-child(even) td { background: #F6F8FD; }
+.tbl td:first-child { font-weight: 700; color: var(--ink); }
+.tbl .num { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.tbl .up { color: #0E7A3E; font-weight: 800; }
+
+/* Timeline */
+.tl { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
 @media (max-width: 1100px) { .tl { grid-template-columns: repeat(2, 1fr); } }
+.tl .m { background: var(--card); border-radius: 12px; padding: 16px 18px; border: 1px solid var(--line); border-top: 3px solid var(--eu-blue); }
+.tl .y { font: 800 1.15rem/1 var(--display); color: var(--eu-blue); letter-spacing: -.01em; display: flex; align-items: center; gap: 10px; }
+
+.tl .t { font: 700 .9rem/1.3 var(--display); margin-top: 10px; }
+.tl .d { font-size: .82rem; color: var(--ink-2); margin-top: 4px; }
 .tl.five { grid-template-columns: repeat(5, 1fr); }
 @media (max-width: 1100px) { .tl.five { grid-template-columns: repeat(2, 1fr); } }
-.tl .m { background: var(--white); border: 1px solid var(--line); border-top: 2px solid var(--blue); border-radius: var(--radius); padding: var(--s2) 20px; transition: border-color .2s; }
-.tl .m:hover { border-color: var(--gold); }
-.tl .y { font: 600 1.1rem/1.1 var(--serif); color: var(--blue); }
-.tl .t { font: 600 .9rem/1.35 var(--sans); margin-top: var(--s1); }
-.tl .d { font-size: .82rem; color: var(--ink-2); margin-top: 4px; }
-.cap { font: 600 .95rem/1.4 var(--serif); color: var(--ink); margin-top: var(--s3); }
 
-.ladder { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--s2); align-items: end; }
+/* Level ladder */
+.ladder { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; align-items: end; }
 @media (max-width: 900px) { .ladder { grid-template-columns: 1fr; } .ladder .card { min-height: 0 !important; } }
-.flow { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: var(--s2); align-items: stretch; }
-.flow .ar { display: grid; place-items: center; font: 400 1.6rem/1 var(--serif); color: var(--blue); }
-@media (max-width: 900px) { .flow { grid-template-columns: 1fr; } .flow .ar { transform: rotate(90deg); } }
-.share { height: 12px; border-radius: 2px; background: var(--tint); overflow: hidden; margin-top: var(--s2); }
-.share span { display: block; height: 100%; background: var(--blue); }
 
-/* figures: publication caption, italic source below */
-.chart { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--s3); }
-.chart figcaption { font: 600 .95rem/1.4 var(--serif); color: var(--ink); padding-bottom: var(--s1); border-bottom: 1px solid var(--line); margin-bottom: var(--s1); }
-.chart .unit { font-size: .74rem; color: var(--ink-2); font-style: italic; margin-bottom: var(--s2); }
+/* Flow (Brussels effect) */
+.flow { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 16px; align-items: stretch; }
+.flow .ar { display: grid; place-items: center; font: 800 1.8rem/1 var(--display); color: var(--gold-2); }
+@media (max-width: 900px) { .flow { grid-template-columns: 1fr; } .flow .ar { transform: rotate(90deg); } }
+.chips { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; }
+.chip { background: var(--card); border-radius: 999px; padding: 12px 20px; font: 700 .8rem/1.2 var(--display); border: 1px solid var(--line); }
+.chip b { color: var(--eu-blue); margin-right: 6px; }
+
+/* Share bar */
+.share { height: 18px; border-radius: 999px; background: var(--eu-blue-50); overflow: hidden; margin-top: 16px; }
+.share span { display: block; height: 100%; background: var(--eu-blue); border-radius: 999px; }
+.share-l { display: flex; justify-content: space-between; font-size: .76rem; color: var(--ink-3); margin-top: 8px; }
+
+/* Charts */
+.chart { background: var(--card); border-radius: 16px; padding: 24px 26px 18px; border: 1px solid var(--line); }
+.chart figcaption { font: 700 .92rem/1.35 var(--display); margin-bottom: 4px; }
+.chart .unit { font-size: .74rem; color: var(--ink-3); margin-bottom: 12px; }
 .chart svg { width: 100%; height: auto; display: block; overflow: visible; }
 .chart svg text { font-family: var(--sans); }
-.bar-mark { transition: opacity .2s; } .bar-mark:hover { opacity: .85; }
-.legend { display: flex; flex-wrap: wrap; gap: var(--s1) var(--s3); font-size: .76rem; color: var(--ink-2); margin-top: var(--s2); }
-.legend i { display: inline-block; width: 14px; height: 14px; border-radius: 2px; margin-right: 8px; vertical-align: -2px; border: 1px solid var(--navy); }
+.bar-mark { transition: opacity .2s; } .bar-mark:hover { opacity: .8; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 26px; font-size: .78rem; color: var(--ink-2); margin-top: 10px; }
+.legend i { display: inline-block; width: 14px; height: 14px; border-radius: 4px; margin-right: 8px; vertical-align: -2px; }
 
-.cols { display: grid; gap: var(--s4); align-items: start; }
-.c2 { grid-template-columns: 1fr 1fr; } .c21 { grid-template-columns: 7fr 5fr; } .c12 { grid-template-columns: 5fr 7fr; }
+/* Text blocks added for the report content */
+.note { font-size: .92rem; color: var(--ink-2); border-left: 3px solid var(--line); padding-left: 16px; max-width: 110ch; }
+.tnote { font-size: .76rem; color: var(--ink-3); margin-top: 12px; }
+.cap { font: 700 .86rem/1.35 var(--display); color: var(--ink); margin-top: 22px; }
+.olist { list-style: none; counter-reset: o; display: flex; flex-direction: column; gap: 14px; }
+.olist li { counter-increment: o; position: relative; padding: 18px 22px 18px 64px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; font-size: .95rem; color: var(--ink-2); }
+.olist li::before { content: counter(o); position: absolute; left: 20px; top: 16px; width: 30px; height: 30px; border-radius: 8px; background: var(--eu-blue); color: #fff; font: 800 .85rem/30px var(--display); text-align: center; }
+.refs { list-style: none; columns: 2 520px; column-gap: 56px; font-size: .9rem; line-height: 1.5; color: var(--ink); }
+.refs li { break-inside: avoid; padding: 0 0 12px 32px; text-indent: -32px; overflow-wrap: anywhere; }
+.refs a { color: var(--eu-blue); text-decoration: none; }
+.toc { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px 40px; }
+@media (max-width: 1000px) { .toc { grid-template-columns: 1fr; } }
+.toc a { display: block; font-size: .84rem; color: var(--ink-2); padding: 6px 0; border-bottom: 1px solid var(--line); }
+.toc a:hover { color: var(--eu-blue); }
+.toc a.toc-sub { padding-left: 18px; font-style: italic; }
+.toc a.toc-h { font: 700 .9rem/1.35 var(--display); color: var(--ink); padding-top: 14px; border-bottom-color: rgba(0,51,153,.25); }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+/* 3D stays behind the text: dimmed behind full-width panels and on small screens */
+body.dim3d #scene { opacity: .55; }
+@media (max-width: 760px) {
+  #scene { opacity: .12 !important; }                 /* text first on phones */
+  body.night #scene { opacity: .6 !important; }       /* chapter openings: object above the text */
+  body.at-home #scene { opacity: .3 !important; }
+}
+
+/* Two-column helpers */
+.cols { display: grid; gap: 28px; align-items: start; }
+.c2 { grid-template-columns: 1fr 1fr; } .c21 { grid-template-columns: 1.5fr 1fr; } .c12 { grid-template-columns: 1fr 1.4fr; }
 @media (max-width: 1000px) { .c2, .c21, .c12 { grid-template-columns: 1fr; } }
 
-.olist { list-style: none; counter-reset: o; display: flex; flex-direction: column; gap: var(--s2); }
-.olist li { counter-increment: o; position: relative; padding: var(--s2) var(--s3) var(--s2) 64px; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); font-size: .95rem; color: var(--ink-2); transition: border-color .2s; }
-.olist li:hover { border-color: var(--gold); }
-.olist li::before { content: counter(o); position: absolute; left: 20px; top: 16px; width: 28px; height: 28px; border-radius: 3px; background: var(--blue); color: #fff; font: 600 .85rem/28px var(--serif); text-align: center; }
-
-.refs { list-style: none; columns: 2 520px; column-gap: var(--s8); font-size: .86rem; line-height: 1.55; color: var(--ink); }
-.refs li { break-inside: avoid; padding: 0 0 var(--s2) 32px; text-indent: -32px; overflow-wrap: anywhere; }
-.refs a { color: var(--blue); }
-.refs a:hover { text-decoration: underline; text-decoration-color: var(--gold); text-decoration-thickness: 2px; }
-
-.toc { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s3) var(--s5); }
-@media (max-width: 1000px) { .toc { grid-template-columns: 1fr; } }
-.toc a { display: block; font-size: .84rem; color: var(--ink-2); padding: 8px 0 8px 12px; border-bottom: 1px solid var(--line); border-left: 2px solid transparent; transition: border-color .2s, color .2s; }
-.toc a:hover { color: var(--blue); border-left-color: var(--gold); }
-.toc a.toc-h { font: 600 .95rem/1.35 var(--serif); color: var(--ink); padding-top: var(--s2); border-bottom-color: var(--blue); }
-.toc a.toc-sub { padding-left: 28px; font-style: italic; }
-.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
-
 /* =========================================================
-   6. Cover and chapter openings (dark blue, 3D star ring behind)
+   5. Hero (reference 1) and dark chapter intros (reference 2)
    ========================================================= */
-.hero, .dark { background: transparent; color: var(--on-dark); border-top: 0; }
-.hero { padding-top: calc(72px + var(--s10)); }
-.hero .copy { position: relative; z-index: 1; }
-.hero h1 { font-size: clamp(1.9rem, 2.7vw, 3.4rem); line-height: 1.18; color: var(--on-dark); max-width: 26ch; }
-.course { font: 500 .9rem/1.4 var(--sans); color: var(--on-dark-2); margin-bottom: var(--s4); }
-.cover-meta { display: grid; grid-template-columns: auto 1fr; gap: 12px var(--s4); margin-top: var(--s5); padding-top: var(--s3); border-top: 1px solid rgba(255,255,255,.18); font-size: .9rem; color: var(--on-dark); max-width: 640px; }
-.cover-meta dt { font: 600 .74rem/1.9 var(--sans); letter-spacing: .08em; font-variant-caps: all-small-caps; color: var(--gold); }
+.hero .actions { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 36px; }
+.course { font: 600 .9rem/1.4 var(--display); color: var(--ink-2); margin-bottom: 26px; }
+.hero h1 { font-size: clamp(1.9rem, 2.7vw, 3.3rem); line-height: 1.16; letter-spacing: -.02em; }
+.cover-meta { display: grid; grid-template-columns: auto 1fr; gap: 10px 28px; margin-top: 40px; font-size: .9rem; color: var(--ink); }
+.cover-meta dt { font: 700 .7rem/1.9 var(--display); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
 .cover-meta dd { line-height: 1.6; }
-.hero .actions { margin-top: var(--s5); }
-/* the 3D ring is drawn where this box is (right column on desktop, above the text on phones) */
-.hero-anchor { position: absolute; right: 0; top: 50%; width: min(38vw, 600px); aspect-ratio: 1; transform: translateY(-50%); pointer-events: none; }
-@media (max-width: 1100px) { .hero-anchor { position: relative; right: auto; top: auto; transform: none; width: min(70vw, 340px); margin: 0 auto var(--s4); } }
 
-.intro { text-align: center; align-items: center; justify-content: center; }
+.intro { text-align: center; align-items: center; justify-content: flex-end; padding-bottom: 9vh; }
+.intro::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 62%; pointer-events: none;
+  background: linear-gradient(180deg, rgba(7,14,38,0) 0%, rgba(7,14,38,.72) 45%, rgba(7,14,38,.88) 100%); }
+.intro .wrap { position: relative; }
+@media (max-height: 900px) { .intro .eyebrow { display: none; } }
 .intro .wrap { display: flex; flex-direction: column; align-items: center; }
-.chno { display: block; width: 3.6em; height: 3.6em; display: grid; place-items: center; font: 600 clamp(3.2rem, 5.4vw, 6rem)/1 var(--serif); color: var(--gold); margin-bottom: var(--s3); }
-.chno::before { content: attr(data-no); }
-.chno-sm { font-size: clamp(2rem, 3vw, 3.2rem); margin-bottom: var(--s2); }
-.intro .h { font-size: clamp(2rem, 3.2vw, 3.8rem); max-width: 24ch; margin: 0 auto; color: var(--on-dark); }
-.intro .eyebrow { margin-bottom: var(--s2); }
-.subs { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px var(--s3); margin-top: var(--s4); font-size: .85rem; color: var(--on-dark-2); max-width: 980px; padding-top: var(--s3); border-top: 1px solid rgba(255,255,255,.15); }
-.subs b { color: var(--gold); margin-right: 6px; font-weight: 600; }
-.intro .btn-pill { margin-top: var(--s5); }
-.intro .no { font: 600 clamp(3rem, 6vw, 6.4rem)/1 var(--serif); color: var(--gold); margin-bottom: var(--s2); }
-.dark .h { color: var(--on-dark); }
+.intro .no { font: 800 clamp(3.4rem, 6vw, 7rem)/.9 var(--display); letter-spacing: -.05em;
+  color: var(--gold); }
+.intro .h { font-size: clamp(2rem, 3.4vw, 4.2rem); max-width: 24ch; margin-top: 14px; color: #fff; }
+.intro .subs { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 26px; margin-top: 28px; font-size: .85rem; color: rgba(255,255,255,.72); max-width: 980px; }
+.intro .subs b { color: var(--gold); margin-right: 6px; }
+.intro .btn-pill { margin-top: 34px; }
 
-/* footer */
-.site-foot { position: relative; z-index: 1; background: var(--navy-2); color: var(--on-dark-2); border-top: 2px solid var(--gold); padding: var(--s5) var(--gutter); display: flex; align-items: center; gap: var(--s3); font-size: .74rem; }
-.site-foot svg { width: 40px; height: 40px; flex: none; }
-.site-foot svg path { fill: var(--gold); }
+.dark { color: #fff; }
+.dark .h { color: #fff; }
 
 /* =========================================================
-   7. Reveal on scroll: short fade and rise, runs once
+   6. Reveal on scroll
    ========================================================= */
-.js .rv { opacity: 0; transform: translateY(16px); transition: opacity .45s ease-out, transform .45s ease-out; transition-delay: calc(var(--d, 0) * 60ms); }
+.js .rv { opacity: 0; transform: translateY(26px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); transition-delay: calc(var(--d, 0) * 80ms); }
 .js .rv.in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .js .rv { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } }
 
 /* =========================================================
-   8. Small screens
-   ========================================================= */
-@media (max-width: 760px) {
-  .sec { padding: calc(72px + var(--s5)) var(--gutter) var(--s8); min-height: auto; }
-  .hero, .intro { min-height: 100vh; }
-  .sec:not(.dark):not(.hero) { background-size: 90vw; background-position: right -30vw top 64px; }
-  table.tbl { font-size: .82rem; }
-}
-
-/* =========================================================
-   9. Print / PDF: light pages, no 3D
+   7. Print (backup): content only, no 3D
    ========================================================= */
 @media print {
-  #scene, .nav, .dots, .scroll-hint, .counter, .star-progress, #progress, .fallback-bg { display: none !important; }
+  #scene, .nav, .dots, .scroll-hint, .counter, #progress, .fallback-bg { display: none !important; }
   body { background: #fff; }
-  .sec, .hero, .dark { min-height: auto; padding: 32px 24px; break-inside: avoid; background: #fff !important; color: var(--ink); border-top: 1px solid var(--line); }
-  .hero h1, .dark .h, .intro .h, .cover-meta, .subs, .dark .lead, .course { color: var(--ink) !important; }
-  .chno, .intro .no, .accent, .dark .eyebrow, .hero .eyebrow, .subs b, .cover-meta dt { color: var(--blue) !important; }
+  .sec { min-height: auto; padding: 40px 30px; break-inside: avoid; }
+  .dark, .dark .h { color: var(--ink); } .intro .h { color: var(--ink); }
   .js .rv { opacity: 1; transform: none; }
-  .site-foot { background: #fff; color: var(--ink-2); }
+  .panel { box-shadow: none; backdrop-filter: none; background: #fff; }
   * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 }
 </style>
@@ -324,9 +309,6 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   <svg viewBox="-110 -110 220 220" role="img" aria-label="Circle of twelve gold stars (decoration)"><g fill="#FFCC00" id="ring"></g></svg>
 </div>
 <div id="progress"></div>
-<div class="star-progress" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-  <svg viewBox="-50 -50 100 100" aria-hidden="true"><path class="s" d="M0.00,-43.20L1.70,-38.35L6.85,-38.22L2.76,-35.10L4.23,-30.18L0.00,-33.10L-4.23,-30.18L-2.76,-35.10L-6.85,-38.22L-1.70,-38.35Z"/><path class="s" d="M18.00,-38.38L19.70,-33.52L24.85,-33.40L20.76,-30.28L22.23,-25.35L18.00,-28.28L13.77,-25.35L15.24,-30.28L11.15,-33.40L16.30,-33.52Z"/><path class="s" d="M31.18,-25.20L32.88,-20.35L38.02,-20.22L33.93,-17.10L35.41,-12.18L31.18,-15.10L26.94,-12.18L28.42,-17.10L24.33,-20.22L29.47,-20.35Z"/><path class="s" d="M36.00,-7.20L37.70,-2.35L42.85,-2.22L38.76,0.90L40.23,5.82L36.00,2.90L31.77,5.82L33.24,0.90L29.15,-2.22L34.30,-2.35Z"/><path class="s" d="M31.18,10.80L32.88,15.65L38.02,15.78L33.93,18.90L35.41,23.82L31.18,20.90L26.94,23.82L28.42,18.90L24.33,15.78L29.47,15.65Z"/><path class="s" d="M18.00,23.98L19.70,28.83L24.85,28.95L20.76,32.07L22.23,37.00L18.00,34.08L13.77,37.00L15.24,32.07L11.15,28.95L16.30,28.83Z"/><path class="s" d="M0.00,28.80L1.70,33.65L6.85,33.78L2.76,36.90L4.23,41.82L0.00,38.90L-4.23,41.82L-2.76,36.90L-6.85,33.78L-1.70,33.65Z"/><path class="s" d="M-18.00,23.98L-16.30,28.83L-11.15,28.95L-15.24,32.07L-13.77,37.00L-18.00,34.08L-22.23,37.00L-20.76,32.07L-24.85,28.95L-19.70,28.83Z"/><path class="s" d="M-31.18,10.80L-29.47,15.65L-24.33,15.78L-28.42,18.90L-26.94,23.82L-31.18,20.90L-35.41,23.82L-33.93,18.90L-38.02,15.78L-32.88,15.65Z"/><path class="s" d="M-36.00,-7.20L-34.30,-2.35L-29.15,-2.22L-33.24,0.90L-31.77,5.82L-36.00,2.90L-40.23,5.82L-38.76,0.90L-42.85,-2.22L-37.70,-2.35Z"/><path class="s" d="M-31.18,-25.20L-29.47,-20.35L-24.33,-20.22L-28.42,-17.10L-26.94,-12.18L-31.18,-15.10L-35.41,-12.18L-33.93,-17.10L-38.02,-20.22L-32.88,-20.35Z"/><path class="s" d="M-18.00,-38.38L-16.30,-33.52L-11.15,-33.40L-15.24,-30.28L-13.77,-25.35L-18.00,-28.28L-22.23,-25.35L-20.76,-30.28L-24.85,-33.40L-19.70,-33.52Z"/></svg>
-</div>
 
 <!-- ============ NAVIGATION ============ -->
 <header class="nav" id="nav">
@@ -334,8 +316,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
     <svg viewBox="-20 -20 40 40" role="img" aria-label="Circle of twelve gold stars"><circle r="19" fill="#003399"/><g fill="#FFCC00" id="mini-ring"></g></svg>
     <span>European Union<small>NEU · Group 4</small></span>
   </a>
-  <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
-  <nav class="nav-links" id="nav-links" aria-label="Chapters">
+  <nav class="nav-links" aria-label="Chapters">
     <a href="#ch1">Chapter 1</a>
     <a href="#ch2">Chapter 2</a>
     <a href="#ch3">Chapter 3</a>
@@ -356,15 +337,14 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
 
 <main>
 <!-- ======================================================
-     Each section: data-scene = 3D star ring behind it
-     (hero = cover, chapter = chapter openings, none = light page),
+     Each section: data-scene = 3D scene behind it
+     (hub | ladder | members | globe | bridge | stars),
      data-pdf = matching heading in "BTL Đa biên - Nhóm 4.pdf"
      ====================================================== -->
 
 <!-- ============ COVER ============ -->
-<section class="sec hero" id="home" data-scene="hero" data-pdf="Cover page">
+<section class="sec hero" id="home" data-scene="hub" data-pdf="Cover page">
   <div class="wrap">
-    <div class="hero-anchor" aria-hidden="true"></div>
     <div class="copy">
       <p class="eyebrow rv">National Economics University</p>
       <p class="course rv" style="--d:1">Multilateral Investment System and Multinational Enterprises</p>
@@ -380,7 +360,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
 </section>
 
 <!-- ============ TABLE OF CONTENTS ============ -->
-<section class="sec auto" id="contents" data-scene="none" data-pdf="Table of Contents">
+<section class="sec auto" id="contents" data-scene="hub" data-pdf="Table of Contents">
   <div class="wrap panel">
     <h2 class="h rv">Table of Contents</h2>
     <nav class="toc mt" aria-label="Table of contents">
@@ -430,7 +410,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
 </section>
 
 <!-- ============ INTRODUCTION ============ -->
-<section class="sec" id="introduction" data-scene="none" data-pdf="Introduction (page empty in the PDF; listed in added_content.md)">
+<section class="sec" id="introduction" data-scene="hub" data-pdf="Introduction (page empty in the PDF; listed in added_content.md)">
   <div class="wrap">
     <div class="copy">
       <h2 class="h rv">Introduction</h2>
@@ -442,9 +422,8 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
 </section>
 
 <!-- ======================= CHAPTER 1 ======================= -->
-<section class="sec intro dark" id="ch1" data-scene="chapter" data-pdf="CHAPTER 1: THEORETICAL BASIS AND OVERVIEW OF THE EUROPEAN UNION">
+<section class="sec intro dark" id="ch1" data-scene="stars" data-pdf="CHAPTER 1: THEORETICAL BASIS AND OVERVIEW OF THE EUROPEAN UNION">
   <div class="wrap">
-    <span class="chno" aria-hidden="true" data-no="01"></span>
     <p class="eyebrow rv">Chapter 1</p>
     <h2 class="h rv" style="--d:1">Theoretical basis and overview of the European Union</h2>
     <p class="subs rv" style="--d:2"><span><b>1.1</b>Theoretical basis of regional economic integration</span><span><b>1.2</b>Overview of the European Union</span></p>
@@ -452,7 +431,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   </div>
 </section>
 
-<section class="sec" id="c1-concept" data-scene="none" data-pdf="1.1.1. Concept of international/regional economic integration">
+<section class="sec" id="c1-concept" data-scene="hub" data-pdf="1.1.1. Concept of international/regional economic integration">
   <div class="wrap">
     <div class="copy">
       <p class="eyebrow rv">1.1.1</p>
@@ -469,7 +448,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
 </section>
 
 <!-- Supplementary text (not in the PDF body); listed in added_content.md -->
-<section class="sec" id="c1-theories" data-scene="none" data-pdf="1.1.1 Supplement (foundational theories; listed in added_content.md)">
+<section class="sec" id="c1-theories" data-scene="hub" data-pdf="1.1.1 Supplement (foundational theories; listed in added_content.md)">
   <div class="wrap">
     <div class="copy">
       <p class="eyebrow rv">1.1.1 · Supplement</p>
@@ -485,7 +464,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   </div>
 </section>
 
-<section class="sec" id="c1-levels" data-scene="none" data-pdf="1.1.2. Levels of regional economic integration">
+<section class="sec" id="c1-levels" data-scene="ladder" data-pdf="1.1.2. Levels of regional economic integration">
   <div class="wrap">
     <div class="copy">
       <p class="eyebrow rv">1.1.2</p>
@@ -502,7 +481,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   </div>
 </section>
 
-<section class="sec" id="c1-model" data-scene="none" data-pdf="1.1.3. The EU as a Model of Deep Regional Integration">
+<section class="sec" id="c1-model" data-scene="hub" data-pdf="1.1.3. The EU as a Model of Deep Regional Integration">
   <div class="wrap">
     <div class="copy">
       <p class="eyebrow rv">1.1.3</p>
@@ -519,11 +498,11 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   </div>
 </section>
 
-<section class="sec auto" id="c1-history" data-scene="none" data-pdf="1.2.1. Formation and development process (Table 1)">
+<section class="sec auto" id="c1-history" data-scene="members" data-pdf="1.2.1. Formation and development process (Table 1)">
   <div class="wrap panel">
     <p class="eyebrow rv">1.2.1</p>
     <h2 class="h rv" style="--d:1">Formation and development process</h2>
-    <p class="cap rv" style="--d:2"><span class="lbl">Table 1.</span> Key Milestones in the Historical Development of the European Union</p>
+    <p class="cap rv" style="--d:2">Table 1. Key Milestones in the Historical Development of the European Union</p>
     <div class="tl mt" role="list" aria-label="Table 1. Key Milestones in the Historical Development of the European Union">
       <div class="m rv" role="listitem"><p class="y">1950</p><p class="t">Schuman Declaration</p><p class="d">Pooling of French and German coal and steel production</p></div>
       <div class="m rv" role="listitem" style="--d:1"><p class="y">1951–1952</p><p class="t">European Coal and Steel Community</p><p class="d">The first supranational European community</p></div>
@@ -551,7 +530,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   </div>
 </section>
 
-<section class="sec auto" id="c1-institutions" data-scene="none" data-pdf="1.2.2. Institutional structure">
+<section class="sec auto" id="c1-institutions" data-scene="hub" data-pdf="1.2.2. Institutional structure">
   <div class="wrap panel">
     <p class="eyebrow rv">1.2.2</p>
     <h2 class="h rv" style="--d:1">Institutional structure</h2>
@@ -567,7 +546,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   </div>
 </section>
 
-<section class="sec auto" id="c1-principles" data-scene="none" data-pdf="1.2.3. Objectives, Principles and Fundamental Values">
+<section class="sec auto" id="c1-principles" data-scene="hub" data-pdf="1.2.3. Objectives, Principles and Fundamental Values">
   <div class="wrap panel">
     <p class="eyebrow rv">1.2.3</p>
     <h2 class="h rv" style="--d:1">Objectives, Principles and Fundamental Values</h2>
@@ -586,7 +565,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   </div>
 </section>
 
-<section class="sec auto" id="c1-mechanisms" data-scene="none" data-pdf="1.2.4 Core Mechanisms of European Integration">
+<section class="sec auto" id="c1-mechanisms" data-scene="hub" data-pdf="1.2.4 Core Mechanisms of European Integration">
   <div class="wrap panel">
     <p class="eyebrow rv">1.2.4</p>
     <h2 class="h rv" style="--d:1">Core Mechanisms of European Integration</h2>
@@ -601,9 +580,8 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
 </section>
 
 <!-- ======================= CHAPTER 2 ======================= -->
-<section class="sec intro dark" id="ch2" data-scene="chapter" data-pdf="CHAPTER 2: THE EU'S ROLE AND INFLUENCE ON REGIONAL AND GLOBAL INTEGRATION">
+<section class="sec intro dark" id="ch2" data-scene="globe" data-pdf="CHAPTER 2: THE EU'S ROLE AND INFLUENCE ON REGIONAL AND GLOBAL INTEGRATION">
   <div class="wrap">
-    <span class="chno" aria-hidden="true" data-no="02"></span>
     <p class="eyebrow rv">Chapter 2</p>
     <h2 class="h rv" style="--d:1">The EU's role and influence on regional and global integration</h2>
     <p class="subs rv" style="--d:2"><span><b>2.1</b>Role and influence in European regional integration</span><span><b>2.2</b>Role and influence in global economic integration</span><span><b>2.3</b>Role and influence in global governance and other regions</span><span><b>2.4</b>Assessment: strengths, limitations and future prospect</span></p>
@@ -611,7 +589,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   </div>
 </section>
 
-<section class="sec" id="c2-deepening" data-scene="none" data-pdf="2.1.1 Deepening integration">
+<section class="sec" id="c2-deepening" data-scene="ladder" data-pdf="2.1.1 Deepening integration">
   <div class="wrap">
     <div class="copy">
       <p class="eyebrow rv">2.1.1</p>
@@ -631,7 +609,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   </div>
 </section>
 
-<section class="sec" id="c2-enlargement" data-scene="none" data-pdf="2.1.2 Enlargement and Neighborhood Policy (Figure 2.1)">
+<section class="sec" id="c2-enlargement" data-scene="members" data-pdf="2.1.2 Enlargement and Neighborhood Policy (Figure 2.1)">
   <div class="wrap">
     <div class="cols c12">
       <div>
@@ -645,20 +623,20 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
         </ul>
       </div>
       <figure class="chart rv" style="--d:2">
-        <figcaption><span class="lbl">Figure 2.1.</span> Number of EU members after each enlargement (including the 2020 UK withdrawal)</figcaption>
-        <div data-chart="members"><noscript><table class="tbl"><caption><span class="lbl">Figure 2.1</span> data: number of EU members</caption><tr><th>Year</th><th>Members</th></tr><tr><td>1957</td><td>6</td></tr><tr><td>1973</td><td>9</td></tr><tr><td>1981</td><td>10</td></tr><tr><td>1986</td><td>12</td></tr><tr><td>1995</td><td>15</td></tr><tr><td>2004</td><td>25</td></tr><tr><td>2007</td><td>27</td></tr><tr><td>2013</td><td>28</td></tr><tr><td>2020</td><td>27</td></tr></table></noscript></div>
+        <figcaption>Figure 2.1. Number of EU members after each enlargement (including the 2020 UK withdrawal)</figcaption>
+        <div data-chart="members"><noscript><table class="tbl"><caption>Figure 2.1 data: number of EU members</caption><tr><th>Year</th><th>Members</th></tr><tr><td>1957</td><td>6</td></tr><tr><td>1973</td><td>9</td></tr><tr><td>1981</td><td>10</td></tr><tr><td>1986</td><td>12</td></tr><tr><td>1995</td><td>15</td></tr><tr><td>2004</td><td>25</td></tr><tr><td>2007</td><td>27</td></tr><tr><td>2013</td><td>28</td></tr><tr><td>2020</td><td>27</td></tr></table></noscript></div>
         <p class="src"><b>Source:</b> Compiled by the authors from the European Union (n.d.).</p>
       </figure>
     </div>
   </div>
 </section>
 
-<section class="sec auto" id="c2-waves" data-scene="none" data-pdf="2.1.2 Enlargement and Neighborhood Policy (Table 2.1)">
+<section class="sec auto" id="c2-waves" data-scene="members" data-pdf="2.1.2 Enlargement and Neighborhood Policy (Table 2.1)">
   <div class="wrap panel">
     <p class="eyebrow rv">2.1.2b</p>
     <h2 class="h rv" style="--d:1">Enlargement and Neighborhood Policy</h2>
     <div class="tbl-wrap rv mt"><table class="tbl">
-      <caption><span class="lbl">Table 2.1.</span> Enlargement waves and current candidates</caption>
+      <caption>Table 2.1. Enlargement waves and current candidates</caption>
       <thead><tr><th style="width:22%">Stage</th><th>Countries / status</th></tr></thead>
       <tbody>
         <tr><td>1957</td><td>Founding six: Belgium, France, Germany, Italy, Luxembourg, Netherlands</td></tr>
@@ -672,7 +650,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   </div>
 </section>
 
-<section class="sec auto" id="c2-neighbourhood" data-scene="none" data-pdf="2.1.2 Enlargement and Neighborhood Policy (current round and neighbourhood)">
+<section class="sec auto" id="c2-neighbourhood" data-scene="globe" data-pdf="2.1.2 Enlargement and Neighborhood Policy (current round and neighbourhood)">
   <div class="wrap panel">
     <p class="eyebrow rv">2.1.2c</p>
     <h2 class="h rv" style="--d:1">Enlargement and Neighborhood Policy</h2>
@@ -692,7 +670,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   </div>
 </section>
 
-<section class="sec auto" id="c2-challenges" data-scene="none" data-pdf="2.1.3 Challenges to integration">
+<section class="sec auto" id="c2-challenges" data-scene="globe" data-pdf="2.1.3 Challenges to integration">
   <div class="wrap panel">
     <p class="eyebrow rv">2.1.3</p>
     <h2 class="h rv" style="--d:1">Challenges to integration</h2>
@@ -707,7 +685,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   </div>
 </section>
 
-<section class="sec" id="c2-trade" data-scene="none" data-pdf="2.2.1 The EU as a Global Trade Power">
+<section class="sec" id="c2-trade" data-scene="globe" data-pdf="2.2.1 The EU as a Global Trade Power">
   <div class="wrap">
     <div class="copy">
       <p class="eyebrow rv">2.2.1a</p>
@@ -729,12 +707,12 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   </div>
 </section>
 
-<section class="sec auto" id="c2-agreements" data-scene="none" data-pdf="2.2.1 The EU as a Global Trade Power (Table 2.2)">
+<section class="sec auto" id="c2-agreements" data-scene="globe" data-pdf="2.2.1 The EU as a Global Trade Power (Table 2.2)">
   <div class="wrap panel">
     <p class="eyebrow rv">2.2.1b</p>
     <h2 class="h rv" style="--d:1">The EU as a Global Trade Power</h2>
     <div class="tbl-wrap rv mt"><table class="tbl">
-      <caption><span class="lbl">Table 2.2.</span> Selected EU trade agreements and their status</caption>
+      <caption>Table 2.2. Selected EU trade agreements and their status</caption>
       <thead><tr><th style="width:15%">Partner</th><th style="width:50%">Status (as of October 2026)</th><th>Why it matters</th></tr></thead>
       <tbody>
         <tr><td>Japan</td><td>In force since 1 February 2019 (EU–Japan Economic Partnership Agreement)</td><td>Large developed-market partner; sets rules on non-tariff barriers</td></tr>
@@ -747,7 +725,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   </div>
 </section>
 
-<section class="sec auto" id="c2-regulatory" data-scene="none" data-pdf="2.2.2 Regulatory Power">
+<section class="sec auto" id="c2-regulatory" data-scene="globe" data-pdf="2.2.2 Regulatory Power">
   <div class="wrap panel">
     <p class="eyebrow rv">2.2.2</p>
     <h2 class="h rv" style="--d:1">Regulatory Power</h2>
@@ -775,7 +753,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   </div>
 </section>
 
-<section class="sec auto" id="c2-development" data-scene="none" data-pdf="2.2.3 Development cooperation">
+<section class="sec auto" id="c2-development" data-scene="globe" data-pdf="2.2.3 Development cooperation">
   <div class="wrap panel">
     <p class="eyebrow rv">2.2.3</p>
     <h2 class="h rv" style="--d:1">Development cooperation</h2>
@@ -803,7 +781,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   </div>
 </section>
 
-<section class="sec" id="c2-climate" data-scene="none" data-pdf="2.3.1 Climate Leadership and Sustainability">
+<section class="sec" id="c2-climate" data-scene="globe" data-pdf="2.3.1 Climate Leadership and Sustainability">
   <div class="wrap">
     <div class="copy">
       <p class="eyebrow rv">2.3.1</p>
@@ -823,7 +801,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   </div>
 </section>
 
-<section class="sec auto" id="c2-security" data-scene="none" data-pdf="2.3.2 Security and External Action">
+<section class="sec auto" id="c2-security" data-scene="globe" data-pdf="2.3.2 Security and External Action">
   <div class="wrap panel">
     <p class="eyebrow rv">2.3.2</p>
     <h2 class="h rv" style="--d:1">Security and External Action</h2>
@@ -846,7 +824,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   </div>
 </section>
 
-<section class="sec" id="c2-model" data-scene="none" data-pdf="2.3.3 The EU as a Model for Other Regional Organizations">
+<section class="sec" id="c2-model" data-scene="globe" data-pdf="2.3.3 The EU as a Model for Other Regional Organizations">
   <div class="wrap">
     <div class="copy">
       <p class="eyebrow rv">2.3.3</p>
@@ -864,12 +842,12 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   </div>
 </section>
 
-<section class="sec auto" id="c2-assessment" data-scene="none" data-pdf="2.4.1 Strengths and Limitations (Table 2.3)">
+<section class="sec auto" id="c2-assessment" data-scene="hub" data-pdf="2.4.1 Strengths and Limitations (Table 2.3)">
   <div class="wrap panel">
     <p class="eyebrow rv">2.4.1</p>
     <h2 class="h rv" style="--d:1">Strengths and Limitations</h2>
     <div class="tbl-wrap rv mt"><table class="tbl">
-      <caption><span class="lbl">Table 2.3.</span> Strengths and limitations of the EU's role in integration</caption>
+      <caption>Table 2.3. Strengths and limitations of the EU's role in integration</caption>
       <thead><tr><th style="width:20%">Area</th><th style="width:40%">Strengths</th><th>Limitations</th></tr></thead>
       <tbody>
         <tr><td>European integration</td><td>Single market, euro, Schengen; ability to repair gaps after crises; cohesion policy</td><td>Uneven participation; democratic-deficit and Euroscepticism; Brexit shows membership is reversible</td></tr>
@@ -885,7 +863,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   </div>
 </section>
 
-<section class="sec auto" id="c2-prospects" data-scene="none" data-pdf="2.4.2 Future Prospects">
+<section class="sec auto" id="c2-prospects" data-scene="hub" data-pdf="2.4.2 Future Prospects">
   <div class="wrap panel">
     <p class="eyebrow rv">2.4.2</p>
     <h2 class="h rv" style="--d:1">Future Prospects</h2>
@@ -901,9 +879,8 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
 </section>
 
 <!-- ======================= CHAPTER 3 ======================= -->
-<section class="sec intro dark" id="ch3" data-scene="chapter" data-pdf="CHAPTER 3: THE EU'S INFLUENCE ON VIETNAM">
+<section class="sec intro dark" id="ch3" data-scene="bridge" data-pdf="CHAPTER 3: THE EU'S INFLUENCE ON VIETNAM">
   <div class="wrap">
-    <span class="chno" aria-hidden="true" data-no="03"></span>
     <p class="eyebrow rv">Chapter 3</p>
     <h2 class="h rv" style="--d:1">The EU's influence on Vietnam</h2>
     <p class="subs rv" style="--d:2"><span><b>3.1</b>Overview of Vietnam–EU relations</span><span><b>3.2</b>The EVFTA and EVIPA as Key Channels of Influence</span><span><b>3.3</b>EU's Broader Influence on Vietnam's Development</span><span><b>3.4</b>Opportunities, challenges and policy recommendations</span></p>
@@ -911,11 +888,11 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   </div>
 </section>
 
-<section class="sec auto" id="c3-milestones" data-scene="none" data-pdf="3.1.1 Milestones (Table 3.1)">
+<section class="sec auto" id="c3-milestones" data-scene="bridge" data-pdf="3.1.1 Milestones (Table 3.1)">
   <div class="wrap panel">
     <p class="eyebrow rv">3.1.1</p>
     <h2 class="h rv" style="--d:1">Milestones</h2>
-    <p class="cap rv" style="--d:2"><span class="lbl">Table 3.1</span> Key milestones in Vietnam–EU relations</p>
+    <p class="cap rv" style="--d:2">Table 3.1 Key milestones in Vietnam–EU relations</p>
     <div class="tl mt" role="list" aria-label="Table 3.1 Key milestones in Vietnam–EU relations">
       <div class="m rv" role="listitem"><p class="y">1990</p><p class="t">Diplomatic relations established</p></div>
       <div class="m rv" role="listitem" style="--d:1"><p class="y">1995</p><p class="t">Framework cooperation arrangements</p></div>
@@ -932,7 +909,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   </div>
 </section>
 
-<section class="sec" id="c3-trade" data-scene="none" data-pdf="3.1.2 Trade and investment status (Figure 3.1)">
+<section class="sec" id="c3-trade" data-scene="bridge" data-pdf="3.1.2 Trade and investment status (Figure 3.1)">
   <div class="wrap">
     <div class="cols c12">
       <div>
@@ -948,16 +925,16 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
         <p class="lead rv" style="--d:5">Total bilateral trade increased from about US$55 billion in 2020 to more than US$68 billion in 2024. Although trade declined in 2023 compared with the previous year, it recovered strongly in 2024.</p>
       </div>
       <figure class="chart rv" style="--d:2">
-        <figcaption><span class="lbl">Figure 3.1</span> Vietnam–EU Trade</figcaption>
+        <figcaption>Figure 3.1 Vietnam–EU Trade</figcaption>
         <p class="unit">billion USD</p>
-        <div data-chart="trade"><noscript><table class="tbl"><caption><span class="lbl">Figure 3.1</span> data (billion USD)</caption><tr><th>Year</th><th>Exports to EU</th><th>Imports from EU</th></tr><tr><td>2020</td><td>40</td><td>15</td></tr><tr><td>2021</td><td>40</td><td>16</td></tr><tr><td>2022</td><td>47</td><td>17</td></tr><tr><td>2023</td><td>44</td><td>16</td></tr><tr><td>2024</td><td>51.6</td><td>16.7</td></tr></table></noscript></div>
+        <div data-chart="trade"><noscript><table class="tbl"><caption>Figure 3.1 data (billion USD)</caption><tr><th>Year</th><th>Exports to EU</th><th>Imports from EU</th></tr><tr><td>2020</td><td>40</td><td>15</td></tr><tr><td>2021</td><td>40</td><td>16</td></tr><tr><td>2022</td><td>47</td><td>17</td></tr><tr><td>2023</td><td>44</td><td>16</td></tr><tr><td>2024</td><td>51.6</td><td>16.7</td></tr></table></noscript></div>
         <p class="src">Values for 2020–2023 are approximate, read from the original chart; 2024 values (51.6 and 16.7) are from the Ministry of Industry and Trade of Vietnam. <b>Source:</b> Vietnam Customs and Ministry of Industry and Trade of Vietnam.</p>
       </figure>
     </div>
   </div>
 </section>
 
-<section class="sec" id="c3-structure" data-scene="none" data-pdf="3.1.2 Trade and investment status (Figure 3.2)">
+<section class="sec" id="c3-structure" data-scene="bridge" data-pdf="3.1.2 Trade and investment status (Figure 3.2)">
   <div class="wrap">
     <div class="cols c12">
       <div>
@@ -971,22 +948,22 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
         </ul>
       </div>
       <figure class="chart rv" style="--d:2">
-        <figcaption><span class="lbl">Figure 3.2.</span> Major Product Groups in Vietnam-EU Trade in 2024</figcaption>
+        <figcaption>Figure 3.2. Major Product Groups in Vietnam-EU Trade in 2024</figcaption>
         <p class="unit">Billion EUR. Values are approximate, read from the original chart.</p>
-        <div data-chart="products"><noscript><table class="tbl"><caption><span class="lbl">Figure 3.2</span> data (billion EUR)</caption><tr><th>Product group</th><th>EU imports from Vietnam</th><th>EU exports to Vietnam</th></tr><tr><td>Machinery &amp; transport equipment</td><td>26.6</td><td>4.2</td></tr><tr><td>Textiles &amp; clothing</td><td>5.0</td><td>0.6</td></tr><tr><td>Food &amp; agricultural products</td><td>5.0</td><td>1.8</td></tr><tr><td>Chemicals</td><td>1.0</td><td>3.7</td></tr><tr><td>Fuels &amp; mining</td><td>0.4</td><td>0.2</td></tr></table></noscript></div>
+        <div data-chart="products"><noscript><table class="tbl"><caption>Figure 3.2 data (billion EUR)</caption><tr><th>Product group</th><th>EU imports from Vietnam</th><th>EU exports to Vietnam</th></tr><tr><td>Machinery &amp; transport equipment</td><td>26.6</td><td>4.2</td></tr><tr><td>Textiles &amp; clothing</td><td>5.0</td><td>0.6</td></tr><tr><td>Food &amp; agricultural products</td><td>5.0</td><td>1.8</td></tr><tr><td>Chemicals</td><td>1.0</td><td>3.7</td></tr><tr><td>Fuels &amp; mining</td><td>0.4</td><td>0.2</td></tr></table></noscript></div>
         <p class="src"><b>Source:</b> European Commission and Eurostat.</p>
       </figure>
     </div>
   </div>
 </section>
 
-<section class="sec auto" id="c3-investment" data-scene="none" data-pdf="3.1.2 Trade and investment status (Table 3.2)">
+<section class="sec auto" id="c3-investment" data-scene="bridge" data-pdf="3.1.2 Trade and investment status (Table 3.2)">
   <div class="wrap panel">
     <p class="eyebrow rv">3.1.2c</p>
     <h2 class="h rv" style="--d:1">Trade and investment status</h2>
     <div class="cols c21 mt">
       <div class="tbl-wrap rv"><table class="tbl">
-        <caption><span class="lbl">Table 3.2.</span> EU Investment in Vietnam in 2024</caption>
+        <caption>Table 3.2. EU Investment in Vietnam in 2024</caption>
         <thead><tr><th style="width:48%">Indicator</th><th>Value</th></tr></thead>
         <tbody>
           <tr><td>Number of EU investment projects</td><td>~2,450</td></tr>
@@ -1005,7 +982,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   </div>
 </section>
 
-<section class="sec auto" id="c3-evfta" data-scene="none" data-pdf="3.2.1 Content and timeline (Table 3.3)">
+<section class="sec auto" id="c3-evfta" data-scene="bridge" data-pdf="3.2.1 Content and timeline (Table 3.3)">
   <div class="wrap panel">
     <p class="eyebrow rv">3.2.1</p>
     <h2 class="h rv" style="--d:1">Content and timeline</h2>
@@ -1023,7 +1000,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
         <li>A court-style dispute settlement mechanism replaces traditional investor–state arbitration</li>
         <li>Poland became the 20th member state to ratify it in November 2025; the EVIPA is not yet in force</li></ul></div>
     </div>
-    <p class="cap rv mt"><span class="lbl">Table 3.3</span> Key milestones in the EVFTA and EVIPA</p>
+    <p class="cap rv mt">Table 3.3 Key milestones in the EVFTA and EVIPA</p>
     <div class="tl five" role="list" aria-label="Table 3.3 Key milestones in the EVFTA and EVIPA">
       <div class="m rv" role="listitem"><p class="y">2010</p><p class="t">Scoping exercise; decision to negotiate</p></div>
       <div class="m rv" role="listitem" style="--d:1"><p class="y">2012</p><p class="t">Formal negotiations launched</p></div>
@@ -1039,7 +1016,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   </div>
 </section>
 
-<section class="sec auto" id="c3-reform" data-scene="none" data-pdf="3.2.2 Impact on institutional reform">
+<section class="sec auto" id="c3-reform" data-scene="bridge" data-pdf="3.2.2 Impact on institutional reform">
   <div class="wrap panel">
     <p class="eyebrow rv">3.2.2</p>
     <h2 class="h rv" style="--d:1">Impact on institutional reform</h2>
@@ -1053,12 +1030,12 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   </div>
 </section>
 
-<section class="sec auto" id="c3-impact-trade" data-scene="none" data-pdf="3.2.3 Impacts on trade and investment (Table 3.4)">
+<section class="sec auto" id="c3-impact-trade" data-scene="bridge" data-pdf="3.2.3 Impacts on trade and investment (Table 3.4)">
   <div class="wrap panel">
     <p class="eyebrow rv">3.2.3a</p>
     <h2 class="h rv" style="--d:1">Impacts on trade and investment</h2>
     <div class="tbl-wrap rv mt"><table class="tbl">
-      <caption><span class="lbl">Table 3.4</span> Changes in Vietnam-EU trade</caption>
+      <caption>Table 3.4 Changes in Vietnam-EU trade</caption>
       <thead><tr><th style="width:40%">Indicator</th><th class="num">2019</th><th class="num">2024</th><th class="num">Change</th></tr></thead>
       <tbody>
         <tr><td>Total Vietnam–EU trade</td><td class="num">US$49.8 bn</td><td class="num">US$68.3 bn</td><td class="num">+37.1%</td></tr>
@@ -1074,12 +1051,12 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   </div>
 </section>
 
-<section class="sec auto" id="c3-impact-investment" data-scene="none" data-pdf="3.2.3 Impacts on trade and investment (Table 3.5)">
+<section class="sec auto" id="c3-impact-investment" data-scene="bridge" data-pdf="3.2.3 Impacts on trade and investment (Table 3.5)">
   <div class="wrap panel">
     <p class="eyebrow rv">3.2.3b</p>
     <h2 class="h rv" style="--d:1">Impacts on trade and investment</h2>
     <div class="tbl-wrap rv mt"><table class="tbl">
-      <caption><span class="lbl">Table 3.5</span> Changes in Vietnam-EU investment</caption>
+      <caption>Table 3.5 Changes in Vietnam-EU investment</caption>
       <thead><tr><th style="width:28%">Indicator</th><th>2019</th><th>2024</th><th>Development</th></tr></thead>
       <tbody>
         <tr><td>EU investment projects in Vietnam</td><td>&gt;2,240</td><td>≈2,450</td><td>Continued expansion</td></tr>
@@ -1093,7 +1070,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   </div>
 </section>
 
-<section class="sec" id="c3-broader" data-scene="none" data-pdf="3.3 EU's Broader Influence on Vietnam's Development">
+<section class="sec" id="c3-broader" data-scene="bridge" data-pdf="3.3 EU's Broader Influence on Vietnam's Development">
   <div class="wrap">
     <div class="copy">
       <p class="eyebrow rv">3.3</p>
@@ -1103,13 +1080,13 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   </div>
 </section>
 
-<section class="sec auto" id="c3-standards" data-scene="none" data-pdf="3.3.1 Standards, Sustainability and Regulatory Alignment (Table 3.6)">
+<section class="sec auto" id="c3-standards" data-scene="bridge" data-pdf="3.3.1 Standards, Sustainability and Regulatory Alignment (Table 3.6)">
   <div class="wrap panel">
     <p class="eyebrow rv">3.3.1a</p>
     <h2 class="h rv" style="--d:1">Standards, Sustainability and Regulatory Alignment</h2>
     <p class="lead rv" style="--d:2">Chapter 13 of the EVFTA covers labour rights, environmental protection, climate change, sustainable management of natural resources and corporate social responsibility, with dialogue through Domestic Advisory Groups.</p>
     <div class="tbl-wrap rv mt"><table class="tbl">
-      <caption><span class="lbl">Table 3.6.</span> Major Areas of EU Standards and Regulatory Influence on Vietnam</caption>
+      <caption>Table 3.6. Major Areas of EU Standards and Regulatory Influence on Vietnam</caption>
       <thead><tr><th style="width:22%">Area</th><th style="width:40%">EU requirements/influence</th><th>Implications for Vietnam</th></tr></thead>
       <tbody>
         <tr><td>Environmental standards</td><td>Higher requirements for environmental protection and resource management</td><td>Firms need to improve environmental management and production processes</td></tr>
@@ -1125,12 +1102,12 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   </div>
 </section>
 
-<section class="sec auto" id="c3-standards-b" data-scene="none" data-pdf="3.3.1 Standards, Sustainability and Regulatory Alignment (Table 3.7)">
+<section class="sec auto" id="c3-standards-b" data-scene="bridge" data-pdf="3.3.1 Standards, Sustainability and Regulatory Alignment (Table 3.7)">
   <div class="wrap panel">
     <p class="eyebrow rv">3.3.1b</p>
     <h2 class="h rv" style="--d:1">Standards, Sustainability and Regulatory Alignment</h2>
     <div class="tbl-wrap rv mt"><table class="tbl">
-      <caption><span class="lbl">Table 3.7.</span> Opportunities and Challenges from EU Standards for Vietnam</caption>
+      <caption>Table 3.7. Opportunities and Challenges from EU Standards for Vietnam</caption>
       <thead><tr><th style="width:24%">Dimension</th><th style="width:40%">Opportunities</th><th>Challenges</th></tr></thead>
       <tbody>
         <tr><td>Export competitiveness</td><td>Better quality and access to demanding markets</td><td>Higher compliance costs</td></tr>
@@ -1144,13 +1121,13 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   </div>
 </section>
 
-<section class="sec auto" id="c3-cooperation" data-scene="none" data-pdf="3.3.2 Development Cooperation and Green Transition (Table 3.8)">
+<section class="sec auto" id="c3-cooperation" data-scene="bridge" data-pdf="3.3.2 Development Cooperation and Green Transition (Table 3.8)">
   <div class="wrap panel">
     <p class="eyebrow rv">3.3.2a</p>
     <h2 class="h rv" style="--d:1">Development Cooperation and Green Transition</h2>
     <p class="lead rv" style="--d:2">Since 1990, the EU has provided grants and development assistance to Vietnam. In March 2026, the EU and Vietnam announced an investment package of more than €560 million for sustainable transport and clean energy.</p>
     <div class="tbl-wrap rv mt"><table class="tbl">
-      <caption><span class="lbl">Table 3.8.</span> Major EU Development Cooperation Channels in Vietnam</caption>
+      <caption>Table 3.8. Major EU Development Cooperation Channels in Vietnam</caption>
       <thead><tr><th style="width:24%">Cooperation channel</th><th style="width:40%">Main focus</th><th>Contribution to Vietnam</th></tr></thead>
       <tbody>
         <tr><td>Development assistance</td><td>Poverty reduction, governance and sustainable development</td><td>Strengthens social and institutional capacity</td></tr>
@@ -1164,7 +1141,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   </div>
 </section>
 
-<section class="sec auto" id="c3-green" data-scene="none" data-pdf="3.3.2 Development Cooperation and Green Transition (JETP, Table 3.9)">
+<section class="sec auto" id="c3-green" data-scene="bridge" data-pdf="3.3.2 Development Cooperation and Green Transition (JETP, Table 3.9)">
   <div class="wrap panel">
     <p class="eyebrow rv">3.3.2b</p>
     <h2 class="h rv" style="--d:1">Development Cooperation and Green Transition</h2>
@@ -1177,7 +1154,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
         <div class="card rv" style="--d:1"><p class="tag">Three interconnected mechanisms</p><h3>Financing, technology and institutional capacity building</h3><p>Financial resources reduce capital constraints; technical cooperation strengthens policy design and implementation; cooperation with European institutions and firms facilitates access to technology.</p></div>
       </div>
       <div class="tbl-wrap rv"><table class="tbl" style="min-width:0">
-        <caption><span class="lbl">Table 3.9.</span> EU Support for Vietnam's Green Transition</caption>
+        <caption>Table 3.9. EU Support for Vietnam's Green Transition</caption>
         <thead><tr><th style="width:26%">Area</th><th style="width:38%">Main EU-supported direction</th><th>Expected contribution</th></tr></thead>
         <tbody>
           <tr><td>Renewable energy</td><td>Solar, wind and hydropower integration</td><td>Increase clean-energy capacity</td></tr>
@@ -1194,7 +1171,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   </div>
 </section>
 
-<section class="sec auto" id="c3-opportunities" data-scene="none" data-pdf="3.4.1 Opportunities">
+<section class="sec auto" id="c3-opportunities" data-scene="bridge" data-pdf="3.4.1 Opportunities">
   <div class="wrap panel">
     <p class="eyebrow rv">3.4.1</p>
     <h2 class="h rv" style="--d:1">Opportunities</h2>
@@ -1208,7 +1185,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   </div>
 </section>
 
-<section class="sec auto" id="c3-challenges" data-scene="none" data-pdf="3.4.2 Challenges">
+<section class="sec auto" id="c3-challenges" data-scene="bridge" data-pdf="3.4.2 Challenges">
   <div class="wrap panel">
     <p class="eyebrow rv">3.4.2</p>
     <h2 class="h rv" style="--d:1">Challenges</h2>
@@ -1222,7 +1199,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   </div>
 </section>
 
-<section class="sec auto" id="c3-recommendations" data-scene="none" data-pdf="3.4.3 Recommendations">
+<section class="sec auto" id="c3-recommendations" data-scene="bridge" data-pdf="3.4.3 Recommendations">
   <div class="wrap panel">
     <p class="eyebrow rv">3.4.3</p>
     <h2 class="h rv" style="--d:1">Recommendations</h2>
@@ -1240,7 +1217,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
 </section>
 
 <!-- ============ REFERENCES ============ -->
-<section class="sec auto" id="references" data-scene="none" data-pdf="References (from references.md, 42 entries)">
+<section class="sec auto" id="references" data-scene="hub" data-pdf="References (from references.md, 42 entries)">
   <div class="wrap panel">
     <h2 class="h rv">References</h2>
     <ul class="refs mt">
@@ -1290,9 +1267,8 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   </div>
 </section>
 
-<section class="sec intro dark" id="qa" data-scene="chapter" data-pdf="Closing slide (not in the PDF)">
+<section class="sec intro dark" id="qa" data-scene="stars" data-pdf="Closing slide (not in the PDF)">
   <div class="wrap">
-    <span class="chno chno-sm" aria-hidden="true" data-no=""></span>
     <p class="eyebrow rv">Group 4 · Investment Economics 65</p>
     <h2 class="no rv" style="--d:1">Thank you</h2>
     <p class="h rv" style="--d:2;font-size:clamp(1.5rem,2.2vw,2.6rem)">Questions and answers</p>
@@ -1301,10 +1277,6 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   </div>
 </section>
 </main>
-<footer class="site-foot">
-  <svg viewBox="-50 -50 100 100" role="img" aria-label="Stylised ring of twelve stars"><path d="M0.00,-43.20L1.70,-38.35L6.85,-38.22L2.76,-35.10L4.23,-30.18L0.00,-33.10L-4.23,-30.18L-2.76,-35.10L-6.85,-38.22L-1.70,-38.35Z"/><path d="M18.00,-38.38L19.70,-33.52L24.85,-33.40L20.76,-30.28L22.23,-25.35L18.00,-28.28L13.77,-25.35L15.24,-30.28L11.15,-33.40L16.30,-33.52Z"/><path d="M31.18,-25.20L32.88,-20.35L38.02,-20.22L33.93,-17.10L35.41,-12.18L31.18,-15.10L26.94,-12.18L28.42,-17.10L24.33,-20.22L29.47,-20.35Z"/><path d="M36.00,-7.20L37.70,-2.35L42.85,-2.22L38.76,0.90L40.23,5.82L36.00,2.90L31.77,5.82L33.24,0.90L29.15,-2.22L34.30,-2.35Z"/><path d="M31.18,10.80L32.88,15.65L38.02,15.78L33.93,18.90L35.41,23.82L31.18,20.90L26.94,23.82L28.42,18.90L24.33,15.78L29.47,15.65Z"/><path d="M18.00,23.98L19.70,28.83L24.85,28.95L20.76,32.07L22.23,37.00L18.00,34.08L13.77,37.00L15.24,32.07L11.15,28.95L16.30,28.83Z"/><path d="M0.00,28.80L1.70,33.65L6.85,33.78L2.76,36.90L4.23,41.82L0.00,38.90L-4.23,41.82L-2.76,36.90L-6.85,33.78L-1.70,33.65Z"/><path d="M-18.00,23.98L-16.30,28.83L-11.15,28.95L-15.24,32.07L-13.77,37.00L-18.00,34.08L-22.23,37.00L-20.76,32.07L-24.85,28.95L-19.70,28.83Z"/><path d="M-31.18,10.80L-29.47,15.65L-24.33,15.78L-28.42,18.90L-26.94,23.82L-31.18,20.90L-35.41,23.82L-33.93,18.90L-38.02,15.78L-32.88,15.65Z"/><path d="M-36.00,-7.20L-34.30,-2.35L-29.15,-2.22L-33.24,0.90L-31.77,5.82L-36.00,2.90L-40.23,5.82L-38.76,0.90L-42.85,-2.22L-37.70,-2.35Z"/><path d="M-31.18,-25.20L-29.47,-20.35L-24.33,-20.22L-28.42,-17.10L-26.94,-12.18L-31.18,-15.10L-35.41,-12.18L-33.93,-17.10L-38.02,-20.22L-32.88,-20.35Z"/><path d="M-18.00,-38.38L-16.30,-33.52L-11.15,-33.40L-15.24,-30.28L-13.77,-25.35L-18.00,-28.28L-22.23,-25.35L-20.76,-30.28L-24.85,-33.40L-19.70,-33.52Z"/></svg>
-  <p>Student presentation by Group 4, National Economics University. Not an official publication of the European Union.</p>
-</footer>
 
 <!-- ======================================================
      CONTENT SCRIPT: charts, navigation, reveal (no 3D needed)
@@ -1322,7 +1294,7 @@ const DATA = {
     euExports: [4.2,0.6,1.8,3.7,0.2]     // EU exports to Vietnam
   }
 };
-const C1 = "#003399", C2 = "#FFCC00", EDGE = "#001A57", GRID = "#E3E9F4", AXIS = "#4A5A78", INK = "#0B1B3A";
+const C1 = "#003399", C2 = "#F2B700", GRID = "#E4EAF5", AXIS = "#6B7794", INK = "#0B1530";
 
 function roundTop(x, y, w, h, r) { r = Math.min(r, h, w / 2);
   return `M${x},${y + h} V${y + r} Q${x},${y} ${x + r},${y} H${x + w - r} Q${x + w},${y} ${x + w},${y + r} V${y + h} Z`; }
@@ -1347,9 +1319,9 @@ const CHARTS = {
     const bars = labels.map((lab, i) => { const x = L + i * st + (st - bw) / 2, e = exports[i], m = imports[i], tot = Math.round((e + m) * 10) / 10, yE = y(e), yT = y(tot);
       return `<g class="bar-mark"><title>${lab}: exports ${e}, imports ${m}, total ≈ ${tot} (billion USD)</title>
         <rect x="${x}" y="${yE}" width="${bw}" height="${T + ph - yE}" fill="${C1}"/>
-        <path d="${roundTop(x, yT, bw, yE - yT - 3, 6)}" fill="${C2}" stroke="${EDGE}" stroke-width="1.2"/>
-        <text x="${x + bw / 2}" y="${(yE + T + ph) / 2 + 7}" text-anchor="middle" font-size="19" font-weight="700" fill="#fff" data-bg="${C1}">${e}</text>
-        <text x="${x + bw / 2}" y="${(yT + yE) / 2 + 6}" text-anchor="middle" font-size="17" font-weight="700" fill="${INK}" data-bg="${C2}">${m}</text>
+        <path d="${roundTop(x, yT, bw, yE - yT - 3, 6)}" fill="${C2}"/>
+        <text x="${x + bw / 2}" y="${(yE + T + ph) / 2 + 7}" text-anchor="middle" font-size="19" font-weight="700" fill="#fff">${e}</text>
+        <text x="${x + bw / 2}" y="${(yT + yE) / 2 + 6}" text-anchor="middle" font-size="17" font-weight="700" fill="${INK}">${m}</text>
         <text x="${x + bw / 2}" y="${yT - 10}" text-anchor="middle" font-size="19" font-weight="800" fill="${INK}">${tot}</text>
         <text x="${x + bw / 2}" y="${H - B + 28}" text-anchor="middle" font-size="16" fill="${AXIS}">${lab}</text></g>`; }).join("");
     return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Vietnam–EU trade 2020–2024">${g}<line x1="${L}" x2="${W - R}" y1="${T + ph}" y2="${T + ph}" stroke="${AXIS}"/>${bars}</svg>
@@ -1360,7 +1332,7 @@ const CHARTS = {
     const pw = W - L - R, rh = (H - T - B) / labels.length, bh = rh * .3, x = v => L + v / max * pw;
     let g = ""; for (let v = 0; v <= max; v += 5) g += `<line x1="${x(v)}" x2="${x(v)}" y1="${T}" y2="${H - B}" stroke="${GRID}"/><text x="${x(v)}" y="${H - B + 26}" text-anchor="middle" font-size="16" fill="${AXIS}">${v}</text>`;
     const rows = labels.map((lab, i) => { const y0 = T + i * rh + (rh - 2 * bh - 4) / 2;
-      const bar = (v, yy, col, who) => `<g class="bar-mark"><title>${lab} – ${who}: ≈ ${v.toFixed(1)} bn EUR</title><path d="${roundRight(L, yy, Math.max(x(v) - L, 2), bh, 5)}" fill="${col}"${col === C2 ? ` stroke="${EDGE}" stroke-width="1.2"` : ""}/>
+      const bar = (v, yy, col, who) => `<g class="bar-mark"><title>${lab} – ${who}: ≈ ${v.toFixed(1)} bn EUR</title><path d="${roundRight(L, yy, Math.max(x(v) - L, 2), bh, 5)}" fill="${col}"/>
         <text x="${x(v) + 8}" y="${yy + bh / 2 + 6}" font-size="16" font-weight="700" fill="${INK}">${v.toFixed(1)}</text></g>`;
       return `<text x="${L - 14}" y="${y0 + bh + 7}" text-anchor="end" font-size="17" fill="${INK}">${lab}</text>` + bar(euImports[i], y0, C1, "EU imports from Vietnam") + bar(euExports[i], y0 + bh + 4, C2, "EU exports to Vietnam"); }).join("");
     return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Product groups in Vietnam–EU trade 2024">${g}<line x1="${L}" x2="${L}" y1="${T}" y2="${H - B}" stroke="${AXIS}"/>${rows}</svg>
@@ -1378,11 +1350,6 @@ ring(document.getElementById("ring"), 80, 14, 5.6);
 /* ---- Navigation state: progress, dots, counter, night mode ---- */
 const sections = [...document.querySelectorAll("main > section")];
 const nav = document.getElementById("nav"), progress = document.getElementById("progress"), counter = document.getElementById("counter");
-const starProgress = document.querySelector(".star-progress"), progressStars = [...starProgress.querySelectorAll(".s")];
-// mobile menu
-const navToggle = document.querySelector(".nav-toggle"), navLinksEl = document.getElementById("nav-links");
-navToggle.addEventListener("click", () => { const open = navToggle.getAttribute("aria-expanded") !== "true"; navToggle.setAttribute("aria-expanded", String(open)); navLinksEl.classList.toggle("open", open); });
-navLinksEl.addEventListener("click", e => { if (e.target.closest("a")) { navToggle.setAttribute("aria-expanded", "false"); navLinksEl.classList.remove("open"); } });
 const dotLinks = [...document.querySelectorAll("#dots a")], navLinks = [...document.querySelectorAll(".nav-links a")];
 const chapterOf = id => { const order = ["home", "contents", "ch1", "ch2", "ch3", "references"]; let cur = "home";
   for (const s of sections) { if (order.includes(s.id)) cur = s.id; if (s.id === id) break; } return cur; };
@@ -1391,15 +1358,11 @@ function activeSection() { const mid = innerHeight * .5; let best = sections[0];
   for (const s of sections) { const r = s.getBoundingClientRect(); if (r.top <= mid) best = s; else break; } return best; }
 function onScroll() {
   const max = document.documentElement.scrollHeight - innerHeight;
-  const pct = max > 0 ? Math.min(1, scrollY / max) : 0;
-  progress.style.width = pct * 100 + "%";
-  starProgress.setAttribute("aria-valuenow", String(Math.round(pct * 100)));
-  const lit = Math.min(12, Math.floor(pct * 12 + 0.0001) + (pct >= 0.999 ? 0 : 0));
-  progressStars.forEach((st, i) => st.classList.toggle("lit", i < lit || pct >= 0.999));
+  progress.style.width = (max > 0 ? scrollY / max * 100 : 0) + "%";
   nav.classList.toggle("scrolled", scrollY > 30);
   const s = activeSection(), idx = sections.indexOf(s);
   counter.textContent = String(idx + 1).padStart(2, "0") + " / " + sections.length;
-  document.body.classList.toggle("night", s.classList.contains("dark") || s.classList.contains("hero"));
+  document.body.classList.toggle("night", s.classList.contains("dark"));
   window.currentScene = s.dataset.scene || "hub";
   window.currentLayout = s.classList.contains("intro") ? "intro" : s.classList.contains("auto") ? "center" : "right";
   window.currentNight = s.classList.contains("dark");
@@ -1434,16 +1397,13 @@ addEventListener("keydown", e => {
 });
 </script>
 
-<!-- Three.js: local copy (works offline and from file://) -->
+<!-- Three.js: local copy first (works offline / from file://), CDN as backup -->
 <script src="vendor/three.min.js"></script>
+<script>window.THREE || document.write('<script src="https://cdn.jsdelivr.net/npm/three@0.159.0/build/three.min.js"><\/script>');</script>
 
 <!-- ======================================================
-     3D SCENE (Three.js): a ring of twelve gold stars around a
-     translucent blue sphere. It sits behind the cover and the
-     chapter openings only; elsewhere rendering is paused.
-       cover:    ring in the right column; while scrolling it shrinks
-                 into the corner and hands over to the 2D star progress ring
-       chapters: the ring circles the chapter number
+     3D SCENE (Three.js): clay-style isometric objects that
+     change with the section being read
      ====================================================== -->
 <script>
 (function () {
@@ -1454,125 +1414,294 @@ addEventListener("keydown", e => {
   catch (e) { document.body.classList.add("no3d"); return; }
 
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.15;
+  renderer.toneMappingExposure = 1.05;
 
-  const NAVY = new THREE.Color("#001A57"), NAVY2 = new THREE.Color("#00104A");
   const scene = new THREE.Scene();
-  scene.background = NAVY.clone();
-  const cam = new THREE.PerspectiveCamera(30, 1, 0.1, 100);
-  const CAM_Z = 20;
-  cam.position.set(0, 0, CAM_Z);
+  const LIGHT_BG = new THREE.Color("#EDF2FB"), DARK_BG = new THREE.Color("#070E26");
+  scene.background = LIGHT_BG.clone();
 
-  // soft light: one hemisphere + one directional, plus a small studio environment for the metal
-  scene.add(new THREE.HemisphereLight(0xe6edff, 0x0a1a4a, 1.1));
-  const key = new THREE.DirectionalLight(0xffffff, 1.6); key.position.set(4, 6, 8); scene.add(key);
-  {
-    const env = new THREE.Scene();
-    env.add(new THREE.Mesh(new THREE.SphereGeometry(10, 32, 16), new THREE.MeshBasicMaterial({ color: 0x1b2e66, side: THREE.BackSide })));
-    const panel = (w, h, x, y, z, c) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: c, side: THREE.DoubleSide })); m.position.set(x, y, z); m.lookAt(0, 0, 0); env.add(m); };
-    panel(8, 3, 0, 6, 5, 0xffffff); panel(4, 6, -7, 1, 3, 0xbfd0ff); panel(5, 2, 6, -3, 4, 0xfff1c4);
-    const pm = new THREE.PMREMGenerator(renderer);
-    scene.environment = pm.fromScene(env, 0.04).texture;
+  // Isometric orthographic camera (like reference 1)
+  const cam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 200);
+  cam.position.set(24, 20, 24); cam.lookAt(0, 1.2, 0);
+
+  // ---- Lights ----
+  const hemi = new THREE.HemisphereLight(0xffffff, 0xb7c5e6, 1.25); scene.add(hemi);
+  const sun = new THREE.DirectionalLight(0xffffff, 2.3);
+  sun.position.set(10, 18, 6); sun.castShadow = true;
+  sun.shadow.mapSize.set(2048, 2048);
+  Object.assign(sun.shadow.camera, { left: -16, right: 16, top: 16, bottom: -16, near: 1, far: 60 });
+  sun.shadow.bias = -0.0006; sun.shadow.normalBias = 0.02;
+  scene.add(sun);
+  const fill = new THREE.DirectionalLight(0xdfe8ff, 0.7); fill.position.set(-12, 8, -4); scene.add(fill);
+  const goldLight = new THREE.PointLight(0xffcc00, 0, 30, 1.6); goldLight.position.set(0, 6, 0); scene.add(goldLight);
+
+  // Shadow-catching ground
+  const groundMat = new THREE.ShadowMaterial({ opacity: 0.12 });
+  const ground = new THREE.Mesh(new THREE.PlaneGeometry(200, 200), groundMat);
+  ground.rotation.x = -Math.PI / 2; ground.receiveShadow = true; scene.add(ground);
+
+  // ---- Materials (clay look) ----
+  const M = {
+    clay:  new THREE.MeshStandardMaterial({ color: 0xF4F7FD, roughness: .62 }),
+    clay2: new THREE.MeshStandardMaterial({ color: 0xDCE5F4, roughness: .7 }),
+    blue:  new THREE.MeshStandardMaterial({ color: 0x0B3BAE, roughness: .38 }),
+    blue2: new THREE.MeshStandardMaterial({ color: 0x5B7FD6, roughness: .45 }),
+    gold:  new THREE.MeshStandardMaterial({ color: 0xFFC61A, roughness: .3, metalness: .35, emissive: 0x3a2a00, emissiveIntensity: .25 }),
+    red:   new THREE.MeshStandardMaterial({ color: 0xDA251D, roughness: .4 }),
+    ink:   new THREE.MeshStandardMaterial({ color: 0x15213F, roughness: .35 }),
+    glass: new THREE.MeshPhysicalMaterial({ color: 0xE6EEFF, roughness: .05, metalness: 0, transparent: true, opacity: .32, clearcoat: 1 }),
+    night: new THREE.MeshStandardMaterial({ color: 0x0E1B48, roughness: .25, metalness: .4 })
+  };
+
+  // ---- Geometry helpers ----
+  // Rounded box (extruded rounded rectangle with bevel), centred, height along Y
+  function rbox(w, h, d, r = .18) {
+    const b = Math.min(r, h / 2 - .001, w / 2 - .001, d / 2 - .001), iw = w - 2 * b, id = d - 2 * b, rr = Math.min(b, iw / 2, id / 2);
+    const s = new THREE.Shape(), x = -iw / 2, y = -id / 2;
+    s.moveTo(x + rr, y); s.lineTo(x + iw - rr, y); s.quadraticCurveTo(x + iw, y, x + iw, y + rr);
+    s.lineTo(x + iw, y + id - rr); s.quadraticCurveTo(x + iw, y + id, x + iw - rr, y + id);
+    s.lineTo(x + rr, y + id); s.quadraticCurveTo(x, y + id, x, y + id - rr);
+    s.lineTo(x, y + rr); s.quadraticCurveTo(x, y, x + rr, y);
+    const g = new THREE.ExtrudeGeometry(s, { depth: Math.max(h - 2 * b, .001), bevelEnabled: true, bevelThickness: b, bevelSize: b, bevelSegments: 4, curveSegments: 6 });
+    g.center(); g.rotateX(-Math.PI / 2); return g;
   }
-
-  // ---- the ring: 12 extruded five-pointed stars (stylised, not an official emblem) ----
-  function starShape(R, r) {
+  function starGeo(R = .5, r = .2, depth = .14) {
     const s = new THREE.Shape();
     for (let i = 0; i < 10; i++) { const a = Math.PI / 2 + i * Math.PI / 5, rr = i % 2 ? r : R; i ? s.lineTo(Math.cos(a) * rr, Math.sin(a) * rr) : s.moveTo(Math.cos(a) * rr, Math.sin(a) * rr); }
-    return s;
+    const g = new THREE.ExtrudeGeometry(s, { depth, bevelEnabled: true, bevelThickness: .04, bevelSize: .04, bevelSegments: 2 }); g.center(); return g;
   }
-  const gold = new THREE.MeshStandardMaterial({ color: 0xFFCC00, metalness: 0.6, roughness: 0.35, transparent: true, emissive: 0x4a3300, emissiveIntensity: 0.6 });
-  const starGeo = new THREE.ExtrudeGeometry(starShape(0.13, 0.052), { depth: 0.035, bevelEnabled: true, bevelThickness: 0.012, bevelSize: 0.01, bevelSegments: 2 });
-  starGeo.center();
-  const root = new THREE.Group(); scene.add(root);          // positioned/scaled to the DOM anchor each frame
-  const tilt = new THREE.Group(); root.add(tilt);            // parallax tilt
-  const ring = new THREE.Group(); tilt.add(ring);            // slow spin
-  const stars = [];
-  for (let i = 0; i < 12; i++) {
-    const a = i / 12 * Math.PI * 2, m = new THREE.Mesh(starGeo, gold);
-    m.position.set(Math.sin(a), Math.cos(a), 0); ring.add(m); stars.push(m);
+  function mesh(geo, mat, x = 0, y = 0, z = 0, parent) {
+    const m = new THREE.Mesh(geo, mat); m.position.set(x, y, z); m.castShadow = true; m.receiveShadow = true; if (parent) parent.add(m); return m;
   }
-  const sphereMat = new THREE.MeshStandardMaterial({ color: 0x003399, roughness: 0.4, metalness: 0.1, transparent: true, opacity: 0.55, emissive: 0x001a57, emissiveIntensity: 0.4 });
-  const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.52, 64, 48), sphereMat); tilt.add(sphere);
-  const haloMat = new THREE.MeshBasicMaterial({ color: 0xFFCC00, transparent: true, opacity: 0.18 });
-  const halo = new THREE.Mesh(new THREE.TorusGeometry(1, 0.004, 8, 160), haloMat); tilt.add(halo);   // thin gold rule through the stars
+  // Ring of 12 stars (EU flag), standing upright and facing outward
+  function starRing(radius, size, parent, y) {
+    const g = new THREE.Group(), geo = starGeo(size, size * .4, size * .28);
+    for (let i = 0; i < 12; i++) { const a = i / 12 * Math.PI * 2, s = mesh(geo, M.gold, Math.cos(a) * radius, 0, Math.sin(a) * radius, g); s.rotation.y = -a + Math.PI / 2; }
+    g.position.y = y; parent.add(g); return g;
+  }
+  // Tube along a polyline with small rounded corners
+  function pipe(points, radius, mat, parent) {
+    const path = new THREE.CurvePath();
+    for (let i = 0; i < points.length - 1; i++) path.add(new THREE.LineCurve3(points[i], points[i + 1]));
+    const g = new THREE.Group();
+    mesh(new THREE.TubeGeometry(path, points.length * 24, radius, 14, false), mat, 0, 0, 0, g);
+    points.forEach(p => mesh(new THREE.SphereGeometry(radius * 1.35, 16, 12), mat, p.x, p.y, p.z, g));
+    parent.add(g); return { group: g, path };
+  }
 
-  // sparse light dust
-  const N = 90, pos = new Float32Array(N * 3), seed = new Float32Array(N);
-  for (let i = 0; i < N; i++) { pos[i * 3] = (Math.random() - .5) * 4.2; pos[i * 3 + 1] = (Math.random() - .5) * 3.2; pos[i * 3 + 2] = (Math.random() - .5) * 1.5; seed[i] = Math.random() * 6.28; }
-  const dustGeo = new THREE.BufferGeometry(); dustGeo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
-  const dustMat = new THREE.PointsMaterial({ color: 0xFFF2C2, size: 0.018, transparent: true, opacity: 0.55, depthWrite: false });
-  const dust = new THREE.Points(dustGeo, dustMat); root.add(dust);
+  const root = new THREE.Group(); scene.add(root);
+  const tickers = [];   // per-frame animation callbacks: (t, dt) => void
+  const groups = {};    // scene name -> { group, t (0..1 visibility), onShow }
+  function addScene(name, group, onShow) { group.visible = false; root.add(group); groups[name] = { group, t: 0, onShow }; }
 
-  // ---- which dark section is on screen, and where the ring should sit ----
-  const hero = document.getElementById("home");
-  const heroAnchor = document.querySelector(".hero-anchor");
-  const progressEl = document.querySelector(".star-progress");
-  const darkSecs = [hero, ...document.querySelectorAll(".sec.dark")];
-  const visible = new Set();
-  const io = new IntersectionObserver(es => { es.forEach(e => e.isIntersecting ? visible.add(e.target) : visible.delete(e.target)); kick(); }, { threshold: 0 });
-  darkSecs.forEach(s => io.observe(s));
+  /* ================= SCENE: HUB (EU at the centre of a network) ================= */
+  {
+    const g = new THREE.Group();
+    mesh(rbox(13, .6, 13, .3), M.clay2, 0, .3, 0, g);                       // platform
+    mesh(new THREE.CylinderGeometry(3, 3.2, .5, 64), M.clay, 0, .85, 0, g);   // pedestal
+    mesh(new THREE.CylinderGeometry(2.3, 2.3, 1, 64), M.blue, 0, 1.6, 0, g);  // EU blue disc
+    const glass = mesh(new THREE.CylinderGeometry(1.25, 1.25, 2.6, 48, 1, true), M.glass, 0, 3.4, 0, g); glass.castShadow = false;
+    mesh(new THREE.TorusGeometry(1.25, .06, 10, 48), M.clay, 0, 4.7, 0, g).rotation.x = Math.PI / 2;
+    // gold beads rising inside the glass
+    const beads = []; for (let i = 0; i < 6; i++) beads.push(mesh(new THREE.SphereGeometry(.2, 20, 14), M.gold, (i % 3 - 1) * .4, 2.2, (i % 2 - .5) * .5, g));
+    tickers.push(t => beads.forEach((b, i) => { const p = (t * .25 + i / 6) % 1; b.position.y = 2.2 + p * 2.3; b.scale.setScalar(.6 + Math.sin(p * Math.PI) * .6); }));
+    // floating ring of 12 stars
+    const ring = starRing(3.1, .42, g, 5.4);
+    tickers.push((t) => { ring.rotation.y = t * .25; ring.position.y = 5.4 + Math.sin(t * 1.2) * .15; });
 
-  function target() {
-    // the visible dark section closest to the centre of the screen
-    let best = null, bestD = Infinity;
-    visible.forEach(s => { const r = s.getBoundingClientRect(), d = Math.abs((r.top + r.bottom) / 2 - innerHeight / 2); if (d < bestD) { bestD = d; best = s; } });
-    if (!best) return null;
-    if (best === hero) {
-      const a = heroAnchor.getBoundingClientRect(), p = progressEl.getBoundingClientRect();
-      const t = Math.min(1, Math.max(0, scrollY / (hero.offsetHeight * 0.85)));
-      const e = t * t * (3 - 2 * t);
-      const ax = a.left + a.width / 2, ay = a.top + a.height / 2 + scrollY * (1 - e) * 0;   // anchor already moves with the page
-      return { x: ax + (p.left + p.width / 2 - ax) * e, y: ay + (p.top + p.height / 2 - ay) * e,
-               r: (a.width * 0.4) + (p.width * 0.36 - a.width * 0.4) * e, alpha: 1 - Math.max(0, (t - 0.82) / 0.18), bg: NAVY, progress: e };
+    // pipe loop + spokes with flowing beads
+    const R = 5, Y = .95;
+    const loop = pipe([new THREE.Vector3(-R, Y, -R), new THREE.Vector3(R, Y, -R), new THREE.Vector3(R, Y, R), new THREE.Vector3(-R, Y, R), new THREE.Vector3(-R, Y, -R)], .17, M.clay, g);
+    pipe([new THREE.Vector3(0, Y, -R), new THREE.Vector3(0, Y, -3.1)], .17, M.clay, g);
+    pipe([new THREE.Vector3(R, Y, 0), new THREE.Vector3(3.1, Y, 0)], .17, M.clay, g);
+    const flow = []; for (let i = 0; i < 8; i++) flow.push(mesh(new THREE.SphereGeometry(.2, 16, 12), i % 2 ? M.blue : M.gold, 0, 0, 0, g));
+    tickers.push(t => flow.forEach((b, i) => b.position.copy(loop.path.getPointAt((t * .05 + i / 8) % 1))));
+
+    // satellite 1: bar chart block
+    const s1 = new THREE.Group(); s1.position.set(-R, .6, -R); g.add(s1);
+    mesh(rbox(2.4, .7, 2.4), M.clay, 0, .55, 0, s1);
+    [[.5, M.blue2, -.6], [1, M.blue, 0], [1.6, M.gold, .6]].forEach(([h, m, x]) => mesh(rbox(.42, h, .42, .1), m, x, .9 + h / 2, .1, s1));
+    // satellite 2: pie chart
+    const s2 = new THREE.Group(); s2.position.set(R, .6, R); g.add(s2);
+    mesh(rbox(2.4, .7, 2.4), M.clay, 0, .55, 0, s2);
+    mesh(new THREE.CylinderGeometry(.85, .85, .35, 48, 1, false, 0, Math.PI * 1.45), M.clay2, 0, 1.15, 0, s2);
+    const slice = mesh(new THREE.CylinderGeometry(.85, .85, .5, 48, 1, false, Math.PI * 1.45, Math.PI * .55), M.blue, .1, 1.3, .1, s2);
+    tickers.push(t => { slice.position.y = 1.3 + Math.sin(t * 2) * .08; });
+    // satellite 3: institution (temple with columns)
+    const s3 = new THREE.Group(); s3.position.set(R, .6, -R); g.add(s3);
+    mesh(rbox(2.4, .5, 2, .12), M.clay, 0, .45, 0, s3);
+    for (let i = 0; i < 4; i++) mesh(new THREE.CylinderGeometry(.13, .13, 1.2, 20), M.clay, -.75 + i * .5, 1.3, 0, s3);
+    mesh(rbox(2.3, .2, 1.8, .06), M.clay, 0, 2, 0, s3);
+    const ped = mesh(new THREE.CylinderGeometry(1.25, 1.25, 1.7, 3, 1), M.blue, 0, 2.38, 0, s3); ped.rotation.z = Math.PI / 2; ped.rotation.y = Math.PI / 2; ped.scale.set(.42, 1, 1);
+    // satellite 4: small globe
+    const s4 = new THREE.Group(); s4.position.set(-R, .6, R); g.add(s4);
+    mesh(new THREE.CylinderGeometry(.9, 1.1, .5, 40), M.clay, 0, .55, 0, s4);
+    const mini = mesh(new THREE.SphereGeometry(.85, 40, 30), M.blue2, 0, 1.7, 0, s4);
+    const orbit = mesh(new THREE.TorusGeometry(1.2, .05, 10, 60), M.gold, 0, 1.7, 0, s4); orbit.rotation.x = 1.2;
+    tickers.push(t => { mini.rotation.y = t * .6; orbit.rotation.z = t * .5; });
+
+    // floating decor: gold coin, blue sphere, ink ring
+    const coin = mesh(new THREE.CylinderGeometry(.55, .55, .14, 40), M.gold, -2.6, 4.2, 5.8, g); coin.rotation.x = Math.PI / 2;
+    const ball = mesh(new THREE.SphereGeometry(.38, 28, 20), M.blue, 6.4, 3.4, -1.5, g);
+    const ring2 = mesh(new THREE.TorusGeometry(.45, .14, 14, 40), M.ink, 2.8, 4.6, -6, g);
+    tickers.push(t => { coin.rotation.z = t; coin.position.y = 4.2 + Math.sin(t * 1.4) * .3; ball.position.y = 3.4 + Math.sin(t * 1.1 + 1) * .35; ring2.rotation.y = t * .8; ring2.position.y = 4.6 + Math.sin(t + 2) * .3; });
+    addScene("hub", g);
+  }
+
+  /* ================= SCENE: LADDER (5 levels of integration) ================= */
+  {
+    const g = new THREE.Group(), steps = [];
+    mesh(rbox(13.5, .4, 5.5, .2), M.clay2, 0, .2, 0, g);
+    for (let i = 0; i < 5; i++) {
+      const h = .9 + i * 1.05, top = i === 4;
+      const st = mesh(rbox(2.3, h, 3.6, .2), top ? M.blue : (i % 2 ? M.clay : M.clay), -5 + i * 2.5, .4 + h / 2, 0, g);
+      st.userData = { h, base: .4 }; steps.push(st);
+      mesh(rbox(.9, .12, .9, .05), top ? M.gold : M.blue2, -5 + i * 2.5, .4 + h + .06, 0, g).userData.cap = i;
     }
-    const n = best.querySelector(".chno") || best.querySelector(".no") || best.querySelector(".h");
-    const r = n.getBoundingClientRect();
-    return { x: r.left + r.width / 2, y: r.top + r.height / 2, r: Math.max(r.height * 0.43, 60), alpha: 1, bg: NAVY2, progress: 1 };
+    const star = mesh(starGeo(.7, .28, .2), M.gold, 5, 6.6, 0, g);
+    tickers.push(t => { star.rotation.y = t * .9; star.position.y = 6.8 + Math.sin(t * 1.5) * .2; });
+    // grow the steps one after another when the scene appears
+    let grow = 0;
+    const caps = g.children.filter(c => c.userData.cap !== undefined);
+    tickers.push((t, dt) => { grow = groups.ladder.t > .5 ? Math.min(grow + dt * .8, 1) : 0;
+      steps.forEach((s, i) => { const k = THREE.MathUtils.smoothstep(grow * 5 - i * .8, 0, 1) || .02; s.scale.y = Math.max(k, .02); s.position.y = s.userData.base + s.userData.h * k / 2;
+        caps[i].position.y = s.userData.base + s.userData.h * k + .06; caps[i].visible = k > .05; }); });
+    addScene("ladder", g);
   }
 
-  // corner hand-over: the 2D progress ring fades in as the 3D ring arrives
-  function handOver(e) { progressEl.style.opacity = e === null ? "" : String(Math.min(1, Math.max(0, (e - 0.7) / 0.3))); }
+  /* ================= SCENE: MEMBERS (columns 6 → 27) ================= */
+  {
+    const g = new THREE.Group(), vals = [6, 9, 10, 12, 15, 25, 27, 28, 27], cols = [];
+    mesh(rbox(14.5, .4, 3.4, .2), M.clay2, 0, .2, 0, g);
+    vals.forEach((v, i) => { const h = v * .27; const c = mesh(rbox(1.05, h, 1.05, .16), i === 7 ? M.gold : M.blue, -6.4 + i * 1.6, .4 + h / 2, 0, g); c.userData = { h }; cols.push(c); });
+    const ring = starRing(1.6, .3, g, 9.6); ring.position.x = 4.8;
+    let grow = 0;
+    tickers.push((t, dt) => { ring.rotation.y = t * .4; grow = groups.members.t > .5 ? Math.min(grow + dt * .7, 1) : 0;
+      cols.forEach((c, i) => { const k = THREE.MathUtils.smoothstep(grow * 3 - i * .2, 0, 1); c.scale.y = Math.max(k, .02); c.position.y = .4 + c.userData.h * Math.max(k, .02) / 2; }); });
+    addScene("members", g);
+  }
 
-  let mx = 0, my = 0, tiltX = 0, tiltY = 0;
-  if (!reduce) addEventListener("pointermove", ev => { mx = ev.clientX / innerWidth - .5; my = ev.clientY / innerHeight - .5; }, { passive: true });
+  /* ================= SCENE: GLOBE (trade routes and global reach) ================= */
+  {
+    const g = new THREE.Group();
+    mesh(new THREE.CylinderGeometry(3.4, 3.8, .6, 64), M.clay2, 0, .3, 0, g);
+    const globe = new THREE.Group(); globe.position.y = 4.2; g.add(globe);
+    mesh(new THREE.SphereGeometry(3, 64, 48), M.clay, 0, 0, 0, globe);
+    for (let i = 1; i < 4; i++) { const m = mesh(new THREE.TorusGeometry(3.01, .03, 8, 96), M.clay2, 0, 0, 0, globe); m.rotation.y = i * Math.PI / 4; }
+    mesh(new THREE.TorusGeometry(3.04, .07, 10, 96), M.blue, 0, 0, 0, globe).rotation.x = Math.PI / 2;
+    // trade-route arcs from "Europe" to partners
+    const eu = new THREE.Vector3().setFromSphericalCoords(3, 0.9, 0.2);
+    const pins = [[1.6, 2.2], [1.7, -1.6], [1.2, 2.9], [2.0, 0.9], [1.0, -2.5]];
+    mesh(new THREE.SphereGeometry(.26, 20, 14), M.blue, eu.x, eu.y, eu.z, globe);
+    pins.forEach(([phi, th], i) => {
+      const p = new THREE.Vector3().setFromSphericalCoords(3, phi, th);
+      const mid = eu.clone().add(p).multiplyScalar(.5).setLength(4.6);
+      const curve = new THREE.QuadraticBezierCurve3(eu, mid, p);
+      mesh(new THREE.TubeGeometry(curve, 40, .05, 8), i % 2 ? M.gold : M.blue2, 0, 0, 0, globe);
+      mesh(new THREE.SphereGeometry(.18, 16, 12), M.gold, p.x, p.y, p.z, globe);
+      const runner = mesh(new THREE.SphereGeometry(.12, 12, 10), M.ink, 0, 0, 0, globe);
+      tickers.push(t => runner.position.copy(curve.getPoint((t * .22 + i * .2) % 1)));
+    });
+    const ring = starRing(4.4, .38, g, 4.2); ring.rotation.z = .25;
+    const cubes = []; for (let i = 0; i < 4; i++) cubes.push(mesh(rbox(.7, .7, .7, .12), i % 2 ? M.blue : M.gold, 0, 0, 0, g));
+    tickers.push(t => { globe.rotation.y = t * .18; ring.rotation.y = -t * .2;
+      cubes.forEach((c, i) => { const a = t * .35 + i * Math.PI / 2; c.position.set(Math.cos(a) * 5.6, 2.2 + Math.sin(a * 2) * .5, Math.sin(a) * 5.6); c.rotation.set(t * .5, t * .7, 0); }); });
+    addScene("globe", g);
+  }
 
-  function resize() { renderer.setSize(innerWidth, innerHeight, false); cam.aspect = innerWidth / innerHeight; cam.updateProjectionMatrix(); }
-  addEventListener("resize", () => { resize(); kick(); }); resize();
+  /* ================= SCENE: BRIDGE (EU ⇄ Vietnam) ================= */
+  {
+    const g = new THREE.Group();
+    // EU platform
+    mesh(rbox(4.6, .8, 4.6, .3), M.blue, -5, .4, -1, g);
+    mesh(new THREE.CylinderGeometry(1.4, 1.4, .3, 48), M.clay, -5, .95, -1, g);
+    const euRing = starRing(1.7, .3, g, 2.4); euRing.position.x = -5; euRing.position.z = -1;
+    // Vietnam platform with upright gold star
+    mesh(rbox(4.6, .8, 4.6, .3), M.red, 5, .4, -1, g);
+    mesh(new THREE.CylinderGeometry(1.4, 1.4, .3, 48), M.clay, 5, .95, -1, g);
+    const vnStar = mesh(starGeo(1.1, .44, .3), M.gold, 5, 2.6, -1, g);
+    // arched pipe between them, beads flowing both ways
+    const arc = new THREE.CatmullRomCurve3([new THREE.Vector3(-3.4, 1, -1), new THREE.Vector3(-1.5, 3.2, -1), new THREE.Vector3(1.5, 3.2, -1), new THREE.Vector3(3.4, 1, -1)]);
+    mesh(new THREE.TubeGeometry(arc, 64, .2, 14), M.clay, 0, 0, 0, g);
+    const arc2 = new THREE.CatmullRomCurve3([new THREE.Vector3(-3.4, .9, .2), new THREE.Vector3(-1.5, 2.2, .6), new THREE.Vector3(1.5, 2.2, .6), new THREE.Vector3(3.4, .9, .2)]);
+    mesh(new THREE.TubeGeometry(arc2, 64, .14, 12), M.clay2, 0, 0, 0, g);
+    const goods = []; for (let i = 0; i < 10; i++) goods.push(mesh(new THREE.SphereGeometry(i % 2 ? .2 : .24, 16, 12), i % 2 ? M.blue : M.gold, 0, 0, 0, g));
+    // trade bars 2020–2024 (exports blue + imports gold), on a slab in front
+    mesh(rbox(8, .3, 2.2, .15), M.clay2, 0, .15, -5.6, g);
+    const ex = [40, 40, 47, 44, 51.6], im = [15, 16, 17, 16, 16.7], bars = [];
+    ex.forEach((e, i) => { const x = -3 + i * 1.5, he = e * .07, hi = im[i] * .07;
+      bars.push([mesh(rbox(.8, he, .8, .12), M.blue, x, .3 + he / 2, -5.6, g), he, .3], [mesh(rbox(.8, hi, .8, .12), M.gold, x, .3 + he + hi / 2, -5.6, g), hi, .3 + he]); });
+    let grow = 0;
+    tickers.push((t, dt) => {
+      euRing.rotation.y = t * .5; vnStar.rotation.y = Math.sin(t * .8) * .6; vnStar.position.y = 2.6 + Math.sin(t * 1.3) * .15;
+      goods.forEach((b, i) => { const p = (t * .12 + i / 10) % 1; b.position.copy(i % 2 ? arc2.getPoint(1 - p) : arc.getPoint(p)); });
+      grow = groups.bridge.t > .5 ? Math.min(grow + dt * .6, 1) : 0;
+      bars.forEach(([m, h, base], i) => { const k = THREE.MathUtils.smoothstep(grow * 2.4 - Math.floor(i / 2) * .25, 0, 1);
+        const kk = Math.max(k, .02); m.scale.y = kk; m.position.y = (i % 2 ? .3 + bars[i - 1][1] * Math.max(THREE.MathUtils.smoothstep(grow * 2.4 - Math.floor(i / 2) * .25, 0, 1), .02) : base) + h * kk / 2; });
+    });
+    addScene("bridge", g);
+  }
 
-  const halfH = Math.tan(THREE.MathUtils.degToRad(cam.fov / 2)) * CAM_Z;
-  const clock = new THREE.Clock(); let time = 0, running = false;
+  /* ================= SCENE: STARS (dark gallery, chapter intros) ================= */
+  {
+    const g = new THREE.Group();
+    mesh(new THREE.CylinderGeometry(7, 7.4, .5, 96), M.night, 0, .25, 0, g);
+    mesh(new THREE.TorusGeometry(6.2, .05, 8, 128), M.gold, 0, .52, 0, g).rotation.x = Math.PI / 2;
+    const ring = starRing(5, .75, g, 3.4);
+    const core = mesh(new THREE.SphereGeometry(1.1, 48, 32), M.blue, 0, 3.4, 0, g);
+    tickers.push(t => { ring.rotation.y = t * .18; ring.children.forEach((s, i) => { s.position.y = Math.sin(t * 1.2 + i * .52) * .35; s.rotation.z = Math.sin(t + i) * .15; }); core.position.y = 3.4 + Math.sin(t * .9) * .2; });
+    addScene("stars", g);
+  }
+
+  /* ---- Per-scene camera framing (zoom = visible world height) ---- */
+  const FRAME = { hub: { zoom: 19, look: 1.6 }, ladder: { zoom: 17, look: 2.4 }, members: { zoom: 18, look: 2.6 },
+                  globe: { zoom: 19, look: 3.2 }, bridge: { zoom: 17, look: 1.6 }, stars: { zoom: 17, look: 2.6 } };
+  let zoom = 19, shift = .2, up = 0, look = 1.6, mouseX = 0, mouseY = 0, rotY = 0, rotX = 0;
+  addEventListener("pointermove", e => { mouseX = e.clientX / innerWidth - .5; mouseY = e.clientY / innerHeight - .5; }, { passive: true });
+
+  function resize() { renderer.setSize(innerWidth, innerHeight, false); }
+  addEventListener("resize", resize); resize();
+
+  const clock = new THREE.Clock(); let time = 0;
   function frame() {
-    const dt = Math.min(clock.getDelta(), 0.1);
-    if (!reduce) time += dt;
-    const tg = target();
-    if (!tg || document.hidden) { running = false; handOver(null); return; }      // nothing to draw: pause
-    handOver(visible.has(hero) ? tg.progress : null);
-    // screen anchor -> world position on the z = 0 plane
-    const wpp = 2 * halfH / innerHeight;
-    root.position.set((tg.x - innerWidth / 2) * wpp, -(tg.y - innerHeight / 2) * wpp, 0);
-    root.scale.setScalar(tg.r * wpp);
-    gold.opacity = tg.alpha; sphereMat.opacity = 0.55 * tg.alpha; haloMat.opacity = 0.18 * tg.alpha; dustMat.opacity = 0.55 * tg.alpha * (1 - tg.progress * 0.8);
-    scene.background.lerp(tg.bg, Math.min(1, dt * 4));
-    // slow spin; stars stay upright like a flag
-    ring.rotation.z = -time * 0.05;
-    stars.forEach(s => { s.rotation.z = time * 0.05; s.rotation.y = Math.sin(time * 0.6 + s.position.x * 3) * 0.25; });
-    tiltX += ((reduce ? 0 : my * 0.22) - tiltX) * Math.min(1, dt * 3);
-    tiltY += ((reduce ? 0 : mx * 0.3) - tiltY) * Math.min(1, dt * 3);
-    tilt.rotation.set(tiltX, tiltY, 0);
-    const p = dustGeo.attributes.position;
-    if (!reduce) { for (let i = 0; i < N; i++) p.array[i * 3 + 1] += Math.sin(time * 0.4 + seed[i]) * 0.0006; p.needsUpdate = true; }
+    const dt = Math.min(clock.getDelta(), .1); time += reduce ? dt * .15 : dt;
+    const name = window.currentScene || "hub", night = !!window.currentNight, layout = window.currentLayout || "right";
+    // show/hide scene groups with a pop-in
+    for (const [k, s] of Object.entries(groups)) {
+      s.t += ((k === name ? 1 : 0) - s.t) * Math.min(1, dt * 4.5);
+      const e = 1 - Math.pow(1 - s.t, 3);
+      s.group.visible = s.t > .01; s.group.scale.setScalar(.55 + .45 * e); s.group.position.y = (1 - e) * -3;
+    }
+    tickers.forEach(fn => fn(time, dt));
+    // background, lights and framing
+    scene.background.lerp(night ? DARK_BG : LIGHT_BG, Math.min(1, dt * 3));
+    hemi.intensity += ((night ? .35 : 1.25) - hemi.intensity) * Math.min(1, dt * 3);
+    sun.intensity += ((night ? 1.2 : 2.3) - sun.intensity) * Math.min(1, dt * 3);
+    goldLight.intensity += ((night ? 60 : 0) - goldLight.intensity) * Math.min(1, dt * 3);
+    groundMat.opacity += ((night ? .4 : .12) - groundMat.opacity) * Math.min(1, dt * 3);
+    const f = FRAME[name], wide = innerWidth > 1100, targetShift = (layout === "right" && wide) ? .22 : 0;
+    const short = innerHeight < 900;                  // laptops: keep intro objects clear of the text
+    const targetUp = layout === "intro" ? (short ? .25 : .21) : 0;   // intro: object in the upper part, text below
+    zoom += (f.zoom * (wide ? 1 : 1.5) * (layout === "intro" ? (short ? 1.75 : 1.4) : 1) - zoom) * Math.min(1, dt * 2.5);
+    shift += (targetShift - shift) * Math.min(1, dt * 2.5);
+    up += (targetUp - up) * Math.min(1, dt * 2.5);
+    look += (f.look - look) * Math.min(1, dt * 2.5);
+    const aspect = innerWidth / innerHeight, hh = zoom / 2, hw = hh * aspect, off = shift * 2 * hw, offY = up * 2 * hh;
+    cam.left = -hw - off; cam.right = hw - off; cam.top = hh - offY; cam.bottom = -hh - offY; cam.updateProjectionMatrix();
+    cam.lookAt(0, look, 0);
+    // gentle mouse parallax + idle sway
+    rotY += ((reduce ? 0 : mouseX * .35 + Math.sin(time * .2) * .08) - rotY) * Math.min(1, dt * 2);
+    rotX += ((reduce ? 0 : mouseY * .06) - rotX) * Math.min(1, dt * 2);
+    root.rotation.y = rotY; root.rotation.x = rotX;
     renderer.render(scene, cam);
     requestAnimationFrame(frame);
   }
-  function kick() { if (!running && !document.hidden && visible.size) { running = true; clock.getDelta(); requestAnimationFrame(frame); } }
-  document.addEventListener("visibilitychange", kick);
-  addEventListener("scroll", kick, { passive: true });
-  window.__fps = () => new Promise(res => { let n = 0; const t0 = performance.now(); (function c() { n++; performance.now() - t0 < 3000 ? requestAnimationFrame(c) : res(n / 3); })(); });
-  kick();
+  requestAnimationFrame(frame);
 })();
 </script>
 </body>
