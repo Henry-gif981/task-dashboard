@@ -315,6 +315,145 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
   .site-foot { background: #fff; color: var(--ink-2); }
   * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 }
+
+/* ==========================================================
+   DATA VISUALS (added; data in viz_data.json, see viz_report.md)
+   ========================================================== */
+.vz { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--s3); margin-top: var(--s4); min-width: 0; }
+.vz:hover { border-color: var(--line); }
+.js .vz:empty { display: none; }
+.vz-head { display: block; padding-bottom: var(--s1); border-bottom: 1px solid var(--line); margin-bottom: var(--s1); }
+.vz-lbl { display: block; font: 600 .72rem/1.3 var(--sans); letter-spacing: .06em; font-variant-caps: all-small-caps; color: var(--blue); }
+.vz-lbl::before { content: ""; display: inline-block; width: 18px; height: 2px; background: var(--gold); vertical-align: middle; margin-right: 8px; }
+.vz-title { display: block; font: 600 1rem/1.35 var(--serif); color: var(--ink); margin-top: 4px; }
+.vz-unit { font-size: .74rem; color: var(--ink-2); font-style: italic; margin-bottom: var(--s2); }
+.vz-body { position: relative; min-width: 0; }
+.vz-body svg { width: 100%; height: auto; display: block; overflow: visible; }
+.vz-body svg text, .chart .vz-body svg text { font-family: var(--sans); font-feature-settings: "lnum", "tnum"; }
+.vz-notes { list-style: none; margin: var(--s2) 0 0; padding: 0; font-size: .74rem; color: var(--ink-2); }
+.vz-notes li { padding-left: 14px; position: relative; margin-top: 2px; }
+.vz-notes li::before { content: ""; position: absolute; left: 0; top: .62em; width: 6px; height: 1px; background: var(--ink-2); }
+.vz .src { margin-top: var(--s2); }
+.vz-legend { display: flex; flex-wrap: wrap; gap: var(--s1) var(--s3); font-size: .76rem; color: var(--ink-2); margin-top: var(--s2); }
+.vz-legend span { display: inline-flex; align-items: center; gap: 8px; }
+.vz-legend svg { width: 18px; height: 18px; flex: none; overflow: visible; }
+.vz-context { font-size: .84rem; color: var(--ink-2); margin: 0 0 var(--s2); }
+.vz-context b { font: 600 1.15rem/1 var(--serif); color: var(--blue); }
+
+/* marks: hover, keyboard focus, tooltip */
+.vz-mark { cursor: pointer; outline: none; }
+.vz-mark .hit { fill: transparent; stroke: none; }
+.vz-mark:hover .hit, .vz-mark.on .hit { fill: rgba(0, 51, 153, .06); }
+.vz-mark:focus-visible { outline: 2px dashed var(--blue); outline-offset: 3px; }
+.vz-mark:focus-visible .hit, .vz-mark.on:focus .hit { stroke: var(--blue); stroke-width: 2; stroke-dasharray: 4 3; }
+.vz-tip { position: fixed; z-index: 60; max-width: min(320px, calc(100vw - 32px)); background: var(--navy); color: #fff; font: 500 .8rem/1.45 var(--sans); padding: 10px 14px; border-radius: var(--radius); border-top: 2px solid var(--gold); pointer-events: none; opacity: 0; transform: translateY(4px); transition: opacity .15s, transform .15s; }
+.vz-tip.show { opacity: 1; transform: none; }
+.vz-tip b { display: block; font-weight: 700; color: #fff; }
+.vz-tip .k { color: var(--on-dark-2, #C9D6F2); }
+
+/* "View data" */
+.vz-foot { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--s1) var(--s3); }
+.vz-btn { font: 600 .74rem/1 var(--sans); color: var(--blue); background: none; border: 0; border-bottom: 1px solid var(--line); padding: 6px 0; cursor: pointer; margin-top: var(--s2); }
+.vz-btn:hover, .vz-btn:focus-visible { border-bottom-color: var(--gold); outline: none; }
+.vz-btn:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+.vz-table { margin-top: var(--s2); overflow-x: auto; }
+.vz-table table { width: 100%; border-collapse: collapse; font-size: .76rem; }
+.vz-table th { background: var(--blue); color: #fff; text-align: left; font-weight: 600; padding: 6px 10px; }
+.vz-table td { border-bottom: 1px solid var(--line); padding: 6px 10px; vertical-align: top; }
+.vz-table td.num, .vz-table th.num { text-align: right; font-feature-settings: "lnum", "tnum"; white-space: nowrap; }
+.vz-table .st { color: var(--ink-2); font-style: italic; }
+.sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* draw-in animations: one time, <= 800 ms, final state when reduced motion / print */
+.vz-anim .grow-y, .vz-anim .grow-x, .vz-anim .wipe, .vz-anim .pop { transition: transform .55s cubic-bezier(.2, .7, .2, 1), clip-path .7s cubic-bezier(.3, .6, .2, 1), opacity .45s ease; transition-delay: calc(var(--i, 0) * 45ms); }
+.vz-anim .grow-y { transform-box: fill-box; transform-origin: 50% 100%; }
+.vz-anim .grow-x { transform-box: fill-box; transform-origin: 0 50%; }
+.vz-anim .pop { transform-box: fill-box; transform-origin: 50% 50%; }
+.vz-anim.armed:not(.drawn) .grow-y { transform: scaleY(0); }
+.vz-anim.armed:not(.drawn) .grow-x { transform: scaleX(0); }
+.vz-anim.armed:not(.drawn) .wipe { clip-path: inset(0 100% 0 0); }
+.vz-anim.armed:not(.drawn) .pop { opacity: 0; transform: scale(.4); }
+.vz-anim .wipe { clip-path: inset(0 0 0 0); }
+
+/* layout helpers for placing visuals beside existing content */
+.vz-split { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--s6); align-items: center; }
+.vz-split > .copy { max-width: none; }
+.vz-split > .vz { margin-top: 0; }
+.vz-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s4); align-items: start; }
+.vz-pair > .vz, .vz-pair > .callout { margin-top: 0; }
+.vz-pair.mt { margin-top: var(--s4); }
+@media (max-width: 1000px) { .vz-split, .vz-pair { grid-template-columns: 1fr; } }
+
+/* A1: scrollable milestone strip */
+.vz-strip { position: relative; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x proximity; padding: 4px 2px 8px; scrollbar-width: thin; }
+.vz-strip:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.vz-strip ol { list-style: none; margin: 0; padding: 0; display: flex; position: relative; width: max-content; }
+.vz-strip ol::before { content: ""; position: absolute; left: 0; right: 0; top: 23px; height: 2px; background: var(--line); }
+.vz-strip li { scroll-snap-align: center; }
+.vz-strip button { position: relative; width: 112px; padding: 0 6px 6px; background: none; border: 0; cursor: pointer; text-align: center; color: var(--ink); font: inherit; }
+.vz-strip button svg { display: block; margin: 0 auto; width: 48px; height: 48px; overflow: visible; }
+.vz-strip .yy { display: block; font: 600 .78rem/1.2 var(--serif); color: var(--blue); margin-top: 2px; font-feature-settings: "lnum"; }
+.vz-strip .ev { display: block; font-size: .7rem; line-height: 1.3; color: var(--ink-2); margin-top: 2px; }
+.vz-strip button[aria-pressed="true"] .yy { color: var(--ink); }
+.vz-strip button[aria-pressed="true"]::after { content: ""; position: absolute; left: 22px; right: 22px; bottom: -6px; height: 2px; background: var(--gold); }
+.vz-strip button:focus-visible { outline: 2px solid var(--blue); outline-offset: -2px; border-radius: var(--radius); }
+.vz-strip button:hover svg .core { stroke: var(--gold); }
+.vz-card { border: 1px solid var(--line); border-left: 2px solid var(--gold); border-radius: var(--radius); padding: var(--s2) var(--s3); margin-top: var(--s2); background: var(--tint-2, #F4F7FC); min-height: 5.2em; }
+.vz-card .yy { font: 600 1.05rem/1.2 var(--serif); color: var(--blue); }
+.vz-card .ev { font: 600 .9rem/1.35 var(--sans); margin-top: 4px; }
+.vz-card .mn { font-size: .82rem; color: var(--ink-2); margin-top: 2px; }
+
+/* A6: donut + counters */
+.vz-dc { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s4); align-items: center; }
+.vz-counters { display: grid; gap: var(--s2); }
+.vz-counter { border: 1px solid var(--line); border-top: 2px solid var(--gold); border-radius: var(--radius); padding: var(--s2) var(--s3); }
+.vz-counter .v { font: 600 clamp(1.4rem, 1.8vw, 2.1rem)/1.1 var(--serif); color: var(--blue); font-feature-settings: "lnum", "tnum"; }
+.vz-counter .l { font-size: .8rem; color: var(--ink-2); margin-top: 4px; }
+@media (max-width: 760px) { .vz-dc { grid-template-columns: 1fr; } }
+
+/* B3a: waffle with side labels */
+.vz-wf { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--s3); align-items: center; }
+.vz-wf .big { font: 600 clamp(1.8rem, 2.4vw, 2.8rem)/1 var(--serif); color: var(--blue); }
+.vz-wf p { font-size: .8rem; color: var(--ink-2); margin-top: 6px; }
+.vz-wf p b { color: var(--ink); font-weight: 600; }
+@media (max-width: 480px) { .vz-wf { grid-template-columns: 1fr; } }
+
+/* B4: staircase (3D with a 2D fallback) */
+.vz-stairs { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: var(--s3); align-items: center; }
+.vz-stage { position: relative; aspect-ratio: 16 / 10; }
+.vz-stage canvas, .vz-stage svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.vz-stage canvas { display: none; }
+.vz-stage.webgl canvas { display: block; }
+.vz-stage.webgl svg.iso { visibility: hidden; }
+.vz-stage .tag3d { position: absolute; transform: translate(-50%, -100%); font: 700 .8rem/1 var(--sans); color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 2px; padding: 3px 6px; pointer-events: none; font-feature-settings: "lnum"; }
+.vz-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.vz-steps button { width: 100%; text-align: left; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 8px 12px; font: 600 .8rem/1.3 var(--sans); color: var(--ink); cursor: pointer; display: flex; gap: 10px; align-items: baseline; }
+.vz-steps button .n { font: 600 .9rem/1 var(--serif); color: var(--blue); font-feature-settings: "lnum"; }
+.vz-steps button[aria-pressed="true"], .vz-steps button:hover { border-color: var(--gold); box-shadow: inset 3px 0 0 var(--gold); }
+.vz-steps button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.vz-steps + .vz-card { min-height: 6.5em; }
+@media (max-width: 760px) { .vz-stairs { grid-template-columns: 1fr; } }
+
+@media (max-width: 760px) {
+  .vz { padding: var(--s2); }
+  .vz-strip button { width: 96px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vz-anim .grow-y, .vz-anim .grow-x, .vz-anim .wipe, .vz-anim .pop, .vz-tip { transition: none !important; }
+}
+@media print {
+  .vz { break-inside: avoid; }
+  .vz-anim .grow-y, .vz-anim .grow-x, .vz-anim .wipe, .vz-anim .pop { transform: none !important; clip-path: none !important; opacity: 1 !important; transition: none !important; }
+  .vz-btn, .vz-tip { display: none !important; }
+  .vz-strip { overflow: visible; }
+  .vz-strip ol { flex-wrap: wrap; width: auto; }
+  .vz-strip ol::before { display: none; }
+  .vz-stage canvas, .vz-stage .tag3d { display: none !important; }
+  .vz-stage svg.iso { visibility: visible !important; }
+}
+.vz-stairs.stack { grid-template-columns: 1fr; }
+.vz-split.even { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 1000px) { .vz-split.even { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -492,6 +631,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
       <h2 class="h rv" style="--d:1">Levels of regional economic integration</h2>
       <p class="lead rv" style="--d:2">Political union can be considered an even deeper form of integration, although it is rarely achieved in practice. These stages should not necessarily be understood as a rigid sequence that every regional organization must follow.</p>
     </div>
+    <figure class="vz rv" data-viz="B4"></figure>
     <div class="ladder mt">
       <div class="card rv" style="--d:1;min-height:220px"><p class="n">1</p><h3>Free Trade Area</h3><p>Members eliminate or reduce tariffs on goods traded among themselves; each member retains its own trade policy toward non-member countries.</p></div>
       <div class="card rv" style="--d:2;min-height:260px"><p class="n">2</p><h3>Customs Union</h3><p>Establishes a common external tariff toward non-member countries.</p></div>
@@ -548,6 +688,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
       <div class="m rv" role="listitem"><p class="y">2020–present</p><p class="t">A more resilient and strategic EU</p><p class="d">Economic resilience, climate change, digital transformation, energy security</p></div>
     </div>
     <p class="src"><b>Source:</b> European Union, European Parliament, European Council, and European Central Bank materials.</p>
+    <figure class="vz rv" data-viz="A1"></figure>
   </div>
 </section>
 
@@ -564,6 +705,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
       <div class="card rv" style="--d:2"><p class="tag">Euro area</p><h3>European Central Bank</h3><p>Responsible for monetary policy in the euro area; its primary objective is to maintain price stability.</p></div>
     </div>
     <p class="note rv mt">EU decision-making involves a complex interaction between supranational and intergovernmental elements.</p>
+    <figure class="vz rv" data-viz="B5"></figure>
   </div>
 </section>
 
@@ -613,6 +755,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
 
 <section class="sec" id="c2-deepening" data-scene="none" data-pdf="2.1.1 Deepening integration">
   <div class="wrap">
+    <div class="vz-split">
     <div class="copy">
       <p class="eyebrow rv">2.1.1</p>
       <h2 class="h rv" style="--d:1">Deepening integration</h2>
@@ -627,6 +770,8 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
         <div class="stat rv" style="--d:6"><p class="v">EUR 800 bn+</p><p class="l">NextGenerationEU in current prices (EUR 750 billion in 2018 prices)</p></div>
       </div>
       <p class="src"><b>Source:</b> Balassa (1961); European Union (2026); Jones et al. (2016); European Commission (n.d.-e).</p>
+    </div>
+    <figure class="vz rv" data-viz="A2"></figure>
     </div>
   </div>
 </section>
@@ -702,7 +847,10 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
       <div class="card rv" style="--d:2"><p class="n">3</p><h3>Brexit</h3><p>The UK referendum of 2016 and its departure on 31 January 2020 showed that membership is reversible.</p></div>
       <div class="card rv" style="--d:3"><p class="n">4</p><h3>Rule of law</h3><p>Disputes in Hungary and Poland led to Article 7 procedures and a mechanism that links EU funds to respect for the rule of law.</p></div>
     </div>
-    <div class="callout rv mt"><h3>Competitiveness</h3>The 2022 energy crisis and the widening gap with the United States and China. Draghi (2024) estimates that the EU needs to invest EUR 750–800 billion a year, equal to 4.4–4.7% of its GDP in 2023; Letta (2024) argues for completing the single market in services, energy and capital.</div>
+    <div class="vz-pair mt">
+    <div class="callout rv"><h3>Competitiveness</h3>The 2022 energy crisis and the widening gap with the United States and China. Draghi (2024) estimates that the EU needs to invest EUR 750–800 billion a year, equal to 4.4–4.7% of its GDP in 2023; Letta (2024) argues for completing the single market in services, energy and capital.</div>
+    <figure class="vz rv" data-viz="B6"></figure>
+    </div>
     <p class="src"><b>Source:</b> Draghi (2024); Letta (2024).</p>
   </div>
 </section>
@@ -744,6 +892,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
         <tr><td>Philippines</td><td>Substantial agreement on an FTA announced on 22 September 2026</td><td>Extends the network in Southeast Asia</td></tr>
       </tbody></table></div>
     <p class="src"><b>Source:</b> European Commission (n.d.-c, n.d.-d, n.d.-f).</p>
+    <figure class="vz rv" data-viz="A4"></figure>
   </div>
 </section>
 
@@ -783,6 +932,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
       <div class="stack">
         <div class="stat rv"><p class="v">USD 88.7 billion</p><p class="l">given in 2024 by the EU countries in the OECD's Development Assistance Committee: 42% of global assistance of USD 212 billion, 8.6% less than in 2023</p>
           <div class="share" role="img" aria-label="USD 88.7 billion of USD 212 billion"><span style="width:41.8%"></span></div></div>
+        <figure class="vz rv" style="margin-top:0" data-viz="B3a"></figure>
         <ul class="bul" style="margin-top:0">
           <li class="rv">NDICI–Global Europe: the main funding instrument for 2021–2027.</li>
           <li class="rv" style="--d:1">Everything But Arms: least-developed countries can export almost everything to the EU free of duty and quota.</li>
@@ -794,6 +944,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
           <li>Target of mobilising up to EUR 300 billion</li>
           <li>Team Europe had mobilised more than EUR 306 billion for over 250 projects by 2026, including an Africa–Europe Investment Package of around EUR 150 billion</li>
           <li>Widely seen as a response to China's Belt and Road Initiative</li></ul></div>
+        <figure class="vz rv" style="margin-top:0" data-viz="B3b"></figure>
         <div class="card rv" style="--d:1"><p class="tag">Critics</p><h3>Two points</h3><ul>
           <li>The Global Gateway counts private and public financing that would have occurred anyway</li>
           <li>Development cooperation increasingly serves EU interests: migration management, critical raw materials and energy supply</li></ul></div>
@@ -805,6 +956,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
 
 <section class="sec" id="c2-climate" data-scene="none" data-pdf="2.3.1 Climate Leadership and Sustainability">
   <div class="wrap">
+    <div class="vz-split even">
     <div class="copy">
       <p class="eyebrow rv">2.3.1</p>
       <h2 class="h rv" style="--d:1">Climate Leadership and Sustainability</h2>
@@ -819,6 +971,8 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
       </ul>
       <div class="callout rv mt" style="--d:5"><h3>Limits</h3>The EU's share of global greenhouse-gas emissions fell from 6.1% in 2023 to 5.9% in 2024, and its emissions were about 35% below 1990 levels, so its goals cannot be reached without larger emitters.</div>
       <p class="src"><b>Source:</b> European Commission (2026a); European Commission Joint Research Centre (2025).</p>
+    </div>
+    <figure class="vz rv" data-viz="A5"></figure>
     </div>
   </div>
 </section>
@@ -843,6 +997,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
         <li>"Civilian power" or "soft imperialism" (Hettne and Söderbaum, 2005)</li></ul></div>
     </div>
     <p class="src"><b>Source:</b> Bull (1982); Manners (2002); Council of the European Union (2025, 2026a, 2026b); Hettne and Söderbaum (2005).</p>
+    <figure class="vz rv" data-viz="A6"></figure>
   </div>
 </section>
 
@@ -929,6 +1084,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
       <div class="m rv" role="listitem" style="--d:1"><p class="y">24 Mar 2026</p><p class="t">EU announces more than €560 million in new Global Gateway commitments for Vietnam</p></div>
       <div class="m rv" role="listitem" style="--d:2"><p class="y">1 Aug 2026</p><p class="t">EVFTA completed six years in force</p></div>
     </div>
+    <figure class="vz rv" data-viz="B1"></figure>
   </div>
 </section>
 
@@ -1036,6 +1192,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
       <div class="m rv" role="listitem" style="--d:3"><p class="y">Nov 2025</p><p class="t">Poland becomes the 20th member state to ratify the EVIPA</p></div>
       <div class="m rv" role="listitem" style="--d:4"><p class="y">Aug 2026</p><p class="t">France submits its EVIPA ratification bill to Parliament</p></div>
     </div>
+    <figure class="vz rv" data-viz="B2"></figure>
   </div>
 </section>
 
@@ -1071,6 +1228,10 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
     </div>
     <p class="note rv mt">The changes cannot be attributed entirely to the EVFTA, because trade flows were also affected by COVID-19, geopolitical tensions, global demand and other economic factors.</p>
     <p class="src"><b>Source:</b> Ministry of Industry and Trade of Vietnam.</p>
+    <div class="vz-pair mt">
+      <figure class="vz rv" data-viz="A7"></figure>
+      <figure class="vz rv" data-viz="A8a"></figure>
+    </div>
   </div>
 </section>
 
@@ -1090,6 +1251,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
     <p class="tnote rv">No 2024 percentage is reported in the sources. The 2019 figure (about 7.6%) is from FIA/MPI; the 2024 assessment is from EEAS. The two sources may not be directly comparable.</p>
     <div class="callout rv mt"><h3>EVIPA</h3>The impact of the EVIPA should currently be considered potential rather than fully realized, because the agreement has not yet entered into force at the EU level. At the end of 2024, South Korea had more than US$92 billion and Singapore about US$83.13 billion in cumulative registered investment in Vietnam.</div>
     <p class="src"><b>Source:</b> Foreign Investment Agency/MPI and European External Action Service.</p>
+    <figure class="vz rv" data-viz="A8b"></figure>
   </div>
 </section>
 
@@ -1310,64 +1472,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
      CONTENT SCRIPT: charts, navigation, reveal (no 3D needed)
      ====================================================== -->
 <script>
-/* ---- Chart data taken from the report's figures ---- */
-const DATA = {
-  members: { labels: ["1957","1973","1981","1986","1995","2004","2007","2013","2020"], values: [6,9,10,12,15,25,27,28,27] },
-  // Figure 3.1 (billion USD). 2020–2023: read from the original chart; 2024: Ministry of Industry and Trade of Vietnam
-  trade: { labels: ["2020","2021","2022","2023","2024"], exports: [40,40,47,44,51.6], imports: [15,16,17,16,16.7] },
-  // Figure 3.2 (billion EUR, read from the original chart)
-  products: {
-    labels: ["Machinery & transport equipment","Textiles & clothing","Food & agricultural products","Chemicals","Fuels & mining"],
-    euImports: [26.6,5.0,5.0,1.0,0.4],   // EU imports from Vietnam
-    euExports: [4.2,0.6,1.8,3.7,0.2]     // EU exports to Vietnam
-  }
-};
-const C1 = "#003399", C2 = "#FFCC00", EDGE = "#001A57", GRID = "#E3E9F4", AXIS = "#4A5A78", INK = "#0B1B3A";
-
-function roundTop(x, y, w, h, r) { r = Math.min(r, h, w / 2);
-  return `M${x},${y + h} V${y + r} Q${x},${y} ${x + r},${y} H${x + w - r} Q${x + w},${y} ${x + w},${y + r} V${y + h} Z`; }
-function roundRight(x, y, w, h, r) { r = Math.min(r, w, h / 2);
-  return `M${x},${y} H${x + w - r} Q${x + w},${y} ${x + w},${y + r} V${y + h - r} Q${x + w},${y + h} ${x + w - r},${y + h} H${x} Z`; }
-
-const CHARTS = {
-  members() {
-    const { labels, values } = DATA.members, W = 860, H = 440, L = 46, R = 8, T = 36, B = 46, max = 30;
-    const pw = W - L - R, ph = H - T - B, st = pw / labels.length, bw = st * .56, y = v => T + ph - v / max * ph;
-    let g = ""; for (let v = 0; v <= max; v += 10) g += `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}" stroke="${GRID}"/><text x="${L - 10}" y="${y(v) + 6}" text-anchor="end" font-size="17" fill="${AXIS}">${v}</text>`;
-    const bars = values.map((v, i) => { const x = L + i * st + (st - bw) / 2, t = y(v);
-      return `<g class="bar-mark"><title>${labels[i]}: ${v} members</title><path d="${roundTop(x, t, bw, T + ph - t, 6)}" fill="${C1}"/>
-      <text x="${x + bw / 2}" y="${t - 10}" text-anchor="middle" font-size="19" font-weight="700" fill="${INK}">${v}</text>
-      <text x="${x + bw / 2}" y="${H - B + 28}" text-anchor="middle" font-size="16" fill="${AXIS}">${labels[i]}</text></g>`; }).join("");
-    return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="EU members: ${labels.map((l, i) => l + " " + values[i]).join(", ")}">${g}<line x1="${L}" x2="${W - R}" y1="${T + ph}" y2="${T + ph}" stroke="${AXIS}"/>${bars}</svg>`;
-  },
-  trade() {
-    const { labels, exports, imports } = DATA.trade, W = 820, H = 470, L = 50, R = 8, T = 40, B = 46, max = 80;
-    const pw = W - L - R, ph = H - T - B, st = pw / labels.length, bw = st * .5, y = v => T + ph - v / max * ph;
-    let g = ""; for (let v = 0; v <= max; v += 20) g += `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}" stroke="${GRID}"/><text x="${L - 10}" y="${y(v) + 6}" text-anchor="end" font-size="17" fill="${AXIS}">${v}</text>`;
-    const bars = labels.map((lab, i) => { const x = L + i * st + (st - bw) / 2, e = exports[i], m = imports[i], tot = Math.round((e + m) * 10) / 10, yE = y(e), yT = y(tot);
-      return `<g class="bar-mark"><title>${lab}: exports ${e}, imports ${m}, total ≈ ${tot} (billion USD)</title>
-        <rect x="${x}" y="${yE}" width="${bw}" height="${T + ph - yE}" fill="${C1}"/>
-        <path d="${roundTop(x, yT, bw, yE - yT - 3, 6)}" fill="${C2}" stroke="${EDGE}" stroke-width="1.2"/>
-        <text x="${x + bw / 2}" y="${(yE + T + ph) / 2 + 7}" text-anchor="middle" font-size="19" font-weight="700" fill="#fff" data-bg="${C1}">${e}</text>
-        <text x="${x + bw / 2}" y="${(yT + yE) / 2 + 6}" text-anchor="middle" font-size="17" font-weight="700" fill="${INK}" data-bg="${C2}">${m}</text>
-        <text x="${x + bw / 2}" y="${yT - 10}" text-anchor="middle" font-size="19" font-weight="800" fill="${INK}">${tot}</text>
-        <text x="${x + bw / 2}" y="${H - B + 28}" text-anchor="middle" font-size="16" fill="${AXIS}">${lab}</text></g>`; }).join("");
-    return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Vietnam–EU trade 2020–2024">${g}<line x1="${L}" x2="${W - R}" y1="${T + ph}" y2="${T + ph}" stroke="${AXIS}"/>${bars}</svg>
-      <div class="legend"><span><i style="background:${C1}"></i>Vietnam's exports to EU</span><span><i style="background:${C2}"></i>Vietnam's imports from EU</span><span>Total above each bar</span></div>`;
-  },
-  products() {
-    const { labels, euImports, euExports } = DATA.products, W = 820, H = 470, L = 290, R = 52, T = 8, B = 40, max = 30;
-    const pw = W - L - R, rh = (H - T - B) / labels.length, bh = rh * .3, x = v => L + v / max * pw;
-    let g = ""; for (let v = 0; v <= max; v += 5) g += `<line x1="${x(v)}" x2="${x(v)}" y1="${T}" y2="${H - B}" stroke="${GRID}"/><text x="${x(v)}" y="${H - B + 26}" text-anchor="middle" font-size="16" fill="${AXIS}">${v}</text>`;
-    const rows = labels.map((lab, i) => { const y0 = T + i * rh + (rh - 2 * bh - 4) / 2;
-      const bar = (v, yy, col, who) => `<g class="bar-mark"><title>${lab} – ${who}: ≈ ${v.toFixed(1)} bn EUR</title><path d="${roundRight(L, yy, Math.max(x(v) - L, 2), bh, 5)}" fill="${col}"${col === C2 ? ` stroke="${EDGE}" stroke-width="1.2"` : ""}/>
-        <text x="${x(v) + 8}" y="${yy + bh / 2 + 6}" font-size="16" font-weight="700" fill="${INK}">${v.toFixed(1)}</text></g>`;
-      return `<text x="${L - 14}" y="${y0 + bh + 7}" text-anchor="end" font-size="17" fill="${INK}">${lab}</text>` + bar(euImports[i], y0, C1, "EU imports from Vietnam") + bar(euExports[i], y0 + bh + 4, C2, "EU exports to Vietnam"); }).join("");
-    return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Product groups in Vietnam–EU trade 2024">${g}<line x1="${L}" x2="${L}" y1="${T}" y2="${H - B}" stroke="${AXIS}"/>${rows}</svg>
-      <div class="legend"><span><i style="background:${C1}"></i>EU imports from Vietnam</span><span><i style="background:${C2}"></i>EU exports to Vietnam</span></div>`;
-  }
-};
-document.querySelectorAll("[data-chart]").forEach(el => { el.innerHTML = CHARTS[el.dataset.chart](); });
+/* Figures 2.1, 3.1 and 3.2 are drawn by the data-visuals script below (data in viz_data.json) */
 
 /* ---- 12-star rings (logo + fallback decoration) ---- */
 function starPath(cx, cy, R, r) { let d = ""; for (let i = 0; i < 10; i++) { const a = -Math.PI / 2 + i * Math.PI / 5, rr = i % 2 ? r : R; d += (i ? "L" : "M") + (cx + rr * Math.cos(a)).toFixed(2) + "," + (cy + rr * Math.sin(a)).toFixed(2); } return d + "Z"; }
@@ -1432,6 +1537,845 @@ addEventListener("keydown", e => {
   else if (k === "End") { e.preventDefault(); sections[sections.length - 1].scrollIntoView({ behavior: "smooth" }); }
   else if (k === "f" || k === "F") { if (!document.fullscreenElement) document.documentElement.requestFullscreen?.().catch(() => {}); else document.exitFullscreen?.(); }
 });
+</script>
+
+<!-- Data for every visual: copy of viz_data.json (tools/embed_viz_data.py) -->
+<script type="application/json" id="viz-data">{"_about":"Single data source for every visual added to index.html (and for the remade Figures 2.1, 3.1 and 3.2). Every number shown inside a visual must come from a value object below: {\"v\": value, \"s\": status}. Status: exact = appears verbatim in the page text; approximate = shown with the page's approximate sign; derived = calculated from page values (see \"from\"); axis = scale tick only, not a data value. \"pos\" fields only place a mark on a time axis and are never displayed. tools/embed_viz_data.py copies this file into index.html (script#viz-data); tools/check_viz.js checks it.","visuals":[{"key":"A1","kind":"timeline","placement":{"section":"1.2.1","anchor":"c1-history","position":"after the Table 1 milestone cards and their source line"},"label":"Visual · Section 1.2.1","title":"Enlargement milestones run through the whole history of integration","aria":"Scrollable timeline of the milestones in Table 1, from 1950 to 2020–present; membership changes are marked with stars.","unit":"Milestones from Table 1; spacing is by order, not to scale. Select a milestone to read it.","legend":[{"mark":"star","text":"Enlargement (members join)"},{"mark":"star-open","text":"Brexit (a member leaves)"},{"mark":"dot","text":"Other milestone"}],"source":"European Union, European Parliament, European Council, and European Central Bank materials.","items":[{"year":{"v":"1950","s":"exact"},"event":"Schuman Declaration","meaning":"Pooling of French and German coal and steel production"},{"year":{"v":"1951–1952","s":"exact"},"event":"European Coal and Steel Community","meaning":"The first supranational European community"},{"year":{"v":"1957–1958","s":"exact"},"event":"Treaties of Rome: EEC and Euratom","meaning":"Integration extended to broader economic cooperation and a common market"},{"year":{"v":"1965–1967","s":"exact"},"event":"Merger Treaty","meaning":"A single Commission and Council for the ECSC, EEC, and Euratom"},{"year":{"v":"1973","s":"exact"},"event":"First enlargement","meaning":"Denmark, Ireland, and the United Kingdom join","mark":"join"},{"year":{"v":"1979","s":"exact"},"event":"First direct European Parliament elections","meaning":"Citizens directly elect members of the European Parliament"},{"year":{"v":"1981","s":"exact"},"event":"Greece joins","meaning":"The tenth member of the European Communities","mark":"join"},{"year":{"v":"1986","s":"exact"},"event":"Spain and Portugal join","meaning":"The Communities expand to 12 members","mark":"join"},{"year":{"v":"1986-1987","s":"exact"},"event":"Single European Act","meaning":"Legal basis for completing the Single Market"},{"year":{"v":"1992–1993","s":"exact"},"event":"Maastricht Treaty","meaning":"Creation of the EU; foundations for Economic and Monetary Union"},{"year":{"v":"1993","s":"exact"},"event":"Single Market launched","meaning":"Based on the four freedoms"},{"year":{"v":"1995","s":"exact"},"event":"Austria, Finland and Sweden join","meaning":"EU membership increases to 15","mark":"join"},{"year":{"v":"1999","s":"exact"},"event":"Euro introduced","meaning":"For accounting and financial transactions"},{"year":{"v":"2002","s":"exact"},"event":"Euro banknotes and coins","meaning":"Euro cash enters circulation in 12 countries"},{"year":{"v":"2004","s":"exact"},"event":"Major EU enlargement","meaning":"Ten countries, mainly from Central and Eastern Europe","mark":"join"},{"year":{"v":"2007","s":"exact"},"event":"Bulgaria and Romania join","meaning":"EU membership expands to 27 countries","mark":"join"},{"year":{"v":"2009","s":"exact"},"event":"Treaty of Lisbon enters into force","meaning":"Reform of EU institutions and decision-making mechanisms"},{"year":{"v":"2013","s":"exact"},"event":"Croatia joins the EU","meaning":"The 28th member, the final accession before Brexit","mark":"join"},{"year":{"v":"2016","s":"exact"},"event":"UK referendum on EU membership","meaning":"A majority of UK voters vote to leave the EU"},{"year":{"v":"2020","s":"exact"},"event":"Brexit","meaning":"The UK leaves on 31 January 2020; the EU operates with 27 member states","mark":"leave"},{"year":{"v":"2020–present","s":"exact"},"event":"A more resilient and strategic EU","meaning":"Economic resilience, climate change, digital transformation, energy security"}]},{"key":"A2","kind":"unit-grid","placement":{"section":"2.1.1","anchor":"c2-deepening","position":"right-hand column, beside the text"},"label":"Visual · Section 2.1.1","title":"21 of 27 member states use the euro as official currency","aria":"Twenty-seven stars, one per member state: 21 filled gold stars use the euro, 6 outlined stars do not. Stars are not assigned to named countries.","unit":"One star = one member state. Stars are not linked to particular countries.","notes":["6 = 27 − 21 (derived)."],"source":"Balassa (1961); European Union (2026); Jones et al. (2016); European Commission (n.d.-e).","total":{"v":27,"s":"exact"},"euro":{"v":21,"s":"exact"},"other":{"v":6,"s":"derived","from":"27 − 21"},"labels":{"euro":"use the euro","other":"do not use the euro (derived)"}},{"key":"F2.1","kind":"step","remake":"Figure 2.1","placement":{"section":"2.1.2","anchor":"c2-enlargement","position":"existing Figure 2.1 (same caption, data and source)"},"aria":"Step chart of EU members after each enlargement: 6 in 1957, 9 in 1973, 10 in 1981, 12 in 1986, 15 in 1995, 25 in 2004, 27 in 2007, 28 in 2013 and 27 in 2020 after the UK withdrawal.","unit":"Number of member states. Wave notes from Table 2.1.","axis":{"y":{"ticks":[{"v":0,"s":"axis"},{"v":10,"s":"axis"},{"v":20,"s":"axis"},{"v":30,"s":"axis"}]},"x":{"from":{"v":1957,"s":"exact"},"to":{"v":2020,"s":"exact"}}},"points":[{"year":{"v":1957,"s":"exact"},"members":{"v":6,"s":"exact"},"wave":"Founding six"},{"year":{"v":1973,"s":"exact"},"members":{"v":9,"s":"exact"},"wave":"Denmark, Ireland, UK"},{"year":{"v":1981,"s":"exact"},"members":{"v":10,"s":"exact"},"wave":"Greece"},{"year":{"v":1986,"s":"exact"},"members":{"v":12,"s":"exact"},"wave":"Spain, Portugal"},{"year":{"v":1995,"s":"exact"},"members":{"v":15,"s":"exact"},"wave":"Austria, Finland, Sweden"},{"year":{"v":2004,"s":"exact"},"members":{"v":25,"s":"exact"},"wave":"Ten countries","emphasis":"jump"},{"year":{"v":2007,"s":"exact"},"members":{"v":27,"s":"exact"},"wave":"Bulgaria and Romania"},{"year":{"v":2013,"s":"exact"},"members":{"v":28,"s":"exact"},"wave":"Croatia"},{"year":{"v":2020,"s":"exact"},"members":{"v":27,"s":"exact"},"wave":"The United Kingdom leaves","emphasis":"drop"}]},{"key":"A4","kind":"status-timeline","placement":{"section":"2.2.1","anchor":"c2-agreements","position":"below Table 2.2"},"label":"Visual · Section 2.2.1","title":"The EU's trade network keeps widening, with agreements at every stage","aria":"Timeline of the five agreements in Table 2.2. Japan in force since 1 February 2019; Vietnam (EVFTA) in force since 1 August 2020; Mercosur political agreement 6 December 2024, signed 17 January 2026, provisionally applied from 1 May 2026; India negotiations concluded 27 January 2026, presented to the Council 11 September 2026; Philippines substantial agreement announced 22 September 2026.","unit":"Dates from Table 2.2 (status as of October 2026). Shape and label show the latest status.","context":{"text":"The EU has 40+ agreements in place with about 80 partners (Section 2.2.1).","agreements":{"v":"40+","s":"exact"},"partners":{"v":"about 80","s":"exact"}},"source":"European Commission (n.d.-c, n.d.-d, n.d.-f). Agreement count as stated in Section 2.2.1.","axis":{"x":{"ticks":[{"v":2019,"s":"axis"},{"v":2020,"s":"axis"},{"v":2021,"s":"axis"},{"v":2022,"s":"axis"},{"v":2023,"s":"axis"},{"v":2024,"s":"axis"},{"v":2025,"s":"axis"},{"v":2026,"s":"axis"},{"v":2027,"s":"axis"}]}},"statuses":{"force":"In force","provisional":"Provisionally applied","concluded":"Negotiations concluded","announced":"Substantial agreement announced","step":"Earlier step"},"rows":[{"partner":"Japan","status":"force","events":[{"date":{"v":"1 February 2019","s":"exact","pos":"2019-02-01"},"what":"In force (EU–Japan Economic Partnership Agreement)","type":"force"}]},{"partner":"Vietnam","status":"force","events":[{"date":{"v":"1 August 2020","s":"exact","pos":"2020-08-01"},"what":"EVFTA in force; EVIPA still awaits ratification by all member states","type":"force"}]},{"partner":"Mercosur","status":"provisional","events":[{"date":{"v":"6 December 2024","s":"exact","pos":"2024-12-06"},"what":"Political agreement","type":"step"},{"date":{"v":"17 January 2026","s":"exact","pos":"2026-01-17"},"what":"Signed","type":"step"},{"date":{"v":"1 May 2026","s":"exact","pos":"2026-05-01"},"what":"Interim trade agreement provisionally applied","type":"provisional"}]},{"partner":"India","status":"concluded","events":[{"date":{"v":"27 January 2026","s":"exact","pos":"2026-01-27"},"what":"Negotiations concluded","type":"concluded"},{"date":{"v":"11 September 2026","s":"exact","pos":"2026-09-11"},"what":"Presented to the Council for signature and conclusion","type":"step"}]},{"partner":"Philippines","status":"announced","events":[{"date":{"v":"22 September 2026","s":"exact","pos":"2026-09-22"},"what":"Substantial agreement on an FTA announced","type":"announced"}]}],"asOf":{"v":"October 2026","s":"exact","pos":"2026-10"}},{"key":"A5","kind":"target-path","placement":{"section":"2.3.1","anchor":"c2-climate","position":"right-hand column, beside the text"},"label":"Visual · Section 2.3.1","title":"EU climate targets step down from 1990 levels to climate neutrality in 2050","aria":"Index of net greenhouse-gas emissions, 1990 = 100. Latest reported level about 65 (about 35% below 1990). Targets: 45 or less in 2030, 10 in 2040, 0 (climate neutrality) in 2050. All values except 1990 are derived from the stated percentages; these are targets, not projections.","unit":"Index, net greenhouse-gas emissions, 1990 = 100.","notes":["Targets, not projections; straight lines are schematic.","Derived: 2030 = 100 − 55 (at least 55% reduction, so at most 45); 2040 = 100 − 90 (90% net reduction: 85% domestic and up to 5% international carbon credits); 2050 = 0 (climate neutrality); latest ≈ 65 = 100 − about 35%.","The latest level is placed at 2024, the year of the emissions-share figure in Section 2.3.1."],"source":"European Commission (2026a); European Commission Joint Research Centre (2025).","axis":{"y":{"ticks":[{"v":0,"s":"axis"},{"v":25,"s":"axis"},{"v":50,"s":"axis"},{"v":75,"s":"axis"},{"v":100,"s":"axis"}]}},"points":[{"year":{"v":1990,"s":"exact"},"index":{"v":100,"s":"derived","from":"index base: 1990 = 100"},"label":"1990 base","type":"base","short":"1990 base"},{"year":{"v":2024,"s":"exact"},"index":{"v":65,"s":"derived","approx":true,"from":"100 − about 35% (\"about 35% below 1990 levels\")"},"label":"Latest reported","pct":{"v":"about 35%","s":"exact"},"type":"latest","short":"about 35% below 1990"},{"year":{"v":2030,"s":"exact"},"index":{"v":45,"s":"derived","from":"100 − 55 (\"at least 55%\")","bound":"at most"},"label":"Target: at least −55%","pct":{"v":"55%","s":"exact"},"type":"target","short":"at least −55%"},{"year":{"v":2040,"s":"exact"},"index":{"v":10,"s":"derived","from":"100 − 90 (\"90% net reduction\")"},"label":"Target: −90% net","pct":{"v":"90%","s":"exact"},"split":{"domestic":{"v":"85%","s":"exact"},"credits":{"v":"5%","s":"exact"}},"type":"target","short":"−90% net"},{"year":{"v":2050,"s":"exact"},"index":{"v":0,"s":"derived","from":"climate neutrality = net zero"},"label":"Climate neutrality","type":"target","short":"climate neutrality"}]},{"key":"A6","kind":"donut-counters","placement":{"section":"2.3.2","anchor":"c2-security","position":"below the three cards"},"label":"Visual · Section 2.3.2","title":"Most CSDP missions are civilian; since 2022 the EU has added sanctions and defence finance","aria":"Donut chart of 22 CSDP missions and operations: 13 civilian, 8 military, 1 civilian-military. Beside it: 21 sanctions packages against Russia by July 2026, about EUR 210 billion in Russian central bank assets immobilised, and the EUR 150 billion SAFE loan instrument.","unit":"Missions and operations: count. Money: EUR billion.","source":"Council of the European Union (2025, 2026a, 2026b).","donut":{"total":{"v":22,"s":"exact"},"parts":[{"name":"civilian","n":{"v":13,"s":"exact"}},{"name":"military","n":{"v":8,"s":"exact"}},{"name":"civilian-military","n":{"v":1,"s":"exact"}}],"caption":"CSDP missions and operations"},"counters":[{"n":{"v":21,"s":"exact"},"prefix":"","suffix":"","text":"sanctions packages against Russia, by {date}","date":{"v":"July 2026","s":"exact"}},{"n":{"v":210,"s":"approximate"},"prefix":"≈ EUR ","suffix":" bn","text":"Russian central bank assets immobilised in the EU (about EUR 210 billion)"},{"n":{"v":150,"s":"exact"},"prefix":"EUR ","suffix":" bn","text":"SAFE loan instrument, adopted on {date}","date":{"v":"27 May 2025","s":"exact"}}]},{"key":"A7","kind":"milestones","placement":{"section":"3.2.3","anchor":"c3-impact-trade","position":"below the two tariff statistics (where the EU tariff figures appear on the page)"},"label":"Visual · Section 3.2.3 (a)","title":"The EU removes most tariffs on Vietnamese goods at entry into force and almost all within seven years","aria":"EU tariff elimination for Vietnamese goods under the EVFTA. Upon entry into force: 85.6% of tariff lines, 70.3% of Vietnam's export value. After seven years: 99.2% of tariff lines, 99.7% of export value.","unit":"Share eliminated by the EU, %.","notes":["Milestones, not annual data; dashed lines only connect the two milestones."],"source":"Ministry of Industry and Trade of Vietnam.","axis":{"y":{"ticks":[{"v":0,"s":"axis"},{"v":25,"s":"axis"},{"v":50,"s":"axis"},{"v":75,"s":"axis"},{"v":100,"s":"axis"}]}},"milestones":["Upon entry into force","After seven years"],"series":[{"name":"Tariff lines","values":[{"v":85.6,"s":"exact"},{"v":99.2,"s":"exact"}]},{"name":"Vietnam's export value","values":[{"v":70.3,"s":"exact"},{"v":99.7,"s":"exact"}]}]},{"key":"A8a","kind":"dumbbell","placement":{"section":"3.2.3","anchor":"c3-impact-trade","position":"beside the tariff milestones, below Table 3.4"},"label":"Visual · Section 3.2.3 (b)","title":"All three trade indicators rose from 2019 to 2024, the surplus fastest","aria":"Dumbbell chart, US$ billion, 2019 to 2024: total Vietnam–EU trade 49.8 to 68.3 (+37.1%); Vietnam's exports to the EU 35.8 to 51.6 (+44.1%); Vietnam's trade surplus with the EU about 21.8 to 34.9 (+60.1%).","unit":"US$ billion. Change as in Table 3.4.","notes":["The 2019 surplus is approximate (≈), as in Table 3.4."],"source":"Ministry of Industry and Trade of Vietnam.","axis":{"x":{"ticks":[{"v":0,"s":"axis"},{"v":20,"s":"axis"},{"v":40,"s":"axis"},{"v":60,"s":"axis"},{"v":80,"s":"axis"}]}},"years":[{"v":2019,"s":"exact"},{"v":2024,"s":"exact"}],"rows":[{"name":"Total Vietnam–EU trade","a":{"v":49.8,"s":"exact"},"b":{"v":68.3,"s":"exact"},"change":{"v":"+37.1%","s":"exact"}},{"name":"Vietnam's exports to EU","a":{"v":35.8,"s":"exact"},"b":{"v":51.6,"s":"exact"},"change":{"v":"+44.1%","s":"exact"}},{"name":"Vietnam's trade surplus with EU","a":{"v":21.8,"s":"approximate"},"b":{"v":34.9,"s":"exact"},"change":{"v":"+60.1%","s":"exact"}}]},{"key":"A8b","kind":"hbar","placement":{"section":"3.2.3","anchor":"c3-impact-investment","position":"below the EVIPA callout"},"label":"Visual · Section 3.2.3 (c)","title":"EU registered investment in Vietnam is far below that of South Korea and Singapore","aria":"Cumulative registered investment in Vietnam, US$ billion: South Korea more than 92 (end of 2024); Singapore about 83.13 (end of 2024); EU about 30.6 (2024). Figures come from different sources.","unit":"Cumulative registered investment in Vietnam, US$ billion.","notes":["Figures come from different sources; the comparison is indicative only (see the note under Table 3.5).","An open bar end means \"more than\"."],"source":"Foreign Investment Agency/MPI and European External Action Service.","axis":{"x":{"ticks":[{"v":0,"s":"axis"},{"v":25,"s":"axis"},{"v":50,"s":"axis"},{"v":75,"s":"axis"},{"v":100,"s":"axis"}]}},"rows":[{"name":"South Korea","when":"end of 2024","n":{"v":92,"s":"exact","bound":"more than"},"display":"> 92"},{"name":"Singapore","when":"end of 2024","n":{"v":83.13,"s":"approximate"},"display":"≈ 83.13"},{"name":"EU","when":"2024","n":{"v":30.6,"s":"approximate"},"display":"≈ 30.6","highlight":true}],"year":{"v":2024,"s":"exact"}},{"key":"B1","kind":"two-lane","placement":{"section":"3.1.1","anchor":"c3-milestones","position":"below Table 3.1"},"label":"Visual · Sections 3.1.1 and 3.2.1","title":"The EVFTA and EVIPA process runs alongside the deepening of Vietnam–EU relations","aria":"Two-lane timeline. Upper lane: Vietnam–EU relations from Table 3.1, 1990 to 1 Aug 2026. Lower lane: EVFTA and EVIPA milestones from Table 3.3, 2010 to Aug 2026.","unit":"Time axis to scale; dates as given in Tables 3.1 and 3.3. Ranges are drawn as bars.","source":"Compiled by the authors from the data in Sections 3.1.1 and 3.2.1.","axis":{"x":{"ticks":[{"v":1990,"s":"axis"},{"v":1995,"s":"axis"},{"v":2000,"s":"axis"},{"v":2005,"s":"axis"},{"v":2010,"s":"axis"},{"v":2015,"s":"axis"},{"v":2020,"s":"axis"},{"v":2025,"s":"axis"}]}},"lanes":[{"name":"Vietnam–EU relations (Table 3.1)","items":[{"date":{"v":"1990","s":"exact","pos":"1990"},"text":"Diplomatic relations established"},{"date":{"v":"1995","s":"exact","pos":"1995"},"text":"Framework cooperation arrangements"},{"date":{"v":"27 Jun 2012","s":"exact","pos":"2012-06-27"},"text":"Partnership and Cooperation Agreement signed in Brussels"},{"date":{"v":"Jun 2018","s":"exact","pos":"2018-06"},"text":"Final EVFTA text agreed after a lengthy legal review"},{"date":{"v":"30 Jun 2019","s":"exact","pos":"2019-06-30"},"text":"EVFTA and EVIPA signed in Hanoi"},{"date":{"v":"12 Feb 2020","s":"exact","pos":"2020-02-12"},"text":"European Parliament approves EVFTA and EVIPA"},{"date":{"v":"1 Aug 2020","s":"exact","pos":"2020-08-01"},"text":"EVFTA enters into force"},{"date":{"v":"2022–2025","s":"exact","pos":"2022/2025"},"text":"JETP launched with an initial US$15.5 billion pledge; first flagship projects announced in 2025"},{"date":{"v":"29 Jan 2026","s":"exact","pos":"2026-01-29"},"text":"Relations upgraded to a Comprehensive Strategic Partnership during European Council President António Costa's visit to Hanoi"},{"date":{"v":"24 Mar 2026","s":"exact","pos":"2026-03-24"},"text":"EU announces more than €560 million in new Global Gateway commitments for Vietnam"},{"date":{"v":"1 Aug 2026","s":"exact","pos":"2026-08-01"},"text":"EVFTA completed six years in force"}]},{"name":"EVFTA and EVIPA (Table 3.3)","items":[{"date":{"v":"2010","s":"exact","pos":"2010"},"text":"Scoping exercise; decision to negotiate"},{"date":{"v":"2012","s":"exact","pos":"2012"},"text":"Formal negotiations launched"},{"date":{"v":"Dec 2015","s":"exact","pos":"2015-12"},"text":"Negotiations concluded in principle"},{"date":{"v":"May 2017","s":"exact","pos":"2017-05"},"text":"CJEU Opinion 2/15; agreement split into EVFTA and EVIPA"},{"date":{"v":"30 Jun 2019","s":"exact","pos":"2019-06-30"},"text":"EVFTA and EVIPA signed in Hanoi"},{"date":{"v":"Feb–Mar 2020","s":"exact","pos":"2020-02/2020-03"},"text":"European Parliament consent; Council approval"},{"date":{"v":"Jun 2020","s":"exact","pos":"2020-06"},"text":"Vietnam's National Assembly ratifies both agreements"},{"date":{"v":"1 Aug 2020","s":"exact","pos":"2020-08-01"},"text":"EVFTA enters into force"},{"date":{"v":"Nov 2025","s":"exact","pos":"2025-11"},"text":"Poland becomes the 20th member state to ratify the EVIPA"},{"date":{"v":"Aug 2026","s":"exact","pos":"2026-08"},"text":"France submits its EVIPA ratification bill to Parliament"}]}]},{"key":"B2","kind":"unit-grid","placement":{"section":"3.2.1","anchor":"c3-evfta","position":"below Table 3.3"},"label":"Visual · Section 3.2.1","title":"20 member states had ratified the EVIPA by November 2025; it is not yet in force","aria":"Twenty-seven dots, one per member state: 20 filled dots have ratified the EVIPA (Poland was the 20th, in November 2025); 7 outlined dots have not. As reported in November 2025; not yet in force as of October 2026.","unit":"One dot = one member state. Dots are not linked to particular countries.","notes":["As reported, Nov 2025; not yet in force as of Oct 2026.","7 = 27 − 20 (derived)."],"source":"Compiled by the authors from the data in Section 3.2.1.","total":{"v":27,"s":"exact"},"euro":{"v":20,"s":"exact"},"other":{"v":7,"s":"derived","from":"27 − 20"},"labels":{"euro":"have ratified (Poland the 20th, Nov 2025)","other":"not yet (derived)"},"shape":"dot","when":{"v":"November 2025","s":"exact"},"asOf":{"v":"October 2026","s":"exact"}},{"key":"B3a","kind":"waffle","placement":{"section":"2.2.3","anchor":"c2-development","position":"left column, under the USD 88.7 billion statistic"},"label":"Visual · Section 2.2.3 (a)","title":"EU countries in the DAC gave 42% of global development assistance in 2024","aria":"Waffle chart of 100 squares for global assistance of USD 212 billion: 42 gold squares are the USD 88.7 billion given by EU countries in the OECD Development Assistance Committee, 8.6% less than in 2023.","unit":"100 squares = global assistance of USD 212 billion (2024).","source":"Finnish Government (2025); European Commission (2026b).","share":{"v":42,"s":"exact"},"part":{"v":88.7,"s":"exact"},"whole":{"v":212,"s":"exact"},"change":{"v":"8.6%","s":"exact"},"cells":{"v":100,"s":"axis"},"year":{"v":2024,"s":"exact"},"baseYear":{"v":2023,"s":"exact"}},{"key":"B3b","kind":"target-bar","placement":{"section":"2.2.3","anchor":"c2-development","position":"right column, under the Global Gateway card"},"label":"Visual · Section 2.2.3 (b)","title":"Global Gateway mobilisation has passed its EUR 300 billion target","aria":"Bar chart: Global Gateway target of mobilising up to EUR 300 billion; Team Europe had mobilised more than EUR 306 billion for over 250 projects by 2026.","unit":"EUR billion. An open bar end means \"more than\".","source":"Finnish Government (2025); European Commission (2026b).","axis":{"x":{"ticks":[{"v":0,"s":"axis"},{"v":100,"s":"axis"},{"v":200,"s":"axis"},{"v":300,"s":"axis"}]}},"target":{"v":300,"s":"exact","text":"Target: up to EUR 300 bn"},"actual":{"v":306,"s":"exact","bound":"more than","text":"Mobilised by 2026: more than EUR 306 bn"},"projects":{"v":250,"s":"exact","text":"over 250 projects"},"by":{"v":2026,"s":"exact"}},{"key":"B4","kind":"stairs3d","placement":{"section":"1.1.2","anchor":"c1-levels","position":"between the introductory text and the five cards"},"label":"Visual · Section 1.1.2 · Schematic","title":"Each level of integration builds on the one below","aria":"Schematic staircase of five levels of regional economic integration: Free Trade Area, Customs Union, Common Market, Economic Union, Economic and Monetary Union. Not a measurement.","unit":"Schematic: block heights show order only, not a measured quantity. Select a level to read its description.","source":"Compiled by the authors from the data in Section 1.1.2.","steps":[{"name":"Free Trade Area","text":"Members eliminate or reduce tariffs on goods traded among themselves; each member retains its own trade policy toward non-member countries.","n":{"v":1,"s":"exact"}},{"name":"Customs Union","text":"Establishes a common external tariff toward non-member countries.","n":{"v":2,"s":"exact"}},{"name":"Common Market","text":"Restrictions on the movement of capital, labor, and services are substantially reduced.","n":{"v":3,"s":"exact"}},{"name":"Economic Union","text":"Members may coordinate policies concerning taxation, competition, government spending and employment.","n":{"v":4,"s":"exact"}},{"name":"Economic and Monetary Union","text":"Members may adopt a common currency managed by a common central bank. The euro area is the most prominent contemporary example.","n":{"v":5,"s":"exact"}}]},{"key":"B5","kind":"institutions","placement":{"section":"1.2.2","anchor":"c1-institutions","position":"below the six institution cards"},"label":"Visual · Section 1.2.2 · Schematic","title":"The Commission proposes; the Parliament and the Council adopt","aria":"Schematic of the relations stated in Section 1.2.2: the European Council defines overall political direction and priorities; the European Commission proposes legislation; the European Parliament and the Council of the European Union adopt EU legislation together; the Court of Justice of the European Union ensures EU law is interpreted and applied consistently; the European Central Bank is responsible for monetary policy in the euro area.","unit":"Schematic: only the relations stated in the text of Section 1.2.2 are drawn.","source":"Compiled by the authors from the data in Section 1.2.2."},{"key":"B6","kind":"range","placement":{"section":"2.1.3","anchor":"c2-challenges","position":"beside the Competitiveness callout"},"label":"Visual · Section 2.1.3","title":"Draghi (2024): the EU needs to invest EUR 750–800 billion a year","aria":"Range bars: EUR 750 to 800 billion a year, equal to 4.4 to 4.7% of EU GDP in 2023 (Draghi, 2024). Both are ranges, not single estimates.","unit":"Ranges as stated; no single point estimate is chosen.","source":"Draghi (2024).","rows":[{"name":"Investment need, EUR billion a year","lo":{"v":750,"s":"exact"},"hi":{"v":800,"s":"exact"},"max":{"v":1000,"s":"axis"},"fmt":"EUR {lo}–{hi} bn","min":{"v":0,"s":"axis"}},{"name":"Share of 2023 GDP, %","lo":{"v":4.4,"s":"exact"},"hi":{"v":4.7,"s":"exact"},"max":{"v":5,"s":"axis"},"fmt":"{lo}–{hi}%","min":{"v":0,"s":"axis"}}],"gdpYear":{"v":2023,"s":"exact"}},{"key":"F3.1","kind":"stacked","remake":"Figure 3.1","placement":{"section":"3.1.2","anchor":"c3-trade","position":"existing Figure 3.1 (same caption, data and source)"},"aria":"Stacked bars, billion USD: exports to the EU and imports from the EU, 2020 to 2024. 2020: about 40 and 15; 2021: about 40 and 16; 2022: about 47 and 17; 2023: about 44 and 16; 2024: 51.6 and 16.7.","notes":["≈ = approximate (2020–2023, read from the original chart). Totals above the bars are derived (exports + imports)."],"axis":{"y":{"ticks":[{"v":0,"s":"axis"},{"v":20,"s":"axis"},{"v":40,"s":"axis"},{"v":60,"s":"axis"},{"v":80,"s":"axis"}]}},"series":["Vietnam's exports to EU","Vietnam's imports from EU"],"bars":[{"year":{"v":2020,"s":"exact"},"exports":{"v":40,"s":"approximate"},"imports":{"v":15,"s":"approximate"},"total":{"v":55,"s":"derived","approx":true,"from":"40 + 15"}},{"year":{"v":2021,"s":"exact"},"exports":{"v":40,"s":"approximate"},"imports":{"v":16,"s":"approximate"},"total":{"v":56,"s":"derived","approx":true,"from":"40 + 16"}},{"year":{"v":2022,"s":"exact"},"exports":{"v":47,"s":"approximate"},"imports":{"v":17,"s":"approximate"},"total":{"v":64,"s":"derived","approx":true,"from":"47 + 17"}},{"year":{"v":2023,"s":"exact"},"exports":{"v":44,"s":"approximate"},"imports":{"v":16,"s":"approximate"},"total":{"v":60,"s":"derived","approx":true,"from":"44 + 16"}},{"year":{"v":2024,"s":"exact"},"exports":{"v":51.6,"s":"exact"},"imports":{"v":16.7,"s":"exact"},"total":{"v":68.3,"s":"exact","from":"51.6 + 16.7; stated on the page"}}]},{"key":"F3.2","kind":"paired-hbar","remake":"Figure 3.2","placement":{"section":"3.1.2","anchor":"c3-structure","position":"existing Figure 3.2 (same caption, data and source)"},"aria":"Paired horizontal bars, billion EUR, 2024, all values approximate: machinery and transport equipment 26.6 EU imports from Vietnam, 4.2 EU exports to Vietnam; textiles and clothing 5.0 and 0.6; food and agricultural products 5.0 and 1.8; chemicals 1.0 and 3.7; fuels and mining 0.4 and 0.2.","notes":["All values approximate (≈), read from the original chart."],"axis":{"x":{"ticks":[{"v":0,"s":"axis"},{"v":5,"s":"axis"},{"v":10,"s":"axis"},{"v":15,"s":"axis"},{"v":20,"s":"axis"},{"v":25,"s":"axis"},{"v":30,"s":"axis"}]}},"series":["EU imports from Vietnam","EU exports to Vietnam"],"rows":[{"name":"Machinery & transport equipment","a":{"v":26.6,"s":"approximate"},"b":{"v":4.2,"s":"approximate"}},{"name":"Textiles & clothing","a":{"v":5.0,"s":"approximate","txt":"5.0"},"b":{"v":0.6,"s":"approximate"}},{"name":"Food & agricultural products","a":{"v":5.0,"s":"approximate","txt":"5.0"},"b":{"v":1.8,"s":"approximate"}},{"name":"Chemicals","a":{"v":1.0,"s":"approximate","txt":"1.0"},"b":{"v":3.7,"s":"approximate"}},{"name":"Fuels & mining","a":{"v":0.4,"s":"approximate"},"b":{"v":0.2,"s":"approximate"}}]}]}</script>
+<script>
+/* ======================================================
+   DATA VISUALS
+   One set of helpers (scales, axes, label placement, marks,
+   tooltip, "View data" tables, draw-in) and one renderer per
+   visual kind. Every value comes from script#viz-data, a copy
+   of viz_data.json (tools/embed_viz_data.py keeps them equal).
+   ====================================================== */
+(function () {
+  const holder = document.getElementById("viz-data");
+  if (!holder) return;
+  const DATA = JSON.parse(holder.textContent);
+  const SPEC = {}; DATA.visuals.forEach(v => { SPEC[v.key] = v; });
+  const REDUCE = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const K = { blue: "#003399", gold: "#FFCC00", navy: "#001A57", grid: "#E3E9F4", axis: "#4A5A78", ink: "#0B1B3A", tint: "#E8EEF9", tint2: "#F4F7FC", line: "#D3DCEC", white: "#FFFFFF" };
+
+  /* ---------- values and text ---------- */
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const V = o => (o && typeof o === "object") ? o.v : o;
+  function show(o) {                      // value object -> text, keeping the qualifiers of the page
+    if (o == null) return "";
+    if (typeof o !== "object") return String(o);
+    let t = o.txt != null ? o.txt : String(o.v);
+    if (o.bound === "more than") t = "> " + t;
+    else if (o.bound === "at most") t = "≤ " + t;
+    if (o.s === "approximate" || o.approx) t = "≈ " + t;
+    return t;
+  }
+  const status = o => !o || !o.s ? "" : o.s === "derived" ? (o.approx ? "derived (approximate)" : "derived") : o.s;
+  const num = n => typeof n === "number" && Math.abs(n) >= 1000 ? n.toLocaleString("en-US") : String(n);
+  const rootPx = () => parseFloat(getComputedStyle(document.documentElement).fontSize) || 18;
+  const FS = k => Math.max(12, Math.round(rootPx() * k));          // SVG text size in real pixels, never below 12
+  const lin = (d0, d1, r0, r1) => v => r0 + (v - d0) / (d1 - d0) * (r1 - r0);
+  const textW = (s, fs, bold) => String(s).length * fs * (bold ? .6 : .55);
+  const f1 = n => (+n).toFixed(1);
+  const stagger = (i, n) => Math.min(6, n > 1 ? i * 6 / (n - 1) : 0).toFixed(2);   // delay steps, max 6 x 45 ms
+  function wrap(s, maxW, fs, bold) {
+    const out = []; let cur = "";
+    String(s).split(" ").forEach(w => { const t = cur ? cur + " " + w : w; if (cur && textW(t, fs, bold) > maxW) { out.push(cur); cur = w; } else cur = t; });
+    if (cur) out.push(cur); return out;
+  }
+  function T(x, y, s, o = {}) {                    // text; s may be an array of lines
+    const fs = o.size || FS(.62), lines = Array.isArray(s) ? s : [s], lh = fs * 1.25;
+    const body = lines.length === 1 ? esc(lines[0]) : lines.map((l, i) => `<tspan x="${f1(x)}" dy="${i ? f1(lh) : 0}">${esc(l)}</tspan>`).join("");
+    return `<text x="${f1(x)}" y="${f1(y)}"${o.anchor ? ` text-anchor="${o.anchor}"` : ""} font-size="${fs}"${o.weight ? ` font-weight="${o.weight}"` : ""} fill="${o.fill || K.ink}"${o.bg ? ` data-bg="${o.bg}"` : ""}${o.cls ? ` class="${o.cls}"` : ""}>${body}</text>`;
+  }
+  // a focusable data mark: hover / focus / tap shows the tooltip; "hit" is the hover and focus area
+  function mark(inner, tip, hit, cls = "") {
+    const h = hit ? (Array.isArray(hit[0]) ? hit : [hit]).map(b => `<rect class="hit" x="${f1(b[0])}" y="${f1(b[1])}" width="${f1(b[2])}" height="${f1(b[3])}" rx="3"/>`).join("") : "";
+    return `<g class="vz-mark${cls ? " " + cls : ""}" tabindex="0" role="img" aria-label="${esc(tip.replace(/\n/g, "; "))}" data-tip="${esc(tip)}">${h}${inner}</g>`;
+  }
+  const svg = (w, h, body, label, defs = "") => `<svg viewBox="0 0 ${Math.round(w)} ${Math.round(h)}" width="${Math.round(w)}" height="${Math.round(h)}" role="group" aria-label="${esc(label)}">${defs ? `<defs>${defs}</defs>` : ""}${body}</svg>`;
+  let UID = 0;
+  const hatch = id => `<pattern id="${id}" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="7" height="7" fill="${K.gold}"/><line x1="1" y1="0" x2="1" y2="7" stroke="${K.navy}" stroke-opacity=".2" stroke-width="2"/></pattern>`;
+  function starPts(cx, cy, R, r) { let d = ""; for (let i = 0; i < 10; i++) { const a = -Math.PI / 2 + i * Math.PI / 5, rr = i % 2 ? r : R; d += (i ? "L" : "M") + f1(cx + rr * Math.cos(a)) + "," + f1(cy + rr * Math.sin(a)); } return d + "Z"; }
+  // shapes used in legends and marks
+  const SH = {
+    dotBlue: (x, y, r) => `<circle cx="${f1(x)}" cy="${f1(y)}" r="${f1(r)}" fill="${K.blue}"/>`,
+    ring: (x, y, r) => `<circle cx="${f1(x)}" cy="${f1(y)}" r="${f1(r * .85)}" fill="${K.white}" stroke="${K.navy}" stroke-width="2.4"/>`,
+    goldDiamond: (x, y, r) => `<path d="M${f1(x)},${f1(y - r * 1.15)}L${f1(x + r * 1.15)},${f1(y)}L${f1(x)},${f1(y + r * 1.15)}L${f1(x - r * 1.15)},${f1(y)}Z" fill="${K.gold}" stroke="${K.navy}" stroke-width="1.4"/>`,
+    goldStar: (x, y, r) => `<path d="${starPts(x, y, r * 1.35, r * .55)}" fill="${K.gold}" stroke="${K.navy}" stroke-width="1.2" stroke-linejoin="round"/>`,
+    openStar: (x, y, r) => `<path d="${starPts(x, y, r * 1.35, r * .55)}" fill="${K.white}" stroke="${K.navy}" stroke-width="1.6" stroke-linejoin="round"/>`,
+    smallDot: (x, y, r) => `<circle cx="${f1(x)}" cy="${f1(y)}" r="${f1(r * .55)}" fill="${K.navy}"/>`,
+    goldSquare: (x, y, r) => `<rect x="${f1(x - r)}" y="${f1(y - r)}" width="${f1(2 * r)}" height="${f1(2 * r)}" fill="${K.gold}" stroke="${K.navy}" stroke-width="1.4"/>`,
+    openDot: (x, y, r) => `<circle cx="${f1(x)}" cy="${f1(y)}" r="${f1(r)}" fill="${K.white}" stroke="${K.navy}" stroke-width="2"/>`
+  };
+  const legendItem = (shape, text) => `<span><svg viewBox="-9 -9 18 18" aria-hidden="true">${shape}</svg>${esc(text)}</span>`;
+  const swatch = (fill, stroke) => `<rect x="-7" y="-7" width="14" height="14" rx="2" fill="${fill}" stroke="${stroke || K.navy}" stroke-width="1.2"/>`;
+  function hatchSwatch() { const id = "vzh" + (++UID); return `<defs>${hatch(id)}</defs>${swatch(`url(#${id})`)}`; }
+
+  // dates on a time axis ("pos" is placement only): "2019", "2018-06", "2019-02-01", ranges "a/b"
+  function yearPos(p, end) {
+    const [y, m, d] = p.split("-").map(Number);
+    if (!m) return y + (end ? 1 : 0);
+    if (!d) return y + (m - 1) / 12 + (end ? 1 / 12 : .5 / 12);
+    return y + (m - 1) / 12 + (d - 1) / 365;
+  }
+  const span = p => { const [a, b] = p.split("/"); return b ? [yearPos(a), yearPos(b, true)] : [yearPos(a), yearPos(a)]; };
+
+  // greedy label placement: keeps labels off each other and off the drawn lines
+  function placer(bounds) {
+    const boxes = [];
+    const clash = b => b[0] < bounds[0] || b[1] < bounds[1] || b[0] + b[2] > bounds[2] || b[1] + b[3] > bounds[3] ||
+      boxes.some(o => b[0] < o[0] + o[2] && b[0] + b[2] > o[0] && b[1] < o[1] + o[3] && b[1] + b[3] > o[1]);
+    return {
+      block(b) { boxes.push(b); },
+      line(x1, y1, x2, y2, pad = 3) { const n = Math.max(1, Math.ceil(Math.hypot(x2 - x1, y2 - y1) / 6)); for (let i = 0; i <= n; i++) { const x = x1 + (x2 - x1) * i / n, y = y1 + (y2 - y1) * i / n; boxes.push([x - pad, y - pad, 2 * pad, 2 * pad]); } },
+      take(cands) { for (const b of cands) if (!clash(b)) { boxes.push(b); return b; } return null; }
+    };
+  }
+
+  /* ---------- tooltip (hover, keyboard focus, tap) ---------- */
+  const tip = document.createElement("div");
+  tip.className = "vz-tip"; tip.setAttribute("aria-hidden", "true"); document.body.appendChild(tip);
+  let tipFor = null;
+  function showTip(el) {
+    const t = el.getAttribute("data-tip"); if (!t) return;
+    const [head, ...rest] = t.split("\n");
+    tip.innerHTML = `<b>${esc(head)}</b>` + rest.map(esc).join("<br>");
+    if (tipFor && tipFor !== el) tipFor.classList.remove("on");
+    tipFor = el; el.classList.add("on"); tip.classList.add("show");
+    const r = el.getBoundingClientRect(), tw = tip.offsetWidth, th = tip.offsetHeight;
+    let x = r.left + r.width / 2 - tw / 2, y = r.top - th - 10;
+    if (y < 80) y = r.bottom + 10;
+    tip.style.left = Math.max(12, Math.min(innerWidth - tw - 12, x)) + "px";
+    tip.style.top = Math.max(12, y) + "px";
+  }
+  function hideTip() { tip.classList.remove("show"); if (tipFor) tipFor.classList.remove("on"); tipFor = null; }
+  document.addEventListener("pointerover", e => { const m = e.target.closest && e.target.closest(".vz-mark"); if (m && e.pointerType !== "touch") showTip(m); });
+  document.addEventListener("pointerout", e => { const m = e.target.closest && e.target.closest(".vz-mark"); if (m && e.pointerType !== "touch" && !m.contains(e.relatedTarget) && document.activeElement !== m) hideTip(); });
+  document.addEventListener("focusin", e => { const m = e.target.closest && e.target.closest(".vz-mark"); if (m) showTip(m); });
+  document.addEventListener("focusout", e => { if (e.target.closest && e.target.closest(".vz-mark")) hideTip(); });
+  document.addEventListener("click", e => {
+    const m = e.target.closest && e.target.closest(".vz-mark");
+    if (m) { if (tipFor === m && e.pointerType === "touch") hideTip(); else showTip(m); } else if (tipFor) hideTip();
+  });
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape") hideTip();
+    const m = e.target.closest && e.target.closest(".vz-mark");
+    if (m && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); e.stopPropagation(); showTip(m); }
+  }, true);
+  addEventListener("scroll", () => { if (!tipFor) return; if (document.activeElement === tipFor) showTip(tipFor); else hideTip(); }, { passive: true });
+
+  /* ---------- "View data" tables ---------- */
+  const dataButton = () => `<button type="button" class="vz-btn" aria-expanded="false">View data</button>`;
+  function fillTable(root, tb) {
+    const n = tb.num || [];
+    root.querySelector(".vz-table").innerHTML = `<table><caption class="sr-only">${esc(tb.cap)}</caption><thead><tr>${tb.head.map((h, i) => `<th scope="col"${n.includes(i) ? ' class="num"' : ""}>${esc(h)}</th>`).join("")}</tr></thead><tbody>${tb.rows.map(r => `<tr>${r.map((c, i) => `<td${n.includes(i) ? ' class="num"' : i === r.length - 1 && tb.status ? ' class="st"' : ""}>${esc(c)}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
+  }
+  document.addEventListener("click", e => {
+    const b = e.target.closest && e.target.closest(".vz-btn"); if (!b) return;
+    const t = b.closest(".vz-root").querySelector(".vz-table"), open = b.getAttribute("aria-expanded") !== "true";
+    b.setAttribute("aria-expanded", String(open)); t.hidden = !open; b.textContent = open ? "Hide data" : "View data";
+  });
+
+  /* ---------- draw-in (once, when the visual enters the viewport) ---------- */
+  // Count-up figures keep their final value in the page (print, no script timing) and only
+  // count from 0 once, starting the moment the number itself scrolls into view.
+  const finish = root => root.querySelectorAll(".vz-count").forEach(c => { c.textContent = c.dataset.final; c.dataset.done = "1"; });
+  function count(c) {
+    if (c.dataset.done) return; c.dataset.done = "1";
+    const t0 = performance.now(), D = 750;
+    (function tick(t) {
+      const p = Math.min(1, (t - t0) / D), e = 1 - Math.pow(1 - p, 3);
+      c.textContent = p < 1 ? (+c.dataset.to * e).toFixed(+c.dataset.dec || 0) : c.dataset.final;
+      if (p < 1) requestAnimationFrame(tick);
+    })(t0);
+  }
+  const countIO = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { count(e.target); countIO.unobserve(e.target); } }), { threshold: 0 });
+  const drawIO = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add("drawn"); drawIO.unobserve(e.target);
+  }), { threshold: .2 });
+  addEventListener("beforeprint", () => document.querySelectorAll(".vz-anim").forEach(r => { r.classList.add("drawn"); finish(r); }));
+
+  /* ---------- axes ---------- */
+  function gridY(ticks, y, x0, x1, fs, unit = "") {
+    return ticks.map(t => { const yy = y(V(t)); return `<line x1="${f1(x0)}" x2="${f1(x1)}" y1="${f1(yy)}" y2="${f1(yy)}" stroke="${K.grid}"/>` + T(x0 - 8, yy + fs * .35, num(V(t)) + unit, { anchor: "end", size: fs, fill: K.axis }); }).join("");
+  }
+  function gridX(ticks, x, y0, y1, fs, unit = "") {
+    return ticks.map(t => { const xx = x(V(t)); return `<line x1="${f1(xx)}" x2="${f1(xx)}" y1="${f1(y0)}" y2="${f1(y1)}" stroke="${K.grid}"/>` + T(xx, y1 + fs * 1.4, num(V(t)) + unit, { anchor: "middle", size: fs, fill: K.axis }); }).join("");
+  }
+
+  /* ======================================================
+     RENDERERS: (spec, width, root) -> { html, table, legend?, after? }
+     ====================================================== */
+  const R = {};
+
+  /* Figure 2.1 remade: step chart, wave notes from Table 2.1 */
+  R.step = (s, w) => {
+    const fs = FS(.6), fv = FS(.66), lh = fv * 1.3, narrow = w < 560;
+    const H = Math.round(Math.max(320, Math.min(520, w * .64)));
+    const L = fs * 2.6, Rr = fs * .8, Tp = fs * 3.4, B = fs * 3.6;
+    const pts = s.points, xa = V(s.axis.x.from) - 1.5, xb = V(s.axis.x.to) + 2.5;
+    const x = lin(xa, xb, L, w - Rr), y = lin(0, 30, H - B, Tp), base = y(0);
+    let g = gridY(s.axis.y.ticks, y, L, w - Rr, fs);
+    let d = "";
+    pts.forEach((p, i) => { const px = x(V(p.year)), py = y(V(p.members)); d += i ? `H${f1(px)}V${f1(py)}` : `M${f1(px)},${f1(py)}`; });
+    d += `H${f1(w - Rr)}`;
+    const area = d + `V${f1(base)}H${f1(x(V(pts[0].year)))}Z`;
+    const P = placer([L + 2, 0, w - 2, base - 4]);
+    // the step line itself is an obstacle for labels
+    let px0 = x(V(pts[0].year)), py0 = y(V(pts[0].members));
+    pts.forEach((p, i) => { if (!i) return; const px = x(V(p.year)), py = y(V(p.members)); P.line(px0, py0, px, py0); P.line(px, py0, px, py); px0 = px; py0 = py; });
+    P.line(px0, py0, w - Rr, py0);
+    // emphasis: the 2004 jump and the 2020 drop
+    let emph = "";
+    pts.forEach((p, i) => {
+      if (!p.emphasis || !i) return;
+      const px = x(V(p.year)), ya = y(V(pts[i - 1].members)), yb = y(V(p.members));
+      emph += p.emphasis === "jump"
+        ? `<line x1="${f1(px)}" x2="${f1(px)}" y1="${f1(ya)}" y2="${f1(yb)}" stroke="${K.navy}" stroke-width="9" stroke-linecap="round"/><line x1="${f1(px)}" x2="${f1(px)}" y1="${f1(ya)}" y2="${f1(yb)}" stroke="${K.gold}" stroke-width="5" stroke-linecap="round"/>`
+        : `<line x1="${f1(px)}" x2="${f1(px)}" y1="${f1(ya)}" y2="${f1(yb + 8)}" stroke="${K.navy}" stroke-width="2.5"/><path d="M${f1(px - 5)},${f1(yb + 2)}L${f1(px)},${f1(yb + 9)}L${f1(px + 5)},${f1(yb + 2)}Z" fill="${K.navy}"/>`;
+    });
+    // value labels above each change point, wave notes below the line
+    let marks = "", notes = "";
+    const waveNote = p => {
+      const px = x(V(p.year)), py = y(V(p.members));
+      const fsn = p.emphasis ? fv : fs, tw = textW(p.wave, fsn, !!p.emphasis) + 4, cands = [];
+      if (p.emphasis === "drop") {               // the 2020 drop: note in the top band with a leader to the point
+        const b = P.take([[Math.min(px + 6, w - 2 - tw) , 2, tw, fsn * 1.2], [px - 6 - tw, 2, tw, fsn * 1.2]]);
+        if (b) notes += `<line x1="${f1(px)}" x2="${f1(px)}" y1="${f1(b[1] + fsn * 1.3)}" y2="${f1(py - 10)}" stroke="${K.navy}" stroke-dasharray="2 3"/>` + T(b[0] + 2, b[1] + fsn * .95, p.wave, { size: fsn, weight: 700 });
+        return;
+      }
+      for (let k = 0; k < 9; k++) cands.push([px + 6, py + 8 + k * lh, tw, fsn * 1.2]);
+      for (let k = 0; k < 4; k++) cands.push([px - 6 - tw, py + 8 + k * lh, tw, fsn * 1.2]);
+      const b = P.take(cands);
+      if (b) notes += T(b[0] + 2, b[1] + fsn * .95, p.wave, { size: fsn, weight: p.emphasis ? 700 : 500, fill: p.emphasis ? K.ink : K.axis });
+    };
+    pts.filter(p => p.emphasis).forEach(waveNote);
+    if (!narrow) pts.filter(p => !p.emphasis).forEach(waveNote);
+    pts.forEach((p, i) => {
+      const px = x(V(p.year)), py = y(V(p.members)), v = show(p.members);
+      const vb = P.take([[px + 3, py - fv * 1.35, textW(v, fv, 1) + 2, fv * 1.1], [px - textW(v, fv, 1) - 5, py - fv * 1.35, textW(v, fv, 1) + 2, fv * 1.1]]);
+      const vl = vb ? T(vb[0], vb[1] + fv * .9, v, { size: fv, weight: 700 }) : "";
+      const prev = i ? V(pts[i - 1].members) : null;
+      const tipTxt = `${V(p.year)}: ${v} members\n${p.wave} (Table 2.1)` + (prev != null ? `\nChange from ${prev} to ${v}` : "");
+      marks += mark(`<circle class="pop" style="--i:${stagger(i, pts.length)}" cx="${f1(px)}" cy="${f1(py)}" r="${p.emphasis ? 6.5 : 5}" fill="${p.emphasis === "jump" ? K.gold : K.blue}" stroke="${p.emphasis === "jump" ? K.navy : K.white}" stroke-width="2"/>` + vl,
+        tipTxt, [px - 14, py - 14, 28, 28]);
+    });
+    // year labels, two rows when crowded
+    const yrs = pts.map(p => V(p.year)); let crowded = false;
+    for (let i = 1; i < yrs.length; i++) if (x(yrs[i]) - x(yrs[i - 1]) < textW("0000", fs) + 6) crowded = true;
+    const years = yrs.map((yv, i) => `<line x1="${f1(x(yv))}" x2="${f1(x(yv))}" y1="${f1(base)}" y2="${f1(base + 5 + (crowded && i % 2 ? fs * 1.2 : 0))}" stroke="${K.axis}"/>` +
+      T(x(yv), base + fs * 1.5 + (crowded && i % 2 ? fs * 1.2 : 0), String(yv), { anchor: "middle", size: fs, fill: K.axis })).join("");
+    const body = g + `<path d="${area}" fill="${K.tint}" class="wipe"/><path d="${d}" fill="none" stroke="${K.blue}" stroke-width="3" class="wipe"/>` +
+      `<line x1="${L}" x2="${f1(w - Rr)}" y1="${f1(base)}" y2="${f1(base)}" stroke="${K.axis}"/>` + `<g class="wipe">${emph}</g>` + notes + marks + years;
+    return {
+      html: svg(w, H, body, s.aria),
+      table: { cap: "Figure 2.1 data: number of EU members", head: ["Year", "Members", "Wave (Table 2.1)", "Status"], num: [1], status: 1, rows: pts.map(p => [V(p.year), show(p.members), p.wave, status(p.members)]) }
+    };
+  };
+
+  /* Figure 3.1 remade: stacked bars, approximate values keep "≈" */
+  R.stacked = (s, w) => {
+    const fs = FS(.6), fv = FS(.64), wide = w >= 600, id = "vzh" + (++UID);
+    const H = Math.round(Math.max(320, Math.min(500, w * .62)));
+    const L = fs * 2.6, Rr = wide ? fs * 7.5 : fs * .6, Tp = fs * 1.8, B = fs * 2.4;
+    const y = lin(0, 80, H - B, Tp), base = y(0), n = s.bars.length, st = (w - L - Rr) / n, bw = Math.min(st * .58, 120);
+    let g = gridY(s.axis.y.ticks, y, L, w - Rr, fs), bars = "", side = "";
+    s.bars.forEach((b, i) => {
+      const cx = L + i * st + st / 2, x0 = cx - bw / 2, e = V(b.exports), m = V(b.imports), yE = y(e), yT = y(e + m);
+      const tipTxt = `${V(b.year)} (billion USD)\n${s.series[0]}: ${show(b.exports)}\n${s.series[1]}: ${show(b.imports)}\nTotal: ${show(b.total)}${b.total.s === "derived" ? " (derived: exports + imports)" : ""}`;
+      bars += mark(
+        `<rect class="grow-y" style="--i:${stagger(i, n)}" x="${f1(x0)}" y="${f1(yE)}" width="${f1(bw)}" height="${f1(base - yE)}" fill="${K.blue}"/>` +
+        `<rect class="grow-y" style="--i:${stagger(i, n)}" x="${f1(x0)}" y="${f1(yT)}" width="${f1(bw)}" height="${f1(yE - yT - 2)}" fill="url(#${id})" stroke="${K.navy}" stroke-width="1.2"/>` +
+        T(cx, (yE + base) / 2 + fv * .35, show(b.exports), { anchor: "middle", size: fv, weight: 700, fill: K.white, bg: K.blue }) +
+        T(cx, (yT + yE) / 2 + fv * .35, show(b.imports), { anchor: "middle", size: fv, weight: 700, bg: K.gold }) +
+        T(cx, yT - 9, show(b.total), { anchor: "middle", size: fv, weight: 800 }) +
+        T(cx, base + fs * 1.6, String(V(b.year)), { anchor: "middle", size: fs, fill: K.axis }),
+        tipTxt, [x0 - 6, yT - fv * 1.6, bw + 12, base - yT + fv * 1.6]);
+      if (wide && i === n - 1) {
+        side += T(x0 + bw + 10, (yE + base) / 2, wrap(s.series[0], Rr - 14, fs), { size: fs, fill: K.axis });
+        side += T(x0 + bw + 10, (yT + yE) / 2 - fs * .2, wrap(s.series[1], Rr - 14, fs), { size: fs, fill: K.axis });
+      }
+    });
+    const body = g + `<line x1="${L}" x2="${f1(w - Rr)}" y1="${f1(base)}" y2="${f1(base)}" stroke="${K.axis}"/>` + bars + side;
+    return {
+      html: svg(w, H, body, s.aria, hatch(id)),
+      legend: legendItem(swatch(K.blue), s.series[0]) + legendItem(hatchSwatch(), s.series[1]) + `<span>Total above each bar</span>`,
+      table: { cap: "Figure 3.1 data (billion USD)", head: ["Year", "Exports to EU", "Imports from EU", "Total", "Status"], num: [1, 2, 3], status: 1,
+        rows: s.bars.map(b => [V(b.year), show(b.exports), show(b.imports), show(b.total), V(b.year) === 2024 ? "exact" : "approximate; total derived"]) }
+    };
+  };
+
+  /* Figure 3.2 remade: paired horizontal bars */
+  R["paired-hbar"] = (s, w) => {
+    const fs = FS(.6), fv = FS(.62), wide = w >= 620, id = "vzh" + (++UID);
+    const Lc = wide ? Math.min(w * .34, fs * 15) : 0, Rr = fs * 3.6, bh = Math.max(14, fs * 1.15), gap = 4;
+    const lab = s.rows.map(r => wrap(r.name, wide ? Lc - 14 : w - 8, fs));
+    const rowH = r => (wide ? 0 : lab[r].length * fs * 1.25 + 4) + 2 * bh + gap + fs * 1.2;
+    let Y = 4; const ys = s.rows.map((_, i) => { const y0 = Y; Y += rowH(i); return y0; });
+    const H = Y + fs * 2.2, x = lin(0, 30, Lc + 2, w - Rr);
+    let g = gridX(s.axis.x.ticks, x, 0, Y - fs * .6, fs), rows = "";
+    s.rows.forEach((r, i) => {
+      const y0 = ys[i] + (wide ? 0 : lab[i].length * fs * 1.25 + 4), labY = wide ? y0 + bh + fs * .35 - (lab[i].length - 1) * fs * .62 : ys[i] + fs;
+      rows += T(wide ? Lc - 12 : 2, labY, lab[i], { size: fs, anchor: wide ? "end" : null });
+      [[r.a, s.series[0], K.blue, y0], [r.b, s.series[1], `url(#${id})`, y0 + bh + gap]].forEach(([v, who, fill, yy], j) => {
+        const xe = Math.max(x(V(v)), Lc + 4);
+        rows += mark(`<rect class="grow-x" style="--i:${stagger(i * 2 + j, 10)}" x="${f1(Lc + 2)}" y="${f1(yy)}" width="${f1(xe - Lc - 2)}" height="${f1(bh)}" fill="${fill}"${j ? ` stroke="${K.navy}" stroke-width="1.2"` : ""}/>` +
+          T(xe + 6, yy + bh / 2 + fv * .35, show(v), { size: fv, weight: 700 }),
+          `${r.name}, 2024\n${who}: ${show(v)} billion EUR (approximate)`, [Lc, yy - 2, xe - Lc + textW(show(v), fv, 1) + 12, bh + 4]);
+      });
+    });
+    const body = g + `<line x1="${f1(Lc + 2)}" x2="${f1(Lc + 2)}" y1="0" y2="${f1(Y - fs * .6)}" stroke="${K.axis}"/>` + rows;
+    return {
+      html: svg(w, H, body, s.aria, hatch(id)),
+      legend: legendItem(swatch(K.blue), s.series[0]) + legendItem(hatchSwatch(), s.series[1]),
+      table: { cap: "Figure 3.2 data (billion EUR, approximate)", head: ["Product group", s.series[0], s.series[1], "Status"], num: [1, 2], status: 1, rows: s.rows.map(r => [r.name, show(r.a), show(r.b), "approximate"]) }
+    };
+  };
+
+  /* A1: scrollable milestone strip with a detail card */
+  R.timeline = (s, w, root) => {
+    const n = s.items.length;
+    const icon = it => it.mark === "join" ? SH.goldStar(0, 0, 11) : it.mark === "leave" ? SH.openStar(0, 0, 11) : SH.dotBlue(0, 0, 6.5);
+    const html = `<div class="vz-strip"><ol>${s.items.map((it, i) => `<li><button type="button" class="pop" style="--i:${stagger(i, n)}" data-i="${i}" aria-pressed="false" aria-label="${esc(V(it.year) + ": " + it.event)}"><svg viewBox="-24 -24 48 48" aria-hidden="true"><circle class="core" r="17" fill="${K.white}" stroke="${K.line}" stroke-width="1.5"/>${icon(it)}</svg><span class="yy">${esc(V(it.year))}</span><span class="ev">${esc(it.event)}</span></button></li>`).join("")}</ol></div><div class="vz-card" aria-live="polite"></div>`;
+    return {
+      html,
+      legend: s.legend.map(l => legendItem(l.mark === "star" ? SH.goldStar(0, 0, 6) : l.mark === "star-open" ? SH.openStar(0, 0, 6) : SH.dotBlue(0, 0, 4.5), l.text)).join(""),
+      table: { cap: "Table 1 milestones", head: ["Year", "Event", "Meaning", "Marked as"], rows: s.items.map(it => [V(it.year), it.event, it.meaning, it.mark === "join" ? "Enlargement" : it.mark === "leave" ? "Brexit" : "—"]) },
+      after(body) {
+        const btns = [...body.querySelectorAll("button")], card = body.querySelector(".vz-card"), strip = body.querySelector(".vz-strip");
+        const fill = i => { const it = s.items[i]; card.innerHTML = `<p class="yy">${esc(V(it.year))}</p><p class="ev">${esc(it.event)}</p><p class="mn">${esc(it.meaning)}</p>`; };
+        const select = (i, focus) => { btns.forEach((b, j) => b.setAttribute("aria-pressed", String(i === j))); fill(i); if (focus) btns[i].focus(); };
+        btns.forEach((b, i) => {
+          b.addEventListener("click", () => select(i));
+          b.addEventListener("focus", () => select(i));
+          b.addEventListener("pointerenter", e => { if (e.pointerType !== "touch") fill(i); });
+          b.addEventListener("pointerleave", e => { if (e.pointerType !== "touch") { const k = btns.findIndex(x => x.getAttribute("aria-pressed") === "true"); fill(k < 0 ? 0 : k); } });
+        });
+        strip.addEventListener("keydown", e => {        // arrow keys move along the strip instead of changing slide
+          const i = btns.indexOf(document.activeElement); if (i < 0) return;
+          const k = { ArrowRight: i + 1, ArrowDown: i + 1, ArrowLeft: i - 1, ArrowUp: i - 1, Home: 0, End: n - 1 }[e.key];
+          if (k == null) return; e.preventDefault(); e.stopPropagation(); select(Math.max(0, Math.min(n - 1, k)), true);
+        });
+        select(0);
+      }
+    };
+  };
+  R.timeline.once = true;
+
+  /* A2 and B2: one symbol per member state */
+  R["unit-grid"] = (s, w) => {
+    const n = V(s.total), k = V(s.euro), cols = 9, rows = Math.ceil(n / cols), dot = s.shape === "dot";
+    const cell = Math.min(52, (w - 8) / cols), r = cell * .3, fs = FS(.62), fv = FS(.9);
+    const gw = cols * cell, x0 = (w - gw) / 2, H = rows * cell + 8;
+    const sym = (i, on) => {
+      const cx = x0 + (i % cols) * cell + cell / 2, cy = 4 + Math.floor(i / cols) * cell + cell / 2;
+      const shape = dot ? (on ? SH.dotBlue(cx, cy, r) : SH.openDot(cx, cy, r * .92)) : (on ? SH.goldStar(cx, cy, r) : SH.openStar(cx, cy, r));
+      return { s: `<g class="pop" style="--i:${stagger(i, n)}">${shape}</g>`, hit: [cx - cell / 2 + 1, cy - cell / 2 + 1, cell - 2, cell - 2] };
+    };
+    const A = [...Array(k)].map((_, i) => sym(i, true)), Bs = [...Array(n - k)].map((_, i) => sym(k + i, false));
+    const tipA = `${show(s.euro)} of ${show(s.total)} member states\n${s.labels.euro}`, tipB = `${show(s.other)} of ${show(s.total)} member states\n${s.labels.other}: ${s.other.from}`;
+    const body = mark(A.map(a => a.s).join(""), tipA, A.map(a => a.hit)) + mark(Bs.map(a => a.s).join(""), tipB, Bs.map(a => a.hit));
+    const ic = on => `<svg viewBox="-9 -9 18 18" aria-hidden="true">${dot ? (on ? SH.dotBlue(0, 0, 6) : SH.openDot(0, 0, 5.5)) : (on ? SH.goldStar(0, 0, 6) : SH.openStar(0, 0, 6))}</svg>`;
+    return {
+      html: svg(w, H, body, s.aria) + `<div class="vz-legend" style="font-size:.84rem;color:var(--ink)">` +
+        `<span>${ic(true)}<b style="font:600 ${fv}px/1 var(--serif);color:var(--blue)">${esc(show(s.euro))}</b>&nbsp;${esc(s.labels.euro)}</span>` +
+        `<span>${ic(false)}<b style="font:600 ${fv}px/1 var(--serif);color:var(--blue)">${esc(show(s.other))}</b>&nbsp;${esc(s.labels.other)}</span></div>`,
+      table: { cap: s.title, head: ["Group", "Member states", "Status"], num: [1], status: 1, rows: [[s.labels.euro, show(s.euro), status(s.euro)], [s.labels.other, show(s.other), "derived: " + s.other.from], ["All member states", show(s.total), status(s.total)]] }
+    };
+  };
+
+  /* A4: status of the agreements in Table 2.2 */
+  R["status-timeline"] = (s, w) => {
+    const fs = FS(.6), fv = FS(.62), narrow = w < 640, r = Math.max(6, fs * .48);
+    const Lc = narrow ? 0 : Math.min(w * .34, Math.max(...s.rows.map(r => Math.max(textW(s.statuses[r.status], fs), textW(r.partner, fv, 1)))) + 18), rowH = fs * (narrow ? 5.4 : 3.6), Tp = fs * 2.2, B = fs * 2.4;
+    const H = Tp + s.rows.length * rowH + B, x = lin(2019, 2027, Lc + r + 4, w - r - 6), asOf = yearPos(s.asOf.pos);
+    const shape = { force: SH.dotBlue, provisional: SH.goldDiamond, concluded: SH.ring, announced: SH.goldStar, step: SH.smallDot };
+    let g = s.axis.x.ticks.filter((t, i) => !narrow || i % 2 === 0).map(t => `<line x1="${f1(x(V(t)))}" x2="${f1(x(V(t)))}" y1="${f1(Tp - fs * .4)}" y2="${f1(H - B)}" stroke="${K.grid}"/>` + T(x(V(t)), H - B + fs * 1.5, String(V(t)), { anchor: "middle", size: fs, fill: K.axis })).join("");
+    g += `<line x1="${f1(x(asOf))}" x2="${f1(x(asOf))}" y1="${f1(Tp - fs * .9)}" y2="${f1(H - B)}" stroke="${K.navy}" stroke-dasharray="4 4"/>` + T(x(asOf) - 6, Tp - fs * 1.1, "Status as of " + V(s.asOf), { anchor: "end", size: fs, fill: K.axis });
+    let rows = "";
+    s.rows.forEach((row, i) => {
+      const yc = Tp + i * rowH + rowH * (narrow ? .5 : .55), ev = row.events, xs = ev.map(e => x(yearPos(e.date.pos)));
+      rows += narrow
+        ? T(2, yc - r - fs * .7, `${row.partner} · ${s.statuses[row.status]}`, { size: fs, weight: 600 })
+        : T(Lc - 10, yc - fs * .15, row.partner, { anchor: "end", size: fv, weight: 700 }) + T(Lc - 10, yc + fs * 1.05, s.statuses[row.status], { anchor: "end", size: fs, fill: K.axis });
+      if (row.status === "force") rows += `<rect class="grow-x" style="--i:${stagger(i, 5)}" x="${f1(xs[0])}" y="${f1(yc - r * .45)}" width="${f1(x(asOf) - xs[0])}" height="${f1(r * .9)}" fill="${K.tint}"/>`;
+      else if (xs.length > 1) rows += `<line class="wipe" x1="${f1(xs[0])}" x2="${f1(xs[xs.length - 1])}" y1="${f1(yc)}" y2="${f1(yc)}" stroke="${K.navy}" stroke-opacity=".5" stroke-width="2"/>`;
+      ev.forEach((e, j) => {
+        rows += mark(`<g class="pop" style="--i:${stagger(i + j, 7)}">${shape[e.type](xs[j], yc, r)}</g>`, `${row.partner}\n${V(e.date)}: ${e.what}`, [xs[j] - r * 1.6, yc - r * 1.6, r * 3.2, r * 3.2]);
+      });
+      const k = ev.findIndex(e => e.type === row.status), lx = xs[k], lab = V(ev[k].date), tw = textW(lab, fs, 1);
+      const anchorEnd = lx + tw + 12 > x(asOf) - 4;
+      rows += T(anchorEnd ? lx + r : lx - r, narrow ? yc + r + fs * 1.2 : yc - r - 7, lab, { anchor: anchorEnd ? "end" : "start", size: fs, weight: 600 });
+    });
+    const ctx = s.context, txt = esc(ctx.text).replace(esc(V(ctx.agreements)), `<b>${esc(V(ctx.agreements))}</b>`).replace(esc(V(ctx.partners)), `<b>${esc(V(ctx.partners))}</b>`);
+    return {
+      html: `<p class="vz-context">${txt}</p>` + svg(w, H, g + rows, s.aria),
+      legend: ["force", "provisional", "concluded", "announced", "step"].map(k => legendItem(({ force: SH.dotBlue, provisional: SH.goldDiamond, concluded: SH.ring, announced: SH.goldStar, step: SH.smallDot })[k](0, 0, 5.5), s.statuses[k])).join(""),
+      table: { cap: "Table 2.2 dates by agreement", head: ["Partner", "Date", "Step", "Latest status (October 2026)"], rows: s.rows.flatMap(row => row.events.map(e => [row.partner, V(e.date), e.what, s.statuses[row.status]])) }
+    };
+  };
+
+  /* A5: path to climate neutrality, index 1990 = 100 (targets, schematic lines) */
+  R["target-path"] = (s, w) => {
+    const fs = FS(.6), fv = FS(.7), narrow = w < 480, pts = s.points;
+    const x = lin(1987, 2053, fs * 2.6, w - fs * 1.2);
+    // labels: points near the axis are labelled under their year, the others inside the plot
+    const lab = pts.map(p => {
+      const v = show(p.index), d = wrap((p.short || p.label) + (p.type === "base" ? "" : ", derived"), Math.max(86, w * .15), fs);
+      return { v, d, tw: Math.max(textW(v, fv, 1), ...d.map(l => textW(l, fs))) + 4, th: fv * 1.15 + d.length * fs * 1.22, under: V(p.index) <= 15 };
+    });
+    const underH = Math.max(0, ...lab.filter(l => l.under).map(l => l.th));
+    const L = fs * 2.6, Rr = fs * 1.2, Tp = fs * 3.4, B = fs * 2.8 + underH + 6;
+    const H = Math.round(Math.max(340, Math.min(540, w * .82))) + underH;
+    const y = lin(0, 100, H - B, Tp), base = y(0);
+    let g = gridY(s.axis.y.ticks, y, L, w - Rr, fs);
+    const P = placer([L + 2, 0, w - 2, base - 2]);
+    const xy = pts.map(p => [x(V(p.year)), y(V(p.index))]);
+    for (let i = 1; i < xy.length; i++) P.line(xy[i - 1][0], xy[i - 1][1], xy[i][0], xy[i][1], 4);
+    xy.forEach(([a, b]) => P.block([a - 9, b - 9, 18, 18]));
+    const seg = (i, dash, col) => `<line x1="${f1(xy[i - 1][0])}" y1="${f1(xy[i - 1][1])}" x2="${f1(xy[i][0])}" y2="${f1(xy[i][1])}" stroke="${col}" stroke-width="2.4" stroke-dasharray="${dash}" stroke-linecap="round"/>`;
+    let lines = `<g class="wipe">${seg(1, "1.5 6", K.axis)}`; for (let i = 2; i < xy.length; i++) lines += seg(i, "8 6", K.blue); lines += "</g>";
+    const yrs = pts.map(p => V(p.year)); let crowded = false;
+    for (let i = 1; i < yrs.length; i++) if (x(yrs[i]) - x(yrs[i - 1]) < textW("0000", fs) + 8) crowded = true;
+    let marks = "", labels = "", right = -1e9;
+    pts.forEach((p, i) => {
+      const [px, py] = xy[i], l = lab[i];
+      let bx = null, full = true;
+      if (l.under && !narrow) {
+        const x0 = Math.max(right + 8, Math.min(w - 2 - l.tw, px - l.tw / 2));
+        bx = [x0, base + fs * 2.4, l.tw, l.th]; right = x0 + l.tw;
+      } else {
+        const { tw, th } = l, cands = [[12, -th - 6], [-tw - 12, 8], [-tw - 12, -th - 6], [12, 8], [-tw / 2, -th - 14], [-tw / 2, 14]].map(([dx, dy]) => [px + dx, py + dy, tw, th]);
+        bx = narrow ? null : P.take(cands);
+        if (!bx) { full = false; bx = P.take(cands.map(c => [c[0], c[1], textW(l.v, fv, 1) + 4, fv * 1.2])); }
+      }
+      if (bx) labels += T(bx[0] + 2, bx[1] + fv * .9, l.v, { size: fv, weight: 700 }) + (full ? T(bx[0] + 2, bx[1] + fv * 1.15 + fs * .95, l.d, { size: fs, fill: K.axis }) : "");
+      const sym = p.type === "base" ? SH.smallDot(px, py, 12) : p.type === "latest" ? SH.dotBlue(px, py, 6.5) : `<circle cx="${f1(px)}" cy="${f1(py)}" r="7" fill="${K.gold}" stroke="${K.navy}" stroke-width="1.6"/>`;
+      marks += mark(`<g class="pop" style="--i:${stagger(i, pts.length)}">${sym}</g>`,
+        `${V(p.year)}: index ${l.v}\n${p.label}${p.pct ? " (" + V(p.pct) + (p.type === "latest" ? " below 1990)" : ")") : ""}\nStatus: ${status(p.index)}; ${p.index.from}`, [px - 13, py - 13, 26, 26]);
+    });
+    const years = yrs.map((yv, i) => `<line x1="${f1(x(yv))}" x2="${f1(x(yv))}" y1="${f1(base)}" y2="${f1(base + 5)}" stroke="${K.axis}"/>` + T(x(yv), base + fs * 1.5 + (crowded && i === 1 ? fs * 1.2 : 0), String(yv), { anchor: "middle", size: fs, fill: K.axis })).join("");
+    const body = g + `<line x1="${L}" x2="${f1(w - Rr)}" y1="${f1(base)}" y2="${f1(base)}" stroke="${K.axis}"/>` + lines + labels + marks + years;
+    return {
+      html: svg(w, H, body, s.aria),
+      legend: legendItem(SH.smallDot(0, 0, 9), "1990 base") + legendItem(SH.dotBlue(0, 0, 5), "Latest reported (approximate)") + legendItem(`<circle r="5.5" fill="${K.gold}" stroke="${K.navy}" stroke-width="1.4"/>`, "Target") + legendItem(`<line x1="-8" x2="8" stroke="${K.blue}" stroke-width="2.4" stroke-dasharray="4 3"/>`, "Schematic straight line"),
+      table: { cap: "Index of net greenhouse-gas emissions, 1990 = 100", head: ["Year", "Point", "Index", "Status and derivation"], num: [2], status: 1, rows: pts.map(p => [V(p.year), p.label, show(p.index), status(p.index) + ": " + p.index.from]) }
+    };
+  };
+
+  /* A6: CSDP donut + count-up figures */
+  R["donut-counters"] = (s, w) => {
+    const wide = innerWidth > 760, D = Math.round(Math.min(wide ? (w - 32) * 5 / 12 : w, 300)), fs = FS(.62), fv = FS(.7), id = "vzh" + (++UID);
+    const c = D / 2, R1 = D / 2 - 6, R0 = R1 * .58, tot = V(s.donut.total);
+    const fills = [K.blue, `url(#${id})`, K.navy];
+    let a0 = -Math.PI / 2, segs = "";
+    s.donut.parts.forEach((p, i) => {
+      const a1 = a0 + V(p.n) / tot * Math.PI * 2, big = a1 - a0 > Math.PI ? 1 : 0, gp = .012;
+      const P = (r, a) => `${f1(c + r * Math.cos(a))},${f1(c + r * Math.sin(a))}`;
+      const d = `M${P(R1, a0 + gp)}A${R1},${R1} 0 ${big} 1 ${P(R1, a1 - gp)}L${P(R0, a1 - gp)}A${R0},${R0} 0 ${big} 0 ${P(R0, a0 + gp)}Z`;
+      const am = (a0 + a1) / 2, small = V(p.n) / tot < .08, rl = small ? R1 + fs * .9 : (R0 + R1) / 2;
+      const lx = c + rl * Math.cos(am), ly = c + rl * Math.sin(am);
+      segs += mark(`<path class="pop" style="--i:${stagger(i, 3)}" d="${d}" fill="${fills[i]}"${i === 1 ? ` stroke="${K.navy}" stroke-width="1.2"` : ""}/>` +
+        T(lx, ly + fv * .35, show(p.n), { anchor: "middle", size: fv, weight: 700, fill: small || i === 1 ? K.ink : K.white, bg: small ? null : i === 1 ? K.gold : fills[i] }),
+        `${show(p.n)} ${p.name} of ${show(s.donut.total)} ${s.donut.caption}`, null);
+      a0 = a1;
+    });
+    const center = T(c, c - fs * .1, show(s.donut.total), { anchor: "middle", size: Math.round(fv * 1.9), weight: 700, fill: K.blue }) + T(c, c + fs * 1.25, wrap(s.donut.caption, R0 * 1.6, fs), { anchor: "middle", size: fs, fill: K.axis });
+    const donut = svg(D, D + fs * .5, segs + center, `${s.donut.caption}: ` + s.donut.parts.map(p => `${V(p.n)} ${p.name}`).join(", "), hatch(id));
+    const ktext = k => k.date ? k.text.replace("{date}", V(k.date)) : k.text;
+    const counters = s.counters.map(k => { const dec = String(V(k.n)).split(".")[1]; return `<div class="vz-counter"><p class="v">${esc(k.prefix)}<span class="vz-count" data-to="${V(k.n)}" data-dec="${dec ? dec.length : 0}" data-final="${esc(String(k.n.txt || V(k.n)))}">${esc(String(V(k.n)))}</span>${esc(k.suffix)}</p><p class="l">${esc(ktext(k))}</p></div>`; }).join("");
+    return {
+      html: `<div class="vz-dc"><div style="max-width:${D}px;margin:0 auto;width:100%">${donut}</div><div class="vz-counters">${counters}</div></div>`,
+      legend: legendItem(swatch(K.blue), "civilian") + legendItem(hatchSwatch(), "military") + legendItem(swatch(K.navy), "civilian-military"),
+      table: { cap: s.title, head: ["Item", "Value", "Status"], num: [1], status: 1, rows: s.donut.parts.map(p => [`CSDP missions and operations: ${p.name}`, show(p.n), status(p.n)]).concat([["CSDP missions and operations: total", show(s.donut.total), status(s.donut.total)]], s.counters.map(k => [ktext(k), k.prefix + V(k.n) + k.suffix, status(k.n)])) }
+    };
+  };
+
+  /* A7: EU tariff elimination milestones (two points per series, dashed connectors) */
+  R.milestones = (s, w) => {
+    const fs = FS(.6), fv = FS(.66), H = Math.round(Math.max(300, Math.min(440, w * .7)));
+    const L = fs * 3, Rr = fs * 1, Tp = fs * 1.4, B = fs * 3.4;
+    const x1 = L + (w - L - Rr) * .2, x2 = L + (w - L - Rr) * .8, y = lin(0, 100, H - B, Tp), base = y(0);
+    let g = gridY(s.axis.y.ticks, y, L, w - Rr, fs, "%");
+    const styles = [{ dash: "8 6", col: K.blue, sym: (a, b) => SH.dotBlue(a, b, 6.5) }, { dash: "2 5", col: K.navy, sym: (a, b) => SH.goldSquare(a, b, 6) }];
+    const order = s.series.map((se, i) => V(se.values[1])).map((v, i, arr) => arr[i] >= Math.max(...arr) ? -1 : 1);
+    let body = "";
+    s.series.forEach((se, i) => {
+      const [a, b] = se.values, ya = y(V(a)), yb = y(V(b)), st = styles[i];
+      body += `<line class="wipe" x1="${f1(x1)}" y1="${f1(ya)}" x2="${f1(x2)}" y2="${f1(yb)}" stroke="${st.col}" stroke-width="2.4" stroke-dasharray="${st.dash}" stroke-linecap="round"/>`;
+      body += T(x1 - 12, ya + fv * .35, show(a) + "%", { anchor: "end", size: fv, weight: 700 });
+      body += T(x2 + 12, yb + fv * .35 + order[i] * fv * .55, show(b) + "%", { size: fv, weight: 700 });
+      const mx = (x1 + x2) / 2, my = (ya + yb) / 2, ang = Math.atan2(yb - ya, x2 - x1) * 180 / Math.PI;
+      body += `<g transform="translate(${f1(mx)},${f1(my)}) rotate(${ang.toFixed(1)})">${T(0, i ? fs * 1.35 : -fs * .6, se.name, { anchor: "middle", size: fs, weight: 600, fill: K.axis })}</g>`;
+      [[x1, ya, a, 0], [x2, yb, b, 1]].forEach(([px, py, v, j]) => {
+        body += mark(`<g class="pop" style="--i:${stagger(i * 2 + j, 4)}">${st.sym(px, py)}</g>`, `${se.name}: ${show(v)}% eliminated by the EU\n${s.milestones[j]} (EVFTA)`, [px - 12, py - 12, 24, 24]);
+      });
+    });
+    const ms = s.milestones.map((m, j) => T(j ? x2 : x1, base + fs * 1.5, wrap(m, (x2 - x1) * .8, fs), { anchor: "middle", size: fs, fill: K.axis })).join("");
+    return {
+      html: svg(w, H, g + `<line x1="${L}" x2="${f1(w - Rr)}" y1="${f1(base)}" y2="${f1(base)}" stroke="${K.axis}"/>` + body + ms, s.aria),
+      legend: legendItem(`<line x1="-9" x2="9" stroke="${K.blue}" stroke-width="2.4" stroke-dasharray="5 3"/>${SH.dotBlue(0, 0, 4)}`, s.series[0].name) + legendItem(`<line x1="-9" x2="9" stroke="${K.navy}" stroke-width="2.4" stroke-dasharray="1.5 3"/>${SH.goldSquare(0, 0, 4)}`, s.series[1].name),
+      table: { cap: s.title, head: ["Milestone", s.series[0].name + " (%)", s.series[1].name + " (%)", "Status"], num: [1, 2], status: 1, rows: s.milestones.map((m, j) => [m, show(s.series[0].values[j]), show(s.series[1].values[j]), "exact"]) }
+    };
+  };
+
+  /* A8a: dumbbell 2019 -> 2024 */
+  R.dumbbell = (s, w) => {
+    const fs = FS(.6), fv = FS(.64), Rc = textW("+00.0%", fv, 1) + 10, L = 4;
+    const rowH = fs * 3.6, Tp = fs * 1.8, B = fs * 2.4, H = Tp + s.rows.length * rowH + B;
+    const x = lin(0, 80, L + 2, w - Rc - fs * .6);
+    let g = gridX(s.axis.x.ticks, x, Tp - fs * .3, H - B, fs);
+    const [ya, yb] = s.years.map(V);
+    g += T(x(V(s.rows[0].a)), Tp - fs * .6, String(ya), { anchor: "middle", size: fs, weight: 700, fill: K.axis }) + T(x(V(s.rows[0].b)), Tp - fs * .6, String(yb), { anchor: "middle", size: fs, weight: 700, fill: K.axis });
+    g += T(w - 2, Tp - fs * .6, "Change", { anchor: "end", size: fs, weight: 700, fill: K.axis });
+    let rows = "";
+    s.rows.forEach((r, i) => {
+      const yc = Tp + i * rowH + rowH * .66, xa = x(V(r.a)), xb = x(V(r.b)), la = show(r.a), lb = show(r.b);
+      rows += T(L + 2, yc - fs * 1.15, r.name, { size: fs, weight: 600 });
+      const bLabelRight = xb + 12 + textW(lb, fv, 1) < w - Rc - 4;
+      rows += mark(`<line class="grow-x" style="--i:${stagger(i, 3)}" x1="${f1(xa)}" x2="${f1(xb)}" y1="${f1(yc)}" y2="${f1(yc)}" stroke="${K.blue}" stroke-width="4" stroke-linecap="round"/>` +
+        SH.openDot(xa, yc, 6.5) + `<g class="pop" style="--i:${stagger(i, 3)}">${SH.dotBlue(xb, yc, 7.5)}</g>` +
+        T(xa - 11, yc + fv * .35, la, { anchor: "end", size: fv, weight: 600, fill: K.axis }) +
+        (bLabelRight ? T(xb + 12, yc + fv * .35, lb, { size: fv, weight: 700 }) : T(xb, yc + fv * 1.7, lb, { anchor: "middle", size: fv, weight: 700 })) +
+        T(w - 2, yc + fv * .35, V(r.change), { anchor: "end", size: fv, weight: 800, fill: K.blue }),
+        `${r.name} (US$ billion)\n${ya}: ${la}${r.a.s === "approximate" ? " (approximate)" : ""}\n${yb}: ${lb}\nChange: ${V(r.change)}`, [L, yc - rowH * .55, w - L - 2, rowH * .8]);
+    });
+    return {
+      html: svg(w, H, g + rows, s.aria),
+      legend: legendItem(SH.openDot(0, 0, 5.5), String(ya)) + legendItem(SH.dotBlue(0, 0, 6), String(yb)),
+      table: { cap: "Table 3.4 values (US$ billion)", head: ["Indicator", String(ya), String(yb), "Change", "Status"], num: [1, 2, 3], status: 1, rows: s.rows.map(r => [r.name, show(r.a), show(r.b), V(r.change), r.a.s === "approximate" ? "2019 approximate" : "exact"]) }
+    };
+  };
+
+  /* A8b: horizontal bars, open end = "more than" */
+  R.hbar = (s, w) => {
+    const fs = FS(.6), fv = FS(.66), wide = w >= 560, id = "vzh" + (++UID);
+    const Lc = wide ? Math.min(fs * 11, w * .3) : 0, bh = Math.max(18, fs * 1.5), rowH = bh + (wide ? fs * 1.4 : fs * 2.8);
+    const Tp = 6, B = fs * 2.4, H = Tp + s.rows.length * rowH + B, x = lin(0, 100, Lc + 2, w - fs * 4.2);
+    let g = gridX(s.axis.x.ticks, x, 0, H - B, fs), rows = "";
+    s.rows.forEach((r, i) => {
+      const y0 = Tp + i * rowH + (wide ? fs * .7 : fs * 1.9), xe = x(V(r.n)), open = r.n.bound === "more than";
+      const name = wide ? T(Lc - 10, y0 + bh / 2 + fs * .35, [r.name], { anchor: "end", size: fs, weight: 600 }) + T(Lc - 10, y0 + bh / 2 + fs * 1.5, r.when, { anchor: "end", size: Math.max(12, fs - 2), fill: K.axis })
+        : T(2, y0 - fs * .5, `${r.name} (${r.when})`, { size: fs, weight: 600 });
+      const fill = r.highlight ? `url(#${id})` : K.blue;
+      rows += name + mark(`<rect class="grow-x" style="--i:${stagger(i, 3)}" x="${f1(Lc + 2)}" y="${f1(y0)}" width="${f1(xe - Lc - 2)}" height="${f1(bh)}" fill="${fill}"${r.highlight ? ` stroke="${K.navy}" stroke-width="1.2"` : ""}/>` +
+        (open ? `<path d="M${f1(xe)},${f1(y0)}h${f1(fs * .9)}l${f1(fs * .5)},${f1(bh / 2)}l${f1(-fs * .5)},${f1(bh / 2)}h${f1(-fs * .9)}" fill="none" stroke="${K.blue}" stroke-width="1.6" stroke-dasharray="3 2"/>` : "") +
+        T(xe + (open ? fs * 1.7 : 8), y0 + bh / 2 + fv * .35, r.display, { size: fv, weight: 700 }),
+        `${r.name}, ${r.when}\nCumulative registered investment in Vietnam: ${r.display} US$ billion${r.n.s === "approximate" ? " (approximate)" : open ? " (more than)" : ""}`, [Lc, y0 - 3, w - Lc - 2, bh + 6]);
+    });
+    return {
+      html: svg(w, H, g + `<line x1="${f1(Lc + 2)}" x2="${f1(Lc + 2)}" y1="0" y2="${f1(H - B)}" stroke="${K.axis}"/>` + rows, s.aria, hatch(id)),
+      table: { cap: s.title, head: ["Investor", "When", "US$ billion", "Status"], num: [2], status: 1, rows: s.rows.map(r => [r.name, r.when, r.display, r.n.bound ? "exact (" + r.n.bound + ")" : status(r.n)]) }
+    };
+  };
+
+  /* B1: two-lane timeline (Tables 3.1 and 3.3) */
+  R["two-lane"] = (s, w) => {
+    const fs = FS(.58), r = Math.max(5.5, fs * .42), narrow = w < 640, lh = fs * 1.3, rowsL = narrow ? 2 : 3;
+    const L = 6, Rr = 10, x = lin(1989, 2027.5, L + r, w - Rr - r), titleH = fs * 1.5;
+    const laneY = [titleH + rowsL * lh + r * 6.5, 0];
+    laneY[1] = laneY[0] + r * 6 + titleH + fs;
+    const H = laneY[1] + r * 6.5 + rowsL * lh + fs * 2.6, axisY = H - fs * 2.4;
+    let g = s.axis.x.ticks.map(t => `<line x1="${f1(x(V(t)))}" x2="${f1(x(V(t)))}" y1="${f1(titleH)}" y2="${f1(axisY)}" stroke="${K.grid}"/>` + T(x(V(t)), axisY + fs * 1.5, String(V(t)), { anchor: "middle", size: fs, fill: K.axis })).join("");
+    g += `<line x1="${L}" x2="${f1(w - Rr)}" y1="${f1(axisY)}" y2="${f1(axisY)}" stroke="${K.axis}"/>`;
+    let body = "";
+    s.lanes.forEach((lane, li) => {
+      const yc = laneY[li], P = placer([0, 0, w, H]), used = [];
+      body += T(L, li ? yc - r * 2.6 : fs * 1.05, lane.name, { size: fs, weight: 700, fill: li ? K.ink : K.ink });
+      body += `<line class="wipe" x1="${f1(x(1989.5))}" x2="${f1(w - Rr)}" y1="${f1(yc)}" y2="${f1(yc)}" stroke="${K.line}" stroke-width="2"/>`;
+      // pass 1: mark positions (overlapping marks are stacked) and obstacles for the labels
+      const pos = lane.items.map(it => {
+        const [a, b] = span(it.date.pos), xa = x(a), xb = x(b);
+        let lvl = 0; while (used.some(u => u.l === lvl && Math.abs(u.x - xa) < r * 2.4)) lvl++;
+        used.push({ x: xa, l: lvl });
+        const yy = yc + (li ? 1 : -1) * lvl * r * 2.2;
+        P.block([xa - r - 2, yy - r - 2, Math.max(xb - xa, 0) + 2 * r + 4, 2 * r + 4]);
+        return { xa, xb, yy, isRange: b - a > .2 };
+      });
+      // pass 2: marks, then date labels in rows above (upper lane) or below (lower lane)
+      lane.items.forEach((it, i) => {
+        const { xa, xb, yy, isRange } = pos[i];
+        const sym = isRange ? `<rect x="${f1(xa)}" y="${f1(yy - r * .7)}" width="${f1(Math.max(xb - xa, r))}" height="${f1(r * 1.4)}" rx="${f1(r * .7)}" fill="${li ? K.gold : K.blue}"${li ? ` stroke="${K.navy}" stroke-width="1.2"` : ""}/>`
+          : li ? SH.goldDiamond(xa, yy, r * .9) : SH.dotBlue(xa, yy, r);
+        body += mark(`<g class="pop" style="--i:${stagger(i, lane.items.length)}">${sym}</g>`, `${V(it.date)}\n${it.text}\n${lane.name}`, [xa - r * 1.4, yy - r * 1.4, Math.max(xb - xa, 0) + r * 2.8, r * 2.8]);
+        const lab = V(it.date), tw = textW(lab, fs) + 4, cands = [];
+        for (let k = 0; k < rowsL; k++) {
+          const ly = li ? yc + r * 5 + 2 + k * lh : yc - r * 5 - (k + 1) * lh;
+          cands.push([xa - tw / 2, ly, tw, lh * .95], [xa - 2, ly, tw, lh * .95], [xa - tw + 2, ly, tw, lh * .95]);
+        }
+        const bx = P.take(cands);
+        if (bx) {
+          const ly = li ? bx[1] : bx[1] + bx[3], lx = Math.max(bx[0] + 4, Math.min(bx[0] + bx[2] - 4, xa));
+          body += `<line x1="${f1(xa)}" y1="${f1(yy + (li ? r : -r))}" x2="${f1(lx)}" y2="${f1(ly)}" stroke="${K.line}" stroke-width="1"/>` + T(bx[0] + 2, bx[1] + fs * .95, lab, { size: fs, fill: K.axis });
+        }
+      });
+    });
+    return {
+      html: svg(w, H, g + body, s.aria),
+      legend: legendItem(SH.dotBlue(0, 0, 5), s.lanes[0].name) + legendItem(SH.goldDiamond(0, 0, 5), s.lanes[1].name) + legendItem(`<rect x="-8" y="-4" width="16" height="8" rx="4" fill="${K.blue}"/>`, "Range of years"),
+      table: { cap: s.title, head: ["Lane", "Date", "Milestone"], rows: s.lanes.flatMap(l => l.items.map(it => [l.name, V(it.date), it.text])) }
+    };
+  };
+
+  /* B3a: waffle, 100 squares = global assistance */
+  R.waffle = (s, w) => {
+    const cell = Math.max(14, Math.min(24, (Math.min(w, 520) * .5) / 10)), G = cell * 10, k = V(s.share), id = "vzh" + (++UID);
+    let on = "", off = "", hitOn = [], hitOff = [];
+    for (let i = 0; i < 100; i++) {
+      const col = Math.floor(i / 10), row = i % 10, xx = col * cell + 1, yy = (9 - row) * cell + 1, isOn = i < k;
+      const rect = `<rect x="${f1(xx)}" y="${f1(yy)}" width="${f1(cell - 3)}" height="${f1(cell - 3)}" rx="1.5" fill="${isOn ? `url(#${id})` : K.tint}" stroke="${isOn ? K.navy : K.line}" stroke-width="1"/>`;
+      const g = `<g class="pop" style="--i:${stagger(col, 10)}">${rect}</g>`;
+      if (isOn) { on += g; hitOn.push([xx - 1, yy - 1, cell, cell]); } else { off += g; hitOff.push([xx - 1, yy - 1, cell, cell]); }
+    }
+    const pic = svg(G + 2, G + 2, mark(on, `EU countries in the OECD Development Assistance Committee, ${V(s.year)}\nUSD ${V(s.part)} billion = ${V(s.share)}% of USD ${V(s.whole)} billion\n${V(s.change)} less than in ${V(s.baseYear)}`, hitOn) +
+      mark(off, `Global assistance, ${V(s.year)}: USD ${V(s.whole)} billion (all 100 squares)`, hitOff), s.aria, hatch(id));
+    return {
+      html: `<div class="vz-wf"><div style="width:${Math.round(G + 2)}px">${pic}</div><div><p class="big">${esc(V(s.share))}%</p><p><b>USD ${esc(V(s.part))} billion</b> from EU countries in the DAC</p><p>of global assistance of <b>USD ${esc(V(s.whole))} billion</b></p><p>${esc(V(s.change))} less than in ${esc(V(s.baseYear))}</p></div></div>`,
+      legend: legendItem(hatchSwatch(), "EU countries in the DAC") + legendItem(swatch(K.tint, K.line), "Rest of global assistance"),
+      table: { cap: s.title, head: ["Item", "Value", "Status"], num: [1], status: 1, rows: [[`EU countries in the DAC, ${V(s.year)} (USD billion)`, V(s.part), "exact"], [`Global assistance, ${V(s.year)} (USD billion)`, V(s.whole), "exact"], ["Share (%)", V(s.share), "exact"], ["Change from 2023", "−" + V(s.change), "exact"]] }
+    };
+  };
+
+  /* B3b: Global Gateway, target line vs mobilised bar */
+  R["target-bar"] = (s, w) => {
+    const fs = FS(.6), fv = FS(.64), bh = Math.max(26, fs * 2.1), Tp = fs * 2.4, B = fs * 2.4;
+    const H = Tp + bh + fs * 2.4 + B, x = lin(0, 340, 4, w - 8), y0 = Tp, xe = x(V(s.actual)), xt = x(V(s.target));
+    let g = gridX(s.axis.x.ticks, x, 0, H - B, fs);
+    const inside = textW(s.actual.text, fv, 1) + 20 < xe - 4;
+    const body = g + mark(`<rect class="grow-x" x="4" y="${f1(y0)}" width="${f1(xe - 4)}" height="${f1(bh)}" fill="${K.blue}"/>` +
+      `<path d="M${f1(xe)},${f1(y0)}h${f1(fs * .7)}l${f1(fs * .45)},${f1(bh / 2)}l${f1(-fs * .45)},${f1(bh / 2)}h${f1(-fs * .7)}" fill="none" stroke="${K.blue}" stroke-width="1.6" stroke-dasharray="3 2"/>` +
+      (inside ? T(14, y0 + bh / 2 + fv * .35, s.actual.text, { size: fv, weight: 700, fill: K.white, bg: K.blue }) : T(4, y0 + bh + fv * 1.3, s.actual.text, { size: fv, weight: 700 })) +
+      T(4, y0 + bh + fs * (inside ? 1.4 : 2.7), s.projects.text, { size: fs, fill: K.axis }),
+      `Global Gateway, Team Europe\n${s.actual.text}\n${s.projects.text}`, [0, y0 - 2, xe + fs * 1.4, bh + 4]) +
+      mark(`<line x1="${f1(xt)}" x2="${f1(xt)}" y1="${f1(y0 - fs * 1.2)}" y2="${f1(y0 + bh + 8)}" stroke="${K.navy}" stroke-width="2.4" stroke-dasharray="5 3"/>` + T(xt, y0 - fs * 1.5, s.target.text, { anchor: "end", size: fs, weight: 600 }),
+        `Global Gateway\n${s.target.text}`, [xt - 8, y0 - fs * 1.4, 16, bh + fs * 1.6]);
+    return {
+      html: svg(w, H, body, s.aria),
+      legend: legendItem(swatch(K.blue, K.blue), "Mobilised (open end: more than)") + legendItem(`<line x1="0" x2="0" y1="-8" y2="8" stroke="${K.navy}" stroke-width="2.4" stroke-dasharray="3 2"/>`, "Target"),
+      table: { cap: s.title, head: ["Item", "EUR billion", "Status"], num: [1], status: 1, rows: [["Target (up to)", V(s.target), "exact"], ["Mobilised by 2026 (more than)", V(s.actual), "exact"], ["Projects (over)", V(s.projects), "exact"]] }
+    };
+  };
+
+  /* B6: Draghi (2024) ranges */
+  R.range = (s, w) => {
+    const fs = FS(.6), fv = FS(.66), rowH = fs * 4.6, Tp = 4, H = Tp + s.rows.length * rowH, id = "vzh" + (++UID);
+    let body = "";
+    s.rows.forEach((r, i) => {
+      const y0 = Tp + i * rowH + fs * 1.6, bh = fs * 1.2, x = lin(0, V(r.max), 6, w - 10), xl = x(V(r.lo)), xh = Math.max(x(V(r.hi)), xl + 6);
+      const unit = r.fmt.includes("%") ? "%" : "", lab = r.fmt.replace("{lo}", V(r.lo)).replace("{hi}", V(r.hi));
+      body += T(6, y0 - fs * .5, r.name, { size: fs, weight: 600 });
+      body += `<rect x="6" y="${f1(y0)}" width="${f1(w - 16)}" height="${f1(bh)}" fill="${K.tint2}" stroke="${K.line}"/>`;
+      body += T(6, y0 + bh + fs * 1.3, num(V(r.min)) + unit, { size: fs, fill: K.axis }) + T(w - 10, y0 + bh + fs * 1.3, num(V(r.max)) + unit, { anchor: "end", size: fs, fill: K.axis });
+      body += mark(`<rect class="pop" x="${f1(xl)}" y="${f1(y0 - 3)}" width="${f1(xh - xl)}" height="${f1(bh + 6)}" fill="url(#${id})" stroke="${K.navy}" stroke-width="1.4"/>` +
+        T(xh, y0 + bh + fs * 1.3 + fv * .1, lab, { anchor: "end", size: fv, weight: 700 }),
+        `Draghi (2024)\n${r.name}: ${lab}\nA range; no single point estimate`, [xl - 6, y0 - 6, xh - xl + 12, bh + 12]);
+    });
+    return {
+      html: svg(w, H, body, s.aria, hatch(id)),
+      table: { cap: s.title, head: ["Measure", "Low", "High", "Status"], num: [1, 2], status: 1, rows: s.rows.map(r => [r.name, V(r.lo), V(r.hi), "exact (range)"]) }
+    };
+  };
+
+  /* B5: institutions (schematic; only relations stated in Section 1.2.2) */
+  R.institutions = (s, w) => {
+    const fs = FS(.58), wide = w >= 640;
+    // nodes in a 0..1 grid, scaled to the width
+    const N = wide ? {
+      ec: [.5, .07, .44, .1, "European Council"], com: [.13, .48, .23, .14, "European Commission"],
+      ep: [.5, .38, .24, .12, "European Parliament"], cou: [.5, .58, .24, .12, "Council of the European Union"],
+      law: [.86, .48, .2, .12, "EU legislation"], cj: [.86, .86, .24, .14, "Court of Justice of the European Union"],
+      ecb: [.15, .86, .26, .12, "European Central Bank"], ea: [.5, .86, .18, .1, "Euro area"]
+    } : {
+      ec: [.5, .05, .8, .07, "European Council"], com: [.5, .26, .7, .07, "European Commission"],
+      ep: [.27, .45, .44, .09, "European Parliament"], cou: [.74, .45, .44, .09, "Council of the European Union"],
+      law: [.5, .63, .6, .07, "EU legislation"], cj: [.5, .8, .8, .07, "Court of Justice of the European Union"],
+      ecb: [.24, .95, .4, .07, "European Central Bank"], ea: [.8, .95, .3, .07, "Euro area"]
+    };
+    const H = Math.round(wide ? Math.max(360, Math.min(560, w * .42)) : Math.max(560, w * 1.9));
+    const box = k => { const [cx, cy, bw, bh] = N[k]; return [cx * w - bw * w / 2, cy * H - bh * H / 2, bw * w, bh * H]; };
+    const tips = {
+      ec: "European Council\nDefines the Union's overall political direction and priorities; generally does not adopt ordinary legislation.",
+      com: "European Commission\nProposes legislation, implements EU policies, manages the EU budget, and ensures that EU law is properly applied.",
+      ep: "European Parliament\nElected by citizens; participates in the legislative process, approves the budget together with the Council, and exercises democratic oversight.",
+      cou: "Council of the European Union\nNational ministers meet depending on the policy area; adopts EU legislation together with the European Parliament.",
+      law: "EU legislation\nAdopted by the European Parliament and the Council of the European Union together.",
+      cj: "Court of Justice of the European Union\nEnsures that EU law is interpreted and applied consistently across member states.",
+      ecb: "European Central Bank\nResponsible for monetary policy in the euro area; its primary objective is to maintain price stability.",
+      ea: "Euro area\nMonetary policy is conducted by the European Central Bank."
+    };
+    const kind = { law: "pill", ea: "pill" };
+    let nodes = "";
+    Object.keys(N).forEach((k, i) => {
+      const [x0, y0, bw, bh] = box(k), pill = kind[k], lines = wrap(N[k][4], bw - 16, fs, 1);
+      nodes += mark(`<g class="pop" style="--i:${stagger(i, 8)}"><rect x="${f1(x0)}" y="${f1(y0)}" width="${f1(bw)}" height="${f1(bh)}" rx="${pill ? f1(bh / 2) : 4}" fill="${pill ? K.tint : k === "ec" ? K.navy : K.white}" stroke="${pill ? K.blue : k === "ec" ? K.navy : K.blue}" stroke-width="${pill ? 1.2 : 1.6}"${pill ? ' stroke-dasharray="4 3"' : ""}/>` +
+        T(x0 + bw / 2, y0 + bh / 2 - (lines.length - 1) * fs * .62 + fs * .35, lines, { anchor: "middle", size: fs, weight: 700, fill: k === "ec" ? K.white : K.ink, bg: k === "ec" ? K.navy : null }) + `</g>`, tips[k], null);
+    });
+    // arrows: [from point, to point, label, label position]
+    const pt = (k, side) => { const [x0, y0, bw, bh] = box(k); return { l: [x0, y0 + bh / 2], r: [x0 + bw, y0 + bh / 2], t: [x0 + bw / 2, y0], b: [x0 + bw / 2, y0 + bh] }[side]; };
+    const [ep0, ep1] = [box("ep"), box("cou")];
+    const brk = wide ? [ep0[0] - 10, ep0[1] - 10, ep0[2] + 20, ep1[1] + ep1[3] - ep0[1] + 20] : [ep0[0] - 6, ep0[1] - 8, ep1[0] + ep1[2] - ep0[0] + 12, ep0[3] + 16];
+    const E = wide ? [
+      [pt("com", "r"), [brk[0], pt("com", "r")[1]], "proposes legislation", "above"],
+      [[brk[0] + brk[2], pt("law", "l")[1]], pt("law", "l"), "adopt EU legislation together", "above"],
+      [pt("cj", "t"), pt("law", "b"), "ensures EU law is interpreted and applied consistently", "left"],
+      [pt("ecb", "r"), pt("ea", "l"), "monetary policy", "above"],
+      [pt("ec", "b"), [pt("ec", "b")[0], brk[1]], "defines overall political direction and priorities", "side", true]
+    ] : [
+      [pt("com", "b"), [pt("com", "b")[0], brk[1]], "proposes legislation", "side"],
+      [[pt("law", "t")[0], brk[1] + brk[3]], pt("law", "t"), "adopt EU legislation together", "side"],
+      [pt("cj", "t"), pt("law", "b"), "ensures EU law is interpreted and applied consistently", "side"],
+      [pt("ecb", "r"), pt("ea", "l"), "monetary policy", "above"],
+      [pt("ec", "b"), pt("com", "t"), "defines overall political direction and priorities", "side", true]
+    ];
+    const id = "vza" + (++UID);
+    let edges = `<rect x="${f1(brk[0])}" y="${f1(brk[1])}" width="${f1(brk[2])}" height="${f1(brk[3])}" rx="6" fill="none" stroke="${K.line}" stroke-width="1.4"/>`;
+    E.forEach(([a, b, lab, pos, dashed]) => {
+      edges += `<line class="pop" x1="${f1(a[0])}" y1="${f1(a[1])}" x2="${f1(b[0])}" y2="${f1(b[1] + (b[1] > a[1] ? -2 : b[1] < a[1] ? 2 : 0))}" stroke="${K.navy}" stroke-width="1.8"${dashed ? ' stroke-dasharray="5 4"' : ""} marker-end="url(#${id})"/>`;
+      const mx = (a[0] + b[0]) / 2, my = (a[1] + b[1]) / 2, maxW = pos === "above" ? Math.max(90, Math.abs(b[0] - a[0]) - 8) : Math.min(w * (wide ? .3 : .44), 240);
+      const lines = wrap(lab, maxW, fs);
+      edges += pos === "above" ? T(mx, my - 8 - (lines.length - 1) * fs * 1.25, lines, { anchor: "middle", size: fs, fill: K.axis })
+        : T(pos === "left" ? mx - 10 : mx + 10, my - (lines.length - 1) * fs * .62 + fs * .35, lines, { size: fs, fill: K.axis, anchor: pos === "left" ? "end" : null });
+    });
+    const defs = `<marker id="${id}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10Z" fill="${K.navy}"/></marker>`;
+    return {
+      html: svg(w, H, edges + nodes, s.aria, defs),
+      table: { cap: s.title, head: ["Institution", "Role stated in Section 1.2.2"], rows: ["ec", "com", "ep", "cou", "cj", "ecb"].map(k => tips[k].split("\n")) }
+    };
+  };
+
+  /* B4: staircase of integration levels, Three.js when available, isometric SVG otherwise */
+  R.stairs3d = (s, w, root) => {
+    const n = s.steps.length, W = 640, H = 400, isoFs = Math.max(17, Math.ceil(12 * W / Math.max(1, w < 760 ? w : w * .6)));
+    // isometric fallback (also used for print)
+    let polys = "";
+    for (let i = 0; i < n; i++) {
+      const X = i * 1.12, h = (i + 1) * .9, d = 1.4, wd = 1;
+      const p = (x, y, z) => { const sx = W * .1 + (x * 1.0 + z * .55) * 72, sy = H * .9 - y * 52 - z * 30 + x * 0; return f1(sx) + "," + f1(sy); };
+      const top = [p(X, h, 0), p(X + wd, h, 0), p(X + wd, h, d), p(X, h, d)].join(" ");
+      const front = [p(X, 0, 0), p(X + wd, 0, 0), p(X + wd, h, 0), p(X, h, 0)].join(" ");
+      const side = [p(X + wd, 0, 0), p(X + wd, 0, d), p(X + wd, h, d), p(X + wd, h, 0)].join(" ");
+      const cx = (X + wd / 2) * 72 + W * .1 + .7 * 55 * .72, cy = H * .9 - h * 52 - .7 * 30;
+      polys += `<g class="blk pop" style="--i:${stagger(i, n)}" data-i="${i}"><polygon points="${side}" fill="${K.navy}"/><polygon points="${front}" fill="${K.blue}"/><polygon class="tp" points="${top}" fill="${K.tint}" stroke="${K.blue}" stroke-width="1"/>` +
+        `<text x="${f1(cx)}" y="${f1(cy + 6)}" text-anchor="middle" font-size="${isoFs}" font-weight="700" fill="${K.ink}" data-bg="${K.tint}">${V(s.steps[i].n)}</text></g>`;
+    }
+    const isoSvg = `<svg class="iso" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(s.aria)}">${polys}</svg>`;
+    const html = `<div class="vz-stairs${w < 760 ? " stack" : ""}"><div class="vz-stage"><canvas aria-hidden="true"></canvas>${isoSvg}</div><div><ol class="vz-steps">${s.steps.map((st, i) => `<li><button type="button" aria-pressed="false" data-i="${i}"><span class="n">${V(st.n)}</span>${esc(st.name)}</button></li>`).join("")}</ol><div class="vz-card" aria-live="polite"></div></div></div>`;
+    return {
+      html,
+      table: { cap: s.title, head: ["Level", "Name", "Description (Section 1.1.2)"], rows: s.steps.map(st => [String(V(st.n)), st.name, st.text]) },
+      after(body) {
+        const btns = [...body.querySelectorAll(".vz-steps button")], card = body.querySelector(".vz-card"), stage = body.querySelector(".vz-stage");
+        const blocks = [...body.querySelectorAll(".iso .blk")];
+        let sel = 0, three = null;
+        const paint = i => {
+          const st = s.steps[i]; card.innerHTML = `<p class="yy">${V(st.n)}. ${esc(st.name)}</p><p class="mn">${esc(st.text)}</p>`;
+          blocks.forEach((b, j) => b.querySelector(".tp").setAttribute("fill", j === i ? K.gold : K.tint));
+          blocks.forEach((b, j) => b.querySelector("text").setAttribute("data-bg", j === i ? K.gold : K.tint));
+          if (three) three.highlight(i);
+        };
+        const select = i => { sel = i; btns.forEach((b, j) => b.setAttribute("aria-pressed", String(i === j))); paint(i); };
+        btns.forEach((b, i) => { b.addEventListener("click", () => select(i)); b.addEventListener("focus", () => select(i)); b.addEventListener("pointerenter", () => paint(i)); b.addEventListener("pointerleave", () => paint(sel)); });
+        blocks.forEach((b, i) => { b.addEventListener("pointerenter", () => paint(i)); b.addEventListener("pointerleave", () => paint(sel)); b.addEventListener("click", () => select(i)); });
+        select(n - 1);
+        // Three.js version: created when the figure first comes into view, rendered only on demand
+        const io2 = new IntersectionObserver(es => { if (!es[0].isIntersecting) return; io2.disconnect(); three = makeStairs3D(stage, n, i => i == null ? paint(sel) : paint(i), i => select(i)); if (three) three.highlight(sel); }, { threshold: .1 });
+        io2.observe(stage);
+      }
+    };
+  };
+  R.stairs3d.once = true;
+
+  function makeStairs3D(stage, n, onHover, onPick) {
+    if (!window.THREE || document.body.classList.contains("no3d")) return null;
+    const canvas = stage.querySelector("canvas");
+    let renderer;
+    try { renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true }); } catch (e) { return null; }
+    if (!renderer.getContext()) return null;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    const scene = new THREE.Scene(), cam = new THREE.PerspectiveCamera(32, 1.6, .1, 100);
+    cam.position.set(4.2, 5.2, 9.6); cam.lookAt(2.3, 1.4, 0);
+    scene.add(new THREE.HemisphereLight(0xffffff, 0x8ea2cc, 1.5));
+    const dl = new THREE.DirectionalLight(0xffffff, 1.7); dl.position.set(5, 9, 6); scene.add(dl);
+    const group = new THREE.Group(); scene.add(group);
+    const meshes = [], tags = [];
+    for (let i = 0; i < n; i++) {
+      const h = .55 * (i + 1), geo = new THREE.BoxGeometry(1, h, 1.5);
+      const mat = new THREE.MeshStandardMaterial({ color: 0x003399, roughness: .55, metalness: .1 });
+      const m = new THREE.Mesh(geo, mat); m.position.set(i * 1.12, h / 2, 0); m.userData.i = i; group.add(m); meshes.push(m);
+      const edges = new THREE.LineSegments(new THREE.EdgesGeometry(geo), new THREE.LineBasicMaterial({ color: 0x001A57 })); edges.position.copy(m.position); group.add(edges);
+      const tag = document.createElement("span"); tag.className = "tag3d"; tag.textContent = String(i + 1); stage.appendChild(tag); tags.push(tag);   // same order as the level numbers
+    }
+    const ground = new THREE.Mesh(new THREE.PlaneGeometry(6.6, 3), new THREE.MeshStandardMaterial({ color: 0xE8EEF9, roughness: 1 }));
+    ground.rotation.x = -Math.PI / 2; ground.position.set(2.24, 0, 0); group.add(ground);
+    stage.classList.add("webgl");
+    let rx = 0, ry = 0, hi = n - 1;
+    const v = new THREE.Vector3();
+    function render() {
+      const r = stage.getBoundingClientRect(); if (!r.width) return;
+      renderer.setSize(r.width, r.height, false); cam.aspect = r.width / r.height; cam.updateProjectionMatrix();
+      group.rotation.set(rx, ry, 0);
+      meshes.forEach((m, i) => { m.material.color.set(i === hi ? 0xFFCC00 : 0x003399); m.material.emissive && m.material.emissive.set(i === hi ? 0x332600 : 0x000000); });
+      renderer.render(scene, cam);
+      meshes.forEach((m, i) => { v.set(m.position.x, m.position.y * 2 + .25, 0); v.applyMatrix4(group.matrixWorld); v.project(cam); tags[i].style.left = ((v.x + 1) / 2 * r.width) + "px"; tags[i].style.top = ((1 - v.y) / 2 * r.height) + "px"; });
+    }
+    const ray = new THREE.Raycaster(), p2 = new THREE.Vector2();
+    const pick = e => { const r = canvas.getBoundingClientRect(); p2.set((e.clientX - r.left) / r.width * 2 - 1, -(e.clientY - r.top) / r.height * 2 + 1); ray.setFromCamera(p2, cam); const h = ray.intersectObjects(meshes)[0]; return h ? h.object.userData.i : null; };
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    canvas.addEventListener("pointermove", e => {
+      const r = canvas.getBoundingClientRect();
+      if (!reduce) { ry = ((e.clientX - r.left) / r.width - .5) * .3; rx = ((e.clientY - r.top) / r.height - .5) * .08; }
+      onHover(pick(e)); requestAnimationFrame(render);
+    });
+    canvas.addEventListener("pointerleave", () => { rx = ry = 0; onHover(null); requestAnimationFrame(render); });
+    canvas.addEventListener("click", e => { const i = pick(e); if (i != null) onPick(i); });
+    let rT; addEventListener("resize", () => { clearTimeout(rT); rT = setTimeout(render, 120); });
+    render();
+    return { highlight(i) { hi = i; requestAnimationFrame(render); } };
+  }
+
+  /* ======================================================
+     MOUNT: new visuals (figure[data-viz]) and remade figures ([data-chart])
+     ====================================================== */
+  const redraws = [];
+  function setup(root, s) {
+    root.classList.add("vz-root", "vz-anim");
+    const body = root.querySelector(".vz-body"), r = R[s.kind];
+    let lastW = 0, done = false;
+    const draw = () => {
+      const w = Math.round(body.clientWidth);
+      if (!w || Math.abs(w - lastW) < 2 || (r.once && done)) return;
+      lastW = w; done = true;
+      const out = r(s, w, root);
+      body.innerHTML = out.html;
+      if (out.legend) root.querySelector(".vz-legend-slot").innerHTML = `<div class="vz-legend">${out.legend}</div>`;
+      if (!root.dataset.tbl && out.table) { fillTable(root, out.table); root.dataset.tbl = "1"; }
+      if (out.after) out.after(body, root);
+      if (REDUCE || root.classList.contains("drawn")) finish(root); else root.querySelectorAll(".vz-count").forEach(c => countIO.observe(c));
+    };
+    redraws.push(draw);
+    if (REDUCE) root.classList.add("drawn"); else { root.classList.add("armed"); drawIO.observe(root); }
+    draw();
+  }
+  document.querySelectorAll("figure[data-viz]").forEach(fig => {
+    const s = SPEC[fig.dataset.viz]; if (!s) return;
+    fig.setAttribute("aria-label", s.title);
+    fig.innerHTML = `<figcaption class="vz-head"><span class="vz-lbl">${esc(s.label)}</span><span class="vz-title">${esc(s.title)}</span></figcaption>` +
+      (s.unit ? `<p class="vz-unit">${esc(s.unit)}</p>` : "") + `<div class="vz-body"></div><div class="vz-legend-slot"></div>` +
+      (s.notes ? `<ul class="vz-notes">${s.notes.map(n => `<li>${esc(n)}</li>`).join("")}</ul>` : "") +
+      `<div class="vz-foot"><p class="src"><b>Source:</b> ${esc(s.source)}</p>${dataButton()}</div><div class="vz-table" hidden></div>`;
+    setup(fig, s);
+  });
+  document.querySelectorAll("[data-chart]").forEach(host => {
+    const s = SPEC[{ members: "F2.1", trade: "F3.1", products: "F3.2" }[host.dataset.chart]]; if (!s) return;
+    host.innerHTML = (s.unit ? `<p class="vz-unit">${esc(s.unit)}</p>` : "") + `<div class="vz-body"></div><div class="vz-legend-slot"></div>` +
+      (s.notes ? `<ul class="vz-notes">${s.notes.map(n => `<li>${esc(n)}</li>`).join("")}</ul>` : "") + dataButton() + `<div class="vz-table" hidden></div>`;
+    setup(host, s);
+  });
+  let rsT; addEventListener("resize", () => { clearTimeout(rsT); rsT = setTimeout(() => redraws.forEach(f => f()), 150); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => redraws.forEach(f => f()));
+})();
 </script>
 
 <!-- Three.js: local copy (works offline and from file://) -->

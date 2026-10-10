@@ -2,23 +2,26 @@
 // Usage (from eu-presentation/):  node tools/compare_text.js index.backup.html index.html
 // text-transform is neutralised in both pages before reading, so CSS case changes
 // (e.g. small caps, uppercase labels) are not reported; only the words themselves are compared.
+// --without-visuals: drop the data visuals (figure[data-viz]) and the drawn chart areas ([data-chart])
+// from both pages first, to show that all other text is unchanged.
 const path = require('path');
 let chromium;
 try { ({ chromium } = require('playwright')); } catch { ({ chromium } = require('/opt/node22/lib/node_modules/playwright')); }
 
+const WITHOUT = process.argv.includes('--without-visuals');
 async function grab(browser, file) {
   const p = await browser.newPage({ viewport: { width: 1920, height: 1080 } });
   await p.route(/^https?:/, r => r.abort());
   await p.goto('file://' + path.resolve(file));
   await p.waitForTimeout(800);
   await p.addStyleTag({ content: '*, *::before, *::after { text-transform: none !important; }' });
-  const t = await p.evaluate(() => document.body.innerText);
+  const t = await p.evaluate(w => { if (w) document.querySelectorAll('figure[data-viz], [data-chart]').forEach(e => e.remove()); return document.body.innerText; }, WITHOUT);
   await p.close();
   return t.split('\n').map(l => l.replace(/\s+/g, ' ').trim()).filter(Boolean);
 }
 
 (async () => {
-  const [a, b] = process.argv.slice(2);
+  const [a, b] = process.argv.slice(2).filter(x => !x.startsWith('--'));
   const browser = await chromium.launch();
   const A = await grab(browser, a), B = await grab(browser, b);
   await browser.close();
