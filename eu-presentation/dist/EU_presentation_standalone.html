@@ -454,6 +454,91 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width:
 .vz-stairs.stack { grid-template-columns: 1fr; }
 .vz-split.even { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 @media (max-width: 1000px) { .vz-split.even { grid-template-columns: 1fr; } }
+
+/* =========================================================
+   10. PDF export (scripts/export_pdf.mjs)
+   Slide PDF: one or more 1920 x 1080 pages per section.
+   html.pdf-a4 (set by the export script): continuous A4 report.
+   The 3D canvas is replaced by a static ring of twelve stars.
+   ========================================================= */
+@page { size: 1920px 1080px; }
+@media print {
+  :root { --pdf-h: 930px; --print-ring: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-110 -110 220 220'%3E%3Ccircle r='108' fill='%23003399'/%3E%3Ccircle r='80' fill='none' stroke='%23FFCC00' stroke-opacity='.25' stroke-width='.6'/%3E%3Cg fill='%23FFCC00' stroke='%23001A57' stroke-width='.6'%3E%3Cpath d='M0.00,-93.00L3.06,-84.21L12.36,-84.02L4.95,-78.39L7.64,-69.48L0.00,-74.80L-7.64,-69.48L-4.95,-78.39L-12.36,-84.02L-3.06,-84.21Z'/%3E%3Cpath d='M40.00,-82.28L43.06,-73.49L52.36,-73.30L44.95,-67.68L47.64,-58.76L40.00,-64.08L32.36,-58.76L35.05,-67.68L27.64,-73.30L36.94,-73.49Z'/%3E%3Cpath d='M69.28,-53.00L72.34,-44.21L81.65,-44.02L74.23,-38.39L76.92,-29.48L69.28,-34.80L61.64,-29.48L64.34,-38.39L56.92,-44.02L66.23,-44.21Z'/%3E%3Cpath d='M80.00,-13.00L83.06,-4.21L92.36,-4.02L84.95,1.61L87.64,10.52L80.00,5.20L72.36,10.52L75.05,1.61L67.64,-4.02L76.94,-4.21Z'/%3E%3Cpath d='M69.28,27.00L72.34,35.79L81.65,35.98L74.23,41.61L76.92,50.52L69.28,45.20L61.64,50.52L64.34,41.61L56.92,35.98L66.23,35.79Z'/%3E%3Cpath d='M40.00,56.28L43.06,65.08L52.36,65.26L44.95,70.89L47.64,79.80L40.00,74.48L32.36,79.80L35.05,70.89L27.64,65.26L36.94,65.08Z'/%3E%3Cpath d='M0.00,67.00L3.06,75.79L12.36,75.98L4.95,81.61L7.64,90.52L0.00,85.20L-7.64,90.52L-4.95,81.61L-12.36,75.98L-3.06,75.79Z'/%3E%3Cpath d='M-40.00,56.28L-36.94,65.08L-27.64,65.26L-35.05,70.89L-32.36,79.80L-40.00,74.48L-47.64,79.80L-44.95,70.89L-52.36,65.26L-43.06,65.08Z'/%3E%3Cpath d='M-69.28,27.00L-66.23,35.79L-56.92,35.98L-64.34,41.61L-61.64,50.52L-69.28,45.20L-76.92,50.52L-74.23,41.61L-81.65,35.98L-72.34,35.79Z'/%3E%3Cpath d='M-80.00,-13.00L-76.94,-4.21L-67.64,-4.02L-75.05,1.61L-72.36,10.52L-80.00,5.20L-87.64,10.52L-84.95,1.61L-92.36,-4.02L-83.06,-4.21Z'/%3E%3Cpath d='M-69.28,-53.00L-66.23,-44.21L-56.92,-44.02L-64.34,-38.39L-61.64,-29.48L-69.28,-34.80L-76.92,-29.48L-74.23,-38.39L-81.65,-44.02L-72.34,-44.21Z'/%3E%3Cpath d='M-40.00,-82.28L-36.94,-73.49L-27.64,-73.30L-35.05,-67.68L-32.36,-58.76L-40.00,-64.08L-47.64,-58.76L-44.95,-67.68L-52.36,-73.30L-43.06,-73.49Z'/%3E%3C/g%3E%3C/svg%3E"); }
+  html { scroll-padding-top: 0; }
+  body { background: #fff !important; }
+  #scene, .nav, .dots, .scroll-hint, .counter, .star-progress, #progress, .fallback-bg,
+  .btn, .actions, .vz-btn, .vz-tip, .vz-table, .sr-only { display: none !important; }
+  *, *::before, *::after { transition: none !important; animation: none !important; box-shadow: none !important; backdrop-filter: none !important; filter: none !important; }
+  .rv, .js .rv { opacity: 1 !important; transform: none !important; }
+  a { color: inherit; text-decoration: none; }
+  .refs a { color: var(--blue); }
+
+  /* every section starts a new page; it may run over several pages */
+  .sec, .hero, .dark { break-before: page; break-inside: auto; min-height: 0; border-top: 0; padding: 40px 96px 24px; display: block; }
+  .sec:first-child { break-before: auto; }
+  .sec:not(.dark):not(.hero) { background: #fff var(--watermark) no-repeat right -40px top 40px / 560px; }
+  .wrap { max-width: none; }
+
+  /* cover and chapter openings: a full light page with the static star ring */
+  .hero, .intro { min-height: var(--pdf-h); display: flex; flex-direction: column; justify-content: center; background: var(--tint-2) !important; border-left: 12px solid var(--blue); }
+  .hero { padding-top: 40px; }
+  #qa { min-height: calc(var(--pdf-h) - 140px); }    /* leaves room for the site footer on the last page */
+  .hero .wrap { position: relative; min-height: 520px; display: flex; align-items: center; }
+  .hero-anchor { display: block !important; position: absolute; right: 0; top: 50%; transform: translateY(-50%); width: 460px; aspect-ratio: 1; background: var(--print-ring) center / contain no-repeat; }
+  /* dark boxes become light boxes with a blue rule */
+  .callout, .card.hl { background: var(--tint) !important; color: var(--ink) !important; border: 1px solid var(--line); border-left: 4px solid var(--blue); }
+  .callout h3, .card.hl h3 { color: var(--blue) !important; }
+  .callout strong { color: var(--ink); }
+  .card.hl p, .card.hl li { color: var(--ink) !important; }
+  .card.hl .n { background: var(--blue); color: #fff; }
+  .hero .copy { max-width: calc(100% - 600px); }
+  .hero h1, .intro .h, .intro .no { color: var(--ink) !important; }
+  .chno { background: var(--print-ring) center / contain no-repeat; color: #fff !important; width: 3.4em; height: 3.4em; }
+  .chno-sm { width: 3em; height: 3em; }
+  .intro .no { color: var(--blue) !important; }
+  .dark .eyebrow, .hero .eyebrow { color: var(--blue) !important; }
+  .dark .src, .dark p, .dark li { color: var(--ink); }
+  .subs span { color: var(--ink); border-color: var(--line); }
+
+  /* keep blocks whole; headings stay with what follows */
+  .card, .stat, .callout, .note, .tnote, .vz, figure, .chart, .tl .m, .cap + .tl .m, .ladder .card, .vz-counter,
+  .refs li, .toc > div, .src, .legend, tr, .bul li, .flow .card { break-inside: avoid; }
+  h1, h2, h3, .h, .eyebrow, .cap, figcaption, .vz-head { break-after: avoid; }
+  h1, h2, h3, .h, .cap, figcaption, .vz-head { break-inside: avoid; }
+  .eyebrow { display: table; }                       /* block level, so it stays with its heading */
+  .eyebrow + .h, .eyebrow + h2, .h + .lead, .cap + .tl, .cap + .tbl-wrap { break-before: avoid; }
+  .vz-stage { aspect-ratio: 2.4; }
+  .tbl-wrap, .vz-strip { overflow: visible !important; }
+  thead { display: table-header-group; }
+  table.tbl { break-inside: auto; }
+  .refs { columns: 2; }
+  .refs li { orphans: 3; widows: 3; }
+  p, li { orphans: 2; widows: 2; }
+  li, .olist li { break-inside: avoid; }
+
+  .site-foot { break-before: avoid; background: #fff !important; color: var(--ink-2); border-top: 1px solid var(--line); padding: 24px 96px; }
+  .site-foot svg path { fill: var(--gold); stroke: var(--navy); stroke-width: .5; }
+  .vz-stage canvas, .vz-stage .tag3d { display: none !important; }
+  .vz-stage svg.iso { visibility: visible !important; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+}
+
+/* A4 report version */
+@media print {
+  html.pdf-a4 { font-size: 14.5px; --pdf-h: 990px; }
+  html.pdf-a4 .sec, html.pdf-a4 .hero, html.pdf-a4 .dark { break-before: auto; padding: 18px 0 6px; background: #fff !important; }
+  html.pdf-a4 .sec:not(.dark):not(.hero) { background: #fff !important; }
+  html.pdf-a4 #contents, html.pdf-a4 #introduction, html.pdf-a4 #ch1, html.pdf-a4 #ch2, html.pdf-a4 #ch3, html.pdf-a4 #references, html.pdf-a4 #qa { break-before: page; }
+  html.pdf-a4 .hero { min-height: var(--pdf-h); background: var(--tint-2) !important; border-left: 8px solid var(--blue); padding: 40px 32px; }
+  html.pdf-a4 .hero .wrap { display: block; min-height: 0; }
+  html.pdf-a4 .hero-anchor { position: relative; top: auto; right: auto; transform: none; width: 240px; margin: 0 0 32px; }
+  html.pdf-a4 .hero .copy { max-width: none; }
+  html.pdf-a4 .intro { min-height: 0; padding: 36px 24px; border-left: 6px solid var(--blue); background: var(--tint-2) !important; margin-bottom: 8px; }
+  html.pdf-a4 .chno { font-size: 2.6rem; }
+  html.pdf-a4 .site-foot { padding: 16px 0; }
+  html.pdf-a4 .refs { columns: 1; }
+  html.pdf-a4 .vz { padding: 14px; margin-top: 18px; }
+}
 </style>
 </head>
 <body>
