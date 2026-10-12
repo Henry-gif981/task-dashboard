@@ -104,8 +104,10 @@ for name in FILES:
                 d = reader.named_destinations[str(d)] if not isinstance(d, list) and str(d) in reader.named_destinations else d
                 pg = reader.get_destination_page_number(d) if not isinstance(d, list) else reader.get_page_number(d[0].get_object())
                 toc_links.append(pg)
-    toc_ok = sum(1 for (hid, label), pg in zip(toc, toc_links)
-                 if norm(re.sub(r"^(\d+(\.\d+)*|Supplement:)\s*", "", label).split(":")[-1]) in page_text[pg])
+    # a section entry (1.1, 2.1 ...) points at its first subsection: it must land on the same page
+    title_ok = lambda label, pg: norm(re.sub(r"^(\d+(\.\d+)*|Supplement:)\s*", "", label).split(":")[-1]) in page_text[pg]
+    toc_ok = sum(1 for k, ((hid, label), pg) in enumerate(zip(toc, toc_links))
+                 if title_ok(label, pg) or (k + 1 < len(toc) and toc[k + 1][0] == hid and toc_links[k + 1] == pg))
     fonts = run("pdffonts", str(pdf)).splitlines()[2:]
     not_embedded = [f for f in fonts if f.split()[-5] != "yes"]
     families = sorted({re.sub(r"^[A-Z]{6}\+", "", f.split()[0]) for f in fonts})

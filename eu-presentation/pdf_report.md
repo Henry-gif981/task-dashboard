@@ -6,8 +6,8 @@ Xuất lại: `node scripts/export_pdf.mjs && python3 scripts/check_pdf.py` (ch�
 
 | File | Khổ trang | Số trang | Dung lượng |
 |---|---|---|---|
-| `pdf/EU_presentation.pdf` | 16:9, 1920 × 1080 px (1440 × 810 pt) | 62 | 5,2 MB |
-| `pdf/EU_presentation_A4.pdf` | A4 dọc, lề 15 mm | 57 | 3,0 MB |
+| `pdf/EU_presentation.pdf` | 16:9, 1920 × 1080 px (1440 × 810 pt) | 62 | 5,3 MB |
+| `pdf/EU_presentation_A4.pdf` | A4 dọc, lề 15 mm | 58 | 3,1 MB |
 
 Cả hai bản dưới 15 MB nên không cần nén thêm.
 
@@ -16,7 +16,7 @@ Cả hai bản dưới 15 MB nên không cần nén thêm.
 - **PDF có tag:** Tagged: yes. Mỗi bản có 120 bookmark, sinh từ các tiêu đề.
 - **Link:**
   - 29 URL khác nhau ở References, bấm được. Một URL bị ngắt dòng sẽ thành nhiều vùng bấm: 56 vùng ở bản 16:9 và 44 vùng ở bản A4.
-  - 36 link nội bộ. Script đã thử từng link của mục lục: 35/35 link dẫn tới đúng trang có tiêu đề mục tương ứng.
+  - 45 link nội bộ. Script đã thử từng link của mục lục: 44/44 link dẫn tới đúng trang (mục cấp 1.1, 2.1… trỏ tới trang của tiểu mục đầu tiên của nó).
 - **Font:** tất cả đều được nhúng (kiểm tra bằng `pdffonts`).
   - Inter và Source Serif 4 lấy từ `fonts/`.
   - DejaVu Sans dùng cho dòng chân trang.
@@ -26,7 +26,7 @@ Cả hai bản dưới 15 MB nên không cần nén thêm.
 ## Đối chiếu nội dung (`scripts/check_pdf.py`)
 
 Phép đối chiếu như sau:
-- Dùng chữ trên màn hình của `index.html` (1319 dòng, các ô của bảng tách riêng), lưu ở `pdf/reference_text.json`.
+- Dùng chữ trên màn hình của `index.html` (1328 dòng, các ô của bảng tách riêng), lưu ở `pdf/reference_text.json`.
 - So với chữ rút bằng `pdftotext` từ từng bản PDF.
 - Bỏ qua khoảng trắng, chữ hoa/thường (vì chữ in hoa nhỏ) và dấu gạch nối, vì `pdftotext` nối lại các từ bị ngắt dòng, ví dụ "non-" + "member" thành "nonmember".
 
@@ -41,7 +41,7 @@ Phép đối chiếu như sau:
 - **Một số dòng chỉ bị đọc theo thứ tự khác** (cột đôi, nhãn biểu đồ): 18 dòng ở bản 16:9 và 4 ở bản A4. Mọi từ trong các dòng này đều có trên trang.
 
 Các kiểm tra cũ của trang web vẫn đạt sau khi thêm CSS in:
-- `tools/compare_text.js --without-visuals`: 750/750 dòng giống bản sao lưu.
+- `tools/compare_text.js --without-visuals`: chỉ khác 9 dòng mục lục cấp 1.1, 1.2, 2.1–2.4, 3.1, 3.2, 3.4 thêm theo yêu cầu (tên lấy nguyên văn từ trang mở chương; mục 3.3 vốn đã có).
 - `tools/check_viz.js`: không có số lạ.
 - `tools/check_contrast.js`: 0 lỗi.
 

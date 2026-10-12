@@ -10,6 +10,7 @@ In `index.html` they are marked only with HTML comments or `data-pdf` notes; not
 | 3 | **Viner (1950) in References** | Section `#references` | Entry 42 of `references.md` | Reference for the theory block (row 2) |
 | 4 | **CSDP breakdown changed to 13 civilian, 8 military, 1 civilian-military** | Section `#c2-security` (2.3.2), card "Civilian power and normative power" | Council of the European Union (2026a), as instructed by the group | The report states "22 missions and operations, 13 of them civilian and 8 military" (13 + 8 = 21) |
 | 5 | **Data visuals** (15 new visuals labelled "Visual · Section X.Y.Z"; Figures 2.1, 3.1 and 3.2 redrawn with the same data) | Sections 1.1.2, 1.2.1, 1.2.2, 2.1.1, 2.1.3, 2.2.1, 2.2.3, 2.3.1, 2.3.2, 3.1.1, 3.2.1, 3.2.3 | Only numbers already on the page; data and status of every value in `viz_data.json` | Visual summary for the presentation; full list, derived values and new wording in `viz_report.md` |
+| 6 | **Section-level entries in the Table of Contents** (1.1, 1.2, 2.1–2.4, 3.1, 3.2, 3.4; 3.3 was already listed) | Section `#contents` | Titles copied word for word from the chapter opening pages (`.subs`), linking to the first subsection | Added at the group's request |
 
 Other changes that depart from the report wording at the group's request (not new content, listed for completeness):
 
