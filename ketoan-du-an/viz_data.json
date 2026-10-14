@@ -1,0 +1,160 @@
+{
+  "_about": "Dữ liệu cho mọi biểu đồ của trang. Mọi số được ghi đúng như in trong bài (kiểu Việt Nam: dấu chấm ngăn hàng nghìn, dấu phẩy là dấu thập phân) và được trang tự đọc ra số. 'src' là nơi lấy số trong bài. Không có số nào được tính thêm, trừ vị trí vẽ (chiều dài cột, vị trí ngày trên trục), vốn không hiển thị thành chữ.",
+  "series": {
+    "bq": "BQLDA",
+    "dn": "Doanh nghiệp"
+  },
+  "h14": {
+    "src": "Hình 1.4",
+    "unit": "ngày",
+    "y_label": "Số ngày kể từ ngày kết thúc kỳ kế toán",
+    "y_max": "120",
+    "legend": [
+      { "key": "bq", "label": "BQLDA (TT 195/2012)" },
+      { "key": "dn", "label": "Doanh nghiệp nói chung (TT 200/2014)" },
+      { "key": "dn_special", "label": "DN – trường hợp riêng (*)" }
+    ],
+    "groups": [
+      { "label": "Báo cáo tài chính quý", "bars": [ { "key": "bq", "v": "20" }, { "key": "dn", "v": "20" }, { "key": "dn_special", "v": "45" } ] },
+      { "label": "Báo cáo tài chính năm", "bars": [ { "key": "bq", "v": "30" }, { "key": "dn", "v": "90" }, { "key": "dn_special", "v": "30" } ] }
+    ]
+  },
+  "timeline": {
+    "src": "Mục 1.2.1–1.2.4; Bảng 1.3; Tài liệu tham khảo [3]–[6]",
+    "events": [
+      { "date": "15/11/2012", "doc": "Thông tư 195/2012/TT-BTC", "text": "ban hành", "key": "bq" },
+      { "date": "01/01/2013", "doc": "Thông tư 195/2012/TT-BTC", "text": "có hiệu lực", "key": "bq" },
+      { "date": "22/12/2014", "doc": "Thông tư 200/2014/TT-BTC", "text": "ban hành", "key": "dn" },
+      { "date": "01/01/2015", "doc": "Thông tư 200/2014/TT-BTC", "text": "áp dụng cho năm tài chính bắt đầu từ ngày này", "key": "dn" },
+      { "date": "14/11/2019", "doc": "Thông tư 79/2019/TT-BTC", "text": "chế độ kế toán cho BQLDA sử dụng vốn đầu tư công", "key": "other" },
+      { "date": "27/10/2025", "doc": "Thông tư 99/2025/TT-BTC", "text": "hướng dẫn chế độ kế toán doanh nghiệp mới", "key": "new" },
+      { "date": "01/01/2026", "doc": "Thông tư 99/2025/TT-BTC", "text": "có hiệu lực, thay thế cả Thông tư 200/2014 lẫn Thông tư 195/2012", "key": "new" }
+    ]
+  },
+  "taccounts": {
+    "src": "Bảng 1.5",
+    "unit": "triệu đồng",
+    "ops": [
+      { "name": "1. Nhận nguồn vốn 2.000",
+        "bq": { "note": "Chủ đầu tư cấp vốn", "entries": [ { "dr": "TK 112", "cr": "TK 336 (3361)", "v": "2.000" } ] },
+        "dn": { "note": "Doanh nghiệp vay ngân hàng", "entries": [ { "dr": "TK 112", "cr": "TK 341", "v": "2.000" } ] } },
+      { "name": "2. Nghiệm thu khối lượng xây lắp 1.000, chưa thanh toán",
+        "bq": { "note": "", "entries": [ { "dr": "TK 241", "cr": "TK 331", "v": "1.000" } ] },
+        "dn": { "note": "", "entries": [ { "dr": "TK 241 (2412)", "cr": "TK 331", "v": "1.000" } ] } },
+      { "name": "3. Lương nhân viên quản lý 50",
+        "bq": { "note": "Phân bổ vào dự án", "entries": [ { "dr": "TK 642", "cr": "TK 334", "v": "50" }, { "dr": "TK 241", "cr": "TK 642", "v": "50" } ] },
+        "dn": { "note": "(tính vào chi phí kỳ)", "entries": [ { "dr": "TK 642", "cr": "TK 334", "v": "50" } ] } },
+      { "name": "4. Công trình hoàn thành, bàn giao",
+        "bq": { "note": "Quyết toán được duyệt; Không ghi nhận lãi, lỗ", "entries": [ { "dr": "TK 336", "cr": "TK 241", "v": "1.050" } ] },
+        "dn": { "note": "Nhận tài sản đưa vào sử dụng; Chi phí 50 nằm trong lãi, lỗ của kỳ", "entries": [ { "dr": "TK 211", "cr": "TK 241", "v": "1.000" } ] } }
+    ]
+  },
+  "b22": {
+    "src": "Bảng 2.2",
+    "units": { "bq": "tỷ đồng", "dn": "nghìn tỷ đồng" },
+    "bars": [
+      { "entity": "bq", "label": "BQLDA 31/12/2015", "side": "Tài sản", "parts": [
+        { "label": "Tài sản ngắn hạn", "v": "11,947", "pct": "6,0%" },
+        { "label": "Tài sản dài hạn", "v": "187,517", "pct": "94,0%", "inner": { "label": "Trong đó: xây dựng cơ bản dở dang", "v": "186,743", "pct": "93,6%" } } ],
+        "total": { "label": "Tổng tài sản", "v": "199,464", "pct": "100%" } },
+      { "entity": "bq", "label": "BQLDA 31/12/2015", "side": "Nguồn vốn", "parts": [
+        { "label": "Nợ phải trả", "v": "10,746", "pct": "5,4%" },
+        { "label": "Nguồn vốn đầu tư", "v": "188,717", "pct": "94,6%" } ] },
+      { "entity": "dn", "label": "Hòa Phát 31/12/2024", "side": "Tài sản", "parts": [
+        { "label": "Tài sản ngắn hạn", "v": "86,674", "pct": "38,6%" },
+        { "label": "Tài sản dài hạn", "v": "137,815", "pct": "61,4%", "inner": { "label": "Trong đó: xây dựng cơ bản dở dang", "v": "63,656", "pct": "28,4%" } } ],
+        "total": { "label": "Tổng tài sản", "v": "224,490", "pct": "100%" } },
+      { "entity": "dn", "label": "Hòa Phát 31/12/2024", "side": "Nguồn vốn", "parts": [
+        { "label": "Nợ phải trả", "v": "109,842", "pct": "48,9%" },
+        { "label": "Vốn chủ sở hữu", "v": "114,647", "pct": "51,1%" } ] }
+    ]
+  },
+  "wf_b02": {
+    "src": "Bảng 2.5, Bảng 2.6 (B02-CĐT, F02-CĐT)",
+    "unit": "tỷ đồng",
+    "entity": "bq",
+    "steps": [
+      { "label": "Số dư đầu năm", "v": "129,450", "type": "total" },
+      { "label": "Tăng trong năm", "v": "63,850", "type": "up", "detail": "tiền 60,650; vật tư, thiết bị 3,200" },
+      { "label": "Giảm trong năm", "v": "4,582", "type": "down", "detail": "quyết toán, bàn giao" },
+      { "label": "Số dư cuối năm", "v": "188,717", "type": "total" }
+    ]
+  },
+  "wf_cash": {
+    "src": "Bảng 2.5 (Báo cáo lưu chuyển tiền tệ hợp nhất năm 2024 của Hòa Phát)",
+    "unit": "nghìn tỷ đồng",
+    "entity": "dn",
+    "steps": [
+      { "label": "Tiền đầu năm", "v": "12,252", "type": "total" },
+      { "label": "Hoạt động kinh doanh", "v": "6,608", "type": "up", "shown": "+6,608" },
+      { "label": "Hoạt động đầu tư", "v": "29,788", "type": "down", "shown": "(29,788)" },
+      { "label": "Hoạt động tài chính", "v": "17,815", "type": "up", "shown": "+17,815" },
+      { "label": "Cuối năm", "v": "6,888", "type": "total" }
+    ],
+    "note": "Tăng giảm thuần (5,365)"
+  },
+  "f02": {
+    "src": "Bảng 2.5, Bảng 2.6 (F02-CĐT)",
+    "unit": "tỷ đồng",
+    "parts": [
+      { "label": "Vốn chủ sở hữu do chủ đầu tư cấp", "v": "102,590", "pct": "54,4%" },
+      { "label": "Vốn vay do chủ đầu tư vay và cấp lại", "v": "86,127", "pct": "45,6%" }
+    ],
+    "total": { "label": "Cộng nguồn vốn đầu tư (TK 3361)", "v": "188,717" }
+  },
+  "b28": {
+    "src": "Bảng 2.8",
+    "unit": "tỷ đồng",
+    "total": { "label": "Số dư cuối năm", "v": "186,743", "pct": "100%" },
+    "rows": [
+      { "label": "1. Chi phí xây dựng", "v": "113,029", "pct": "60,5%" },
+      { "label": "2. Chi phí thiết bị", "v": "43,482", "pct": "23,3%" },
+      { "label": "3. Bồi thường, hỗ trợ, tái định cư", "v": "9,745", "pct": "5,2%" },
+      { "label": "4. Chi phí quản lý dự án", "v": "5,851", "pct": "3,1%" },
+      { "label": "5. Chi phí tư vấn đầu tư xây dựng", "v": "10,929", "pct": "5,9%" },
+      { "label": "6. Chi phí khác", "v": "3,706", "pct": "2,0%" }
+    ]
+  },
+  "b29": {
+    "src": "Bảng 2.9",
+    "unit": "tỷ đồng",
+    "total": { "label": "Cộng", "v": "186,743", "pct": "100%" },
+    "rows": [
+      { "label": "1. Nhà xưởng chế biến chính", "v": "82,550", "pct": "44,2%" },
+      { "label": "2. Kho lạnh và kho thành phẩm", "v": "30,282", "pct": "16,2%" },
+      { "label": "3. Hệ thống xử lý nước thải", "v": "18,679", "pct": "10,0%" },
+      { "label": "4. Hạ tầng kỹ thuật", "v": "16,500", "pct": "8,8%" },
+      { "label": "5. Nhà điều hành và công trình phụ trợ", "v": "8,500", "pct": "4,6%" },
+      { "label": "6. Chi phí chung toàn dự án (chưa phân bổ cho hạng mục)", "v": "30,231", "pct": "16,2%" },
+      { "label": "7. Nhà bảo vệ, hàng rào, cổng (đã hoàn thành, bàn giao)", "v": "-", "pct": "-" }
+    ]
+  },
+  "b210": {
+    "src": "Bảng 2.10 (F03D-CĐT)",
+    "unit": "triệu đồng",
+    "years": [ "Năm 2015", "Năm 2014" ],
+    "rows": [
+      { "label": "1. Tiền lương, tiền công, phụ cấp", "v": [ "1.018,4", "962,3" ] },
+      { "label": "2. Bảo hiểm xã hội, y tế, thất nghiệp, kinh phí công đoàn", "v": [ "206,9", "195,4" ] },
+      { "label": "3. Thanh toán dịch vụ công cộng", "v": [ "84,3", "79,8" ] },
+      { "label": "4. Vật tư văn phòng, công cụ, dụng cụ", "v": [ "62,75", "58,9" ] },
+      { "label": "5. Thông tin, tuyên truyền, liên lạc", "v": [ "38,6", "36,2" ] },
+      { "label": "6. Hội nghị", "v": [ "41,2", "38,5" ] },
+      { "label": "7. Công tác phí", "v": [ "118,5", "112,0" ] },
+      { "label": "8. Chi phí thuê mướn", "v": [ "156,0", "148,5" ] },
+      { "label": "9. Sửa chữa tài sản", "v": [ "27,4", "21,0" ] },
+      { "label": "10. Phân bổ giá trị tài sản dùng cho quản lý dự án (hao mòn TSCĐ)", "v": [ "134,0", "130,0" ] },
+      { "label": "11. Chi phí khác", "v": [ "258,4", "227,7" ] }
+    ],
+    "total": { "label": "Tổng chi phí phát sinh trong năm", "v": [ "2.146,45", "2.010,3" ] },
+    "text": [ "tăng 6,8%", "47,4%" ]
+  },
+  "deadline": {
+    "src": "Bảng 2.6.3",
+    "max_days": "90",
+    "rows": [
+      { "entity": "bq", "label": "BQLDA Đồng Bằng (2015)", "period_end": "31/12/2015", "date": "20/01/2016", "limit": "30", "shown": "Báo cáo lập ngày 20/01/2016 (Đúng hạn trong vòng 30 ngày)" },
+      { "entity": "dn", "label": "Tập đoàn Hòa Phát (2024)", "period_end": "31/12/2024", "date": "24/03/2025", "limit": "90", "days": "83", "shown": "Báo cáo lập ngày 24/03/2025 (Kéo dài 83 ngày, tuân thủ hạn 90 ngày)" }
+    ]
+  }
+}

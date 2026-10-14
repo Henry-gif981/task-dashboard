@@ -1,0 +1,59 @@
+# Nội dung thêm vào (không có trong PDF)
+
+Trang chỉ thêm **nhãn giao diện ngắn**, **chú thích nguồn/đơn vị** và **mô tả cho trình đọc màn hình** (lặp lại số trong bài). Không thêm số liệu, ý kiến, khẩu hiệu hay ví dụ mới.
+Trong mã nguồn, mọi chữ thêm vào được đánh dấu `data-added` (hoặc `data-added-ui` cho khối trang trí lặp lại số trong bài), để kiểm tra lại được.
+
+## 1. Điều hướng và điều khiển (do `assets/app.js` tạo ra)
+
+| Chữ | Vị trí |
+|---|---|
+| Mục lục · Trình chiếu · Nền tối | Thanh công cụ góc trên |
+| Bỏ qua điều hướng | Liên kết ẩn cho bàn phím |
+| Tên mục trong thanh điều hướng trái (vd. "2.2 Bảng CĐKT, tài khoản", "Bảng 2.2 Biểu đồ cơ cấu") | Rút gọn từ tiêu đề mục/bảng trong bài |
+| Xem chi tiết | Nút mở đoạn văn dài (mở sẵn khi in) |
+| So sánh · Chỉ xem BQLDA · Chỉ xem Doanh nghiệp · Tiêu chí · Tất cả | Bộ lọc của 11 bảng so sánh (với Bảng 3.1: "Chỉ xem Ưu điểm / Hạn chế"; Bảng 3.2: theo tên cột) |
+| Bước trước · Bước tiếp · Hiện tất cả · "Bước n / 5" | Hình 1.3 |
+| Đóng (Esc) | Hộp xem ảnh phóng to |
+| Chứng từ gốc | Tiêu đề các bộ ảnh chụp chứng từ |
+| BQLDA (Thông tư 195) · Doanh nghiệp (Thông tư 200) | Tiêu đề hai cột tài khoản chữ T |
+| TT 195/2012 · TT 200/2014 · TT 79/2019 · TT 99/2025 | Nhãn rút gọn trên trục dòng thời gian |
+
+## 2. Tiêu đề và chú thích biểu đồ
+
+| Chữ | Biểu đồ |
+|---|---|
+| "Mục lục" (tiêu đề trang mục lục) | Mục lục — PDF không có chữ tiêu đề này |
+| Dòng thời gian các văn bản pháp lý (chỉ dùng các ngày có trong bài) | Mục 1.2 |
+| Nguồn: mục 1.2.1–1.2.4 và Tài liệu tham khảo [3]–[6]. | Mục 1.2 |
+| Đơn vị: triệu đồng. Tài khoản chữ T dựng từ các định khoản trong Bảng 1.5. | Bảng 1.5 |
+| Biểu đồ — Cơ cấu tài sản và nguồn vốn (% tổng tài sản); Đơn vị… Nguồn: Bảng 2.2. | Bảng 2.2 |
+| BQLDA — Nguồn vốn đầu tư năm 2015 (B02-CĐT); Đơn vị: tỷ đồng. Nguồn: Bảng 2.5 và Bảng 2.6. | Thác nước B02 |
+| Hòa Phát — Lưu chuyển tiền tệ năm 2024; Đơn vị: nghìn tỷ đồng (theo bài). Nguồn: Bảng 2.5. | Thác nước dòng tiền |
+| BQLDA — Nguồn hình thành vốn đầu tư theo F02-CĐT (số dư cuối năm) | Cột F02 |
+| Biểu đồ — Số dư cuối năm TK 241 theo nội dung chi phí; … Nguồn: Bảng 2.8. | Bảng 2.8 |
+| Biểu đồ — Số dư cuối năm theo công trình, hạng mục; Hạng mục 7 đã bàn giao, số dư cuối năm "-". Nguồn: Bảng 2.9. | Bảng 2.9 |
+| Biểu đồ — 11 khoản chi phí Ban quản lý dự án, năm 2015 so với năm 2014; "so với 2014"; "tiền lương và các khoản có tính chất lương"; Nguồn: Bảng 2.10; "tăng 6,8%" và "47,4%" theo bài. | Bảng 2.10 |
+| Thời hạn nộp BCTC năm so với ngày lập thực tế; Thang đo: số ngày kể từ ngày kết thúc kỳ kế toán… Nguồn: Bảng 2.6.3. | Mục 2.6.3 |
+| Tỷ lệ thực hiện so với tổng mức đầu tư (BQLDA Đồng Bằng năm 2015); "Lũy kế vốn thực hiện … / tổng mức đầu tư … tỷ đồng" | Mục 2.6.1 (số 61,3%, 191,32, 312 lấy từ bài) |
+| Hai luồng xử lý thuế GTGT đầu vào (thẻ 2,34 tỷ đồng / 6.636 tỷ đồng, bút toán và câu ngắn lấy từ bài) | Mục 2.6.2 |
+| Thẻ số liệu "Tổng tài sản của Ban (31/12/2015)", "Lũy kế vốn đầu tư thực hiện", "Tổng tài sản của Hòa Phát (31/12/2024)" | Mục 2.1.2 (số lấy từ đoạn văn ngay dưới) |
+| Ba thẻ "Có trong BCTC mẫu / Không có trong BCTC mẫu" | Bảng 2.12 (nội dung lấy từ bảng) |
+| Tiêu đề ẩn cho trình đọc màn hình: "Số liệu tổng quát của hai đơn vị", "Biểu đồ cơ cấu Bảng 2.2", "Biểu đồ nguồn vốn đầu tư và dòng tiền", "Nhận xét về F03D và F03C", "Giải trình trên Thuyết minh BCTC", "Chứng từ, sổ sách và quy trình hợp nhất", "Phân tích ưu điểm và hạn chế", "Phân tích khó khăn khi đọc BCTC BQLDA" | Đầu các trang chiếu tách đôi |
+
+Chú giải (legend) của biểu đồ dùng đúng tên trong bảng của bài (BQLDA, Hòa Phát, Năm 2015, Năm 2014, Tài sản ngắn hạn / Nợ phải trả, Trong đó: xây dựng cơ bản dở dang, DN – trường hợp riêng (*)).
+
+## 3. Ghi chú biên tập (đều đánh dấu `data-added`)
+
+- Danh mục từ viết tắt: "Mục này không có nội dung trong bài."
+- Hình 2.3 / 2.17: "Trang này xuất hiện hai lần trong bài: Hình 2.3 và Hình 2.17." và "Cùng trang với Hình 2.3 (xuất hiện hai lần trong bài); bấm để mở."
+- Hình 2.15 / 2.16: "Ảnh này xuất hiện hai lần trong bài (Hình 2.15 và Hình 2.16)."
+- Tóm tắt Chương 2: "Trong bài, phần “Tóm tắt chương” của Chương 2 được đặt trước mục 2.6; trang web giữ nguyên thứ tự này."
+- Phụ lục: "Bài chỉ liệt kê tên ba phụ lục; nội dung các phụ lục không có trong tệp PDF."
+
+## 4. Mô tả cho trình đọc màn hình (`.sr-only`)
+
+Mỗi biểu đồ có một đoạn mô tả ẩn, chỉ đọc lại các số in trong bảng nguồn (Hình 1.4, dòng thời gian, Bảng 1.5, 2.2, 2.5/2.6 ×3, 2.8, 2.9, 2.10, 2.6.3). Mỗi cột/đoạn biểu đồ còn có `aria-label` và chú thích khi rê chuột, ghép từ nhãn và số trong `viz_data.json`.
+
+## 5. Bìa
+
+Thông tin bìa nằm trong `window.COVER` ở đầu `index.html` (`src/head.html`). Dòng "Giảng viên" để trống trong bài nên được ẩn; điền `lecturer` để hiện lại.
