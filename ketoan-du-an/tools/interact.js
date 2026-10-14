@@ -9,7 +9,7 @@ const path = require('path');
   const p = await ctx.newPage(); const logs = [];
   p.on('console', m => { if (['error', 'warning'].includes(m.type())) logs.push(m.text().slice(0, 200)); });
   p.on('pageerror', e => logs.push('pageerror: ' + e.message));
-  await p.goto('file://' + path.resolve(file)); await p.waitForTimeout(700);
+  await p.goto('file://' + path.resolve(file) + '?nointro=1&no3d=1'); await p.waitForTimeout(900);
   const R = {}; const ok = (k, v) => { R[k] = v; };
   // tab Hình 1.1
   const tabsN = await p.$$eval('.cycle-steps [role=tab]', x => x.length);
@@ -18,6 +18,7 @@ const path = require('path');
   // nhánh A/B/C
   const br = p.locator('.branch .br-head'); const nb = await br.count();
   for (let i = 0; i < nb; i++) { await br.nth(i).scrollIntoViewIfNeeded(); await br.nth(i).click(); }
+  ok('h12_focus_class', await p.$eval('.fig.tree', t => t.classList.contains('focus') + ' sel=' + document.querySelectorAll('.branch.sel').length));
   ok('h12_open', await p.$$eval('.branch .br-head', x => x.map(h => h.getAttribute('aria-expanded')).join(',')));
   // stepper
   const nx = p.locator('[data-stepper] [data-a=next]'); await nx.scrollIntoViewIfNeeded();
@@ -25,6 +26,19 @@ const path = require('path');
   ok('h13_pending_after_next', await p.$$eval('.flow-row.pending', x => x.length));
   await p.locator('[data-stepper] [data-a=prev]').click(); ok('h13_after_prev', await p.$$eval('.flow-row.pending', x => x.length));
   await p.locator('[data-stepper] [data-a=all]').click(); ok('h13_all', await p.$$eval('.flow-row.pending', x => x.length));
+  // phím Space: lùi về bước 1 rồi nhấn Space 2 lần
+  for (let i = 0; i < 5; i++) await p.locator('[data-stepper] [data-a=prev]').click().catch(() => {});
+  await p.evaluate(() => { document.activeElement.blur(); document.getElementById('hinh-1-3').scrollIntoView({ block: 'center' }); }); await p.waitForTimeout(300);
+  await p.keyboard.press('Space'); await p.keyboard.press('Space');
+  ok('h13_space_pending_after_2', await p.$$eval('.flow-row.pending', x => x.length));
+  // ghim hàng
+  const pin = p.locator('#bang-1-4 .pin').first(); await pin.scrollIntoViewIfNeeded(); await pin.click();
+  ok('pin', await p.$$eval('#bang-1-4 tr.pinned', x => x.length) + ' / pressed=' + await pin.getAttribute('aria-pressed')); await pin.click();
+  // thanh ngăn phân đôi
+  const rg = p.locator('.split-range'); await rg.scrollIntoViewIfNeeded(); await p.waitForTimeout(1600);
+  await rg.focus(); await p.keyboard.press('Home'); const x1 = await p.$eval('.split', e => e.style.getPropertyValue('--x'));
+  await p.keyboard.press('End'); const x2 = await p.$eval('.split', e => e.style.getPropertyValue('--x'));
+  ok('split_slider', x1 + ' -> ' + x2);
   // T-accounts
   const tt = p.locator('.t-tabs [role=tab]'); const nt = await tt.count(); const tres = [];
   for (let i = 0; i < nt; i++) { await tt.nth(i).scrollIntoViewIfNeeded(); await tt.nth(i).click(); tres.push(await p.$$eval('#t-stage .tacc', x => x.length)); }
@@ -46,6 +60,17 @@ const path = require('path');
   for (let i = 0; i < nth; i++) {
     await th.nth(i).scrollIntoViewIfNeeded(); await th.nth(i).click(); await p.waitForTimeout(120);
     const st = await p.evaluate(() => { const lb = document.querySelector('.lightbox'), im = lb.querySelector('img'); return { open: lb.classList.contains('open'), w: im.naturalWidth, cap: lb.querySelector('.lb-cap').textContent.slice(0, 50) }; });
+    if (i === 0) { // phóng bằng lăn chuột, nút, kéo thả
+      const z0 = await p.$eval('.lb-zoom', e => e.textContent);
+      const box = await p.$eval('.lb-stage', e => { const r = e.getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2]; });
+      await p.mouse.move(box[0], box[1]); await p.mouse.wheel(0, -300); await p.waitForTimeout(100);
+      const z1 = await p.$eval('.lb-zoom', e => e.textContent);
+      const t0 = await p.$eval('.lb-stage img', e => e.style.transform);
+      await p.mouse.down(); await p.mouse.move(box[0] + 80, box[1] + 40, { steps: 5 }); await p.mouse.up();
+      const t1 = await p.$eval('.lb-stage img', e => e.style.transform);
+      await p.click('.lb-btns [data-z=fit]'); const z2 = await p.$eval('.lb-zoom', e => e.textContent);
+      ok('lightbox_zoom', `fit ${z0} → wheel ${z1} → drag ${t0 !== t1 ? 'moved' : 'NOT moved'} → fit ${z2}`);
+    }
     await p.keyboard.press('Escape'); await p.waitForTimeout(80);
     const closed = await p.evaluate(() => !document.querySelector('.lightbox').classList.contains('open'));
     if (st.open && st.w > 0 && closed) lbok++; else console.log('LB fail', i, st, closed);
@@ -59,7 +84,7 @@ const path = require('path');
   ok('keys_scrollY', ks.join(','));
   ok('progress', await p.$eval('#progress, .progress', e => e.getAttribute('style') || getComputedStyle(e).transform).catch(() => 'n/a'));
   // trình chiếu + Esc
-  await p.click('#btn-present'); const pr1 = await p.evaluate(() => document.body.classList.contains('present'));
+  await p.click('#btn-present'); await p.waitForTimeout(600); const pr1 = await p.evaluate(() => document.body.classList.contains('present'));
   const sideHidden = await p.evaluate(() => { const s = document.querySelector('.side'); return getComputedStyle(s).display === 'none' || s.getBoundingClientRect().right <= 0; });
   await p.keyboard.press('Escape'); const pr2 = await p.evaluate(() => document.body.classList.contains('present'));
   ok('present', `on=${pr1} sideHidden=${sideHidden} afterEsc=${pr2}`);
@@ -74,6 +99,12 @@ const path = require('path');
   ok('img_no_alt', await p.$$eval('img', x => x.filter(i => !i.hasAttribute('alt')).length));
   ok('th_no_scope', await p.$$eval('table th', x => x.filter(t => !t.getAttribute('scope')).length));
   ok('hOverflow', await p.evaluate(() => document.documentElement.scrollWidth - innerWidth));
+  // màn mở đầu: nút Bỏ qua
+  const p2 = await ctx.newPage(); await p2.goto('file://' + path.resolve(file) + '?no3d=1'); await p2.waitForTimeout(300);
+  const playing = await p2.evaluate(() => document.getElementById('intro').classList.contains('play'));
+  await p2.click('.intro-skip'); await p2.waitForTimeout(700);
+  ok('intro', `play=${playing} afterSkip.hidden=${await p2.evaluate(() => document.getElementById('intro').hidden)} heroReady=${await p2.evaluate(() => document.querySelector('.hero').classList.contains('ready'))}`);
+  await p2.close();
   ok('net', net); ok('console', logs);
   console.log(JSON.stringify(R, null, 1));
   await b.close();

@@ -57,3 +57,26 @@ Mỗi biểu đồ có một đoạn mô tả ẩn, chỉ đọc lại các số
 ## 5. Bìa
 
 Thông tin bìa nằm trong `window.COVER` ở đầu `index.html` (`src/head.html`). Dòng "Giảng viên" để trống trong bài nên được ẩn; điền `lecturer` để hiện lại.
+
+---
+
+## 6. Nhãn giao diện thêm khi nâng cấp giao diện "Sổ cái 3D" (tháng 10/2026)
+
+Nội dung bài (chữ trong `<main>`) không đổi: `tools/compare_text.py` so với `before_text_content.txt` cho kết quả trùng 100%. Các phần dưới đây là nhãn/trang trí mới, đều gắn `data-ui` (và phần lớn `aria-hidden`):
+
+| Chữ / phần tử | Vị trí | Ghi chú |
+|---|---|---|
+| Bỏ qua | Nút trên màn mở đầu 1,5 giây | Màn mở đầu tự ẩn sau 1,5 giây |
+| Cuộn xuống | Nhãn cho trình đọc màn hình của chỉ báo cuộn ở hero | Không hiện chữ |
+| Chương 1 · Dẫn nhập | Tên mục trong thanh điều hướng | Đoạn dẫn nhập Chương 1 được tách khỏi trang bìa chương sang trang riêng ngay sau đó (thứ tự giữ nguyên) |
+| "Chương 1/2/3" (dòng nhỏ trên tên chương) và danh sách mục con trên trang bìa chương | Trang bìa chương | Lấy từ tên mục trong thanh điều hướng (vd. "1.1 Tổng quan về dự án") |
+| Số mục bên lề (1.1, 2.3…) và tên chương nhỏ bên dưới | Lề trái mỗi trang | Hiển thị bằng CSS `attr()`, không nằm trong chữ của trang |
+| Nhãn vị trí "1.2.4 / Chương 1" | Thanh trên cùng | Sinh theo vị trí cuộn |
+| Ghim hàng | Nhãn ẩn (aria-label) của nút ghim ở đầu mỗi hàng bảng | Chỉ có biểu tượng |
+| Space | Gợi ý phím cạnh các nút Hình 1.3 | |
+| Phóng to · Thu nhỏ · Vừa khung · tỉ lệ % | Thanh dưới của hộp xem ảnh chứng từ | |
+| So sánh phân đôi cơ cấu (% tổng tài sản) · kéo thanh ngăn; "Đơn vị: % tổng tài sản. Nguồn: Bảng 2.2. Trái: BQLDA 31/12/2015 · Phải: Hòa Phát 31/12/2024."; nhãn thanh trượt "Thanh ngăn so sánh BQLDA và Hòa Phát" | Hình so sánh phân đôi cạnh Bảng 2.2 | Chỉ dùng % và tên dòng của Bảng 2.2 (6,0%; 94,0%; 5,4%; 94,6%; 38,6%; 61,4%; 48,9%; 51,1%) |
+| Thẻ số nổi bật: "Xây dựng cơ bản dở dang, % tổng tài sản · BQLDA 31/12/2015 (Bảng 2.2)" 93,6%; "Nguồn vốn đầu tư, % tổng tài sản · BQLDA 31/12/2015 (Bảng 2.2)" 94,6%; "Xây dựng cơ bản dở dang, % tổng tài sản · Hòa Phát 31/12/2024 (Bảng 2.2)" 28,4%; "Nguồn vốn đầu tư cuối năm 2015 · BQLDA (Bảng 2.5)" 188,717 tỷ đồng; "Số dư cuối năm TK 241 · BQLDA (Bảng 2.8)" 186,743 tỷ đồng | Đầu trang biểu đồ Bảng 2.2, trang thác nước 2.3, trang Bảng 2.8 | Chỉ số in trong bài, `aria-hidden` |
+| Sinh viên Nhóm 2, Đại học Kinh tế Quốc dân. Bài tập môn Kế toán dự án đầu tư xây dựng. | Chân trang | Theo yêu cầu |
+| Biểu tượng nét 1,5px (sổ cái, công trình, dấu tích, đồng hồ, mũi tên, ghim, chữ T, cân) | Tiêu đề bộ ảnh chứng từ, thẻ tình huống, chú thích dòng thời gian và Mục 2.6.3, chân trang | Không có chữ |
+| Cảnh 3D chữ T và hai dòng khối xanh/cam; bản SVG tĩnh dự phòng | Hero | Trang trí, không mang số liệu |

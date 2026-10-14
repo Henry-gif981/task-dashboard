@@ -22,15 +22,33 @@ window.COVER = {
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
+<script>document.documentElement.classList.add("js");</script>
 <a class="skip" href="#main" data-added>Bỏ qua điều hướng</a>
-<div class="progress" aria-hidden="true"></div>
-<div class="tools">
+<!-- bộ biểu tượng tự vẽ, nét 1,5px -->
+<svg class="icon-sprite" aria-hidden="true" data-ui>
+  <symbol id="i-ledger" viewBox="0 0 24 24"><path d="M5 3.75h11.5a2.75 2.75 0 0 1 2.75 2.75v13.75H7.75A2.75 2.75 0 0 1 5 17.5z"/><path d="M5 17.5a2.75 2.75 0 0 1 2.75-2.75h11.5"/><path d="M9 8h7M12.5 8v5"/></symbol>
+  <symbol id="i-build" viewBox="0 0 24 24"><path d="M3.75 20.25h16.5"/><path d="M5.75 20.25V9.5l6.25-4 6.25 4v10.75"/><path d="M9.75 20.25v-5h4.5v5M9.5 11h1.5M13 11h1.5"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M4.75 12.5l4.5 4.5 10-10"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.25"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4.75 12h14.5M13.5 6.25 19.25 12l-5.75 5.75"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M9 3.75h6M10 3.75v5.5L6.75 13h10.5L14 9.25v-5.5M12 13v7.25"/></symbol>
+  <symbol id="i-t" viewBox="0 0 24 24"><path d="M3.75 5.75h16.5M12 5.75v14.5"/><path d="M3.75 8.75h6M14.25 8.75h6"/></symbol>
+  <symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 4v16M7 20h10M5 7.5h14M5 7.5 2.75 13a2.5 2.5 0 0 0 4.5 0zM19 7.5 16.75 13a2.5 2.5 0 0 0 4.5 0z"/></symbol>
+</svg>
+<!-- màn mở đầu 1,5 giây: nét chữ T sổ cái -->
+<div class="intro" id="intro" aria-hidden="true" data-ui>
+  <svg class="intro-t" viewBox="0 0 200 160"><path class="it-h" d="M20 30 H180"/><path class="it-v" d="M100 30 V140"/><path class="it-u1" d="M40 44 H90"/><path class="it-u2" d="M110 44 H160"/></svg>
+  <button type="button" class="intro-skip" tabindex="-1">Bỏ qua</button>
+</div>
+<div class="topbar" aria-hidden="true" data-ui><div class="progress"></div><p class="where"><span class="where-sec"></span><span class="where-ch"></span></p></div>
+<div class="tools" data-ui>
   <button type="button" class="tool menu-btn" id="btn-menu" aria-expanded="false" aria-controls="side" data-added>Mục lục</button>
   <button type="button" class="tool" id="btn-present" aria-pressed="false" title="Phím: ← → hoặc PageUp/PageDown chuyển mục; F toàn màn hình; Esc thoát" data-added>Trình chiếu</button>
   <button type="button" class="tool" id="btn-theme" aria-pressed="false" data-added>Nền tối</button>
 </div>
-<aside class="side" id="side" aria-label="Điều hướng">
+<aside class="side" id="side" aria-label="Điều hướng" data-ui>
   <div class="side-brand"><img src="assets/logo-neu.png" alt="" width="40" height="40"><p data-added>Kế toán dự án đầu tư xây dựng<small>Nhóm 2 · NEU</small></p></div>
   <nav aria-label="Các mục của bài"><ol id="side-nav"></ol></nav>
 </aside>
+<div class="cursor-ring" aria-hidden="true" data-ui></div>
 <main id="main">

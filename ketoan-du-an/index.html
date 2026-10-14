@@ -22,37 +22,88 @@ window.COVER = {
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
+<script>document.documentElement.classList.add("js");</script>
 <a class="skip" href="#main" data-added>Bỏ qua điều hướng</a>
-<div class="progress" aria-hidden="true"></div>
-<div class="tools">
+<!-- bộ biểu tượng tự vẽ, nét 1,5px -->
+<svg class="icon-sprite" aria-hidden="true" data-ui>
+  <symbol id="i-ledger" viewBox="0 0 24 24"><path d="M5 3.75h11.5a2.75 2.75 0 0 1 2.75 2.75v13.75H7.75A2.75 2.75 0 0 1 5 17.5z"/><path d="M5 17.5a2.75 2.75 0 0 1 2.75-2.75h11.5"/><path d="M9 8h7M12.5 8v5"/></symbol>
+  <symbol id="i-build" viewBox="0 0 24 24"><path d="M3.75 20.25h16.5"/><path d="M5.75 20.25V9.5l6.25-4 6.25 4v10.75"/><path d="M9.75 20.25v-5h4.5v5M9.5 11h1.5M13 11h1.5"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M4.75 12.5l4.5 4.5 10-10"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.25"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4.75 12h14.5M13.5 6.25 19.25 12l-5.75 5.75"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M9 3.75h6M10 3.75v5.5L6.75 13h10.5L14 9.25v-5.5M12 13v7.25"/></symbol>
+  <symbol id="i-t" viewBox="0 0 24 24"><path d="M3.75 5.75h16.5M12 5.75v14.5"/><path d="M3.75 8.75h6M14.25 8.75h6"/></symbol>
+  <symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 4v16M7 20h10M5 7.5h14M5 7.5 2.75 13a2.5 2.5 0 0 0 4.5 0zM19 7.5 16.75 13a2.5 2.5 0 0 0 4.5 0z"/></symbol>
+</svg>
+<!-- màn mở đầu 1,5 giây: nét chữ T sổ cái -->
+<div class="intro" id="intro" aria-hidden="true" data-ui>
+  <svg class="intro-t" viewBox="0 0 200 160"><path class="it-h" d="M20 30 H180"/><path class="it-v" d="M100 30 V140"/><path class="it-u1" d="M40 44 H90"/><path class="it-u2" d="M110 44 H160"/></svg>
+  <button type="button" class="intro-skip" tabindex="-1">Bỏ qua</button>
+</div>
+<div class="topbar" aria-hidden="true" data-ui><div class="progress"></div><p class="where"><span class="where-sec"></span><span class="where-ch"></span></p></div>
+<div class="tools" data-ui>
   <button type="button" class="tool menu-btn" id="btn-menu" aria-expanded="false" aria-controls="side" data-added>Mục lục</button>
   <button type="button" class="tool" id="btn-present" aria-pressed="false" title="Phím: ← → hoặc PageUp/PageDown chuyển mục; F toàn màn hình; Esc thoát" data-added>Trình chiếu</button>
   <button type="button" class="tool" id="btn-theme" aria-pressed="false" data-added>Nền tối</button>
 </div>
-<aside class="side" id="side" aria-label="Điều hướng">
+<aside class="side" id="side" aria-label="Điều hướng" data-ui>
   <div class="side-brand"><img src="assets/logo-neu.png" alt="" width="40" height="40"><p data-added>Kế toán dự án đầu tư xây dựng<small>Nhóm 2 · NEU</small></p></div>
   <nav aria-label="Các mục của bài"><ol id="side-nav"></ol></nav>
 </aside>
+<div class="cursor-ring" aria-hidden="true" data-ui></div>
 <main id="main">
-<!-- ============ BÌA (dữ liệu lấy từ window.COVER ở đầu trang) ============ -->
-<section class="slide cover" id="bia" data-nav="Bìa" aria-label="Bìa">
-  <div class="cover-inner">
+<!-- ============ HERO / BÌA (dữ liệu lấy từ window.COVER ở đầu trang) ============ -->
+<section class="slide cover hero" id="bia" data-nav="Bìa" aria-label="Bìa">
+  <div class="hero-bg" aria-hidden="true" data-ui></div>
+  <canvas class="hero-canvas" aria-hidden="true" data-ui></canvas>
+  <!-- phương án dự phòng không-3D: cùng bố cục, vẽ tĩnh -->
+  <svg class="hero-fallback" viewBox="0 0 800 600" aria-hidden="true" data-ui>
+    <defs>
+      <linearGradient id="hf-t" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F4F1EA"/><stop offset="1" stop-color="#B9C4D2"/></linearGradient>
+      <linearGradient id="hf-side" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8E9AAB"/><stop offset="1" stop-color="#5D6878"/></linearGradient>
+      <radialGradient id="hf-glow" cx=".5" cy=".55" r=".5"><stop offset="0" stop-color="#3B82C4" stop-opacity=".35"/><stop offset="1" stop-color="#0B1F3A" stop-opacity="0"/></radialGradient>
+    </defs>
+    <ellipse cx="400" cy="330" rx="360" ry="260" fill="url(#hf-glow)"/>
+    <ellipse cx="410" cy="505" rx="210" ry="22" fill="#000" opacity=".28"/>
+    <!-- khối chữ T: mặt bên + mặt trước -->
+    <path d="M262 168 h300 l18 -14 h-300 z" fill="#DCE3EC"/>
+    <path d="M562 168 l18 -14 v58 l-18 14 z" fill="url(#hf-side)"/>
+    <path d="M443 226 l18 -14 v272 l-18 14 z" fill="url(#hf-side)"/>
+    <path d="M262 168 h300 v58 h-119 v272 h-62 v-272 h-119 z" fill="url(#hf-t)"/>
+    <path d="M262 168 h300" stroke="#E8B84A" stroke-width="2"/>
+    <!-- dòng khối xanh (vốn) bên trái, cam (kết quả) bên phải -->
+    <g fill="#3B82C4">
+      <rect x="70" y="250" width="16" height="16" opacity=".35"/><rect x="112" y="236" width="16" height="16" opacity=".45"/><rect x="152" y="222" width="18" height="18" opacity=".6"/><rect x="194" y="206" width="18" height="18" opacity=".75"/><rect x="232" y="192" width="20" height="20" opacity=".9"/>
+      <rect x="96" y="290" width="12" height="12" opacity=".3"/><rect x="140" y="272" width="14" height="14" opacity=".4"/><rect x="182" y="256" width="14" height="14" opacity=".55"/>
+    </g>
+    <g fill="#F08A3C">
+      <rect x="590" y="192" width="20" height="20" opacity=".9"/><rect x="630" y="206" width="18" height="18" opacity=".75"/><rect x="672" y="222" width="18" height="18" opacity=".6"/><rect x="712" y="236" width="16" height="16" opacity=".45"/><rect x="752" y="250" width="16" height="16" opacity=".35"/>
+      <rect x="646" y="256" width="14" height="14" opacity=".55"/><rect x="688" y="272" width="14" height="14" opacity=".4"/><rect x="730" y="290" width="12" height="12" opacity=".3"/>
+    </g>
+    <g fill="#E8B84A" opacity=".6"><circle cx="180" cy="120" r="1.6"/><circle cx="330" cy="90" r="1.2"/><circle cx="520" cy="70" r="1.8"/><circle cx="650" cy="130" r="1.3"/><circle cx="120" cy="420" r="1.4"/><circle cx="700" cy="420" r="1.6"/></g>
+  </svg>
+  <div class="hero-inner">
     <div class="cover-uni">
-      <p class="cover-line" data-cover="uni"></p>
-      <p class="cover-line cover-school" data-cover="school"></p>
-      <p class="cover-sep" aria-hidden="true">--------</p>
+      <img class="cover-logo" src="assets/logo-neu.png" width="214" height="215" alt="Logo Trường Đại học Kinh tế Quốc dân (NEU)">
+      <div>
+        <p class="cover-line" data-cover="uni"></p>
+        <p class="cover-line cover-school" data-cover="school"></p>
+        <p class="cover-sep" aria-hidden="true">--------</p>
+      </div>
     </div>
-    <img class="cover-logo" src="assets/logo-neu.png" width="214" height="215" alt="Logo Trường Đại học Kinh tế Quốc dân (NEU)">
     <p class="cover-subject"><span class="cover-k">Môn:</span> <span data-cover="subject"></span></p>
     <p class="cover-k cover-topic-label">Chủ đề:</p>
     <h1 class="cover-topic" data-cover="topic"></h1>
-    <p class="cover-group"><span class="cover-k">Nhóm:</span> <span data-cover="group"></span></p>
-    <dl class="cover-meta">
-      <div data-row="lecturer"><dt>Giảng viên:</dt><dd data-cover="lecturer"></dd></div>
-      <div data-row="student"><dt>Sinh viên:</dt><dd data-cover="student"></dd></div>
-    </dl>
-    <p class="cover-year" data-cover="year"></p>
+    <div class="cover-foot">
+      <p class="cover-group"><span class="cover-k">Nhóm:</span> <span data-cover="group"></span></p>
+      <dl class="cover-meta">
+        <div data-row="lecturer"><dt>Giảng viên:</dt><dd data-cover="lecturer"></dd></div>
+        <div data-row="student"><dt>Sinh viên:</dt><dd data-cover="student"></dd></div>
+      </dl>
+      <p class="cover-year" data-cover="year"></p>
+    </div>
   </div>
+  <a class="scroll-cue" href="#muc-luc" aria-label="Cuộn xuống" data-ui><span></span></a>
 </section>
 
 <!-- ============ MỤC LỤC (trang 2 của bài) ============ -->
@@ -112,10 +163,15 @@ window.COVER = {
 </section>
 
 <!-- ======================= CHƯƠNG 1 ======================= -->
-<section class="slide chapter" id="chuong-1" data-nav="Chương 1" aria-labelledby="h-c1">
+<section class="slide chapter ch-1" id="chuong-1" data-nav="Chương 1" aria-labelledby="h-c1">
   <div class="wrap">
     <p class="ch-no" aria-hidden="true">01</p>
     <h2 class="h-chapter" id="h-c1">CHƯƠNG 1. CƠ SỞ LÝ LUẬN VÀ PHÁP LÝ VỀ KẾ TOÁN BAN QUẢN LÝ DỰ ÁN VÀ DOANH NGHIỆP</h2>
+  </div>
+</section>
+
+<section class="slide" id="chuong-1-mo" data-nav="Chương 1 · Dẫn nhập" aria-labelledby="h-c1">
+  <div class="wrap">
     <div class="lead-block">
       <p>Kế toán của một Ban quản lý dự án (BQLDA) và kế toán của một doanh nghiệp đều dựa trên Luật Kế toán và cùng dùng phương pháp ghi sổ kép, nhưng phục vụ hai mục tiêu khác nhau. BQLDA quản lý và quyết toán nguồn vốn đầu tư của từng dự án; doanh nghiệp xác định kết quả kinh doanh của toàn đơn vị. Muốn so sánh hai chế độ kế toán cho chính xác, trước hết cần hiểu dự án là gì, đi qua những giai đoạn nào và kế toán phải làm gì ở từng giai đoạn.</p>
       <p>Chương này vì vậy gồm ba phần: mục 1.1 trình bày tổng quan về dự án và kế toán dự án; mục 1.2 làm rõ khung pháp lý và hai chế độ kế toán áp dụng là Thông tư 195/2012/TT-BTC (BQLDA) và Thông tư 200/2014/TT-BTC (doanh nghiệp); mục 1.3 xác định phạm vi và hệ tiêu chí để so sánh hai chế độ ở các chương sau.</p>
@@ -470,7 +526,7 @@ window.COVER = {
 </section>
 
 <!-- ======================= CHƯƠNG 2 ======================= -->
-<section class="slide chapter" id="chuong-2" data-nav="Chương 2" aria-labelledby="h-c2">
+<section class="slide chapter ch-2" id="chuong-2" data-nav="Chương 2" aria-labelledby="h-c2">
   <div class="wrap">
     <p class="ch-no" aria-hidden="true">02</p>
     <h2 class="h-chapter" id="h-c2">CHƯƠNG 2. PHÂN TÍCH SỰ KHÁC BIỆT VỀ CHẾ ĐỘ KẾ TOÁN VÀ BÁO CÁO TÀI CHÍNH BAN QUẢN LÝ DỰ ÁN GIỮA THÔNG TƯ 195/2012/TT-BTC VÀ BÁO CÁO TÀI CHÍNH DOANH NGHIỆP SỬ DỤNG THÔNG TƯ 200</h2>
@@ -1008,7 +1064,7 @@ window.COVER = {
 </section>
 
 <!-- ======================= CHƯƠNG 3 ======================= -->
-<section class="slide chapter" id="chuong-3" data-nav="Chương 3" aria-labelledby="h-c3">
+<section class="slide chapter ch-3" id="chuong-3" data-nav="Chương 3" aria-labelledby="h-c3">
   <div class="wrap">
     <p class="ch-no" aria-hidden="true">03</p>
     <h2 class="h-chapter" id="h-c3">CHƯƠNG 3. NHẬN XÉT, ĐÁNH GIÁ VÀ KIẾN NGHỊ</h2>
@@ -1113,7 +1169,15 @@ window.COVER = {
   </div>
 </section>
 </main>
+<footer class="site-foot" data-ui>
+  <p><svg class="ic" aria-hidden="true"><use href="#i-ledger"/></svg> Sinh viên Nhóm 2, Đại học Kinh tế Quốc dân. Bài tập môn Kế toán dự án đầu tư xây dựng.</p>
+</footer>
 <script src="assets/viz_data.js"></script>
+<script>/* three.min.js r155 in một cảnh báo "build/three.min.js deprecated"; lọc riêng câu đó */
+(function(){var w=console.warn;window.__restoreWarn=function(){console.warn=w;};console.warn=function(m){if(String(m).indexOf('build/three')>=0)return;w.apply(console,arguments);};})();</script>
+<script src="vendor/three.min.js"></script>
+<script>window.__restoreWarn();</script>
 <script src="assets/app.js"></script>
+<script src="assets/hero3d.js"></script>
 </body>
 </html>
