@@ -99,12 +99,32 @@ const path = require('path');
   ok('img_no_alt', await p.$$eval('img', x => x.filter(i => !i.hasAttribute('alt')).length));
   ok('th_no_scope', await p.$$eval('table th', x => x.filter(t => !t.getAttribute('scope')).length));
   ok('hOverflow', await p.evaluate(() => document.documentElement.scrollWidth - innerWidth));
+  // Xem bảng số liệu (mọi biểu đồ)
+  const vb = p.locator('.vz-btn'); const nvb = await vb.count(); let vbok = 0;
+  for (let i = 0; i < nvb; i++) { await vb.nth(i).scrollIntoViewIfNeeded(); await vb.nth(i).click(); const o = await vb.nth(i).evaluate(b => !b.nextElementSibling.hidden && b.nextElementSibling.querySelectorAll('tbody tr').length > 0); await vb.nth(i).click(); const cl = await vb.nth(i).evaluate(b => b.nextElementSibling.hidden); if (o && cl) vbok++; }
+  ok('data_tables', `${vbok}/${nvb}`);
+  // tooltip bằng bàn phím trên điểm dữ liệu + phím mũi tên
+  const mk = p.locator('.mark').first(); await mk.scrollIntoViewIfNeeded(); await p.waitForTimeout(400); await mk.focus(); await p.waitForTimeout(100); const t1 = await p.$eval('.tip', t => t.classList.contains('show') + ' ' + t.textContent.slice(0, 40));
+  await p.keyboard.press('ArrowRight'); const t2 = await p.$eval('.tip', t => t.textContent.slice(0, 40)); await p.keyboard.press('Escape');
+  ok('tooltip_keyboard', t1 + ' → ' + t2);
+  // ma trận 5 tiêu chí
+  const mx = p.locator('.mx-c.dn').nth(1); await mx.scrollIntoViewIfNeeded(); await mx.click(); await p.waitForTimeout(400);
+  ok('matrix', await p.$eval('#bang-1-4', f => f.classList.contains('only-b') + ' dimRows=' + f.querySelectorAll('tr.dim').length)); await p.click('.mx-all');
+  // A−/A+ và Chế độ đọc (ghi nhớ)
+  await p.evaluate(() => scrollTo(0, 0)); const fz0 = await p.evaluate(() => getComputedStyle(document.documentElement).fontSize);
+  await p.click('#fz-up'); await p.click('#fz-up'); const fz1 = await p.evaluate(() => getComputedStyle(document.documentElement).fontSize);
+  await p.click('#fz-dn'); await p.click('#fz-dn');
+  await p.click('#btn-reading'); await p.waitForTimeout(300);
+  const rd = await p.evaluate(() => ({ cls: document.documentElement.classList.contains('reading'), fs: getComputedStyle(document.documentElement).fontSize, stored: localStorage.getItem('kt-reading'), hero: (window.__hero3d || {}).mode }));
+  await p.click('#btn-reading');
+  ok('font_scale', `${fz0} → A+×2 ${fz1}`); ok('reading_mode', JSON.stringify(rd));
   // màn mở đầu: nút Bỏ qua
-  const p2 = await ctx.newPage(); await p2.goto('file://' + path.resolve(file) + '?no3d=1'); await p2.waitForTimeout(300);
+  const ctx2 = await b.newContext(); await ctx2.route(/^https?:/, r => r.abort()); const p2 = await ctx2.newPage(); await p2.goto('file://' + path.resolve(file) + '?no3d=1'); await p2.waitForTimeout(300);
   const playing = await p2.evaluate(() => document.getElementById('intro').classList.contains('play'));
   await p2.click('.intro-skip'); await p2.waitForTimeout(700);
   ok('intro', `play=${playing} afterSkip.hidden=${await p2.evaluate(() => document.getElementById('intro').hidden)} heroReady=${await p2.evaluate(() => document.querySelector('.hero').classList.contains('ready'))}`);
-  await p2.close();
+  await p2.reload(); await p2.waitForTimeout(400); ok('intro_second_visit_hidden', await p2.evaluate(() => document.getElementById('intro').hidden));
+  await p2.close(); await ctx2.close();
   ok('net', net); ok('console', logs);
   console.log(JSON.stringify(R, null, 1));
   await b.close();

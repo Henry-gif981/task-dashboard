@@ -1,0 +1,1518 @@
+Bỏ qua điều hướng
+
+Trình chiếu
+Nền tối
+
+Kế toán dự án đầu tư xây dựng
+Nhóm 2 · NEU
+
+Về mục lục
+Chế độ đọc
+A−
+A+
+BÌA
+MỤC LỤC
+PHẦN MỞ ĐẦU
+Chương 1
+Chương 1 · Dẫn nhập
+1.1
+Tổng quan về dự án
+1.1.2
+Phân loại dự án
+1.1.3
+Chu trình dự án
+1.1.4
+Kế toán dự án
+1.2
+Khung pháp lý
+1.2.2
+Thông tư 195
+1.2.3
+Thông tư 200
+1.2.4
+Quan hệ hai chế độ
+1.3
+Tiêu chí so sánh
+Bảng 1.4 So sánh tổng quát
+Hình 1.3 Dòng hạch toán
+Bảng 1.5 Minh họa hạch toán
+Hình 1.4 Thời hạn nộp BCTC
+1.3.3
+Nhận xét
+Tóm tắt chương 1
+Chương 2
+2.1
+Đơn vị nghiên cứu
+Bảng 2.1 Hai bộ BCTC
+2.1.2
+Bộ BCTC
+2.1.2
+Số liệu tổng quát
+Bảng 2.2 Cơ cấu Bảng CĐKT
+Bảng 2.2 Biểu đồ cơ cấu
+2.2
+Bảng CĐKT, tài khoản
+2.2
+Nhận xét, chứng từ
+Bảng 2.4 Tài khoản đặc thù
+2.3
+Nguồn vốn đầu tư
+2.3
+Thác nước nguồn vốn, dòng tiền
+Bảng 2.6 Chi tiết F02
+2.4
+Thực hiện đầu tư
+Bảng 2.8 TK 241 theo nội dung
+Bảng 2.9 Theo hạng mục
+Bảng 2.10 Chi phí Ban QLDA
+2.4
+F03D, F03C
+2.5
+Quyết toán F03B
+2.5
+Các tình huống quyết toán
+Tóm tắt chương 2
+2.6.1
+Thuyết minh BCTC
+2.6.1
+Giải trình
+2.6.2
+Thuế GTGT đầu vào
+2.6.2
+Luồng thuế GTGT
+2.6.3
+Sổ sách, thời hạn
+2.6.3
+Giải trình
+Chương 3
+3.1
+Ưu điểm, hạn chế
+3.1
+Phân tích
+3.2
+Khó khăn khi đọc BCTC
+3.2
+Phân tích
+3.3
+Kiến nghị
+KẾT LUẬN
+PHỤ LỤC, TÀI LIỆU
+
+NATIONAL ECONOMICS UNIVERSITY
+
+SCHOOL OF ADVANCED EDUCATION PROGRAMS
+
+--------
+
+MÔN: Kế toán dự án đầu tư xây dựng
+
+CHỦ ĐỀ:
+
+Phân tích sự khác biệt về chế
+độ kế toán và báo cáo tài chính
+Ban Quản lý dự án giữa Thông
+tư 195/2012/TT-BTC và báo
+cáo tài chính Doanh nghiệp sử
+dụng Thông tư 200/2014/TT-BTC
+
+NHÓM: 2
+
+SINH VIÊN:
+Đỗ Thị Tiểu Luận - 11230353
+
+2026
+
+Mục lục
+DANH MỤC TỪ VIẾT TẮT
+PHẦN MỞ ĐẦU
+CHƯƠNG 1. CƠ SỞ LÝ LUẬN VÀ PHÁP LÝ VỀ KẾ TOÁN BAN QUẢN LÝ DỰ ÁN VÀ DOANH NGHIỆP
+1.1. Tổng quan về dự án và kế toán dự án (dựa trên nội dung Chương 1 trên lớp: khái niệm, phân loại, chu trình dự án, nhiệm vụ và yêu cầu của kế toán dự án)
+1.2. Khung pháp lý và chế độ kế toán áp dụng: Phân biệt rõ chế độ kế toán BQLDA (Thông tư 195/2012/TT-BTC) và chế độ kế toán doanh nghiệp (Thông tư 200/2014/TT-BTC)
+1.3. Phạm vi và tiêu chí so sánh tổng quát (mục đích hạch toán, hệ thống tài khoản, nghiệp vụ đặc thù, hệ thống BCTC, thời hạn nộp)
+CHƯƠNG 2. PHÂN TÍCH SỰ KHÁC BIỆT VỀ CHẾ ĐỘ KẾ TOÁN VÀ BÁO CÁO TÀI CHÍNH BAN QUẢN LÝ DỰ ÁN GIỮA THÔNG TƯ 195/2012/TT-BTC VÀ BÁO CÁO TÀI CHÍNH DOANH NGHIỆP SỬ DỤNG THÔNG TƯ 200/2014/TT-BTC
+2.1. Tổng quan về đơn vị nghiên cứu và bộ Báo cáo tài chính mẫu
+2.2. Khác biệt về Bảng Cân đối kế toán (Mẫu số B01-CĐT) và Hệ thống tài khoản phản ánh tài sản - nguồn vốn
+2.3. Khác biệt về Báo cáo Nguồn vốn đầu tư (Mẫu số B02-CĐT & Phụ biểu F02-CĐT)
+2.4. Khác biệt cốt lõi: Thay Báo cáo Kết quả hoạt động kinh doanh bằng Báo cáo Thực hiện đầu tư xây dựng (Mẫu số B03-CĐT & Phụ biểu F03A, F03C, F03D)
+2.5. Khác biệt về Báo cáo Quyết toán vốn đầu tư công trình hoàn thành (Mẫu số F03B-CĐT) so với ghi nhận TSCĐ của doanh nghiệp
+2.6. Khác biệt về Thuyết minh Báo cáo tài chính (Mẫu số B04-CĐT), Hệ thống chứng từ, sổ sách và thời hạn nộp báo cáo
+CHƯƠNG 3. NHẬN XÉT, ĐÁNH GIÁ VÀ KIẾN NGHỊ
+3.1. Ưu điểm và hạn chế của phương pháp hạch toán theo chế độ kế toán BQLDA (TT 195/2012/TT-BTC)
+3.2. Những khó khăn, vướng mắc khi đọc hiểu BCTC của BQLDA theo tư duy kế toán doanh nghiệp thông thường
+3.3. Các kiến nghị giải pháp nhằm hoàn thiện công tác lập, đọc và quản lý BCTC BQLDA cho người làm kế toán và cơ quan quản lý
+KẾT LUẬN
+PHỤ LỤC
+TÀI LIỆU THAM KHẢO
+DANH MỤC TỪ VIẾT TẮT
+
+Mục này không có nội dung trong bài.
+
+PHẦN MỞ ĐẦU
+1
+Lý do chọn đề tài
+2
+Mục tiêu, đối tượng và phạm vi nghiên cứu
+3
+Phương pháp nghiên cứu (đối chiếu văn bản, so sánh bút toán, minh họa bằng số liệu mẫu)
+
+01
+
+CHƯƠNG 1. CƠ SỞ LÝ LUẬN VÀ PHÁP LÝ VỀ KẾ TOÁN BAN QUẢN LÝ DỰ ÁN VÀ DOANH NGHIỆP
+1.1
+Tổng quan về dự án
+1.2
+Khung pháp lý
+1.3
+Tiêu chí so sánh
+
+Kế toán của một Ban quản lý dự án (BQLDA) và kế toán của một doanh nghiệp đều dựa trên Luật Kế toán và cùng dùng phương pháp ghi sổ kép, nhưng phục vụ hai mục tiêu khác nhau. BQLDA quản lý và quyết toán nguồn vốn đầu tư của từng dự án; doanh nghiệp xác định kết quả kinh doanh của toàn đơn vị. Muốn so sánh hai chế độ kế toán cho chính xác, trước hết cần hiểu dự án là gì, đi qua những giai đoạn nào và kế toán phải làm gì ở từng giai đoạn.
+
+Chương này vì vậy gồm ba phần: mục 1.1 trình bày tổng quan về dự án và kế toán dự án; mục 1.2 làm rõ khung pháp lý và hai chế độ kế toán áp dụng là Thông tư 195/2012/TT-BTC (BQLDA) và Thông tư 200/2014/TT-BTC (doanh nghiệp); mục 1.3 xác định phạm vi và hệ tiêu chí để so sánh hai chế độ ở các chương sau.
+
+1.1. Tổng quan về dự án và kế toán dự án
+1.1.1. Khái niệm và đặc điểm của dự án
+Xem chi tiết
+
+Dự án là tập hợp các hoạt động có liên quan với nhau, được thực hiện trong khoảng thời gian xác định, với nguồn lực giới hạn, nhằm tạo ra một kết quả cụ thể như công trình, sản phẩm hoặc dịch vụ. Theo pháp luật về đầu tư, dự án đầu tư là tập hợp các đề xuất bỏ vốn trung hạn hoặc dài hạn để tiến hành hoạt động đầu tư trên địa bàn cụ thể, trong khoảng thời gian xác định. Trong phạm vi đề tài, dự án được hiểu là dự án đầu tư xây dựng và các dự án sử dụng vốn đầu tư có BQLDA được thành lập để tổ chức thực hiện.
+
+Dự án có năm đặc điểm cơ bản. Mỗi đặc điểm kéo theo một yêu cầu riêng đối với tổ chức kế toán (Bảng 1.1).
+
+Bảng 1.1. Đặc điểm của dự án và hệ quả đối với kế toán
+Đặc điểm	Nội dung	Hệ quả đối với kế toán
+
+Có mục tiêu rõ ràng	Mỗi dự án nhằm tạo ra một công trình, sản phẩm hoặc dịch vụ cụ thể.	Tập hợp chi phí theo từng dự án để đối chiếu với mục tiêu và tổng mức đầu tư.
+
+Có thời hạn xác định	Có điểm bắt đầu và kết thúc, thường kéo dài nhiều năm.	Theo dõi lũy kế từ khởi công đến khi hoàn thành, không chỉ theo từng năm tài chính.
+
+Mang tính duy nhất	Mỗi dự án khác nhau về quy mô, địa điểm, thiết kế.	Mở sổ chi tiết riêng theo dự án, công trình, hạng mục công trình.
+
+Nguồn lực giới hạn	Vốn, nhân lực, thời gian bị ràng buộc bởi kế hoạch được duyệt.	Kiểm soát chi theo dự toán, kế hoạch vốn và hợp đồng.
+
+Có tính bất định, rủi ro	Giá cả, tiến độ, điều kiện thi công có thể thay đổi.	Theo dõi điều chỉnh dự toán, chi phí phát sinh, thiệt hại và khoản không được duyệt quyết toán.
+1.1.2. Phân loại dự án
+
+Có nhiều cách phân loại dự án. Mỗi cách cho biết cơ quan nào quản lý, nguồn vốn nào được dùng, và do đó quy định kế toán, báo cáo nào phải tuân thủ (Bảng 1.2).
+
+Bảng 1.2. Các tiêu thức phân loại dự án
+Tiêu thức	Các loại dự án	Ý nghĩa đối với kế toán
+
+Theo nguồn vốn	Vốn ngân sách nhà nước (đầu tư công); vốn ODA, vay ưu đãi; vốn tín dụng nhà nước; vốn doanh nghiệp; vốn tư nhân; vốn hỗn hợp.	Quyết định cơ chế cấp vốn, thanh toán, kiểm soát chi và hình thức quyết toán.
+
+Theo quy mô, tính chất	Dự án quan trọng quốc gia; dự án nhóm A, B, C.	Quyết định cấp phê duyệt, mức độ thẩm định và yêu cầu báo cáo.
+
+Theo lĩnh vực	Dân dụng, công nghiệp, giao thông, nông nghiệp – thủy lợi, công nghệ thông tin...	Quyết định cơ cấu chi phí (thiết bị, đền bù, tái định cư...).
+
+Theo tính chất đầu tư	Đầu tư mới, mở rộng, cải tạo – nâng cấp.	Ảnh hưởng đến việc xác định giá trị tài sản hình thành qua đầu tư.
+
+Theo chủ thể quản lý	Chủ đầu tư trực tiếp quản lý; BQLDA chuyên ngành, khu vực; thuê tư vấn quản lý dự án.	Quyết định đơn vị nào tổ chức kế toán và áp dụng chế độ kế toán nào.
+
+Cách phân loại theo chủ thể quản lý là cơ sở trực tiếp để chọn chế độ kế toán, và sẽ được dùng lại ở mục 1.2.
+
+1.1.3. Chu trình dự án
+Xem chi tiết
+
+Chu trình dự án (vòng đời dự án) là trình tự các giai đoạn một dự án trải qua từ khi hình thành đến khi kết thúc và đưa vào khai thác. Cách chia phổ biến ở Việt Nam gồm ba giai đoạn: chuẩn bị đầu tư, thực hiện đầu tư, kết thúc xây dựng và đưa dự án vào khai thác sử dụng. Một số tài liệu quốc tế chia chi tiết hơn (xác định, chuẩn bị, thẩm định, thực hiện, đánh giá) nhưng nội dung bao quát tương tự. Hình 1.1 cho thấy ở mỗi giai đoạn, công việc quản lý dự án luôn đi kèm một nhiệm vụ cụ thể của kế toán.
+
+GIAI ĐOẠN 1
+Chuẩn bị đầu tư
+GIAI ĐOẠN 2
+Thực hiện đầu tư
+GIAI ĐOẠN 3
+Kết thúc xây dựng, đưa vào khai thác
+Công việc quản lý dự án
+Nghiên cứu sự cần thiết và quy mô đầu tư
+Lập báo cáo nghiên cứu tiền khả thi, khả thi
+Thẩm định, phê duyệt chủ trương và quyết định đầu tư
+Nhiệm vụ của kế toán dự án
+Mở sổ chi tiết theo dõi chi phí chuẩn bị đầu tư
+Theo dõi dự toán, kế hoạch vốn được giao
+Lập chứng từ, hồ sơ ban đầu theo từng dự án
+Hình 1.1. Chu trình dự án và nhiệm vụ của kế toán ở từng giai đoạn
+Chuẩn bị đầu tư: phát sinh ít nghiệp vụ nhưng quyết định tính hợp lệ của hồ sơ. Kế toán cần nắm tổng mức đầu tư, dự toán và kế hoạch vốn đã được duyệt.
+Thực hiện đầu tư: phát sinh nhiều nghiệp vụ nhất (nhận vốn, thanh toán nhà thầu, nghiệm thu khối lượng), là trọng tâm hạch toán.
+Kết thúc xây dựng: lập báo cáo quyết toán vốn đầu tư dự án hoàn thành, xác định giá trị tài sản hình thành và bàn giao cho đơn vị quản lý, sử dụng.
+1.1.4. Kế toán dự án: khái niệm, nhiệm vụ và yêu cầu
+
+Khái niệm: Kế toán dự án là việc thu thập, xử lý, kiểm tra, phân tích và cung cấp thông tin về nguồn vốn, tình hình sử dụng vốn và kết quả thực hiện của dự án, chủ yếu bằng thước đo giá trị, theo quy định của pháp luật kế toán. Theo Thông tư 195/2012/TT-BTC, kế toán dự án đầu tư phải phản ánh nguồn vốn đầu tư và chi phí thực hiện đầu tư, lập báo cáo tài chính và quyết toán vốn đầu tư dự án hoàn thành.
+
+Xem chi tiết
+
+Đặc điểm: Kế toán dự án theo dõi riêng từng dự án trong thời gian dài; nguồn vốn chủ yếu do chủ đầu tư hoặc nhà nước cấp nên trọng tâm là quản lý vốn chứ không phải lợi nhuận; nhiều bên cùng tham gia gồm chủ đầu tư, nhà thầu, kho bạc hoặc ngân hàng và cơ quan phê duyệt quyết toán.
+
+Nhiệm vụ của kế toán dự án:
+Tổ chức chứng từ, tài khoản, sổ kế toán phù hợp, chi tiết theo dự án, công trình, hạng mục công trình.
+Phản ánh đầy đủ, kịp thời nguồn vốn đầu tư nhận được (kể cả lũy kế từ khởi công) và việc sử dụng vốn.
+Tập hợp chi phí đầu tư theo nội dung (xây dựng, thiết bị, bồi thường – hỗ trợ – tái định cư, quản lý dự án, tư vấn, chi phí khác).
+Kiểm tra, giám sát việc chấp hành dự toán, định mức, hợp đồng và chế độ thanh toán; phát hiện chi sai, chi vượt.
+Theo dõi công nợ, thanh toán với nhà thầu, nhà cung cấp và các đơn vị nội bộ.
+Lập báo cáo tài chính, báo cáo quyết toán vốn đầu tư dự án hoàn thành; xác định giá trị tài sản hình thành để bàn giao.
+Cung cấp thông tin cho chủ đầu tư, cơ quan cấp vốn, tổ chức tài trợ hoặc cho vay và cơ quan quản lý nhà nước.
+Yêu cầu đối với kế toán dự án:
+Trung thực, đầy đủ, chính xác: số liệu phản ánh đúng chứng từ, khối lượng nghiệm thu và hợp đồng.
+Kịp thời: hạch toán và báo cáo đúng kỳ để phục vụ thanh toán, giải ngân và điều hành dự án.
+Rõ ràng, dễ hiểu, có thể so sánh giữa kế hoạch và thực tế, giữa các kỳ và các dự án.
+Chi tiết theo từng dự án, nguồn vốn và nội dung chi phí; không dồn chung các dự án.
+Tuân thủ chế độ kế toán và quy định quản lý đầu tư xây dựng hiện hành.
+1.2. Khung pháp lý và chế độ kế toán áp dụng
+1.2.1. Hệ thống văn bản pháp lý
+
+Kế toán dự án vận hành trong ba lớp văn bản: luật và nghị định về kế toán, đầu tư, xây dựng; thông tư về chế độ kế toán của Bộ Tài chính; các quy định về quản lý, thanh toán và quyết toán vốn đầu tư. Bảng 1.3 tóm tắt các văn bản liên quan trực tiếp đến nội dung so sánh.
+
+Bảng 1.3. Các văn bản pháp lý chính
+Văn bản	Nội dung chính	Vai trò trong đề tài
+
+Luật Kế toán số 88/2015/QH13; Nghị định 174/2016/NĐ-CP	Nguyên tắc, nội dung công tác kế toán; chứng từ, sổ, báo cáo tài chính; trách nhiệm của đơn vị kế toán.	Nền tảng chung cho mọi đơn vị kế toán.
+
+Thông tư 195/2012/TT-BTC (15/11/2012)	Hướng dẫn kế toán áp dụng cho đơn vị chủ đầu tư, trong đó có BQLDA.	Chế độ kế toán BQLDA, trọng tâm so sánh.
+
+Thông tư 200/2014/TT-BTC (22/12/2014)	Hướng dẫn chế độ kế toán doanh nghiệp.	Chế độ kế toán doanh nghiệp, trọng tâm so sánh.
+
+Thông tư 79/2019/TT-BTC (14/11/2019)	Chế độ kế toán cho BQLDA sử dụng vốn đầu tư công.	Thay phần dành cho BQLDA thuộc đơn vị HCSN của TT 195 (xem lưu ý ở mục 1.2.4).
+ Dòng thời gian các văn bản pháp lý (chỉ dùng các ngày có trong bài)
+2013
+2015
+2017
+2019
+2021
+2023
+2025
+TT 195/2012
+TT 200/2014
+TT 79/2019
+TT 99/2025
+Thông tư 195/2012/TT-BTC
+15/11/2012 ban hành
+01/01/2013 có hiệu lực
+Thông tư 200/2014/TT-BTC
+22/12/2014 ban hành
+01/01/2015 áp dụng cho năm tài chính bắt đầu từ ngày này
+Thông tư 79/2019/TT-BTC
+14/11/2019 chế độ kế toán cho BQLDA sử dụng vốn đầu tư công
+Thông tư 99/2025/TT-BTC
+27/10/2025 hướng dẫn chế độ kế toán doanh nghiệp mới
+01/01/2026 có hiệu lực, thay thế cả Thông tư 200/2014 lẫn Thông tư 195/2012
+
+Thông tư 195/2012/TT-BTC ban hành ngày 15/11/2012, hiệu lực từ 01/01/2013; Thông tư 200/2014/TT-BTC ban hành ngày 22/12/2014, áp dụng từ 01/01/2015; Thông tư 79/2019/TT-BTC ngày 14/11/2019; Thông tư 99/2025/TT-BTC ngày 27/10/2025, hiệu lực từ 01/01/2026.
+
+Nguồn: mục 1.2.1–1.2.4 và Tài liệu tham khảo [3]–[6].
+
+1.2.2. Chế độ kế toán BQLDA: Thông tư 195/2012/TT-BTC
+Xem chi tiết
+
+Thông tư 195/2012/TT-BTC do Bộ Tài chính ban hành ngày 15/11/2012, có hiệu lực từ 01/01/2013 và thay thế Quyết định 214/2000/QĐ-BTC. Thông tư áp dụng cho các đơn vị chủ đầu tư có thành lập BQLDA và cho chính các BQLDA, gồm BQLDA của doanh nghiệp thuộc mọi lĩnh vực, mọi thành phần kinh tế, BQLDA thuộc đơn vị hành chính sự nghiệp và các BQLDA khác được thành lập theo quy định về quản lý dự án đầu tư xây dựng. Chủ đầu tư không thành lập BQLDA vẫn hạch toán trên hệ thống sổ của mình nhưng phải tuân thủ các quy định của thông tư về ghi chép, mở sổ chi tiết nguồn vốn và chi phí đầu tư, lập báo cáo tài chính và quyết toán vốn đầu tư.
+
+Những điểm đặc thù của chế độ này:
+Hệ thống tài khoản dựa trên hệ thống tài khoản doanh nghiệp, được sửa đổi, bổ sung, đổi tên cho phù hợp hoạt động đầu tư. Ví dụ: TK 241 thành “Chi phí đầu tư xây dựng”, TK 154 thành “Chi phí sản xuất thử dở dang”, TK 642 thành “Chi phí Ban quản lý dự án đầu tư”, TK 336 “Phải trả nội bộ” thêm bốn tài khoản cấp 2 (vốn đầu tư xây dựng, chênh lệch tỷ giá, chi phí đi vay đủ điều kiện vốn hóa, phải trả nội bộ khác).
+Nghiệp vụ đặc thù: nhận vốn đầu tư từ chủ đầu tư qua TK 336; tập hợp chi phí đầu tư trên TK 241, chi tiết theo dự án, công trình, hạng mục; vật liệu, thiết bị giao cho nhà thầu; chạy thử, sản xuất thử; thanh toán nội bộ giữa chủ đầu tư và các BQLDA cấp trên, cấp dưới.
+Báo cáo tài chính: Bảng cân đối kế toán (B01-CĐT), Nguồn vốn đầu tư (B02-CĐT), Thực hiện đầu tư xây dựng (B03-CĐT), Thuyết minh báo cáo tài chính (B04-CĐT) và năm phụ biểu (F02, F03A, F03B, F03C, F03D-CĐT).
+Thời hạn nộp: báo cáo quý chậm nhất 20 ngày, báo cáo năm chậm nhất 30 ngày kể từ ngày kết thúc kỳ.
+1.2.3. Chế độ kế toán doanh nghiệp: Thông tư 200/2014/TT-BTC
+Xem chi tiết
+
+Thông tư 200/2014/TT-BTC được ban hành ngày 22/12/2014, áp dụng cho năm tài chính bắt đầu từ ngày 01/01/2015, thay thế Quyết định 15/2006/QĐ-BTC và Thông tư 244/2009/TT-BTC. Đối tượng áp dụng là doanh nghiệp thuộc mọi lĩnh vực, mọi thành phần kinh tế (doanh nghiệp nhỏ và vừa có thể chọn áp dụng Thông tư 133/2016/TT-BTC). Thông tư đã được sửa đổi, bổ sung bởi một số văn bản, trong đó có Thông tư 75/2015/TT-BTC và Thông tư 53/2016/TT-BTC.
+
+Hệ thống tài khoản gồm các tài khoản trong bảng (loại 1 đến loại 9) và tài khoản ngoài bảng (loại 0). Hoạt động đầu tư xây dựng của doanh nghiệp được theo dõi trên TK 241 “Xây dựng cơ bản dở dang” (2411, 2412, 2413).
+Báo cáo tài chính năm: Bảng cân đối kế toán (B01-DN), Báo cáo kết quả hoạt động kinh doanh (B02-DN), Báo cáo lưu chuyển tiền tệ (B03-DN), Bản thuyết minh báo cáo tài chính (B09-DN); ngoài ra có báo cáo tài chính giữa niên độ.
+Thời hạn nộp: báo cáo quý chậm nhất 20 ngày (45 ngày với công ty mẹ, tổng công ty nhà nước); báo cáo năm chậm nhất 90 ngày (30 ngày với doanh nghiệp tư nhân, công ty hợp danh).
+1.2.4. Phân biệt và mối quan hệ giữa hai chế độ
+Xem chi tiết
+
+Hai chế độ không loại trừ nhau mà bổ sung cho nhau. Thông tư 195 xây dựng trên nền chế độ kế toán doanh nghiệp, nên nội dung nào không được hướng dẫn riêng thì thực hiện theo Luật Kế toán và chế độ kế toán doanh nghiệp. Việc chọn chế độ phụ thuộc vào việc đơn vị có thành lập BQLDA và tổ chức bộ máy kế toán riêng hay không (Hình 1.2). Điều này cũng phù hợp với hướng dẫn của Bộ Tài chính: đơn vị có BQLDA đầu tư xây dựng và tổ chức bộ máy kế toán riêng thì thực hiện theo Thông tư 195; doanh nghiệp không thành lập BQLDA hạch toán chi phí đầu tư xây dựng trên TK 241 theo Thông tư 200.
+
+Đơn vị thực hiện dự án đầu tư
+(doanh nghiệp / chủ đầu tư)
+A. Ban quản lý dự án (có tổ chức kế toán riêng)
+B. Chủ đầu tư có thành lập Ban quản lý dự án
+C. Chủ đầu tư không thành lập BQLDA
+Nội dung chưa được hướng dẫn riêng → thực hiện theo Luật Kế toán và chế độ kế toán doanh nghiệp hiện hành (TT 200/2014)
+Hình 1.2. Lựa chọn chế độ kế toán theo mô hình tổ chức thực hiện dự án
+
+Lưu ý về hiệu lực pháp lý. Theo đúng phạm vi đề tài, chương này trình bày và so sánh Thông tư 195/2012/TT-BTC và Thông tư 200/2014/TT-BTC. Khi sử dụng cần lưu ý: (1) từ năm 2020, phần hướng dẫn cho BQLDA thuộc đơn vị hành chính sự nghiệp trong Thông tư 195 được thay bằng Thông tư 79/2019/TT-BTC; (2) Thông tư 99/2025/TT-BTC ngày 27/10/2025 hướng dẫn chế độ kế toán doanh nghiệp mới, có hiệu lực từ 01/01/2026 và thay thế cả Thông tư 200/2014 lẫn Thông tư 195/2012, áp dụng cho năm tài chính bắt đầu từ ngày 01/01/2026. Vì vậy hai thông tư là cơ sở cho các kỳ kế toán đến hết năm 2025; nếu phân tích số liệu từ năm 2026, cần đối chiếu lại mẫu biểu và thời hạn với Thông tư 99/2025/TT-BTC.
+
+1.3. Phạm vi và tiêu chí so sánh tổng quát
+1.3.1. Phạm vi so sánh
+Xem chi tiết
+
+Việc so sánh giới hạn ở hai đối tượng: (i) kế toán của BQLDA theo Thông tư 195/2012/TT-BTC, phần dành cho chủ đầu tư là doanh nghiệp và BQLDA của doanh nghiệp; (ii) kế toán của doanh nghiệp theo Thông tư 200/2014/TT-BTC. Hai chế độ có cùng “gốc” vì Thông tư 195 xây dựng trên chế độ kế toán doanh nghiệp (khi ban hành là Quyết định 15/2006/QĐ-BTC) và chỉ sửa đổi, bổ sung những điểm cần thiết cho hoạt động đầu tư. Vì vậy khác biệt nằm ở mục đích, tài khoản đặc thù, nghiệp vụ và báo cáo, không nằm ở các nguyên tắc kế toán cơ bản. Kế toán BQLDA thuộc đơn vị hành chính sự nghiệp, thuế và kiểm toán nằm ngoài phạm vi so sánh.
+
+1.3.2. Hệ tiêu chí so sánh
+
+Năm tiêu chí được dùng xuyên suốt các chương sau: (1) mục đích hạch toán; (2) hệ thống tài khoản; (3) nghiệp vụ kế toán đặc thù; (4) hệ thống báo cáo tài chính; (5) thời hạn lập và nộp báo cáo tài chính. Bảng 1.4 so sánh tổng quát theo năm tiêu chí này, kèm đối tượng áp dụng để làm rõ điểm xuất phát.
+
+BẢN ĐỒ Năm tiêu chí so sánh · bấm một ô để mở dòng tương ứng của Bảng 1.4
+BQLDA (THÔNG TƯ 195)
+DOANH NGHIỆP (THÔNG TƯ 200)
+1. Mục đích hạch toán
+Xem cột BQLDA
+Xem cột Doanh nghiệp
+2. Hệ thống tài khoản
+Xem cột BQLDA
+Xem cột Doanh nghiệp
+3. Nghiệp vụ đặc thù
+Xem cột BQLDA
+Xem cột Doanh nghiệp
+4. Hệ thống báo cáo tài chính
+Xem cột BQLDA
+Xem cột Doanh nghiệp
+5. Thời hạn lập, nộp báo cáo tài chính
+Xem cột BQLDA
+Xem cột Doanh nghiệp
+
+Không có số liệu; chỉ là lối vào Bảng 1.4. Hiện lại toàn bộ bảng
+
+Bảng 1.4. So sánh tổng quát chế độ kế toán BQLDA và chế độ kế toán doanh nghiệp
+So sánh
+Chỉ xem BQLDA
+Chỉ xem Doanh nghiệp
+Tiêu chí
+Tất cả
+Đối tượng áp dụng
+1. Mục đích hạch toán
+2. Hệ thống tài khoản
+3. Nghiệp vụ đặc thù
+4. Hệ thống báo cáo tài chính
+5. Thời hạn lập, nộp báo cáo tài chính
+Tiêu chí	BQLDA (Thông tư 195/2012/TT-BTC)	Doanh nghiệp (Thông tư 200/2014/TT-BTC)
+
+Đối tượng áp dụng	Chủ đầu tư có thành lập BQLDA và các BQLDA có tổ chức kế toán riêng.	Doanh nghiệp thuộc mọi lĩnh vực, mọi thành phần kinh tế.
+
+1. Mục đích hạch toán	Phản ánh nguồn vốn đầu tư và chi phí thực hiện đầu tư; quyết toán vốn đầu tư, bàn giao tài sản. BQLDA không tự xác định kết quả kinh doanh: doanh thu, thu nhập khác, chênh lệch tỷ giá được kết chuyển về chủ đầu tư.	Phản ánh toàn bộ hoạt động sản xuất kinh doanh; xác định kết quả kinh doanh và tình hình tài chính để cung cấp cho chủ sở hữu, nhà đầu tư, cơ quan nhà nước.
+
+2. Hệ thống tài khoản	
+
+Dựa trên hệ thống tài khoản doanh nghiệp, có sửa đổi, bổ sung, đổi tên (Phụ lục 1a): TK 241 “Chi phí đầu tư xây dựng”, TK 154 “Chi phí sản xuất thử dở dang”, TK 336 (4 TK cấp 2), TK 642 “Chi phí BQLDAĐT”, TK 152 (7 TK cấp 2).
+
+Sửa, bổ sung tài khoản cấp 1, cấp 2 phải được Bộ Tài chính chấp thuận bằng văn bản.
+
+	Hệ thống tài khoản theo Thông tư 200: loại 1 đến 9 và ngoài bảng (loại 0); TK 241 “Xây dựng cơ bản dở dang” (2411, 2412, 2413); TK 411, 421, 511, 632, 641, 642, 911...
+
+3. Nghiệp vụ đặc thù	Nhận vốn đầu tư (TK 336); tập hợp chi phí theo dự án, công trình (TK 241); phân bổ chi phí BQLDA; vật liệu, thiết bị giao nhà thầu; chạy thử, sản xuất thử; thanh toán nội bộ (TK 136, 336); quyết toán và bàn giao công trình.	Bán hàng, cung cấp dịch vụ; ghi nhận doanh thu và giá vốn; chi phí bán hàng, quản lý; khấu hao, dự phòng; thuế thu nhập doanh nghiệp; phân phối lợi nhuận; hợp nhất (nếu có).
+
+4. Hệ thống báo cáo tài chính	B01-CĐT Bảng cân đối kế toán; B02-CĐT Nguồn vốn đầu tư; B03-CĐT Thực hiện đầu tư xây dựng; B04-CĐT Thuyết minh; 5 phụ biểu F02, F03A, F03B, F03C, F03D.	B01-DN Bảng cân đối kế toán; B02-DN Kết quả hoạt động kinh doanh; B03-DN Lưu chuyển tiền tệ; B09-DN Thuyết minh; báo cáo giữa niên độ.
+
+5. Thời hạn lập, nộp báo cáo tài chính	
+
+Quý: 20 ngày; năm: 30 ngày kể từ ngày kết thúc kỳ.
+
+Nơi nhận: BQLDA cấp trên, chủ đầu tư, cấp trên của chủ đầu tư; cơ quan thống kê (chỉ báo cáo năm).
+
+	
+
+Quý: 20 ngày (45 ngày với công ty mẹ, tổng công ty nhà nước); năm: 90 ngày (30 ngày với doanh nghiệp tư nhân, công ty hợp danh).
+
+Nơi nhận theo Điều 110 Thông tư 200, tùy loại hình doanh nghiệp.
+
+Khác biệt lớn nhất nằm ở dòng hạch toán. Với BQLDA, vốn đi từ chủ đầu tư, được tập hợp thành chi phí đầu tư trên TK 241 và kết thúc bằng quyết toán, bàn giao tài sản. Với doanh nghiệp, hạch toán đi qua doanh thu và chi phí, kết thúc ở lãi, lỗ. Hình 1.3 minh họa hai dòng hạch toán này theo từng bước.
+
+BQLDA – TT 195/2012/TT-BTC
+
+Doanh nghiệp – TT 200/2014/TT-BTC
+
+Nhận vốn đầu tư từ chủ đầu tư
+
+Nợ TK 111, 112 / Có TK 336
+
+1
+
+Huy động vốn chủ sở hữu, vốn vay
+
+Nợ TK 111, 112 / Có TK 411, 341
+
+Tập hợp chi phí đầu tư xây dựng
+
+Nợ TK 241 / Có TK 111, 112, 331
+
+2
+
+Đầu tư xây dựng cơ bản (nếu có)
+
+Nợ TK 241 / Có TK 111, 112, 331
+
+Chi phí hoạt động của BQLDA
+
+Nợ TK 642 → phân bổ: Nợ TK 241 / Có TK 642
+
+3
+
+Doanh thu và chi phí kinh doanh
+
+Có TK 511; Nợ TK 632, 641, 642
+
+Quyết toán vốn đầu tư được duyệt
+
+Nợ TK 336 / Có TK 241 (bàn giao tài sản)
+
+4
+
+Cuối kỳ kết chuyển
+
+Xác định kết quả (TK 911), lãi chuyển sang TK 421
+
+Kết quả cuối cùng
+
+Không xác định lãi/lỗ. Báo cáo nguồn vốn và thực hiện đầu tư (B02, B03/CĐT)
+
+5
+
+Kết quả cuối cùng
+
+Xác định lãi/lỗ. Bảng cân đối kế toán, KQHĐKD, lưu chuyển tiền tệ (B01 – B03, B09/DN)
+
+Bước trước
+Bước tiếp
+Hiện tất cả
+Space
+Bước 1 / 5
+Hình 1.3. So sánh dòng hạch toán của BQLDA và doanh nghiệp
+
+Để thấy rõ khác biệt, Bảng 1.5 hạch toán cùng một chuỗi nghiệp vụ ở BQLDA và ở doanh nghiệp. Số liệu giả định, đơn vị triệu đồng, chưa tính thuế GTGT.
+
+1. Nhận nguồn vốn 2.000
+2. Nghiệm thu khối lượng xây lắp 1.000, chưa thanh toán
+3. Lương nhân viên quản lý 50
+4. Công trình hoàn thành, bàn giao
+BQLDA (Thông tư 195)
+
+Chủ đầu tư cấp vốn
+
+TK 112
+NỢ
+2.000
+CÓ
+TK 336 (3361)
+NỢ
+CÓ
+2.000
+Doanh nghiệp (Thông tư 200)
+
+Doanh nghiệp vay ngân hàng
+
+TK 112
+NỢ
+2.000
+CÓ
+TK 341
+NỢ
+CÓ
+2.000
+
+Đơn vị: triệu đồng. Tài khoản chữ T dựng từ các định khoản trong Bảng 1.5.
+
+Tài khoản chữ T cho bốn nghiệp vụ của Bảng 1.5, đặt cạnh nhau cho BQLDA và doanh nghiệp; số liệu như trong bảng.
+
+Bảng 1.5. Minh họa hạch toán cùng một chuỗi nghiệp vụ (đơn vị: triệu đồng)
+Nghiệp vụ	BQLDA (Thông tư 195)	Doanh nghiệp (Thông tư 200)
+
+1. Nhận nguồn vốn 2.000	Chủ đầu tư cấp vốn: Nợ TK 112 / Có TK 336 (3361): 2.000	Doanh nghiệp vay ngân hàng: Nợ TK 112 / Có TK 341: 2.000
+
+2. Nghiệm thu khối lượng xây lắp 1.000, chưa thanh toán	Nợ TK 241 / Có TK 331: 1.000	Nợ TK 241 (2412) / Có TK 331: 1.000
+
+3. Lương nhân viên quản lý 50	Nợ TK 642 / Có TK 334: 50
+Phân bổ vào dự án: Nợ TK 241 / Có TK 642: 50	Nợ TK 642 / Có TK 334: 50 (tính vào chi phí kỳ)
+
+4. Công trình hoàn thành, bàn giao	Quyết toán được duyệt: Nợ TK 336 / Có TK 241: 1.050
+Không ghi nhận lãi, lỗ	Nhận tài sản đưa vào sử dụng: Nợ TK 211 / Có TK 241: 1.000
+Chi phí 50 nằm trong lãi, lỗ của kỳ
+Xem chi tiết
+
+Có hai điểm cần chú ý. Thứ nhất, ở BQLDA khoản chi 1.050 được “giải phóng” khỏi nguồn vốn (Nợ TK 336) khi quyết toán được duyệt, nên cuối cùng không để lại lãi, lỗ. Thứ hai, chi phí quản lý ở BQLDA được phân bổ vào giá trị công trình, còn ở doanh nghiệp nó đi vào chi phí kỳ và ảnh hưởng trực tiếp đến lợi nhuận.
+
+Về thời hạn, BQLDA có thời hạn nộp báo cáo năm ngắn hơn doanh nghiệp thông thường (30 ngày so với 90 ngày) vì báo cáo của BQLDA là đầu vào để chủ đầu tư tổng hợp. Hình 1.4 so sánh các thời hạn này.
+
+HÌNH 1.4. So sánh thời hạn nộp báo cáo tài chính (số ngày kể từ ngày kết thúc kỳ kế toán)
+0
+30
+60
+90
+120
+20 ngày
+20 ngày
+45 ngày
+Báo cáo tài chính quý
+30 ngày
+90 ngày
+30 ngày
+Báo cáo tài chính năm
+Số ngày kể từ ngày kết thúc kỳ kế toán
+BQLDA (TT 195/2012)
+Doanh nghiệp nói chung (TT 200/2014)
+DN – trường hợp riêng (*)
+Xem bảng số liệu
+
+Báo cáo tài chính quý: BQLDA 20 ngày, doanh nghiệp nói chung 20 ngày, trường hợp riêng 45 ngày. Báo cáo tài chính năm: BQLDA 30 ngày, doanh nghiệp nói chung 90 ngày, trường hợp riêng 30 ngày.
+
+(*) Trường hợp riêng của doanh nghiệp: báo cáo quý của công ty mẹ, tổng công ty nhà nước (45 ngày); báo cáo năm của doanh nghiệp tư nhân, công ty hợp danh (30 ngày).
+
+1.3.3. Nhận xét
+Giống nhau: cùng tuân thủ Luật Kế toán, cùng dùng phương pháp ghi sổ kép và các nguyên tắc kế toán cơ bản; hệ thống tài khoản của BQLDA kế thừa từ hệ thống tài khoản doanh nghiệp.
+Khác nhau cốt lõi: BQLDA hạch toán “vốn” (nguồn vốn và sử dụng vốn theo từng dự án), doanh nghiệp hạch toán “kết quả” (doanh thu, chi phí, lợi nhuận).
+Hệ quả khi hạch toán: cùng một khoản chi cho công trình, BQLDA ghi tăng TK 241 đối ứng với nguồn vốn trên TK 336; doanh nghiệp ghi nhận vào TK 241 để sau đó hình thành tài sản cố định hoặc tính vào chi phí kỳ.
+Hệ quả khi lập báo cáo: báo cáo của BQLDA tập trung vào nguồn vốn đầu tư và thực hiện đầu tư; báo cáo của doanh nghiệp tập trung vào tài sản, nguồn vốn, kết quả và dòng tiền.
+Điều kiện áp dụng: chọn sai chế độ sẽ dẫn đến dùng sai tài khoản và lập sai báo cáo, nên bước đầu tiên của người làm kế toán là xác định đúng mô hình tổ chức thực hiện dự án (Hình 1.2).
+Tóm tắt chương
+Dự án có mục tiêu, thời hạn, tính duy nhất, nguồn lực giới hạn và rủi ro; vì vậy kế toán dự án phải chi tiết theo từng dự án và theo dõi lũy kế cả vòng đời.
+Chu trình dự án gồm ba giai đoạn: chuẩn bị đầu tư, thực hiện đầu tư, kết thúc xây dựng và đưa vào khai thác; kế toán có nhiệm vụ riêng ở từng giai đoạn, kết thúc bằng quyết toán vốn đầu tư.
+BQLDA áp dụng Thông tư 195/2012/TT-BTC; doanh nghiệp áp dụng Thông tư 200/2014/TT-BTC. Hai chế độ cùng gốc nhưng khác mục đích, tài khoản đặc thù, nghiệp vụ, báo cáo và thời hạn nộp.
+Năm tiêu chí ở Bảng 1.4 là khung so sánh cho các chương tiếp theo; cần đối chiếu hiệu lực của Thông tư 99/2025/TT-BTC khi phân tích kỳ kế toán từ năm 2026.
+
+02
+
+CHƯƠNG 2. PHÂN TÍCH SỰ KHÁC BIỆT VỀ CHẾ ĐỘ KẾ TOÁN VÀ BÁO CÁO TÀI CHÍNH BAN QUẢN LÝ DỰ ÁN GIỮA THÔNG TƯ 195/2012/TT-BTC VÀ BÁO CÁO TÀI CHÍNH DOANH NGHIỆP SỬ DỤNG THÔNG TƯ 200
+2.1
+Đơn vị nghiên cứu
+2.2
+Bảng CĐKT, tài khoản
+2.3
+Nguồn vốn đầu tư
+2.4
+Thực hiện đầu tư
+2.5
+Quyết toán F03B
+2.6
+Thuyết minh BCTC
+2.1. Tổng quan về đơn vị nghiên cứu và bộ Báo cáo tài chính mẫu
+2.1.1. Giới thiệu khái quát về BQLDA Nhà máy Chế biến Nông sản Đồng Bằng
+
+Ban Quản lý dự án Nhà máy Chế biến Nông sản Đồng Bằng là đơn vị trực thuộc Công ty Cổ phần Chế biến Nông sản Đồng Bằng (chủ đầu tư). Theo thuyết minh Báo cáo tài chính năm 2015, Ban được thành lập theo Quyết định số 45/QĐ-HĐQT ngày 05/03/2013 của Hội đồng quản trị Công ty, có con dấu, tài khoản tiền gửi riêng tại ngân hàng, tổ chức công tác kế toán riêng và lập Báo cáo tài chính riêng gửi chủ đầu tư. Số lượng cán bộ, nhân viên bình quân năm 2015 là 24 người (năm 2014: 22 người).
+
+Xem chi tiết
+
+Chức năng của Ban là quản lý dự án đầu tư xây dựng Nhà máy chế biến nông sản Đồng Bằng, giai đoạn 1, tại Khu công nghiệp Trà Nóc, thành phố Cần Thơ. Tổng mức đầu tư được duyệt là 312 tỷ đồng, thời gian thực hiện từ năm 2013 đến năm 2016. Nguồn vốn gồm vốn chủ sở hữu và vốn vay thương mại của chủ đầu tư, được cấp cho Ban theo tiến độ thực hiện dự án.
+
+Với đặc điểm trên, Ban không hoạt động như một doanh nghiệp sản xuất kinh doanh nhằm tạo lợi nhuận cho chính đơn vị. Kế toán của Ban phục vụ việc tiếp nhận, quản lý và sử dụng vốn đầu tư, tập hợp chi phí xây dựng, theo dõi quá trình hình thành công trình và quyết toán khi công trình hoàn thành. Đây chính là đặc điểm về mục đích hạch toán đã nêu ở tiêu chí 1 của Bảng 1.4.
+
+Bảng 2.1. Thông tin chung về hai bộ Báo cáo tài chính được phân tích
+Nội dung	BQLDA Nhà máy Chế biến Nông sản Đồng Bằng	Tập đoàn Hòa Phát (hợp nhất)
+
+Chủ thể lập báo cáo	Đơn vị trực thuộc chủ đầu tư, có tổ chức kế toán riêng	Công ty mẹ và các công ty con
+
+Chế độ kế toán áp dụng	Thông tư 195/2012/TT-BTC; nội dung không được hướng dẫn thì theo Luật Kế toán và chế độ kế toán doanh nghiệp (thuyết minh B04 nêu Quyết định 15/2006/QĐ-BTC và Thông tư 244/2009/TT-BTC)	Chế độ kế toán doanh nghiệp theo Thông tư 200/2014/TT-BTC; các mẫu hợp nhất B01, B02, B03-DN/HN ghi ban hành theo Thông tư 202/2014/TT-BTC
+
+Kỳ báo cáo, ngày lập	Năm 2015; lập ngày 20/01/2016	Năm 2024; ký ngày 24/03/2025; đã kiểm toán
+
+Bộ báo cáo	B01, B02, B03, B04-CĐT; phụ biểu F02, F03A, F03B, F03C, F03D-CĐT	Bảng cân đối kế toán, Báo cáo kết quả hoạt động kinh doanh, Báo cáo lưu chuyển tiền tệ, Thuyết minh
+
+Hoạt động chính	Quản lý dự án đầu tư xây dựng	Sản xuất, kinh doanh
+
+Tổng tài sản cuối kỳ	199,464 tỷ đồng	224,490 nghìn tỷ đồng
+2.1.2. Khái quát bộ BCTC của Ban theo Thông tư 195/2012/TT-BTC và BCTC của Hòa Phát theo Thông tư 200
+
+Báo cáo tài chính năm 2015 của Ban được lập theo Thông tư 195/2012/TT-BTC ngày 15/11/2012, gồm bốn biểu chính B01-CĐT, B02-CĐT, B03-CĐT, B04-CĐT và năm phụ biểu F02-CĐT, F03A-CĐT, F03B-CĐT, F03C-CĐT, F03D-CĐT. Mỗi biểu có một chức năng riêng:
+
+B01-CĐT: tài sản và nguồn vốn của Ban tại thời điểm cuối kỳ.
+B02-CĐT: hình thành và biến động của nguồn vốn đầu tư; F02-CĐT chi tiết theo từng nguồn hình thành.
+B03-CĐT: thực hiện đầu tư xây dựng theo nội dung chi phí (TK 241); F03A chi tiết theo dự án, công trình, hạng mục.
+F03B-CĐT: quyết toán vốn đầu tư công trình, hạng mục hoàn thành bàn giao; F03C: chi phí khác; F03D: chi phí Ban quản lý dự án.
+B04-CĐT: thuyết minh bổ sung cho các chỉ tiêu trên báo cáo.
+Số liệu tổng quát của hai đơn vị
+
+Tổng tài sản của Ban (31/12/2015)
+
+199,464 tỷ đồng
+
+Lũy kế vốn đầu tư thực hiện
+
+191,325 tỷ đồng
+
+đạt 61,3% tổng mức đầu tư 312 tỷ đồng
+
+Tổng tài sản của Hòa Phát (31/12/2024)
+
+224,490 nghìn tỷ đồng
+
+BIỂU ĐỒ Tiến độ dự án: lũy kế vốn đầu tư thực hiện so với tổng mức đầu tư
+
+Lũy kế vốn đầu tư thực hiện bằng dư chi phí đầu tư xây dựng dở dang cộng giá trị hạng mục đã quyết toán, bàn giao.
+
+186,743
+61,3% · lũy kế 191,325
+Tổng mức đầu tư được duyệt: 312 tỷ đồng
+186,743 · Dư chi phí đầu tư xây dựng dở dang
+4,582 · Đã quyết toán, bàn giao
+2013
+2014
+2015
+2016
+05/03/2013
+Thành lập Ban (Quyết định số 45/QĐ-HĐQT)
+31/12/2015
+Ngày lập Bảng cân đối kế toán, lũy kế 191,325
+20/01/2016
+Lập Báo cáo tài chính năm 2015
+Xem bảng số liệu
+
+Đơn vị: tỷ đồng; 61,3% in sẵn trong bài. Nguồn: mục 2.1.1, mục 2.1.2, Bảng 2.6.1.
+
+Tại ngày 31/12/2015, tổng tài sản của Ban là 199,464 tỷ đồng, gồm tài sản ngắn hạn 11,947 tỷ đồng và tài sản dài hạn 187,517 tỷ đồng, trong đó chi phí đầu tư xây dựng dở dang là 186,743 tỷ đồng. Nợ phải trả là 10,746 tỷ đồng; nguồn vốn đầu tư nhận từ chủ đầu tư là 188,717 tỷ đồng. Trong năm 2015, chủ đầu tư cấp thêm 63,850 tỷ đồng, gồm 60,650 tỷ đồng bằng tiền và 3,200 tỷ đồng bằng vật tư, thiết bị. Lũy kế vốn đầu tư thực hiện từ khởi công đến 31/12/2015 là 191,325 tỷ đồng, đạt 61,3% tổng mức đầu tư 312 tỷ đồng. Con số này khớp với số dư chi phí đầu tư xây dựng dở dang (186,743 tỷ đồng) cộng giá trị hạng mục đã quyết toán, bàn giao (4,582 tỷ đồng).
+
+Báo cáo hợp nhất năm 2024 của Hòa Phát phản ánh mô hình của một doanh nghiệp sản xuất kinh doanh quy mô lớn. Tại ngày 31/12/2024, tổng tài sản là 224,490 nghìn tỷ đồng (tài sản ngắn hạn 86,674; tài sản dài hạn 137,815); nợ phải trả 109,842 nghìn tỷ đồng và vốn chủ sở hữu 114,647 nghìn tỷ đồng. Bảng 2.2 đặt hai cơ cấu cạnh nhau.
+
+Bảng 2.2. Quy mô và cơ cấu Bảng cân đối kế toán
+Chỉ tiêu	BQLDA 31/12/2015 (tỷ đồng)	% tổng tài sản	Hòa Phát 31/12/2024 (nghìn tỷ đồng)	% tổng tài sản
+
+Tài sản ngắn hạn	11,947	6,0%	86,674	38,6%
+
+Tài sản dài hạn	187,517	94,0%	137,815	61,4%
+
+Trong đó: xây dựng cơ bản dở dang	186,743	93,6%	63,656	28,4%
+Tổng tài sản	199,464	100%	224,490	100%
+
+Nợ phải trả	10,746	5,4%	109,842	48,9%
+
+Nguồn vốn đầu tư (BQLDA) / Vốn chủ sở hữu (Hòa Phát)	188,717	94,6%	114,647	51,1%
+ So sánh phân đôi cơ cấu (% tổng tài sản) · kéo thanh ngăn
+
+BQLDA 31/12/2015
+
+6,0%
+94,0%
+Tài sản dài hạn
+
+Tài sản
+
+5,4%
+94,6%
+Nguồn vốn đầu tư
+
+Nguồn vốn
+
+HÒA PHÁT 31/12/2024
+
+38,6%
+Tài sản ngắn hạn
+61,4%
+Tài sản dài hạn
+
+Tài sản
+
+48,9%
+Nợ phải trả
+51,1%
+Vốn chủ sở hữu
+
+Nguồn vốn
+
+Đơn vị: % tổng tài sản. Nguồn: Bảng 2.2. Trái: BQLDA 31/12/2015 · Phải: Hòa Phát 31/12/2024.
+
+Xây dựng cơ bản dở dang, % tổng tài sản · BQLDA 31/12/2015 (Bảng 2.2)
+
+93,6%
+
+Nguồn vốn đầu tư, % tổng tài sản · BQLDA 31/12/2015 (Bảng 2.2)
+
+94,6%
+
+Xây dựng cơ bản dở dang, % tổng tài sản · Hòa Phát 31/12/2024 (Bảng 2.2)
+
+28,4%
+
+Biểu đồ cơ cấu Bảng 2.2
+BIỂU ĐỒ Cơ cấu tài sản và nguồn vốn (% tổng tài sản)
+0%
+25%
+50%
+75%
+100%
+BQLDA 31/12/2015
+Tài sản
+6,0%
+94,0%
+trong đó xây dựng cơ bản dở dang 93,6%
+BQLDA 31/12/2015
+Nguồn vốn
+5,4%
+94,6%
+Hòa Phát 31/12/2024
+Tài sản
+38,6%
+61,4%
+trong đó xây dựng cơ bản dở dang 28,4%
+Hòa Phát 31/12/2024
+Nguồn vốn
+48,9%
+51,1%
+BQLDA
+Hòa Phát
+Tài sản ngắn hạn / Nợ phải trả
+Trong đó: xây dựng cơ bản dở dang
+Xem bảng số liệu
+
+Đơn vị: % tổng tài sản. Rê chuột hoặc chọn một đoạn để xem số tuyệt đối (BQLDA: tỷ đồng; Hòa Phát: nghìn tỷ đồng). Nguồn: Bảng 2.2.
+
+BQLDA 31/12/2015: tài sản ngắn hạn 6,0%, tài sản dài hạn 94,0% (trong đó xây dựng cơ bản dở dang 93,6%); nợ phải trả 5,4%, nguồn vốn đầu tư 94,6%. Hòa Phát 31/12/2024: tài sản ngắn hạn 38,6%, tài sản dài hạn 61,4% (trong đó xây dựng cơ bản dở dang 28,4%); nợ phải trả 48,9%, vốn chủ sở hữu 51,1%.
+
+Nhận xét: ở BQLDA, hơn 93% tổng tài sản là chi phí đầu tư xây dựng dở dang và gần 95% nguồn vốn là nguồn vốn đầu tư do chủ đầu tư cấp; Bảng cân đối kế toán về cơ bản là hình ảnh của một dự án đang thi công. Ở Hòa Phát, xây dựng cơ bản dở dang chỉ chiếm 28,4% tổng tài sản, bên cạnh tài sản cố định, hàng tồn kho, đầu tư tài chính; nguồn vốn là sự kết hợp giữa nợ và vốn chủ sở hữu. Sự khác biệt về bản chất giữa hai mô hình thể hiện ngay từ cơ cấu: BQLDA phản ánh nguồn vốn và chi phí hình thành dự án, doanh nghiệp phản ánh toàn bộ tài sản, nguồn vốn và kết quả hoạt động kinh doanh.
+
+2.2. So sánh Bảng cân đối kế toán (Mẫu số B01-CĐT) và hệ thống tài khoản
+
+Bảng 2.3 so sánh kết cấu Bảng cân đối kế toán của hai đơn vị; Bảng 2.4 so sánh các tài khoản đặc thù đã nêu ở tiêu chí 2 và 3 của Bảng 1.4.
+
+Bảng 2.3. So sánh Bảng cân đối kế toán (tại 31/12/2015 của BQLDA; tại 31/12/2024 của Hòa Phát)
+So sánh
+Chỉ xem BQLDA
+Chỉ xem Doanh nghiệp
+Tiêu chí
+Tất cả
+Mẫu biểu
+Tổng tài sản
+Tài sản ngắn hạn (mã 100)
+Tài sản dài hạn (mã 200)
+Nợ phải trả (mã 300)
+Nguồn vốn chủ yếu (mã 400)
+Vốn chủ sở hữu, lợi nhuận chưa phân phối
+Vốn vay
+Tiêu chí	BQLDA (Thông tư 195)	Doanh nghiệp (Thông tư 200)
+
+Mẫu biểu	B01-CĐT, ban hành theo Thông tư 195/2012/TT-BTC	B01-DN/HN (báo cáo hợp nhất), mẫu ghi ban hành theo Thông tư 202/2014/TT-BTC
+
+Tổng tài sản	199,464 tỷ đồng	224,490 nghìn tỷ đồng
+
+Tài sản ngắn hạn (mã 100)	11,947 tỷ đồng (6,0%): tiền 4,165; phải thu 3,547; hàng tồn kho 1,895; thuế GTGT được khấu trừ 2,340	86,674 nghìn tỷ đồng (38,6%): tiền 6,888; đầu tư tài chính ngắn hạn 18,975; phải thu 7,648; hàng tồn kho 46,091; tài sản ngắn hạn khác 7,073
+
+Tài sản dài hạn (mã 200)	187,517 tỷ đồng (94,0%): tài sản cố định 0,774; chi phí đầu tư xây dựng dở dang (mã 230) 186,743	137,815 nghìn tỷ đồng (61,4%): tài sản cố định 67,428; tài sản dở dang dài hạn 63,751 (trong đó xây dựng cơ bản dở dang, mã 242, là 63,656); bất động sản đầu tư 0,560; đầu tư tài chính dài hạn 0,137; phải thu dài hạn 0,923; tài sản dài hạn khác 5,017
+
+Nợ phải trả (mã 300)	10,746 tỷ đồng (5,4%): chủ yếu phải trả người bán 9,820 (91,4% nợ); không có khoản vay trên sổ của Ban	109,842 nghìn tỷ đồng (48,9%): vay ngắn hạn và dài hạn 82,963 (75,5% nợ); phải trả người bán 20,331
+
+Nguồn vốn chủ yếu (mã 400)	Nguồn vốn đầu tư nhận từ chủ đầu tư (mã 410): 188,717 tỷ đồng (94,6%), ghi trên TK 3361	Vốn chủ sở hữu: 114,647 nghìn tỷ đồng (51,1%), gồm vốn cổ phần 63,963 (TK 411) và lợi nhuận sau thuế chưa phân phối 49,599 (TK 421)
+
+Vốn chủ sở hữu, lợi nhuận chưa phân phối	Không có; Ban không phải chủ sở hữu cuối cùng của dự án	Có (TK 411, TK 421)
+
+Vốn vay	Vốn vay thương mại do chủ đầu tư vay và cấp lại: 86,127 tỷ đồng (45,6% nguồn vốn đầu tư), ghi vào nguồn vốn đầu tư, không ghi TK 341	Ghi nợ vay vào TK 341
+Nhận xét:
+Tại BQLDA, hơn 93% tổng tài sản là chi phí đầu tư xây dựng dở dang và gần 95% nguồn vốn là vốn do chủ đầu tư cấp: Bảng cân đối kế toán phản ánh một dự án đang thi công. Tại Hòa Phát, xây dựng cơ bản dở dang chỉ chiếm 28,4% tổng tài sản.
+Nguồn vốn của BQLDA vẫn có phần nợ phải trả (mã 300) và phần nguồn vốn đầu tư (mã 400); điểm khác là không có vốn chủ sở hữu.
+Khác biệt về vốn vay nằm ở chủ thể chịu trách nhiệm trả nợ: chủ đầu tư là bên vay, nên Ban chỉ theo dõi vốn nhận và sử dụng.
+
+CHỨNG TỪ GỐC
+
+Hình 2.1. B01-CĐT tại ngày 31/12/2015 của BQLDA
+Hình 2.2. Bảng cân đối kế toán hợp nhất tại ngày 31/12/2024 của Hòa Phát phần tài sản ngắn hạn
+Hình 2.3. Bảng cân đối kế toán hợp nhất tại ngày 31/12/2024 của Hòa Phát phần tài sản dài hạn
+Trang này xuất hiện hai lần trong bài: Hình 2.3 và Hình 2.17.
+Hình 2.4. Bảng cân đối kế toán hợp nhất tại ngày 31/12/2024 của Hòa Phát phần nợ phải trả
+Hình 2.5. Bảng cân đối kế toán hợp nhất tại ngày 31/12/2024 của Hòa Phát phần vốn chủ sở hữu
+Bảng 2.4. So sánh các tài khoản đặc thù
+So sánh
+Chỉ xem BQLDA
+Chỉ xem Doanh nghiệp
+Tiêu chí
+Tất cả
+TK 241
+Hàng tồn kho (TK 152, 153)
+TK 336
+Thuế GTGT đầu vào
+TK 642
+Tài sản cố định
+Tiêu chí	BQLDA (Thông tư 195)	Doanh nghiệp (Thông tư 200)
+
+TK 241	"Chi phí đầu tư xây dựng", chi tiết theo dự án, công trình, hạng mục và nội dung chi phí; số dư 186,743 tỷ đồng (93,6% tổng tài sản)	"Xây dựng cơ bản dở dang" (2411, 2412, 2413), là tài khoản trung gian trước khi hình thành tài sản cố định; số dư 63,656 nghìn tỷ đồng (28,4%)
+
+Hàng tồn kho (TK 152, 153)	1,895 tỷ đồng (0,95% tổng tài sản): vật liệu 0,350 (TK 1521), thiết bị 1,500 (TK 1523), công cụ dụng cụ 0,045 (TK 153); gắn với vốn cấp bằng vật tư, thiết bị 3,200 tỷ đồng	46,091 nghìn tỷ đồng (20,5%), gắn với chu trình mua, sản xuất, bán hàng
+
+TK 336	189,129 tỷ đồng: TK 3361 vốn đầu tư 188,717; TK 3368 lãi tiền gửi phải nộp chủ đầu tư 0,412; TK 3362 chênh lệch tỷ giá; TK 3363 chi phí đi vay vốn hóa (năm 2015 không phát sinh)	Không dùng để nhận vốn; vốn góp ghi TK 411, vay ghi TK 341
+
+Thuế GTGT đầu vào	Ban không có doanh thu chịu thuế; lập bảng kê chuyển chủ đầu tư khấu trừ (Nợ TK 336 (3368) / Có TK 133); 2,340 tỷ đồng chưa chuyển	Khấu trừ với thuế GTGT đầu ra của chính doanh nghiệp; Hòa Phát có 6,637 nghìn tỷ đồng được khấu trừ
+
+TK 642	Chi phí Ban quản lý dự án: 2,146 tỷ đồng, cuối kỳ phân bổ hết vào TK 241 (Nợ TK 241 / Có TK 642), không còn số dư	Chi phí quản lý doanh nghiệp: 1,546 nghìn tỷ đồng, đi vào Báo cáo kết quả hoạt động kinh doanh
+
+Tài sản cố định	Giá trị còn lại 0,774 tỷ đồng (nguyên giá 1,260; hao mòn 0,486); khấu hao 0,134 phân bổ vào TK 642 rồi tính vào giá trị công trình	Giá trị còn lại 67,428 nghìn tỷ đồng; khấu hao và phân bổ 6,916 nghìn tỷ đồng tính vào chi phí kỳ
+2.3. So sánh Báo cáo nguồn vốn đầu tư (B02-CĐT, F02-CĐT) với Báo cáo lưu chuyển tiền tệ
+
+Theo Bảng 1.4, bộ báo cáo của BQLDA không có Báo cáo lưu chuyển tiền tệ; B02-CĐT là báo cáo thay thế. Bảng 2.5 so sánh hai báo cáo.
+
+Bảng 2.5. So sánh B02-CĐT và Báo cáo lưu chuyển tiền tệ
+So sánh
+Chỉ xem BQLDA
+Chỉ xem Doanh nghiệp
+Tiêu chí
+Tất cả
+Tên báo cáo
+Đối tượng theo dõi
+Cách phân nhóm
+Số liệu năm
+Nguồn hình thành
+Khớp với B01
+Trả lời được câu hỏi
+Không trả lời được
+Tiêu chí	BQLDA (Thông tư 195)	Doanh nghiệp (Thông tư 200)
+
+Tên báo cáo	B02-CĐT Nguồn vốn đầu tư, kèm phụ biểu F02-CĐT	Báo cáo lưu chuyển tiền tệ (B03-DN/HN), phương pháp gián tiếp
+
+Đối tượng theo dõi	Nguồn vốn đầu tư nhận từ chủ đầu tư (TK 3361)	Tiền và các khoản tương đương tiền
+
+Cách phân nhóm	Số dư đầu năm; tăng trong năm (bằng tiền, bằng vật tư, thiết bị); giảm trong năm (quyết toán bàn giao, hoàn trả vốn); số dư cuối năm	Ba nhóm: hoạt động kinh doanh, hoạt động đầu tư, hoạt động tài chính
+
+Số liệu năm	Đầu năm 129,450; tăng 63,850 (tiền 60,650; vật tư, thiết bị 3,200); giảm 4,582; cuối năm 188,717 tỷ đồng	Tiền đầu năm 12,252; kinh doanh +6,608; đầu tư (29,788); tài chính +17,815; tăng giảm thuần (5,365); cuối năm 6,888 nghìn tỷ đồng
+
+Nguồn hình thành	F02: vốn chủ sở hữu do chủ đầu tư cấp 102,590 (54,4%); vốn vay do chủ đầu tư vay và cấp lại 86,127 (45,6%)	Thu từ đi vay 174,466; trả nợ gốc vay (156,879); chi mua sắm, xây dựng tài sản cố định (35,495) nghìn tỷ đồng
+
+Khớp với B01	Số cuối năm khớp mã 410 (188,717 tỷ đồng)	Số cuối năm khớp mã 110 (6,888 nghìn tỷ đồng)
+
+Trả lời được câu hỏi	Vốn đến từ đâu, cấp dưới hình thức nào, đã giảm trừ bao nhiêu khi bàn giao	Doanh nghiệp tạo ra và sử dụng tiền như thế nào; dòng tiền kinh doanh có đủ bù chi đầu tư không
+
+Không trả lời được	Biến động tiền: tiền của Ban giảm từ 6,505 xuống 4,165 tỷ đồng dù nhận 60,650 tỷ đồng bằng tiền, phải đối chiếu B03-CĐT, thuyết minh V.01 và sổ kế toán	Nguồn vốn gắn với từng dự án, công trình
+
+Nguồn vốn đầu tư cuối năm 2015 · BQLDA (Bảng 2.5)
+
+188,717tỷ đồng
+
+Biểu đồ nguồn vốn đầu tư và dòng tiền
+BQLDA Nguồn vốn đầu tư năm 2015 (B02-CĐT)
+Số dư đầu năm
+129,450
+Tăng trong năm
++63,850
+Giảm trong năm
+−4,582
+Số dư cuối năm
+188,717
+
+Tăng trong năm 63,850:
+60,650 bằng tiền
+·
+3,200 bằng vật tư, thiết bị
+
+Xem bảng số liệu
+
+Đơn vị: tỷ đồng. Nguồn: Bảng 2.5 và Bảng 2.6.
+
+Số dư đầu năm 129,450; tăng trong năm 63,850; giảm trong năm 4,582; số dư cuối năm 188,717 tỷ đồng.
+
+HÒA PHÁT Lưu chuyển tiền tệ năm 2024
+Tiền đầu năm
+12,252
+Hoạt động kinh doanh
++6,608
+Hoạt động đầu tư
+(29,788)
+Hoạt động tài chính
++17,815
+Cuối năm
+6,888
+
+Tăng giảm thuần (5,365)
+
+Bốn số trên chưa gồm dòng ảnh hưởng của thay đổi tỷ giá quy đổi ngoại tệ trong báo cáo gốc (Hình 2.9), nên không cộng khít số cuối năm.
+
+Xem bảng số liệu
+
+Đơn vị: nghìn tỷ đồng (theo bài). Nguồn: Bảng 2.5.
+
+Tiền đầu năm 12,252; hoạt động kinh doanh +6,608; hoạt động đầu tư (29,788); hoạt động tài chính +17,815; cuối năm 6,888 nghìn tỷ đồng.
+
+BQLDA Nguồn hình thành vốn đầu tư theo F02-CĐT (số dư cuối năm)
+102,590 · 54,4%
+Vốn chủ sở hữu do chủ đầu tư cấp
+86,127 · 45,6%
+Vốn vay do chủ đầu tư vay và cấp lại
+Cộng nguồn vốn đầu tư (TK 3361): 188,717 tỷ đồng
+Xem bảng số liệu
+
+Đơn vị: tỷ đồng; % in sẵn trong bài. Nguồn: Bảng 2.5, Bảng 2.6.
+
+Vốn chủ sở hữu do chủ đầu tư cấp 102,590 tỷ đồng (54,4%); vốn vay do chủ đầu tư vay và cấp lại 86,127 tỷ đồng (45,6%).
+
+Bảng 2.6. Chi tiết nguồn vốn đầu tư năm 2015 theo F02-CĐT (tỷ đồng)
+Nguồn vốn	Số dư đầu năm	Tăng bằng tiền	Tăng bằng vật tư, thiết bị	Giảm (quyết toán, bàn giao)	Số dư cuối năm
+
+I. Vốn chủ sở hữu của chủ đầu tư cấp	78,200	24,150	3,200	2,960	102,590
+
+II. Vốn vay thương mại do chủ đầu tư vay và cấp lại	51,250	36,500	-	1,622	86,127
+Cộng nguồn vốn đầu tư (TK 3361)	129,450	60,650	3,200	4,582	188,717
+
+Nhận xét: với doanh nghiệp, tăng giảm tiền không đồng nhất với tăng giảm nguồn vốn (doanh nghiệp huy động vốn bằng cổ phiếu, vay, doanh thu, thu hồi công nợ) nên cần báo cáo lưu chuyển tiền tệ. Với BQLDA, vốn được cấp theo tiến độ dự án nên B02 và F02 là công cụ kiểm soát nguồn vốn.
+
+CHỨNG TỪ GỐC
+
+Hình 2.6. B02-CĐT Nguồn vốn đầu tư năm 2015 của BQLDA
+Hình 2.7. F02-CĐT Chi tiết nguồn vốn đầu tư năm 2015 của BQLDA
+Hình 2.8. Báo cáo lưu chuyển tiền tệ hợp nhất năm 2024 của Hòa Phát ((trang 1)
+Hình 2.9. Báo cáo lưu chuyển tiền tệ hợp nhất năm 2024 của Hòa Phát (trang 2)
+2.4. So sánh Báo cáo thực hiện đầu tư xây dựng (B03-CĐT và phụ biểu F03A, F03C, F03D) với Báo cáo kết quả hoạt động kinh doanh
+
+Lợi nhuận sau thuế · Hòa Phát 2024 (Bảng 2.7)
+
+12,020nghìn tỷ đồng
+
+Đây là khác biệt cốt lõi giữa hai bộ báo cáo (tiêu chí 1 và 4 của Bảng 1.4). Bảng 2.7 so sánh tổng quát; các Bảng 2.8 đến 2.10 chi tiết hóa số liệu của BQLDA.
+
+Bảng 2.7. So sánh B03-CĐT và Báo cáo kết quả hoạt động kinh doanh
+So sánh
+Chỉ xem BQLDA
+Chỉ xem Doanh nghiệp
+Tiêu chí
+Tất cả
+Tên báo cáo
+Mục đích
+Doanh thu, thu nhập
+Chi phí
+Chi phí quản lý
+Chi tiết theo
+Chỉ tiêu cuối cùng
+Lãi, lỗ
+Tiêu chí	BQLDA (Thông tư 195)	Doanh nghiệp (Thông tư 200)
+
+Tên báo cáo	B03-CĐT Thực hiện đầu tư xây dựng, kèm F03A, F03C, F03D	Báo cáo kết quả hoạt động kinh doanh (B02-DN/HN)
+
+Mục đích	Xác định mức độ thực hiện đầu tư và giá trị tài sản hình thành	Xác định kết quả kinh doanh trong kỳ
+
+Doanh thu, thu nhập	Không có doanh thu; lãi tiền gửi từ nguồn vốn đầu tư nộp chủ đầu tư (TK 3368), Ban không xác định kết quả riêng	Doanh thu thuần 138,855; doanh thu tài chính 2,619; thu nhập khác 1,160 nghìn tỷ đồng
+
+Chi phí	Chi phí đầu tư (TK 241) phát sinh 69,739 tỷ đồng: xây dựng 41,237; thiết bị 15,482; tư vấn 5,873; bồi thường 2,915; quản lý dự án 2,146; khác 2,085	Giá vốn 120,358; bán hàng 2,337; quản lý doanh nghiệp 1,546; tài chính 3,967 nghìn tỷ đồng
+
+Chi phí quản lý	2,146 tỷ đồng phân bổ hết vào TK 241, tính vào giá trị công trình	1,546 nghìn tỷ đồng tính vào chi phí kỳ, giảm lợi nhuận
+
+Chi tiết theo	Dự án, công trình, hạng mục (F03A: 7 hạng mục)	Khoản mục doanh thu, chi phí
+
+Chỉ tiêu cuối cùng	Dư chi phí đầu tư 186,743; lũy kế vốn đầu tư thực hiện 191,325 (61,3% tổng mức đầu tư 312); giá trị đã bàn giao 4,582 tỷ đồng	Lợi nhuận gộp 18,498 (biên 13,3%); trước thuế 13,694; sau thuế 12,020 nghìn tỷ đồng (8,7% doanh thu thuần)
+
+Lãi, lỗ	Không xác định	Có
+BIỂU ĐỒ Hòa Phát 2024: từ doanh thu thuần đến lợi nhuận sau thuế
+
+Số liệu cột Doanh nghiệp của Bảng 2.7; lợi nhuận trước thuế và sau thuế vẽ từ 0, không nối bậc vì bài không nêu đủ các khoản ở giữa.
+
+0
+50
+100
+150
+138,855
+Doanh thu thuần
+−120,358
+Giá vốn
+18,498
+Lợi nhuận gộp
+biên 13,3%
+13,694
+Lợi nhuận trước
+thuế
+12,020
+Lợi nhuận sau
+thuế
+8,7% doanh thu thuần
+CÁC KHOẢN KHÁC TRONG BẢNG 2.7 (NGHÌN TỶ ĐỒNG)
+Doanh thu tài chính	2,619
+Thu nhập khác	1,160
+Chi phí bán hàng	2,337
+Chi phí quản lý doanh nghiệp	1,546
+Chi phí tài chính	3,967
+Xem bảng số liệu
+
+Đơn vị: nghìn tỷ đồng; biên 13,3% và 8,7% in sẵn trong bài. Nguồn: Bảng 2.7.
+
+CHỨNG TỪ GỐC
+
+Hình 2.10. B03-CĐT Thực hiện đầu tư xây dựng năm 2015 của BQLDA
+Hình 2.11. F03A-CĐT Thực hiện đầu tư theo dự án, công trình, hạng mục năm 2015 của BQLDA
+Hình 2.12. F03C-CĐT Chi phí khác năm 2015 của BQLDA
+
+Số dư cuối năm TK 241 · BQLDA (Bảng 2.8)
+
+186,743tỷ đồng
+
+Bảng 2.8. Biến động chi phí đầu tư xây dựng dở dang (TK 241) năm 2015 theo nội dung chi phí (B03-CĐT, tỷ đồng)
+Nội dung chi phí	Số dư đầu năm	Phát sinh trong năm	Giảm trong năm (quyết toán, bàn giao)	Số dư cuối năm	% số dư cuối năm
+
+1. Chi phí xây dựng	74,912	41,237	3,120	113,029	60,5%
+
+2. Chi phí thiết bị	28,640	15,482	0,640	43,482	23,3%
+
+3. Bồi thường, hỗ trợ, tái định cư	6,830	2,915	-	9,745	5,2%
+
+4. Chi phí quản lý dự án	3,915	2,146	0,210	5,851	3,1%
+
+5. Chi phí tư vấn đầu tư xây dựng	5,468	5,873	0,412	10,929	5,9%
+
+6. Chi phí khác	1,821	2,085	0,200	3,706	2,0%
+Cộng	121,586	69,739	4,582	186,743	100%
+BIỂU ĐỒ Biến động TK 241 năm 2015: từ số dư đầu năm đến số dư cuối năm
+
+Dòng "Cộng" của Bảng 2.8.
+
+0
+50
+100
+150
+200
+121,586
+Số dư đầu năm
++69,739
+Phát sinh trong năm
+−4,582
+Giảm trong năm (quyết toán, bàn
+giao)
+186,743
+Số dư cuối năm
+Xem bảng số liệu
+
+Đơn vị: tỷ đồng. Nguồn: Bảng 2.8.
+
+BIỂU ĐỒ Số dư cuối năm TK 241 theo nội dung chi phí
+1. Chi phí xây dựng
+113,029 · 60,5%
+2. Chi phí thiết bị
+43,482 · 23,3%
+5. Chi phí tư vấn đầu tư xây
+dựng
+10,929 · 5,9%
+3. Bồi thường, hỗ trợ, tái định
+cư
+9,745 · 5,2%
+4. Chi phí quản lý dự án
+5,851 · 3,1%
+6. Chi phí khác
+3,706 · 2,0%
+Số dư cuối năm: 186,743 tỷ đồng (100%)
+Xem bảng số liệu
+
+Đơn vị: tỷ đồng; % in sẵn trong bài. Nguồn: Bảng 2.8.
+
+Số dư cuối năm 186,743 tỷ đồng: chi phí xây dựng 113,029 (60,5%); thiết bị 43,482 (23,3%); tư vấn đầu tư xây dựng 10,929 (5,9%); bồi thường, hỗ trợ, tái định cư 9,745 (5,2%); quản lý dự án 5,851 (3,1%); chi phí khác 3,706 (2,0%).
+
+Bảng 2.9. Thực hiện đầu tư năm 2015 theo công trình, hạng mục (F03A-CĐT, tỷ đồng)
+Công trình, hạng mục	Số dư đầu năm	Phát sinh trong năm	Giảm trong năm (bàn giao)	Số dư cuối năm	% số dư cuối năm
+
+1. Nhà xưởng chế biến chính	51,300	31,250	-	82,550	44,2%
+
+2. Kho lạnh và kho thành phẩm	19,800	10,482	-	30,282	16,2%
+
+3. Hệ thống xử lý nước thải	9,100	9,579	-	18,679	10,0%
+
+4. Hạ tầng kỹ thuật	8,250	8,250	-	16,500	8,8%
+
+5. Nhà điều hành và công trình phụ trợ	3,900	4,600	-	8,500	4,6%
+
+6. Chi phí chung toàn dự án (chưa phân bổ cho hạng mục)	25,136	5,095	-	30,231	16,2%
+
+7. Nhà bảo vệ, hàng rào, cổng (đã hoàn thành, bàn giao)	4,100	0,482	4,582	-	-
+Cộng	121,586	69,739	4,582	186,743	100%
+BIỂU ĐỒ Số dư cuối năm theo công trình, hạng mục
+1. Nhà xưởng chế biến chính
+82,550 · 44,2%
+2. Kho lạnh và kho thành phẩm
+30,282 · 16,2%
+6. Chi phí chung toàn dự án
+(chưa phân bổ cho hạng mục)
+30,231 · 16,2%
+3. Hệ thống xử lý nước thải
+18,679 · 10,0%
+4. Hạ tầng kỹ thuật
+16,500 · 8,8%
+5. Nhà điều hành và công trình
+phụ trợ
+8,500 · 4,6%
+7. Nhà bảo vệ, hàng rào, cổng (đã hoàn thành, bàn giao): số dư cuối năm "-"
+Cộng: 186,743 tỷ đồng (100%)
+Xem bảng số liệu
+
+Đơn vị: tỷ đồng; % in sẵn trong bài. Hạng mục 7 đã bàn giao, số dư cuối năm "-". Nguồn: Bảng 2.9.
+
+Nhà xưởng chế biến chính 82,550 (44,2%); chi phí chung toàn dự án chưa phân bổ 30,231 (16,2%); kho lạnh và kho thành phẩm 30,282 (16,2%); hệ thống xử lý nước thải 18,679 (10,0%); hạ tầng kỹ thuật 16,500 (8,8%); nhà điều hành và công trình phụ trợ 8,500 (4,6%); nhà bảo vệ, hàng rào, cổng đã bàn giao.
+
+Xem chi tiết
+
+Tổng số dư cuối năm khớp với B01-CĐT (mã 230) và B03-CĐT. Khoản chi phí chung chưa phân bổ cho hạng mục (30,231 tỷ đồng) gồm bồi thường, hỗ trợ, tái định cư 9,745; quản lý dự án 5,851; tư vấn đầu tư xây dựng 10,929; chi phí khác 3,706 tỷ đồng, sẽ được phân bổ vào giá trị từng hạng mục khi quyết toán. F03A cho biết chi phí đã dùng cho công trình nào và trạng thái hoàn thành của từng hạng mục, điều mà doanh nghiệp không trình bày theo cách này.
+
+Bảng 2.10. Chi phí Ban quản lý dự án đầu tư (TK 642) theo F03D-CĐT (triệu đồng)
+Nội dung chi phí	Năm 2015	Năm 2014
+
+1. Tiền lương, tiền công, phụ cấp	1.018,4	962,3
+
+2. Bảo hiểm xã hội, y tế, thất nghiệp, kinh phí công đoàn	206,9	195,4
+
+3. Thanh toán dịch vụ công cộng	84,3	79,8
+
+4. Vật tư văn phòng, công cụ, dụng cụ	62,75	58,9
+
+5. Thông tin, tuyên truyền, liên lạc	38,6	36,2
+
+6. Hội nghị	41,2	38,5
+
+7. Công tác phí	118,5	112,0
+
+8. Chi phí thuê mướn	156,0	148,5
+
+9. Sửa chữa tài sản	27,4	21,0
+
+10. Phân bổ giá trị tài sản dùng cho quản lý dự án (hao mòn TSCĐ)	134,0	130,0
+
+11. Chi phí khác	258,4	227,7
+Tổng chi phí phát sinh trong năm	2.146,45	2.010,3
+
+Đã phân bổ vào chi phí đầu tư xây dựng (Nợ TK 241 / Có TK 642)	2.146,45	2.010,3
+
+Chi phí chưa phân bổ cuối năm (TK 642 không có số dư)	-	-
+BIỂU ĐỒ 11 khoản chi phí Ban quản lý dự án, năm 2015 so với năm 2014
+
+tăng 6,8% so với 2014
+47,4% tiền lương và các khoản có tính chất lương
+
+Thang đo 0–1.100
+0
+500
+1.000
+1. Tiền lương, tiền công, phụ cấp
+1.018,4 · 962,3
+Thang đo 0–300 (10 khoản còn lại, xếp theo năm 2015)
+11. Chi phí khác
+258,4 · 227,7
+2. Bảo hiểm xã hội, y tế, thất nghiệp, kinh phí công đoàn
+206,9 · 195,4
+8. Chi phí thuê mướn
+156,0 · 148,5
+10. Phân bổ giá trị tài sản dùng cho quản lý dự án (hao mòn
+TSCĐ)
+134,0 · 130,0
+7. Công tác phí
+118,5 · 112,0
+3. Thanh toán dịch vụ công cộng
+84,3 · 79,8
+4. Vật tư văn phòng, công cụ, dụng cụ
+62,75 · 58,9
+6. Hội nghị
+41,2 · 38,5
+5. Thông tin, tuyên truyền, liên lạc
+38,6 · 36,2
+9. Sửa chữa tài sản
+27,4 · 21,0
+0
+100
+200
+300
+Năm 2015
+Năm 2014
+Số bên phải: Năm 2015 · Năm 2014
+Tổng chi phí phát sinh trong năm: 2.146,45 / 2.010,3 triệu đồng
+Xem bảng số liệu
+
+Đơn vị: triệu đồng. Nguồn: Bảng 2.10; "tăng 6,8%" và "47,4%" theo bài.
+
+Năm 2015 so với 2014 (triệu đồng): tiền lương 1.018,4 và 962,3; bảo hiểm 206,9 và 195,4; dịch vụ công cộng 84,3 và 79,8; vật tư văn phòng 62,75 và 58,9; thông tin liên lạc 38,6 và 36,2; hội nghị 41,2 và 38,5; công tác phí 118,5 và 112,0; thuê mướn 156,0 và 148,5; sửa chữa tài sản 27,4 và 21,0; phân bổ giá trị tài sản 134,0 và 130,0; chi phí khác 258,4 và 227,7. Tổng 2.146,45 và 2.010,3.
+
+Nhận xét về F03D và F03C
+
+Chi phí năm 2015 tăng 6,8% so với 2014, trong đó tiền lương và các khoản có tính chất lương chiếm 47,4%. Toàn bộ chi phí được phân bổ vào TK 241, đúng như nghiệp vụ 3 của Bảng 1.5: cùng một khoản chi quản lý, BQLDA đưa vào giá trị công trình, doanh nghiệp đưa vào chi phí kỳ.
+
+Về F03C-CĐT (Chi phí khác): năm 2015 phát sinh 2,085 tỷ đồng, giảm 0,200 tỷ đồng do bàn giao, số dư cuối năm 3,706 tỷ đồng (đầu năm 1,821); ba khoản lớn nhất là bảo hiểm công trình 1,132 tỷ đồng (30,6%), đào tạo, chuyển giao công nghệ 0,724 tỷ đồng và phí thẩm định, lệ phí 0,496 tỷ đồng.
+
+CHỨNG TỪ GỐC
+
+Hình 2.13. F03D-CĐT Chi phí Ban quản lý dự án đầu tư năm 2015 của BQLDA
+Hình 2.14. Báo cáo kết quả hoạt động kinh doanh hợp nhất năm 2024 của Hòa Phát
+2.5. So sánh Quyết toán vốn đầu tư công trình hoàn thành (Mẫu số F03B-CĐT) với ghi nhận tài sản cố định của doanh nghiệp
+
+Trong năm 2015, hạng mục nhà bảo vệ, hàng rào, cổng được bàn giao ngày 30/10/2015, giá trị quyết toán được duyệt 4,582 tỷ đồng theo Quyết định số 128/QĐ-HĐQT ngày 12/11/2015 (bằng giá trị đề nghị quyết toán, chênh lệch giảm là 0). Bảng 2.11 so sánh cách xử lý khi công trình hoàn thành ở hai mô hình.
+
+Bảng 2.11. So sánh xử lý khi công trình hoàn thành
+So sánh
+Chỉ xem BQLDA
+Chỉ xem Doanh nghiệp
+Tiêu chí
+Tất cả
+Báo cáo liên quan
+Căn cứ
+Giá trị
+Bút toán
+Tác động lên báo cáo
+Tài sản sau hoàn thành
+Chi phí quản lý
+Khấu hao
+Ảnh hưởng đến lãi, lỗ
+Tiêu chí	BQLDA (Thông tư 195)	Doanh nghiệp (Thông tư 200)
+
+Báo cáo liên quan	F03B-CĐT Quyết toán vốn đầu tư công trình, hạng mục hoàn thành bàn giao	Thuyết minh tài sản cố định hữu hình và Bảng cân đối kế toán (mã 221)
+
+Căn cứ	Quyết định phê duyệt quyết toán số 128/QĐ-HĐQT; bàn giao 30/10/2015	Nghiệm thu, đưa tài sản vào sử dụng khi đủ điều kiện ghi nhận
+
+Giá trị	4,582 tỷ đồng: xây dựng 3,120; thiết bị 0,640; quản lý dự án 0,210; tư vấn 0,412; khác 0,200	Hòa Phát: tài sản cố định hữu hình nguyên giá 108,147; hao mòn lũy kế 40,902; còn lại 67,244 nghìn tỷ đồng
+
+Bút toán	Nợ TK 336 (3361) / Có TK 241	Nợ TK 211 / Có TK 241
+
+Tác động lên báo cáo	Nguồn vốn đầu tư (B02) và chi phí đầu tư dở dang (B03) cùng giảm 4,582 tỷ đồng	Chuyển từ xây dựng cơ bản dở dang sang tài sản cố định
+
+Tài sản sau hoàn thành	Bàn giao cho Công ty Cổ phần Chế biến Nông sản Đồng Bằng (chủ đầu tư), không còn trên sổ của Ban	Ghi nhận nguyên giá, tiếp tục trên Bảng cân đối kế toán
+
+Chi phí quản lý	Nằm trong giá trị quyết toán (0,210 tỷ đồng của hạng mục)	Đi vào chi phí kỳ (nghiệp vụ 3, Bảng 1.5)
+
+Khấu hao	Tài sản cố định riêng của Ban: khấu hao 0,134 tỷ đồng phân bổ vào TK 642 rồi tính vào giá trị công trình	Khấu hao và phân bổ 6,916 nghìn tỷ đồng tính vào chi phí kỳ
+
+Ảnh hưởng đến lãi, lỗ	Không phát sinh	Chi phí khấu hao các kỳ sau
+
+CHỨNG TỪ GỐC
+
+Hình 2.15. F03B-CĐT Quyết toán vốn đầu tư công trình, hạng mục hoàn thành bàn giao năm 2015 của BQLDA
+Hình 2.16. F03B-CĐT Quyết toán vốn đầu tư công trình, hạng mục hoàn thành bàn giao năm 2015 của BQLDA
+Ảnh này xuất hiện hai lần trong bài (Hình 2.15 và Hình 2.16).
+2.3
+Hình 2.17. Tài sản cố định trên Bảng cân đối kế toán hợp nhất tại ngày 31/12/2024 của Hòa Phát
+Cùng trang với Hình 2.3 (xuất hiện hai lần trong bài); bấm để mở.
+
+Về giá tạm tính và chi phí bị xuất toán, Bảng 2.12 phân biệt cơ chế kế toán với số liệu có trong BCTC mẫu. Chính BCTC của Ban nêu rõ: ghi chú F03B khẳng định không có khoản chi phí bị duyệt loại phải thu hồi (TK 1388), và thuyết minh V.07 cho biết số dư 186,743 tỷ đồng không có chi phí được duyệt bỏ hoặc không được duyệt phải thu hồi.
+
+CÓ TRONG BCTC MẪU
+
+Quyết toán được duyệt, không bị loại chi phí
+
+Nợ TK 336 (3361) / Có TK 241
+
+Nhà bảo vệ, hàng rào, cổng, 4,582 tỷ đồng
+
+KHÔNG CÓ TRONG BCTC MẪU
+
+Hoàn thành, chưa phê duyệt quyết toán
+
+Theo dõi theo giá tạm tính, điều chỉnh khi có quyết định chính thức
+
+KHÔNG CÓ TRONG BCTC MẪU
+
+Có khoản chi bị xuất toán
+
+Phần bị loại chuyển sang phải thu khác (TK 1388) để theo dõi thu hồi
+
+Bảng 2.12. Các tình huống quyết toán công trình và mức độ minh họa trong BCTC mẫu
+Tình huống	Cách xử lý ở BQLDA	Có trong BCTC mẫu năm 2015 không
+
+Quyết toán được duyệt, không bị loại chi phí	Nợ TK 336 (3361) / Có TK 241 theo giá trị được duyệt	Có: nhà bảo vệ, hàng rào, cổng, 4,582 tỷ đồng
+
+Hoàn thành, chưa phê duyệt quyết toán	Theo dõi theo giá tạm tính, điều chỉnh khi có quyết định chính thức	Không
+
+Có khoản chi bị xuất toán	Phần bị loại chuyển sang phải thu khác (TK 1388) để theo dõi thu hồi	Không (F03B và thuyết minh V.07 nêu rõ không phát sinh)
+
+Hai tình huống sau chỉ là trường hợp có thể phát sinh theo cơ chế kế toán; không khẳng định BQLDA đã thực tế phát sinh nghiệp vụ xuất toán vào TK 1388 trong năm 2015.
+
+Tóm tắt chương
+BQLDA chỉ theo dõi nguồn vốn đầu tư (188,717 tỷ đồng, 94,6% nguồn vốn) và chi phí đầu tư xây dựng dở dang (186,743 tỷ đồng, 93,6% tổng tài sản); Hòa Phát có cơ cấu tài sản, nợ và vốn chủ sở hữu của doanh nghiệp sản xuất kinh doanh.
+B01-CĐT không có vốn chủ sở hữu, lợi nhuận chưa phân phối; vốn do chủ đầu tư cấp ghi trên TK 3361, trong đó có 86,127 tỷ đồng vốn vay do chủ đầu tư vay và cấp lại.
+B02-CĐT, F02 thay Báo cáo lưu chuyển tiền tệ; B03-CĐT, F03A, F03C, F03D thay Báo cáo kết quả hoạt động kinh doanh; chi phí Ban (2,146 tỷ đồng) được phân bổ toàn bộ vào TK 241.
+Khi hạng mục hoàn thành, BQLDA quyết toán, bàn giao (Nợ TK 336 / Có TK 241: 4,582 tỷ đồng) và không phát sinh lãi, lỗ; doanh nghiệp chuyển sang tài sản cố định và khấu hao. BCTC mẫu không có trường hợp xuất toán chuyển sang TK 1388.
+
+Trong bài, phần “Tóm tắt chương” của Chương 2 được đặt trước mục 2.6; trang web giữ nguyên thứ tự này.
+
+2.6. Khác biệt về Thuyết minh Báo cáo tài chính (Mẫu số B04-CĐT), Hệ thống chứng từ, sổ sách và thời hạn nộp báo cáo
+
+Tỷ lệ thực hiện so với tổng mức đầu tư · BQLDA Đồng Bằng 2015 (Bảng 2.6.1)
+
+61,3%
+
+2.6.1. Sự khác biệt về mục tiêu và thông tin trình bày trên Thuyết minh Báo cáo tài chính (B04-CĐT so với B09-DN)
+
+Thuyết minh BCTC của BQLDA mang tính chất giải trình về vòng đời và quy mô của một dự án đầu tư cụ thể, trong khi Thuyết minh BCTC của doanh nghiệp tập trung giải trình các chính sách kế toán, rủi ro tài chính và phân tích chi tiết các khoản mục kinh doanh liên tục.
+
+Bảng 2.6.1: So sánh thông tin đặc thù trên Thuyết minh BCTC
+So sánh
+Chỉ xem BQLDA
+Chỉ xem Doanh nghiệp
+Tiêu chí
+Tất cả
+Trọng tâm trình bày
+Chỉ tiêu đặc thù
+Số liệu minh họa thực tế
+Tiêu chí	BQLDA (Mẫu B04-CĐT theo TT 195)	Doanh nghiệp (Mẫu B09-DN theo TT 200)
+
+Trọng tâm trình bày	Tổng quan và tiến độ của dự án đầu tư xây dựng.	Hoạt động kinh doanh liên tục, chính sách kế toán và rủi ro tài chính.
+
+Chỉ tiêu đặc thù	Tổng mức đầu tư, thời gian thực hiện, tỷ lệ hoàn thành so với tổng mức đầu tư.	Chu kỳ sản xuất, cấu trúc tập đoàn, báo cáo bộ phận (địa lý, lĩnh vực kinh doanh).
+
+Số liệu minh họa thực tế	BQLDA Đồng Bằng (2015): Thuyết minh rõ dự án có tổng mức đầu tư 312 tỷ đồng, thời gian 2013-2016. Lũy kế vốn thực hiện đạt 191,32 tỷ đồng (đạt 61,3%).	Tập đoàn Hòa Phát (2024): Thuyết minh chu kỳ kinh doanh 12 tháng; doanh thu theo 3 mảng: Thép, Nông nghiệp, Bất động sản.
+Giải trình trên Thuyết minh BCTC
+
+Tỷ lệ thực hiện so với tổng mức đầu tư (BQLDA Đồng Bằng năm 2015)
+
+61,3%
+
+Lũy kế vốn thực hiện 191,32 / tổng mức đầu tư 312 tỷ đồng
+
+Xem chi tiết
+
+Ngay tại phần đầu của Mẫu B04-CĐT, kế toán BQLDA bắt buộc phải cung cấp một bức tranh toàn cảnh về "giới hạn nguồn lực" của dự án, bao gồm giới hạn về tiền (Tổng mức đầu tư được duyệt) và giới hạn về thời gian (Thời gian thực hiện dự án). Sự tồn tại của BQLDA gắn liền với vòng đời của dự án đó; khi dự án kết thúc, BQLDA cũng hoàn thành sứ mệnh. Vì vậy, các chỉ tiêu như "Tỷ lệ thực hiện so với tổng mức đầu tư" (đạt 61,3% tại BQLDA Đồng Bằng năm 2015) đóng vai trò là thước đo hiệu quả quản lý cốt lõi, cho biết Ban đã tiêu hao bao nhiêu phần trăm ngân sách cho phép và tiến độ giải ngân có bám sát kế hoạch hay không.
+
+Ngược lại, Thuyết minh B09-DN của doanh nghiệp (như Tập đoàn Hòa Phát) được xây dựng trên giả định "hoạt động liên tục". Doanh nghiệp không lấy một dự án xây dựng làm trung tâm báo cáo, mà coi hoạt động đầu tư XDCB chỉ là một khâu trong chuỗi giá trị nhằm gia tăng năng lực sản xuất. Do đó, Thuyết minh của doanh nghiệp tập trung giải trình cấu trúc sở hữu phức tạp (Hòa Phát có hàng chục công ty con hoạt động đa ngành), chu kỳ sản xuất kinh doanh (12 tháng), và bóc tách kết quả kinh doanh theo từng bộ phận (Thép, Nông nghiệp, Bất động sản). Các dự án đầu tư lớn (như Dự án Khu liên hợp Gang thép Dung Quất với chi phí dở dang 60.108 tỷ đồng) chỉ được liệt kê như một khoản mục tài sản hình thành trong tương lai, chứ không phải là đối tượng giải trình duy nhất của toàn bộ BCTC.
+
+2.6.2. Sự khác biệt về cơ chế hạch toán và chuyển thuế GTGT đầu vào
+
+Bản chất hoạt động (một bên chỉ tiêu tiền đầu tư, một bên kinh doanh sinh lời có đầu ra) dẫn đến cơ chế xử lý thuế Giá trị gia tăng (GTGT) hoàn toàn trái ngược.
+
+Bảng 2.6.2: So sánh cơ chế xử lý thuế GTGT đầu vào
+So sánh
+Chỉ xem BQLDA
+Chỉ xem Doanh nghiệp
+Tiêu chí
+Tất cả
+Bản chất hoạt động
+Cơ chế xử lý
+Bút toán đặc thù
+Số liệu minh họa thực tế
+Tiêu chí	BQLDA (Thông tư 195)	Doanh nghiệp (Thông tư 200)
+
+Bản chất hoạt động	Không bán hàng, không có doanh thu chịu thuế GTGT đầu ra.	Có hoạt động mua bán, phát sinh cả thuế GTGT đầu vào và đầu ra.
+
+Cơ chế xử lý	Lập bảng kê và chuyển cho Chủ đầu tư khấu trừ.	Tự kê khai, tự bù trừ trực tiếp trên BCTC của doanh nghiệp.
+
+Bút toán đặc thù	Nợ TK 336 (3368) / Có TK 133.	Nợ TK 3331 / Có TK 133 (khi khấu trừ).
+
+Số liệu minh họa thực tế	BQLDA Đồng Bằng (2015): Dư nợ TK 152 cuối kỳ là 2,34 tỷ đồng (Tiền thuế chờ chuyển cho Chủ đầu tư).	Tập đoàn Hòa Phát (2024): Dư nợ TK 152 là 6.636 tỷ đồng. Số thuế GTGT phải nộp sau bù trừ là 30,5 tỷ đồng.
+Hai luồng xử lý thuế GTGT đầu vào
+
+BQLDA Đồng Bằng (2015)
+
+2,34 tỷ đồng
+
+Nợ TK 336 / Có TK 133
+
+chuyển về Chủ đầu tư khấu trừ
+
+Tập đoàn Hòa Phát (2024)
+
+6.636 tỷ đồng
+
+Nợ TK 3331 / Có TK 133
+
+tự bù trừ; còn phải nộp 30,5 tỷ đồng
+
+Xem chi tiết
+
+Về mặt nguyên lý thuế, để được khấu trừ thuế GTGT đầu vào, đơn vị phải có thuế GTGT đầu ra phát sinh từ việc cung cấp hàng hóa, dịch vụ. Ban Quản lý dự án thuần túy là đơn vị tiêu dùng trung gian (chỉ mua sắm vật tư, trả tiền nhân công, thanh toán thầu xây dựng) mà không hề có hoạt động bán hàng tạo doanh thu. Mục IV.6 (Chính sách kế toán áp dụng) của BQLDA Đồng Bằng chỉ rõ, do không có doanh thu chịu thuế nên Ban không thể tự khấu trừ thuế. Kế toán BQLDA phải định kỳ lập bảng kê hóa đơn và làm thủ tục "đẩy" số thuế này về cho Chủ đầu tư (đơn vị có hoạt động kinh doanh) thông qua bút toán Nợ TK 336 / Có TK 133. Khoản 2,34 tỷ đồng nằm trên chỉ tiêu "Thuế GTGT được khấu trừ" tại thời điểm 31/12/2015 của Ban thực chất là một khoản nợ treo tạm thời, đang chờ hoàn thiện thủ tục để kết chuyển trả về cho Công ty Cổ phần Chế biến Nông sản Đồng Bằng.
+
+Đối với doanh nghiệp sản xuất kinh doanh như Hòa Phát, hệ sinh thái kinh doanh khép kín cho phép họ tự cấn trừ trực tiếp hàng ngàn tỷ đồng thuế GTGT. Doanh nghiệp mua nguyên vật liệu, đầu tư máy móc (phát sinh thuế đầu vào), sau đó sản xuất ra thép, nông sản bán ra thị trường (phát sinh thuế đầu ra). BCTC Hợp nhất 2024 của Hòa Phát phản ánh lượng Thuế GTGT được khấu trừ cuối kỳ rất lớn, lên tới 6.636 tỷ đồng. Cuối kỳ, kế toán doanh nghiệp thực hiện bút toán cấn trừ (Nợ TK 3331 / Có TK 133), xác định số thuế GTGT còn phải nộp ngân sách là 30,5 tỷ đồng, hoàn toàn độc lập và không phụ thuộc vào bất kỳ thực thể cấp trên nào.
+
+Thời gian lập BCTC năm 2024 · Hòa Phát (hạn 90 ngày) (Bảng 2.6.3)
+
+83ngày
+
+2.6.3. Hệ thống chứng từ, sổ sách kế toán đặc thù và thời hạn nộp báo cáo
+
+Việc BCTC của BQLDA chỉ là một "mảnh ghép" (dữ liệu đầu vào) để Chủ đầu tư tổng hợp lại đã quyết định tính chất khắt khe về mặt thời gian và sự chi tiết đặc thù của hệ thống sổ sách.
+
+ Bảng 2.6.3: So sánh Hệ thống sổ sách và Thời hạn báo cáo
+So sánh
+Chỉ xem BQLDA
+Chỉ xem Doanh nghiệp
+Tiêu chí
+Tất cả
+Hệ thống chứng từ
+Hệ thống Sổ/Phụ biểu
+Thời hạn nộp BCTC năm
+Số liệu minh họa thực tế
+Tiêu chí	BQLDA (Thông tư 195)	Doanh nghiệp (Thông tư 200)
+
+Hệ thống chứng từ	Trọng tâm là chứng từ xây dựng: Biên bản nghiệm thu khối lượng A-B, nhật ký thi công, hồ sơ quyết toán.	Trọng tâm là chứng từ thương mại: Hóa đơn bán hàng, Phiếu xuất/nhập kho, Chứng từ thanh toán ngân hàng.
+
+Hệ thống Sổ/Phụ biểu	Sổ chi tiết nguồn vốn (theo hình thái tiền/vật tư), 05 Phụ biểu (F02, F03A, F03B, F03C, F03D) bóc tách chi phí.	Sổ chi tiết doanh thu, chi phí, công nợ thương mại theo từng đối tượng khách hàng/nhà cung cấp.
+
+Thời hạn nộp BCTC năm	Chậm nhất 30 ngày kể từ ngày kết thúc kỳ kế toán.	Chậm nhất 90 ngày kể từ ngày kết thúc kỳ kế toán.
+
+Số liệu minh họa thực tế	BQLDA Đồng Bằng (2015): Báo cáo lập ngày 20/01/2016 (Đúng hạn trong vòng 30 ngày).	Tập đoàn Hòa Phát (2024): Báo cáo lập ngày 24/03/2025 (Kéo dài 83 ngày, tuân thủ hạn 90 ngày).
+ THỜI HẠN NỘP BCTC NĂM so với ngày lập thực tế
+0 ngày
+30 ngày
+60 ngày
+90 ngày
+BQLDA Đồng Bằng (2015)
+hạn 30 ngày
+Lập ngày 20/01/2016 · đúng hạn trong vòng 30 ngày
+Tập đoàn Hòa Phát (2024)
+hạn 90 ngày
+24/03/2025 · 83 ngày
+Xem bảng số liệu
+
+Thang đo: số ngày kể từ ngày kết thúc kỳ kế toán (31/12/2015 với BQLDA; 31/12/2024 với Hòa Phát). Nguồn: Bảng 2.6.3.
+
+BQLDA Đồng Bằng: báo cáo lập ngày 20/01/2016, đúng hạn trong vòng 30 ngày. Tập đoàn Hòa Phát: báo cáo lập ngày 24/03/2025, kéo dài 83 ngày, tuân thủ hạn 90 ngày.
+
+Chứng từ, sổ sách và quy trình hợp nhất
+Xem chi tiết
+
+Để quản lý chặt chẽ rủi ro thất thoát vốn trong xây dựng, kế toán BQLDA phải duy trì một hệ thống chứng từ và sổ chi tiết cực kỳ phức tạp xoay quanh khối lượng thi công. Khác với hóa đơn mua bán thông thường của doanh nghiệp, chứng từ cốt lõi của BQLDA là Hồ sơ nghiệm thu giai đoạn, Bản vẽ hoàn công và Biên bản nghiệm thu khối lượng hoàn thành (A-B). Kế toán phải mở các sổ chi tiết để theo dõi nguồn vốn theo từng lần cấp và hình thái cấp. Ví dụ, BQLDA Đồng Bằng theo dõi rất rành mạch trong 63,85 tỷ đồng nhận năm 2015, có 60,65 tỷ đồng cấp bằng tiền và 3,2 tỷ đồng cấp thẳng bằng vật tư, thiết bị. Đặc biệt, bộ 5 Phụ biểu (F02 đến F03D) đóng vai trò như những "sổ chi tiết mở rộng" bắt buộc đi kèm BCTC, giúp minh bạch hóa từng đồng chi phí đang nằm ở Hạng mục Nhà xưởng, Kho lạnh hay Hệ thống xử lý nước thải.
+
+Về mặt quy trình hợp nhất dữ liệu, BCTC của BQLDA không phải là điểm cuối cùng. Những số liệu này bắt buộc phải được gửi về cho Công ty mẹ để hợp nhất vào BCTC toàn doanh nghiệp. Do tính chất "dữ liệu đầu vào" này, tính kịp thời của BQLDA bị siết rất chặt. Theo Thông tư 195/2012/TT-BTC, BQLDA phải nộp báo cáo năm chậm nhất trong vòng 30 ngày kể từ ngày kết thúc kỳ. Thực tế tại BQLDA Đồng Bằng, báo cáo được hoàn thiện và ký duyệt vào ngày 20/01/2016, đáp ứng hoàn toàn giới hạn thời gian này. Trong khi đó, một tập đoàn quy mô lớn như Hòa Phát, với hàng chục công ty con cần kiểm toán và loại trừ giao dịch nội bộ, được Thông tư 200/2014/TT-BTC cho phép thời hạn nộp BCTC năm lên tới 90 ngày. BCTC của Hòa Phát được ký duyệt vào ngày 24/03/2025 (mất 83 ngày tổng hợp), phản ánh đúng tính chất phức tạp và độ trễ cho phép của mô hình doanh nghiệp kinh doanh liên tục.
+
+03
+
+CHƯƠNG 3. NHẬN XÉT, ĐÁNH GIÁ VÀ KIẾN NGHỊ
+3.1
+Ưu điểm, hạn chế
+3.2
+Khó khăn khi đọc BCTC
+3.3
+Kiến nghị
+3.1. Ưu điểm và hạn chế của phương pháp hạch toán theo chế độ kế toán BQLDA (TT 195/2012/TT-BTC)
+
+Chế độ kế toán theo Thông tư 195/2012/TT-BTC được xây dựng phù hợp với đặc thù của hoạt động đầu tư xây dựng, tuy nhiên vẫn tồn tại một số hạn chế nhất định trong quá trình vận hành thực tế.
+
+Bảng 3.1: Ưu điểm và hạn chế của chế độ kế toán BQLDA
+So sánh
+Chỉ xem Ưu điểm
+Chỉ xem Hạn chế
+Tiêu chí
+Tất cả
+Quản trị chi phí (TK 241)
+Quản lý nguồn vốn (TK 336)
+Phân bổ chi phí BQLDA (TK 642)
+Khía cạnh	Ưu điểm	Hạn chế
+
+Quản trị chi phí (TK 241)	Kiểm soát chi tiết nguồn vốn theo dự toán. Phân loại rõ ràng chi phí theo 6 nội dung cơ bản (Xây dựng, Thiết bị, Bồi thường, Quản lý dự án, Tư vấn, Khác).	Khối lượng chứng từ lớn, đòi hỏi mức độ chi tiết cao, dễ phát sinh sai sót khi tập hợp chi phí chung chưa phân bổ.
+
+Quản lý nguồn vốn (TK 336)	Phản ánh minh bạch dòng vốn được cấp (chi tiết theo hình thức cấp bằng tiền hoặc vật tư), tạo thuận lợi cho việc đối chiếu quyết toán.	Cơ chế ghi giảm nguồn vốn khi bàn giao công trình (Nợ 336 / Có 241) có thể phức tạp nếu phát sinh các khoản chi phí không được duyệt quyết toán.
+
+Phân bổ chi phí BQLDA (TK 642)	Phản ánh đúng bản chất chi phí hoạt động của BQLDA là một bộ phận cấu thành nên giá trị tài sản đầu tư.	Việc lựa chọn tiêu thức phân bổ chi phí quản lý vào TK 241 cuối kỳ có thể ảnh hưởng đến độ chính xác của giá trị công trình từng hạng mục.
+Phân tích ưu điểm và hạn chế
+
+Điểm nổi bật của Thông tư 195 là khả năng giám sát chi tiết nguồn vốn so với tổng mức đầu tư được duyệt. Thông qua Phụ biểu F03A, BQLDA phản ánh rõ ràng giá trị chi phí dở dang cấu thành từ các hạng mục. Chẳng hạn, trong 186,74 tỷ đồng chi phí dở dang của BQLDA Đồng Bằng năm 2015, hạng mục Nhà xưởng chế biến chính chiếm 82,55 tỷ đồng và Kho lạnh chiếm 30,28 tỷ đồng.
+
+Tuy nhiên, điểm hạn chế của chế độ này nằm ở quy trình xử lý chi phí hoạt động của BQLDA (TK 642). Không giống như doanh nghiệp kết chuyển chi phí quản lý vào kết quả kinh doanh trong kỳ, kế toán BQLDA phải phân bổ toàn bộ chi phí này vào giá trị dự án. Năm 2015, BQLDA Đồng Bằng phát sinh 2.146.450.000 đồng chi phí hoạt động và phải thực hiện bút toán phân bổ toàn bộ số tiền này vào TK 241. Nếu tiêu thức phân bổ không phù hợp với thực tế thi công, giá trị quyết toán của từng hạng mục công trình sẽ bị phản ánh sai lệch.
+
+3.2. Những khó khăn, vướng mắc khi đọc hiểu BCTC của BQLDA theo tư duy kế toán doanh nghiệp thông thường
+
+Những người đã quen thuộc với Báo cáo tài chính doanh nghiệp (theo Thông tư 200) sẽ gặp không ít khó khăn khi tiếp cận Báo cáo tài chính của Ban Quản lý dự án, do sự khác biệt hoàn toàn về nguyên lý và bản chất hạch toán.
+
+Bảng 3.2: Các điểm khác biệt cốt lõi về nhận thức khi phân tích BCTC BQLDA
+So sánh
+Chỉ xem Tư duy Doanh nghiệp
+Chỉ xem Thực tế tại BQLDA
+Tiêu chí
+Tất cả
+Cơ cấu Tài sản
+Cơ cấu Nguồn vốn
+Hiệu quả hoạt động
+Góc độ đánh giá	Tư duy Doanh nghiệp (TT 200)	Thực tế tại BQLDA (TT 195)
+
+Cơ cấu Tài sản	Tài sản đa dạng, phục vụ hoạt động sản xuất kinh doanh (Tiền, Hàng tồn kho, Tài sản cố định).	Tài sản chủ yếu là giá trị công trình đang hình thành; Chi phí XDCB dở dang chiếm tỷ trọng tuyệt đối.
+
+Cơ cấu Nguồn vốn	Phân tách rõ ràng giữa Nợ phải trả và Vốn chủ sở hữu (bao gồm vốn góp và lợi nhuận tích lũy).	Không ghi nhận Vốn chủ sở hữu; toàn bộ nguồn lực cấp phát được theo dõi dưới dạng Phải trả nội bộ (TK 336).
+
+Hiệu quả hoạt động	Sử dụng Báo cáo Kết quả hoạt động kinh doanh (B02-DN) để xác định Doanh thu, Chi phí, Lợi nhuận.	Đánh giá thông qua Báo cáo Thực hiện đầu tư (B03-CĐT) dựa trên tiến độ giải ngân và tuân thủ tổng mức đầu tư.
+Phân tích khó khăn khi đọc BCTC BQLDA
+
+Sự khác biệt đầu tiên nằm ở cấu trúc Bảng cân đối kế toán. BQLDA Đồng Bằng không ghi nhận Vốn chủ sở hữu; trong tổng tài sản 199,46 tỷ đồng, Nợ phải trả (chủ yếu là TK 336) lên tới 188,71 tỷ đồng. Đồng thời, tài sản chủ yếu tập trung ở Chi phí đầu tư xây dựng dở dang, chiếm 93,6% (186,74 tỷ đồng) tổng tài sản. Cơ cấu này phản ánh bản chất của BQLDA là đơn vị nhận vốn để hình thành tài sản chứ không phải đơn vị kinh doanh độc lập. Trong khi đó, Bảng cân đối kế toán của Tập đoàn Hòa Phát năm 2024 thể hiện cơ cấu tài chính tiêu biểu của doanh nghiệp với Vốn chủ sở hữu đạt 114.647 tỷ đồng, bao gồm 49.599 tỷ đồng lợi nhuận chưa phân phối.
+
+Sự khác biệt thứ hai là phương pháp phân tích dòng tiền. Do BQLDA không lập Báo cáo Lưu chuyển tiền tệ, người đọc phải sử dụng Báo cáo Nguồn vốn đầu tư (B02-CĐT) kết hợp với Báo cáo Thực hiện đầu tư (B03-CĐT) để theo dõi luân chuyển vốn. Ví dụ, năm 2015 dự án Đồng Bằng được cấp tăng thêm 63,85 tỷ đồng nguồn vốn, tương ứng với 69,73 tỷ đồng chi phí đầu tư phát sinh trong năm ghi nhận trên B03-CĐT. Việc thiếu vắng Báo cáo Kết quả hoạt động kinh doanh đòi hỏi người phân tích phải đánh giá hiệu quả của BQLDA thông qua tiến độ giải ngân và sự tuân thủ dự toán, thay vì sử dụng các chỉ số tỷ suất sinh lời thông thường.
+
+3.3. Các kiến nghị giải pháp nhằm hoàn thiện công tác lập, đọc và quản lý BCTC BQLDA
+
+Đối với người làm kế toán và người đọc Báo cáo tài chính: Cần xác định chính xác mô hình tổ chức thực hiện dự án để áp dụng phương pháp phân tích phù hợp. Thay vì tiếp cận theo hướng phân tích lợi nhuận, cần tập trung vào luồng hạch toán quản trị vốn cốt lõi: Nhận vốn cấp phát (Có TK 336), tập hợp chi phí thi công (Nợ TK 241), và quyết toán bàn giao công trình (Nợ TK 336 / Có TK 241). Kế toán BQLDA cần phối hợp chặt chẽ với bộ phận kỹ thuật để đảm bảo tính hợp lệ của khối lượng nghiệm thu, đồng thời xác định tiêu thức phân bổ chi phí BQLDA (TK 642) hợp lý nhằm giảm thiểu rủi ro xuất toán chi phí trong giai đoạn thanh tra, kiểm toán quyết toán.
+
+Đối với cơ quan quản lý Nhà nước: Việc Bộ Tài chính ban hành Thông tư 99/2025/TT-BTC (có hiệu lực từ 01/01/2026) thay thế cả Thông tư 195/2012/TT-BTC và Thông tư 200/2014/TT-BTC là một sự thay đổi mang tính hệ thống nhằm khắc phục sự thiếu đồng bộ giữa các chế độ kế toán. Cơ quan quản lý cần khẩn trương ban hành các tài liệu hướng dẫn cụ thể về việc chuyển đổi số dư, đặc biệt là phương pháp tích hợp các tài khoản đặc thù của BQLDA (như TK 3361, TK 3368) vào hệ thống tài khoản hợp nhất mới. Bên cạnh đó, cần thúc đẩy việc số hóa nền tảng báo cáo nhằm tự động trích xuất các phụ biểu chi tiết (F03A, F03B), qua đó đẩy nhanh quá trình thẩm tra, phê duyệt quyết toán vốn đầu tư và xử lý dứt điểm tình trạng công trình đã đưa vào khai thác nhưng chưa hoàn tất thủ tục ghi tăng tài sản cố định.
+
+KẾT LUẬN
+
+Quá trình phân tích và đối chiếu giữa chế độ kế toán áp dụng cho Ban Quản lý dự án (Thông tư 195/2012/TT-BTC) và chế độ kế toán doanh nghiệp (Thông tư 200/2014/TT-BTC) đã làm rõ nguyên lý cơ bản: chế độ kế toán luôn phản ánh đúng chức năng, nhiệm vụ và bản chất hoạt động của đơn vị.
+
+Ban Quản lý dự án hoạt động với mục tiêu cốt lõi là tiếp nhận nguồn vốn, thực hiện đầu tư và bàn giao tài sản hoàn thành cho chủ đầu tư. Do đó, hệ thống kế toán của Ban tập trung hoàn toàn vào việc kiểm soát nguồn cấp phát (Tài khoản 336) và tập hợp chi phí đầu tư xây dựng (Tài khoản 241). Trái lại, doanh nghiệp hoạt động vì mục tiêu sinh lời, nên hệ thống kế toán được thiết kế để đo lường chu kỳ kinh doanh liên tục thông qua doanh thu, chi phí và kết quả hoạt động kinh doanh. Sự khác biệt về bản chất này dẫn đến sự khác biệt toàn diện về hệ thống tài khoản, cơ cấu Báo cáo tài chính, hệ thống chứng từ sổ sách và quy trình quyết toán.
+
+Trong bối cảnh Bộ Tài chính đã ban hành Thông tư 99/2025/TT-BTC (có hiệu lực từ ngày 01/01/2026) nhằm thay thế cả Thông tư 195/2012/TT-BTC và Thông tư 200/2014/TT-BTC, việc nhận diện rõ những ưu điểm, hạn chế và sự khác biệt giữa hai chế độ kế toán hiện hành có ý nghĩa thực tiễn quan trọng. Điều này không chỉ giúp nâng cao chất lượng công tác quản trị vốn đầu tư, minh bạch hóa số liệu giải ngân trong giai đoạn hiện tại, mà còn tạo nền tảng kiến thức vững chắc để những người làm công tác tài chính, kế toán thích ứng nhanh chóng với cơ chế hạch toán hợp nhất và đồng bộ trong thời gian tới.
+
+PHỤ LỤC
+Phụ lục 1: Bảng tổng hợp 24 điểm khác biệt trọng tâm (Tiêu chí, BQLDA, Doanh nghiệp, Căn cứ pháp lý)
+Phụ lục 2: Sơ đồ luồng vốn và luồng hạch toán kế toán giữa Chủ đầu tư và BQLDA
+Phụ lục 3: Bộ BCTC mẫu đầy đủ (Áp dụng theo TT 195/2012/TT-BTC)
+
+Bài chỉ liệt kê tên ba phụ lục; nội dung các phụ lục không có trong tệp PDF.
+
+TÀI LIỆU THAM KHẢO
+[1] Quốc hội (2015), Luật Kế toán số 88/2015/QH13.
+[2] Chính phủ (2016), Nghị định số 174/2016/NĐ-CP quy định chi tiết một số điều của Luật Kế toán.
+[3] Bộ Tài chính (2012), Thông tư số 195/2012/TT-BTC ngày 15/11/2012 hướng dẫn kế toán áp dụng cho đơn vị chủ đầu tư.
+[4] Bộ Tài chính (2014), Thông tư số 200/2014/TT-BTC ngày 22/12/2014 hướng dẫn Chế độ kế toán doanh nghiệp.
+[5] Bộ Tài chính (2019), Thông tư số 79/2019/TT-BTC ngày 14/11/2019 hướng dẫn Chế độ kế toán áp dụng cho ban quản lý dự án sử dụng vốn đầu tư công.
+[6] Bộ Tài chính (2025), Thông tư số 99/2025/TT-BTC ngày 27/10/2025 hướng dẫn Chế độ kế toán doanh nghiệp.
+
+Sinh viên Nhóm 2, Đại học Kinh tế Quốc dân. Bài tập môn Kế toán dự án đầu tư xây dựng.

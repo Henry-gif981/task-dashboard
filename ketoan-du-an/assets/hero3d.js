@@ -15,6 +15,8 @@
   const weak = (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2) || (navigator.deviceMemory && navigator.deviceMemory <= 2);
   if (Q.has("no3d")) { stats.reason = "no3d"; return; }
   if (reduce) { stats.reason = "reduced-motion"; return; }
+  let reading = false; try { reading = localStorage.getItem("kt-reading") === "1"; } catch (e) {}
+  if (reading || Q.has("reading")) { stats.reason = "reading-mode"; return; }
   if (weak && !Q.has("force3d")) { stats.reason = "weak-device"; return; }
   if (!window.THREE) { stats.reason = "no-three"; return; }
   let gl = null;
@@ -85,7 +87,7 @@
   const M = new T3.Matrix4(), P = new T3.Vector3(), Qt = new T3.Quaternion(), E = new T3.Euler(), SC = new T3.Vector3();
   function updateFlow(f, time) {
     f.seeds.forEach((sd, i) => {
-      const t = (sd.t + time * .045) % 1;               // 0 → 1: từ xa chảy vào đầu thanh ngang
+      const t = (sd.t + time * .028) % 1;               // 0 → 1: từ xa chảy vào đầu thanh ngang
       const x = f.side * (11 - t * 7.6);                 // dừng ở mép thanh ngang (±3.4)
       const y = 2.6 + sd.lane * (1 - t) * 1.3 + Math.sin(t * Math.PI) * .9 * (1 - t);
       const z = sd.z * (1 - t * .8);
@@ -133,8 +135,8 @@
     last = now;
     const time = (now - t0) / 1000;
     mx += (tx - mx) * .06; my += (ty - my) * .06;
-    world.rotation.y = -.32 + mx * .35 + Math.sin(time * .25) * .04;
-    world.rotation.x = .06 + my * .14;
+    world.rotation.y = -.32 + mx * .2 + Math.sin(time * .18) * .02;
+    world.rotation.x = .06 + my * .08;
     camera.position.set(CAM0.x + mx * .8, CAM0.y - my * .5 + scrollP * 1.2, CAM0.z + scrollP * 7);
     camera.lookAt(0, 1.1, 0);
     flows.forEach(f => updateFlow(f, time));
@@ -159,5 +161,7 @@
   // khởi động sau màn mở đầu cho mượt; dựng thử một khung để biết WebGL chạy được
   try { renderer.render(scene, camera); } catch (e) { stats.reason = "render-error"; return; }
   hero.classList.add("gl"); stats.mode = "webgl"; stats.reason = "";
+  // Chế độ đọc bật giữa chừng: dừng hẳn cảnh 3D, hiện hình tĩnh
+  addEventListener("kt-reading", e => { if (e.detail) { visible = false; hero.classList.remove("gl"); stats.mode = "fallback"; stats.reason = "reading-mode"; } else { hero.classList.add("gl"); stats.mode = "webgl"; visible = true; start(); } });
   start();
 })();

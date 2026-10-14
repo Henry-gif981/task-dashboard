@@ -11,7 +11,7 @@
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const Q = new URLSearchParams(location.search);
-  const REDUCE = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const REDUCE = matchMedia("(prefers-reduced-motion: reduce)").matches || (function () { try { return localStorage.getItem("kt-reading") === "1"; } catch (e) { return false; } })() || /[?&]reading/.test(location.search);
   const TOUCH = matchMedia("(pointer: coarse)").matches;
   const VIZ = window.VIZ || {};
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -45,23 +45,33 @@
   const splitDone = (topic && !REDUCE) ? (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() => splitLines(topic)) : Promise.resolve();
   $$(".hero .cover-uni, .hero .cover-subject, .hero .cover-topic-label, .hero .cover-foot").forEach((el, i) => { el.classList.add("reveal-up"); el.style.transitionDelay = (120 + i * 80) + "ms"; });
 
+  /* ---------- ghi nhớ (localStorage, bọc try/catch) ---------- */
+  function storeGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function storeSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  /* ---------- Chế độ đọc + cỡ chữ A−/A+ ---------- */
+  const FZ = [.9, 1, 1.1, 1.2, 1.3];
+  let fzI = Math.max(0, FZ.indexOf(+(storeGet("kt-fz") || 1))); if (fzI < 0) fzI = 1;
+  const setFz = i => { fzI = Math.max(0, Math.min(FZ.length - 1, i)); document.documentElement.style.setProperty("--fz-user", FZ[fzI]); storeSet("kt-fz", FZ[fzI]); };
+  setFz(fzI);
+  let READING = storeGet("kt-reading") === "1" || Q.has("reading");
+  document.documentElement.classList.toggle("reading", READING);
+
   /* ---------- màn mở đầu 1,5 giây ---------- */
   const intro = $("#intro");
   function heroReady() { splitDone.then(() => requestAnimationFrame(() => requestAnimationFrame(() => hero && hero.classList.add("ready")))); }
   function endIntro() { if (!intro || intro.classList.contains("done")) return; intro.classList.add("done"); setTimeout(() => { intro.hidden = true; }, 500); heroReady(); }
   if (intro) {
-    const skip = Q.has("nointro") || REDUCE || sessionStorageGet("kt-intro");
+    const skip = Q.has("nointro") || REDUCE || READING || storeGet("kt-intro");
     if (skip) { intro.hidden = true; requestAnimationFrame(heroReady); }
     else {
       intro.classList.add("play"); $(".intro-skip", intro).tabIndex = 0;
       $(".intro-skip", intro).addEventListener("click", endIntro);
       addEventListener("keydown", function k(e) { if (!intro.classList.contains("done")) { endIntro(); removeEventListener("keydown", k); } });
       setTimeout(endIntro, 1500);
-      sessionStorageSet("kt-intro", "1");
+      storeSet("kt-intro", "1");
     }
   }
-  function sessionStorageGet(k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } }
-  function sessionStorageSet(k, v) { try { sessionStorage.setItem(k, v); } catch (e) {} }
+
 
   /* ---------- slide: tông màu, mốc số mục bên lề ---------- */
   const slides = $$("main > .slide");
@@ -105,9 +115,20 @@
     nav.innerHTML = slides.map(s => {
       const grp = s.classList.contains("chapter") || ["bia", "muc-luc", "mo-dau", "ket-luan", "phu-luc"].includes(s.id);
       const cls = [grp ? "grp" : "", s.classList.contains("chapter") ? "ch" : "", "t-" + s.dataset.tone].join(" ").trim();
-      return `<li class="${cls}"><a href="#${s.id}">${esc(s.dataset.nav || s.id)}</a></li>`;
+      const nv = s.dataset.nav || s.id, m = nv.match(/^(\d+(?:\.\d+)+)\s+(.*)$/);
+      return `<li class="${cls}"><a href="#${s.id}">${m ? `<span class="nn">${esc(m[1])}</span><span>${esc(m[2])}</span>` : `<span>${esc(nv)}</span>`}</a></li>`;
     }).join("");
     nav.addEventListener("click", e => { if (e.target.closest("a")) { document.body.classList.remove("menu-open"); $("#btn-menu")?.setAttribute("aria-expanded", "false"); } });
+  }
+  const side = $("#side");
+  if (side) {
+    const st = document.createElement("div"); st.className = "side-tools"; st.dataset.ui = "";
+    st.innerHTML = `<a href="#muc-luc" class="to-toc">Về mục lục</a><button type="button" id="btn-reading" aria-pressed="${READING}">Chế độ đọc</button><button type="button" class="fz" id="fz-dn" aria-label="Giảm cỡ chữ">A−</button><button type="button" class="fz" id="fz-up" aria-label="Tăng cỡ chữ">A+</button>`;
+    $(".side-brand", side).after(st);
+    $(".to-toc", st).addEventListener("click", () => document.body.classList.remove("menu-open"));
+    $("#btn-reading", st).addEventListener("click", e => { READING = !READING; document.documentElement.classList.toggle("reading", READING); e.currentTarget.setAttribute("aria-pressed", String(READING)); storeSet("kt-reading", READING ? "1" : "0"); window.dispatchEvent(new CustomEvent("kt-reading", { detail: READING })); if (READING) { revealables.forEach(el => el.classList.add("in")); finishCounts(); } setTimeout(redrawAll, 60); });
+    $("#fz-dn", st).addEventListener("click", () => { setFz(fzI - 1); setTimeout(redrawAll, 60); });
+    $("#fz-up", st).addEventListener("click", () => { setFz(fzI + 1); setTimeout(redrawAll, 60); });
   }
   const navLinks = nav ? $$("a", nav) : [];
   const bar = $(".progress"), where = $(".where"), whereSec = $(".where-sec"), whereCh = $(".where-ch");
@@ -174,7 +195,7 @@
   $$(".chapter.clip").forEach(c => cio2.observe(c));
   // parallax nhẹ: số chương cực lớn
   const pars = $$(".chapter .ch-no");
-  if (!REDUCE && pars.length) {
+  if (false && pars.length) {   // không parallax trên chữ (yêu cầu khả năng đọc)
     let tk = false;
     addEventListener("scroll", () => { if (tk) return; tk = true; requestAnimationFrame(() => { tk = false; pars.forEach(p => { const r = p.parentElement.parentElement.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return; p.style.setProperty("--py", (r.top * -.18).toFixed(1) + "px"); }); }); }, { passive: true });
   }
@@ -334,11 +355,7 @@
   const cio = new IntersectionObserver(es => es.forEach(en => { if (!en.isIntersecting) return; cio.unobserve(en.target); countUp(en.target); }), { threshold: .4 });
 
   /* ---------- thẻ số nổi bật (trang trí, chỉ số in trong bài) ---------- */
-  const BIG = {
-    "bang-2-2-chart": [["bq", "93,6%", "", "Xây dựng cơ bản dở dang, % tổng tài sản · BQLDA 31/12/2015 (Bảng 2.2)"], ["bq", "94,6%", "", "Nguồn vốn đầu tư, % tổng tài sản · BQLDA 31/12/2015 (Bảng 2.2)"], ["dn", "28,4%", "", "Xây dựng cơ bản dở dang, % tổng tài sản · Hòa Phát 31/12/2024 (Bảng 2.2)"]],
-    "muc-2-3-charts": [["bq", "188,717", "tỷ đồng", "Nguồn vốn đầu tư cuối năm 2015 · BQLDA (Bảng 2.5)"]],
-    "bang-2-8-slide": [["bq", "186,743", "tỷ đồng", "Số dư cuối năm TK 241 · BQLDA (Bảng 2.8)"]]
-  };
+  const BIG = {}; (VIZ.v13 || []).forEach(it => { (BIG[it.slide] = BIG[it.slide] || []).push([it.t, it.v, it.u || "", it.k + " (" + it.src + ")"]); });
   Object.entries(BIG).forEach(([id, items]) => {
     const s = document.getElementById(id); if (!s) return;
     const box = document.createElement("div"); box.className = "bignums"; box.dataset.ui = ""; box.setAttribute("aria-hidden", "true");
@@ -367,7 +384,7 @@
      ========================================================= */
   const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
   const rem = () => parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
-  const FS = k => Math.max(12, Math.round(rem() * k));
+  const FS = k => Math.max(15, Math.round(rem() * k));   // nhãn biểu đồ không dưới 14px (15 để còn dư khi SVG co theo khung)
   const f1 = n => (+n).toFixed(1);
   const lin = (d0, d1, r0, r1) => v => r0 + (v - d0) / (d1 - d0) * (r1 - r0);
   const tw = (s, fs, b) => String(s).length * fs * (b ? .6 : .54);
@@ -408,30 +425,6 @@
   addEventListener("scroll", () => { if (tipFor) hideTip(); }, { passive: true });
 
   const R = {};
-
-  /* Hình 1.4: cột nhóm thời hạn nộp BCTC */
-  R.h14 = (d, w) => {
-    const fs = FS(.6), H = Math.round(Math.max(300, Math.min(440, w * .52))), L = fs * 3.4, Rr = 8, Tp = fs * 1.6, B = fs * (w < 640 ? 4 : 2.6);
-    const ymax = vn(d.y_max), y = lin(0, ymax, H - B, Tp), base = y(0), id = "h" + (++UID);
-    let g = "";
-    for (let t = 0; t <= ymax; t += 20) g += `<line class="grid" x1="${L}" x2="${w - Rr}" y1="${f1(y(t))}" y2="${f1(y(t))}"/>` + T(L - 8, y(t) + fs * .35, String(t), { a: "end", fs, cls: "muted" });
-    g += `<text transform="translate(${f1(fs * .9)},${f1((Tp + base) / 2)}) rotate(-90)" text-anchor="middle" font-size="${fs}" class="muted">${esc(d.y_label)}</text>`;
-    const gw = (w - L - Rr) / d.groups.length, bw = Math.min(gw * .24, 120);
-    d.groups.forEach((grp, gi) => {
-      const cx = L + gw * gi + gw / 2;
-      grp.bars.forEach((b, bi) => {
-        const x = cx + (bi - 1) * bw - bw / 2, v = vn(b.v), yt = y(v);
-        const fill = b.key === "dn_special" ? `url(#${id})` : GV(b.key);
-        const lg = d.legend.find(l => l.key === b.key).label;
-        g += mark(`<rect class="grow" x="${f1(x + 1)}" y="${f1(yt)}" width="${f1(bw - 2)}" height="${f1(base - yt)}" fill="${fill}" stroke="${b.key === "dn_special" ? col("dn") : "none"}"/>` + T(x + bw / 2, yt - 7, tw(b.v + " ngày", FS(.62), 1) > bw + 4 ? b.v : b.v + " ngày", { a: "middle", fs: FS(.62), w: 700, cls: "lbl" }),
-          `${grp.label}\n${lg}: ${b.v} ngày`, [x, yt - fs * 1.4, bw, base - yt + fs * 1.4]);
-      });
-      wrap(grp.label, gw - 8, FS(.66)).forEach((ln, li) => { g += T(cx, base + fs * 1.7 + li * FS(.66) * 1.2, ln, { a: "middle", fs: FS(.66) }); });
-    });
-    g += `<line class="axis" x1="${L}" x2="${w - Rr}" y1="${f1(base)}" y2="${f1(base)}"/>`;
-    const legend = `<div class="legend">${d.legend.map(l => `<span><i style="background:${l.key === "dn_special" ? `repeating-linear-gradient(45deg, ${col("dnSoft")} 0 3px, ${col("dn")} 3px 5px)` : col(l.key)}"></i>${esc(l.label)}</span>`).join("")}</div>`;
-    return svg(w, H, g, hatch(id, col("dn"), col("dnSoft"))) + legend;
-  };
 
   /* dòng thời gian văn bản pháp lý */
   const dt = s => { const [d, m, y] = s.split("/").map(Number); return y + (m - 1) / 12 + (d - 1) / 365; };
@@ -489,126 +482,313 @@
     tabs(tabsEl, sel); sel(0);
   }
 
-  /* Bảng 2.2: cột chồng 100% */
+  /* =========================================================
+     BỘ BIỂU ĐỒ (SVG tự vẽ). Quy tắc: nét mảnh, lưới rất mờ, nhãn trực tiếp,
+     cột bắt đầu từ 0, số hiển thị đúng chuỗi in trong bài (viz_data.json).
+     ========================================================= */
+  const CV = n => css(n);
+  function wrap(s, maxW, fs) { const out = []; let cur = ""; String(s).split(" ").forEach(wd => { const t = cur ? cur + " " + wd : wd; if (cur && tw(t, fs) > maxW) { out.push(cur); cur = wd; } else cur = t; }); if (cur) out.push(cur); return out; }
+  const fillOf = k => k === "dn" || k === "dn_special" ? CV("--dn-fill") : k === "bq" ? CV("--bq-fill") : CV("--ink-2");
+  const softOf = k => k === "dn" ? CV("--dn-soft") : CV("--bq-soft");
+  const textOf = k => k === "dn" ? CV("--dn-text") : CV("--bq");
+  const champ = () => CV("--champagne");
+
+  /* V10b · Hình 1.4: cột nhóm thời hạn nộp BCTC (nhãn trực tiếp trên cột) */
+  R.h14 = (d, w) => {
+    const fs = FS(.62), narrow = w < 640, H = Math.round(Math.max(320, Math.min(440, w * .46))), L = fs * 3.2, Rr = 8, Tp = fs * (narrow ? 3.4 : 2), B = fs * (narrow ? 4.2 : 2.8);
+    const ymax = vn(d.y_max), y = lin(0, ymax, H - B, Tp), base = y(0), id = "h" + (++UID);
+    let g = "";
+    for (let t = 0; t <= ymax; t += 30) g += `<line class="grid" x1="${L}" x2="${w - Rr}" y1="${f1(y(t))}" y2="${f1(y(t))}"/>` + T(L - 8, y(t) + fs * .35, String(t), { a: "end", fs, cls: "muted mono" });
+    const gw = (w - L - Rr) / d.groups.length, bw = Math.min(gw * .22, 96);
+    d.groups.forEach((grp, gi) => {
+      const cx = L + gw * gi + gw / 2;
+      grp.bars.forEach((b, bi) => {
+        const x = cx + (bi - 1) * (bw + 6) - bw / 2, v = vn(b.v), yt = y(v);
+        const fill = b.key === "dn_special" ? `url(#${id})` : fillOf(b.key);
+        const lg = d.legend.find(l => l.key === b.key).label;
+        const lab = tw(b.v + " ngày", fs, 1) > bw + 10 ? b.v : b.v + " ngày";
+        g += mark(`<rect class="grow" x="${f1(x)}" y="${f1(yt)}" width="${f1(bw)}" height="${f1(base - yt)}" rx="2" fill="${fill}" stroke="${b.key === "dn_special" ? fillOf("dn") : "none"}"/>` + T(x + bw / 2, yt - 8, lab, { a: "middle", fs, w: 600, cls: "lbl mono" }),
+          `${grp.label}\n${lg}: ${b.v} ngày`, [x - 3, yt - fs * 1.6, bw + 6, base - yt + fs * 1.6]);
+      });
+      wrap(grp.label, gw - 8, fs).forEach((ln, li) => { g += T(cx, base + fs * 1.6 + li * fs * 1.2, ln, { a: "middle", fs, w: 600 }); });
+    });
+    const yl = wrap(d.y_label, w - L - 8, fs); g += `<line class="axis" x1="${L}" x2="${w - Rr}" y1="${f1(base)}" y2="${f1(base)}"/>` + yl.map((l, k) => T(L, Tp - fs * (.8 + (yl.length - 1 - k) * 1.2), l, { fs, cls: "muted" })).join("");
+    const legend = `<div class="legend">${d.legend.map(l => `<span><i style="background:${l.key === "dn_special" ? `repeating-linear-gradient(45deg, ${CV("--dn-soft")} 0 3px, ${fillOf("dn")} 3px 5px)` : fillOf(l.key)}"></i>${esc(l.label)}</span>`).join("")}</div>`;
+    return svg(w, H, g, hatch(id, fillOf("dn"), CV("--dn-soft"))) + legend;
+  };
+  R.h14.rows = d => [["Nhóm", "Đối tượng", "Số ngày"], ...d.groups.flatMap(g => g.bars.map(b => [g.label, d.legend.find(l => l.key === b.key).label, b.v]))];
+
+  /* V5 · Bảng 2.2: hai cặp thanh 100% (tài sản / nguồn vốn), nhãn % trực tiếp */
   R.b22 = (d, w) => {
-    const fs = FS(w < 620 ? .6 : .72), narrow = w < 620, Lc = narrow ? 0 : fs * 11, rowH = fs * (narrow ? 7 : 4.4), bh = fs * 1.9, Tp = 4, B = fs * 2.2;
-    const H = Tp + d.bars.length * rowH + fs * 1.2 + B, x = lin(0, 100, Lc + 4, w - 8), id = "h" + (++UID), id2 = "h" + (++UID);
-    let g = ""; [0, 25, 50, 75, 100].forEach(t => { g += `<line class="grid" x1="${f1(x(t))}" x2="${f1(x(t))}" y1="${Tp}" y2="${f1(H - B)}"/>` + T(x(t), H - B + fs * 1.4, t + "%", { a: "middle", fs, cls: "muted" }); });
+    const fs = FS(w < 620 ? .6 : .66), narrow = w < 620, Lc = narrow ? 0 : fs * 11.5, rowH = fs * (narrow ? 7 : 4.6), bh = fs * 2, Tp = 4, B = fs * 2.2;
+    const H = Tp + d.bars.length * rowH + fs * 1.6 + B, x = lin(0, 100, Lc + 4, w - 8), id = "h" + (++UID), id2 = "h" + (++UID);
+    let g = ""; [0, 25, 50, 75, 100].forEach(t => { g += `<line class="grid" x1="${f1(x(t))}" x2="${f1(x(t))}" y1="${Tp}" y2="${f1(H - B)}"/>` + T(x(t), H - B + fs * 1.4, t + "%", { a: "middle", fs, cls: "muted mono" }); });
     d.bars.forEach((b, i) => {
-      const y0 = Tp + i * rowH + (i >= 2 ? fs * 1.2 : 0) + (narrow ? fs * 1.6 : fs * .5), unit = d.units[b.entity], ent = b.entity;
-      g += narrow ? T(4, y0 - fs * .45, `${b.label} · ${b.side}`, { fs, w: 700 }) : T(Lc - 8, y0 + bh * .42, b.label, { a: "end", fs, w: 700 }) + T(Lc - 8, y0 + bh * .42 + fs * 1.15, b.side, { a: "end", fs, cls: "muted" });
+      const y0 = Tp + i * rowH + (i >= 2 ? fs * 1.6 : 0) + (narrow ? fs * 1.7 : fs * .5), unit = d.units[b.entity], ent = b.entity;
+      g += narrow ? T(2, y0 - fs * .5, `${b.label} · ${b.side}`, { fs, w: 600 }) : T(Lc - 10, y0 + bh * .45, b.label, { a: "end", fs, w: 600 }) + T(Lc - 10, y0 + bh * .45 + fs * 1.2, b.side, { a: "end", fs, cls: "muted" });
       let acc = 0;
       b.parts.forEach((p, k) => {
         const pv = vn(p.pct), x0 = x(acc), x1 = x(acc + pv); acc += pv;
-        const strong = k === b.parts.length - 1 || (b.side === "Tài sản" && k === 1);
-        const fill = strong ? GH(ent) : (ent === "bq" ? col("bqSoft") : col("dnSoft"));
-        const inside = x1 - x0 > tw(p.pct, fs, 1) + 10;
+        const strong = k === b.parts.length - 1;
+        const fill = strong ? fillOf(ent) : softOf(ent);
+        const inside = x1 - x0 > tw(p.pct, fs, 1) + 14;
         const tipTxt = `${b.label} · ${b.side}\n${p.label}: ${p.v} ${unit} (${p.pct})` + (p.inner ? `\n${p.inner.label}: ${p.inner.v} ${unit} (${p.inner.pct})` : "") + (b.total ? `\n${b.total.label}: ${b.total.v} ${unit}` : "");
-        let inner = `<rect class="growx" x="${f1(x0)}" y="${f1(y0)}" width="${f1(x1 - x0)}" height="${f1(bh)}" fill="${fill}" stroke="${col(ent)}" stroke-width="1"/>`;
-        inner += inside ? T((x0 + x1) / 2, y0 + bh / 2 + fs * .36, p.pct, { a: "middle", fs, w: 700, fill: strong ? onColor() : col("ink") }) : narrow ? T(x0, y0 + bh + fs * 1.65, p.pct, { fs, w: 700 }) : T(x1 + 4, y0 - 4, p.pct, { fs, w: 700 });
-        if (p.inner) { const xi = x(acc - pv + vn(p.inner.pct)); inner += `<rect x="${f1(x0)}" y="${f1(y0 + bh + 3)}" width="${f1(xi - x0)}" height="5" fill="url(#${ent === "bq" ? id : id2})" stroke="${col(ent)}" stroke-width=".8"/>` + (() => { const lt = `${p.inner.label.replace("Trong đó: ", "trong đó ")} ${p.inner.pct}`, fi = Math.max(12, fs - 1), st = x0 + String(lt).length * fi * .58 <= w - 4; return T(st ? x0 : w - 4, y0 + bh + fs * (narrow ? 2.8 : 1.75), lt, { a: st ? "start" : "end", fs: fi, cls: "muted" }); })(); }
+        let inner = `<rect class="growx" x="${f1(x0)}" y="${f1(y0)}" width="${f1(Math.max(1, x1 - x0 - 1))}" height="${f1(bh)}" fill="${fill}" stroke="${fillOf(ent)}" stroke-width="1"/>`;
+        inner += inside ? T((x0 + x1) / 2, y0 + bh / 2 + fs * .36, p.pct, { a: "middle", fs, w: 600, cls: "mono lbl", fill: strong ? "#FFFDF8" : CV("--ink") }) : T(narrow ? x0 : x1 + 6, narrow ? y0 + bh + fs * 1.3 : y0 + bh / 2 + fs * .36, p.pct, { fs, w: 600, cls: "mono lbl" });
+        if (p.inner) {
+          const xi = x(acc - pv + vn(p.inner.pct));
+          inner += `<rect x="${f1(x0)}" y="${f1(y0 + bh + 4)}" width="${f1(xi - x0)}" height="5" fill="url(#${ent === "bq" ? id : id2})" stroke="${fillOf(ent)}" stroke-width=".8"/>`;
+          const lt = `${p.inner.label.replace("Trong đó: ", "trong đó ")} ${p.inner.pct}`, st = x0 + lt.length * fs * .55 <= w - 4;
+          inner += T(st ? x0 : w - 4, y0 + bh + fs * (narrow ? 2.9 : 1.8), lt, { a: st ? "start" : "end", fs, cls: "muted" });
+        }
         g += mark(inner, tipTxt, [x0, y0 - 2, x1 - x0, bh + 4]);
       });
     });
-    const legend = `<div class="legend"><span><i style="background:${col("bq")}"></i>BQLDA</span><span><i style="background:${col("dn")}"></i>Hòa Phát</span><span><i style="background:${col("bqSoft")}"></i>Tài sản ngắn hạn / Nợ phải trả</span><span><i style="background:repeating-linear-gradient(45deg, ${col("card")} 0 3px, ${col("ink2")} 3px 5px)"></i>Trong đó: xây dựng cơ bản dở dang</span></div>`;
-    return svg(w, H, g, hatch(id, col("bq"), col("card")) + hatch(id2, col("dn"), col("card"))) + legend;
+    const legend = `<div class="legend"><span><i style="background:${fillOf("bq")}"></i>BQLDA</span><span><i style="background:${fillOf("dn")}"></i>Hòa Phát</span><span><i style="background:${softOf("bq")}"></i>Tài sản ngắn hạn / Nợ phải trả</span><span><i style="background:repeating-linear-gradient(45deg, ${CV("--card")} 0 3px, ${CV("--ink-2")} 3px 5px)"></i>Trong đó: xây dựng cơ bản dở dang</span></div>`;
+    return svg(w, H, g, hatch(id, fillOf("bq"), CV("--card")) + hatch(id2, fillOf("dn"), CV("--card"))) + legend;
   };
+  R.b22.rows = d => [["Đơn vị · bên", "Chỉ tiêu", "Giá trị", "% tổng tài sản"], ...d.bars.flatMap(b => [...b.parts.flatMap(p => [[`${b.label} · ${b.side}`, p.label, `${p.v} ${d.units[b.entity]}`, p.pct], ...(p.inner ? [[`${b.label} · ${b.side}`, p.inner.label, `${p.inner.v} ${d.units[b.entity]}`, p.inner.pct]] : [])]), ...(b.total ? [[`${b.label} · ${b.side}`, b.total.label, `${b.total.v} ${d.units[b.entity]}`, b.total.pct]] : [])])];
 
-  /* thác nước (B02-CĐT và lưu chuyển tiền tệ) */
+  /* V2, V3, V8, V9 · thác nước / bậc thang: tổng (từ 0), tăng, giảm, mức (từ 0, không nối) */
+  // màn hẹp: thác nước nằm ngang (mỗi bước một hàng, nhãn ở trên thanh)
+  function waterfallH(d, w) {
+    const fs = FS(.6), ent = d.entity, bh = fs * 1.5, rowH = fs * 4.1, id = "wf" + (++UID);
+    let run = 0; const pts = d.steps.map(s => { const v = vn(s.v); let a, b; if (s.type === "total" || s.type === "level") { a = 0; b = v; run = v; } else if (s.type === "up") { a = run; b = run + v; run = b; } else { a = run - v; b = run; run = a; } return { s, a, b }; });
+    const lo = Math.min(0, ...pts.map(p => p.a)), hi = Math.max(...pts.map(p => p.b)), x = lin(lo, hi, 4, w - fs * 5.2);
+    let g = "", y = fs * 1.2;
+    pts.forEach((p, i) => {
+      const up = p.s.type === "up", down = p.s.type === "down", lab = p.s.shown || (down ? "−" + p.s.v : up ? "+" + p.s.v : p.s.v);
+      const fill = p.s.type === "total" ? fillOf(ent) : p.s.type === "level" ? softOf(ent) : up ? (ent === "bq" ? CV("--bq-mid") : CV("--dn-mid")) : `url(#${id})`;
+      const x0 = x(Math.min(p.a, p.b)), x1 = x(Math.max(p.a, p.b));
+      g += T(4, y, p.s.label + (p.s.pct ? ` · ${p.s.pct}` : ""), { fs });
+      g += mark(`<rect class="growx" x="${f1(x0)}" y="${f1(y + fs * .5)}" width="${f1(Math.max(2, x1 - x0))}" height="${f1(bh)}" fill="${fill}" stroke="${fillOf(ent)}" stroke-width="1"/>` + T(x1 + 6, y + fs * .5 + bh / 2 + fs * .36, lab, { fs, w: 600, cls: "mono lbl" }),
+        `${p.s.label}: ${lab} ${d.unit}` + (p.s.parts ? "\n" + p.s.parts.map(q => `${q.label}: ${q.v}`).join("; ") : "") + (p.s.pct ? `\n${p.s.pct}` : ""), [0, y - fs, w, rowH - 4]);
+      y += rowH;
+    });
+    if (lo < 0) for (let k = 0; k < pts.length; k++) { const yy = fs * 1.2 + k * rowH + fs * .3; g += `<line class="axis" x1="${f1(x(0))}" x2="${f1(x(0))}" y1="${f1(yy)}" y2="${f1(yy + bh + fs * .4)}"/>`; }
+    const defs = `<pattern id="${id}" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="${CV("--card")}"/><line x1="2" y1="0" x2="2" y2="8" stroke="${CV("--ink-2")}" stroke-width="2"/></pattern>`;
+    return svg(w, y - fs, g, defs);
+  }
   function waterfall(d, w) {
-    const fs = FS(.58), L = fs * 3, Rr = 6, Tp = fs * 2, nL = Math.max(...d.steps.map(s => wrap(s.label, (w - L - Rr) / d.steps.length - 6, fs).length)), B = fs * (1.4 + nL * 1.2), H = Math.round(Math.max(300, Math.min(420, w * .62)) + B - fs * 3.4);
-    const ent = d.entity; let run = 0; const pts = d.steps.map(s => { const v = vn(s.v); let a, b; if (s.type === "total") { a = 0; b = v; run = v; } else if (s.type === "up") { a = run; b = run + v; run = b; } else { a = run - v; b = run; run = a; } return { s, a, b }; });
+    if (w < 480) { const ent = d.entity, h = waterfallH(d, w); const partsNote = d.steps.filter(s => s.parts).map(s => `<p class="vz-parts"><b>${esc(s.label)} ${esc(s.v)}:</b> ${s.parts.map(q => `<span>${esc(q.v)} ${esc(q.label)}</span>`).join(" · ")}</p>`).join(""); return h + partsNote + (d.note ? `<p class="unit">${esc(d.note)}</p>` : "") + (d.note2 ? `<p class="unit vz-note">${esc(d.note2)}</p>` : ""); }
+    const fs = FS(.6), L = fs * 3.4, Rr = 8, Tp = fs * 2.4, n = d.steps.length, sw = (w - L - Rr) / n;
+    const nL = Math.max(...d.steps.map(s => wrap(s.label, sw - 8, fs).length)), B = fs * (1.6 + nL * 1.2 + (d.steps.some(s => s.pct) ? 1.2 : 0));
+    const H = Math.round(Math.max(320, Math.min(440, w * .5)) + B - fs * 3.4), ent = d.entity, id = "wf" + (++UID);
+    let run = 0; const pts = d.steps.map(s => { const v = vn(s.v); let a, b; if (s.type === "total" || s.type === "level") { a = 0; b = v; run = v; } else if (s.type === "up") { a = run; b = run + v; run = b; } else { a = run - v; b = run; run = a; } return { s, a, b }; });
     let lo = Math.min(0, ...pts.map(p => p.a)), hi = Math.max(...pts.map(p => p.b));
-    const step = hi - lo > 120 ? 50 : 10; lo = Math.floor(lo / step) * step; hi = Math.ceil(hi / step) * step;
-    const y = lin(lo, hi, H - B, Tp), n = pts.length, sw = (w - L - Rr) / n, bw = Math.min(sw * .58, 110);
-    let g = ""; for (let t = lo; t <= hi; t += step) g += `<line class="${t === 0 ? "axis" : "grid"}" x1="${L}" x2="${w - Rr}" y1="${f1(y(t))}" y2="${f1(y(t))}"/>` + T(L - 6, y(t) + fs * .35, toVN(t, 0), { a: "end", fs, cls: "muted" });
+    const step = hi - lo > 120 ? 50 : hi - lo > 40 ? 10 : 5; lo = Math.floor(lo / step) * step; hi = Math.ceil(hi / step) * step;
+    const y = lin(lo, hi, H - B, Tp), bw = Math.min(sw * .5, 96);
+    let g = ""; for (let t = lo; t <= hi; t += step) g += `<line class="${t === 0 ? "axis" : "grid"}" x1="${L}" x2="${w - Rr}" y1="${f1(y(t))}" y2="${f1(y(t))}"/>` + T(L - 8, y(t) + fs * .35, toVN(t, 0), { a: "end", fs, cls: "muted mono" });
     pts.forEach((p, i) => {
       const cx = L + sw * i + sw / 2, x0 = cx - bw / 2, ya = y(p.b), yb = y(p.a), up = p.s.type === "up", down = p.s.type === "down";
-      const fill = p.s.type === "total" ? GV(ent) : up ? (ent === "bq" ? col("bqMid") : col("dnMid")) : `url(#wfd${UID})`;
+      const fill = p.s.type === "total" ? fillOf(ent) : p.s.type === "level" ? softOf(ent) : up ? (ent === "bq" ? CV("--bq-mid") : CV("--dn-mid")) : `url(#${id})`;
       const lab = p.s.shown || (down ? "−" + p.s.v : up ? "+" + p.s.v : p.s.v);
-      g += mark(`<rect class="grow" x="${f1(x0)}" y="${f1(ya)}" width="${f1(bw)}" height="${f1(Math.max(2, yb - ya))}" fill="${fill}" stroke="${col(ent)}" stroke-width="1"/>` + T(cx, (down ? yb + fs * 1.25 : ya - 6), lab, { a: "middle", fs: FS(.62), w: 700, cls: "mono lbl" }),
-        `${p.s.label}: ${lab} ${d.unit}` + (p.s.detail ? `\n(${p.s.detail})` : ""), [x0 - 4, ya - fs * 1.4, bw + 8, yb - ya + fs * 2.8]);
-      const lines = wrap(p.s.label, sw - 6, fs);
-      lines.forEach((l, k) => { g += T(cx, H - B + fs * (1.4 + k * 1.2), l, { a: "middle", fs, cls: "muted" }); });
-      if (i < n - 1) { const nx = L + sw * (i + 1) + sw / 2 - bw / 2, yy = y(p.s.type === "down" ? p.a : p.b); g += `<line x1="${f1(x0 + bw)}" x2="${f1(nx)}" y1="${f1(yy)}" y2="${f1(yy)}" stroke="${col("ink2")}" stroke-dasharray="3 3"/>`; }
-    });
-    const defs = `<pattern id="wfd${UID}" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="${col("card")}"/><line x1="2" y1="0" x2="2" y2="8" stroke="${col("ink2")}" stroke-width="2"/></pattern>`;
-    return svg(w, H, g, defs) + (d.note ? `<p class="unit">${esc(d.note)}</p>` : "");
-  }
-  function wrap(s, maxW, fs) { const out = []; let cur = ""; String(s).split(" ").forEach(wd => { const t = cur ? cur + " " + wd : wd; if (cur && tw(t, fs) > maxW) { out.push(cur); cur = wd; } else cur = t; }); if (cur) out.push(cur); return out; }
-  R.wf_b02 = (d, w) => { UID++; return waterfall(d, w); };
-  R.wf_cash = (d, w) => { UID++; return waterfall(d, w); };
+      let inner = "";
+      if (up && p.s.parts) {   // tăng chia đoạn (V3: tiền / vật tư, thiết bị)
+        let accY = yb; p.s.parts.forEach((q, k) => { const hq = (yb - ya) * vn(q.v) / vn(p.s.v); inner += `<rect class="grow" x="${f1(x0)}" y="${f1(accY - hq)}" width="${f1(bw)}" height="${f1(Math.max(1.5, hq))}" fill="${k ? CV("--champagne") : (ent === "bq" ? CV("--bq-mid") : CV("--dn-mid"))}" stroke="${fillOf(ent)}" stroke-width="1"/>`; accY -= hq; });
 
-  /* F02: hai nguồn hình thành */
+      } else inner += `<rect class="grow${down ? " down" : ""}" x="${f1(x0)}" y="${f1(ya)}" width="${f1(bw)}" height="${f1(Math.max(2, yb - ya))}" fill="${fill}" stroke="${fillOf(ent)}" stroke-width="1"/>`;
+      inner += T(cx, down ? yb + fs * 1.35 : ya - 8, lab, { a: "middle", fs, w: 600, cls: "mono lbl" });
+      const tipT = `${p.s.label}: ${lab} ${d.unit}` + (p.s.detail ? `\n(${p.s.detail})` : "") + (p.s.parts ? "\n" + p.s.parts.map(q => `${q.label}: ${q.v}`).join("; ") : "") + (p.s.pct ? `\n${p.s.pct}` : "");
+      g += mark(inner, tipT, [x0 - 4, Math.min(ya, yb) - fs * 1.6, bw + 8, Math.abs(yb - ya) + fs * 3.2]);
+      wrap(p.s.label, sw - 8, fs).forEach((l, k) => { g += T(cx, H - B + fs * (1.5 + k * 1.2), l, { a: "middle", fs }); });
+      if (p.s.pct) g += T(cx, H - B + fs * (1.5 + nL * 1.2), p.s.pct, { a: "middle", fs, w: 600, fill: textOf(ent) });
+      const nx = pts[i + 1];
+      if (nx && nx.s.type !== "level" && p.s.type !== "level") { const yy = y(p.s.type === "down" ? p.a : p.b), nx0 = L + sw * (i + 1) + sw / 2 - bw / 2; g += `<line x1="${f1(x0 + bw)}" x2="${f1(nx0)}" y1="${f1(yy)}" y2="${f1(yy)}" stroke="${champ()}" stroke-width="1.2" stroke-dasharray="3 3"/>`; }
+    });
+    const defs = `<pattern id="${id}" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="${CV("--card")}"/><line x1="2" y1="0" x2="2" y2="8" stroke="${CV("--ink-2")}" stroke-width="2"/></pattern>`;
+    const partsNote = d.steps.filter(s => s.parts).map(s => `<p class="vz-parts"><b>${esc(s.label)} ${esc(s.v)}:</b> ${s.parts.map((q, k) => `<span><i style="background:${k ? CV("--champagne") : (ent === "bq" ? CV("--bq-mid") : CV("--dn-mid"))}"></i>${esc(q.v)} ${esc(q.label)}</span>`).join(" ")}</p>`).join("");
+    return svg(w, H, g, defs) + partsNote + (d.note ? `<p class="unit">${esc(d.note)}</p>` : "") + (d.note2 ? `<p class="unit vz-note">${esc(d.note2)}</p>` : "");
+  }
+  const wfRows = d => [["Bước", "Giá trị", "Đơn vị"], ...d.steps.flatMap(s => [[s.label + (s.pct ? ` (${s.pct})` : ""), s.shown || s.v, d.unit], ...(s.parts || []).map(q => ["  trong đó " + q.label, q.v, d.unit])]), ...(d.side || []).map(s => [s.label, s.v, d.unit])];
+  ["wf_b02", "wf_cash", "v2", "v9"].forEach(k => { R[k] = (d, w) => waterfall(d, w); R[k].rows = wfRows; });
+  // V9: bảng đối chiếu bên cạnh (chi phí, doanh thu khác) – số đúng Bảng 2.7
+  R.v9 = (d, w) => {
+    const side = `<table class="vz-side"><caption>Các khoản khác trong Bảng 2.7 (${esc(d.unit)})</caption><tbody>${d.side.map(s => `<tr><th scope="row">${esc(s.label)}</th><td class="num">${esc(s.v)}</td></tr>`).join("")}</tbody></table>`;
+    return `<div class="vz-split"><div class="vz-main">${waterfall(d, w > 760 ? w * .68 : w)}</div>${side}</div>`;
+  };
+  R.v9.rows = wfRows;
+
+  /* V4 · F02: thanh 100% hai đoạn */
   R.f02 = (d, w) => {
-    const fs = FS(.6), nar = w < 640, bh = fs * 2.4, H = bh + fs * (nar ? 6.4 : 5), x = lin(0, 100, 2, w - 2);
+    const fs = FS(.66), nar = w < 640, bh = fs * 2.6, H = bh + fs * (nar ? 9.4 : 5.2), x = lin(0, 100, 2, w - 2);
     let acc = 0, g = "";
     d.parts.forEach((p, k) => {
       const pv = vn(p.pct), x0 = x(acc), x1 = x(acc + pv); acc += pv;
-      const fill = k ? col("bqMid") : GH("bq");
-      g += mark(`<rect class="growx" x="${f1(x0)}" y="${fs * 2.2}" width="${f1(x1 - x0 - 2)}" height="${f1(bh)}" fill="${fill}"/>` + T(x0 + 10, fs * 2.2 + bh / 2 + fs * .4, `${p.v} · ${p.pct}`, { fs: FS(.66), w: 700, cls: "mono", fill: k ? col("ink") : onColor() }) + T(k ? x1 - 2 : x0, k && nar ? fs * 2.2 + bh + fs * 1.4 : fs * 1.4, p.label, { a: k ? "end" : "start", fs, w: 600 }),
+      const fill = k ? softOf("bq") : fillOf("bq");
+      g += mark(`<rect class="growx" x="${f1(x0)}" y="${fs * 2.2}" width="${f1(x1 - x0 - 2)}" height="${f1(bh)}" fill="${fill}" stroke="${fillOf("bq")}"/>` + T(x0 + 12, fs * 2.2 + bh / 2 + fs * .4, `${p.v} · ${p.pct}`, { fs, w: 600, cls: "mono lbl", fill: k ? CV("--ink") : "#FFFDF8" }) + (nar ? wrap(p.label, w - 4, fs).map((l, j) => T(2, k ? fs * 2.2 + bh + fs * (1.4 + j * 1.2) : fs * (1.4 - j * 0), l, { fs, w: 600 })).slice(0, k ? 3 : 1).join("") : T(k ? x1 - 2 : x0, fs * 1.4, p.label, { a: k ? "end" : "start", fs, w: 600 })),
         `${p.label}\n${p.v} ${d.unit} (${p.pct})`, [x0, fs * .3, x1 - x0, bh + fs * 2]);
     });
-    g += T(w - 2, fs * 2.2 + bh + fs * (nar ? 3 : 1.6), `${d.total.label}: ${d.total.v} ${d.unit}`, { a: "end", fs, cls: "muted" });
+    g += nar ? wrap(`${d.total.label}: ${d.total.v} ${d.unit}`, w - 4, fs).map((l, j) => T(2, fs * 2.2 + bh + fs * (4.4 + j * 1.2), l, { fs, cls: "muted" })).join("") : T(w - 2, fs * 2.2 + bh + fs * 1.7, `${d.total.label}: ${d.total.v} ${d.unit}`, { a: "end", fs, cls: "muted" });
     return svg(w, H, g);
   };
+  R.f02.rows = d => [["Nguồn", "Giá trị", "Tỷ lệ"], ...d.parts.map(p => [p.label, `${p.v} ${d.unit}`, p.pct]), [d.total.label, `${d.total.v} ${d.unit}`, "100%"]];
 
-  /* cột ngang có % in sẵn (Bảng 2.8, 2.9) */
+  /* V6 · thanh ngang đã sắp xếp, nhãn trực tiếp (Bảng 2.8, 2.9) */
   function hbars(d, w, ent) {
-    const fs = FS(.6), narrow = w < 640, Lc = narrow ? 0 : Math.min(w * .38, fs * 17), rowH = fs * (narrow ? 3.4 : 2.3), bh = fs * 1.25;
-    const labs = d.rows.map(r => narrow ? wrap(r.label, w - 6, fs) : [r.label]), offs = []; let yo = 0;
-    labs.forEach(l => { offs.push(yo + (narrow ? fs * (.3 + l.length * 1.2) : fs * .5)); yo += rowH + (narrow ? (l.length - 1) * fs * 1.2 : 0); });
-    const H = yo + fs * 2.8, max = Math.max(...d.rows.map(r => vn(r.v) || 0)), lwMax = Math.max(...d.rows.map(r => tw(`${r.v} · ${r.pct}`, fs, 1))), x = lin(0, max, Lc + 2, w - lwMax - 12);
+    const fs = FS(.62), narrow = w < 640, Lc = narrow ? 0 : Math.min(w * .4, fs * 18), rowH = fs * (narrow ? 3.4 : 2.4), bh = fs * 1.15;
+    const rows = d.rows.filter(r => vn(r.v) != null).sort((a, b) => vn(b.v) - vn(a.v)), rest = d.rows.filter(r => vn(r.v) == null);
+    const labs = rows.map(r => narrow ? wrap(r.label, w - 6, fs) : [r.label]), offs = []; let yo = 0;
+    labs.forEach(l => { offs.push(yo + (narrow ? fs * (.3 + l.length * 1.2) : fs * .6)); yo += rowH + (narrow ? (l.length - 1) * fs * 1.2 : 0); });
+    const H = yo + fs * (rest.length ? (narrow ? 6 : 3.6) : 2.4), max = Math.max(...rows.map(r => vn(r.v))), lwMax = Math.max(...rows.map(r => tw(`${r.v} · ${r.pct}`, fs, 1))), x = lin(0, max, Lc + 2, w - lwMax - 14);
     let g = "";
-    d.rows.forEach((r, i) => {
-      const y0 = offs[i], v = vn(r.v);
-      g += narrow ? labs[i].map((l, k) => T(2, y0 - fs * .35 - (labs[i].length - 1 - k) * fs * 1.2, l, { fs })).join("") : wrap(r.label, Lc - 12, fs).slice(0, 2).map((l, k, arr) => T(Lc - 10, y0 + bh / 2 + fs * .35 + (k - (arr.length - 1) / 2) * fs * 1.1, l, { a: "end", fs })).join("");
-      if (v == null) { g += T(Lc + 6, y0 + bh / 2 + fs * .35, "– (đã bàn giao)", { fs, cls: "muted" }); return; }
-      const xe = x(v);
-      g += mark(`<rect class="growx" x="${f1(Lc + 2)}" y="${f1(y0)}" width="${f1(xe - Lc - 2)}" height="${f1(bh)}" rx="2" fill="${GH(ent)}"/>` + T(xe + 6, y0 + bh / 2 + fs * .35, `${r.v} · ${r.pct}`, { fs, w: 700, cls: "mono lbl" }),
+    rows.forEach((r, i) => {
+      const y0 = offs[i], v = vn(r.v), xe = x(v);
+      g += narrow ? labs[i].map((l, k) => T(2, y0 - fs * .35 - (labs[i].length - 1 - k) * fs * 1.2, l, { fs })).join("") : wrap(r.label, Lc - 14, fs).slice(0, 2).map((l, k, arr) => T(Lc - 10, y0 + bh / 2 + fs * .35 + (k - (arr.length - 1) / 2) * fs * 1.1, l, { a: "end", fs })).join("");
+      g += mark(`<rect class="growx" x="${f1(Lc + 2)}" y="${f1(y0)}" width="${f1(xe - Lc - 2)}" height="${f1(bh)}" rx="1.5" fill="${i === 0 ? fillOf(ent) : CV("--bq-mid")}"/>` + T(xe + 8, y0 + bh / 2 + fs * .35, `${r.v} · ${r.pct}`, { fs, w: 600, cls: "mono lbl" }),
         `${r.label}\n${r.v} ${d.unit} (${r.pct} số dư cuối năm)`, [Lc, y0 - 3, w - Lc - 2, bh + 6]);
     });
-    g += `<line class="axis" x1="${f1(Lc + 2)}" x2="${f1(Lc + 2)}" y1="0" y2="${f1(H - fs * 2.2)}"/>` + T(w - 4, H - fs * .6, `${d.total.label}: ${d.total.v} ${d.unit} (${d.total.pct})`, { a: "end", fs, cls: "muted" });
+    g += `<line class="axis" x1="${f1(Lc + 2)}" x2="${f1(Lc + 2)}" y1="0" y2="${f1(yo)}"/>`;
+    let ry = yo + fs * 1.4; rest.forEach(r => { wrap(`${r.label}: số dư cuối năm "-"`, w - (narrow ? 4 : Lc + 12), fs).forEach(l => { g += T(narrow ? 2 : Lc + 8, ry, l, { fs, cls: "muted" }); ry += fs * 1.2; }); });
+    g += T(w - 4, H - fs * .4, `${d.total.label}: ${d.total.v} ${d.unit} (${d.total.pct})`, { a: "end", fs, cls: "muted" });
     return svg(w, H, g);
   }
   R.b28 = (d, w) => hbars(d, w, "bq");
   R.b29 = (d, w) => hbars(d, w, "bq");
+  R.b28.rows = R.b29.rows = d => [["Khoản mục", "Số dư cuối năm", "% số dư cuối năm"], ...d.rows.map(r => [r.label, r.v === "-" ? "-" : `${r.v} ${d.unit}`, r.pct]), [d.total.label, `${d.total.v} ${d.unit}`, d.total.pct]];
 
-  /* Bảng 2.10: 11 khoản, 2015 so với 2014 */
+  /* V7 · Bảng 2.10: dumbbell 2014 → 2015; khoản 1 tách hàng riêng với thang đo riêng */
   R.b210 = (d, w) => {
-    const fs = FS(.56), narrow = w < 640, Lc = narrow ? 0 : Math.min(w * .42, fs * 19), bh = fs * .95, rowH = bh * 2 + fs * (narrow ? 2.6 : 1.1);
-    const labs = d.rows.map(r => narrow ? wrap(r.label, w - 6, Math.max(12, fs)) : [r.label]), offs = []; let yo = 0;
-    labs.forEach(l => { offs.push(yo + (narrow ? fs * (.2 + l.length * 1.2) : fs * .3)); yo += rowH + (narrow ? (l.length - 1) * fs * 1.25 : 0); });
-    const H = yo + fs * 2.6, x = lin(0, 1100, Lc + 2, w - fs * 4.5), id = "h" + (++UID);
-    let g = ""; [0, 250, 500, 750, 1000].forEach(t => { g += `<line class="grid" x1="${f1(x(t))}" x2="${f1(x(t))}" y1="0" y2="${f1(H - fs * 2)}"/>` + T(x(t), H - fs * .6, toVN(t, 0), { a: "middle", fs, cls: "muted" }); });
-    d.rows.forEach((r, i) => {
-      const y0 = offs[i];
-      g += narrow ? labs[i].map((l, k) => T(2, y0 - fs * .3 - (labs[i].length - 1 - k) * Math.max(12, fs) * 1.2, l, { fs: Math.max(12, fs) })).join("") : wrap(r.label, Lc - 12, fs).slice(0, 2).map((l, k, arr) => T(Lc - 10, y0 + bh + fs * .35 + (k - (arr.length - 1) / 2) * fs * 1.1, l, { a: "end", fs })).join("");
-      r.v.forEach((v, k) => {
-        const yy = y0 + k * (bh + 2), xe = x(vn(v));
-        g += mark(`<rect class="growx" x="${f1(Lc + 2)}" y="${f1(yy)}" width="${f1(xe - Lc - 2)}" height="${f1(bh)}" fill="${k ? `url(#${id})` : GH("bq")}" stroke="${col("bq")}" stroke-width=".8"/>` + T(xe + 5, yy + bh * .82, v, { fs: Math.max(12, fs - 1), cls: "mono", w: k ? 400 : 700 }),
-          `${r.label}\n${d.years[k]}: ${v} ${d.unit}`, [Lc, yy - 1, w - Lc - 2, bh + 2]);
-      });
-    });
-    const legend = `<div class="legend"><span><i style="background:${col("bq")}"></i>${esc(d.years[0])}</span><span><i style="background:repeating-linear-gradient(45deg, ${col("bqSoft")} 0 3px, ${col("bq")} 3px 5px)"></i>${esc(d.years[1])}</span><span>${esc(d.total.label)}: ${esc(d.total.v[0])} / ${esc(d.total.v[1])} ${esc(d.unit)}</span></div>`;
-    return svg(w, H, g, hatch(id, col("bq"), col("bqSoft"))) + legend;
+    const fs = FS(.6), narrow = w < 640, Lc = narrow ? 0 : Math.min(w * .44, fs * 19), valW = fs * 7.2, rowH = fs * (narrow ? 4.4 : 2.2);
+    const first = d.rows[0], rest = d.rows.slice(1).slice().sort((a, b) => vn(b.v[0]) - vn(a.v[0]));
+    const X1 = lin(0, 1100, Lc + 8, w - valW - 10), X2 = lin(0, 300, Lc + 8, w - valW - 10);
+    let g = "", y0 = fs * 1.6;
+    g += T(narrow ? 2 : Lc + 8, fs * .9, "Thang đo 0–1.100", { fs, cls: "muted" });
+    const row = (r, y, X) => {
+      const a = vn(r.v[1]), b = vn(r.v[0]), xa = X(a), xb = X(b);
+      let s = narrow ? wrap(r.label, w - 6, fs).map((l, k, arr) => T(2, y - fs * (1 + (arr.length - 1 - k) * 1.15), l, { fs })).join("") : wrap(r.label, Lc - 12, fs).slice(0, 2).map((l, k, arr) => T(Lc - 8, y + fs * .35 + (k - (arr.length - 1) / 2) * fs * 1.1, l, { a: "end", fs })).join("");
+      s += mark(`<line class="growx" x1="${f1(xa)}" x2="${f1(xb)}" y1="${f1(y)}" y2="${f1(y)}" stroke="${CV("--bq-mid")}" stroke-width="3"/><circle cx="${f1(xa)}" cy="${f1(y)}" r="5" fill="${CV("--card")}" stroke="${CV("--ink-2")}" stroke-width="1.5"/><circle cx="${f1(xb)}" cy="${f1(y)}" r="6" fill="${fillOf("bq")}"/>` +
+        T(w - 4, y + fs * .35, `${r.v[0]} · ${r.v[1]}`, { a: "end", fs, cls: "mono lbl" }), `${r.label}\n${d.years[0]}: ${r.v[0]} ${d.unit}\n${d.years[1]}: ${r.v[1]} ${d.unit}`, [narrow ? 0 : Lc, y - fs * .8, w - (narrow ? 0 : Lc), fs * 1.6]);
+      return s;
+    };
+    const axis = (X, max, step, y) => { let s = ""; for (let t = 0; t <= max; t += step) s += `<line class="grid" x1="${f1(X(t))}" x2="${f1(X(t))}" y1="${f1(y - rowH * .5)}" y2="${f1(y + rowH * .4)}"/>` + T(X(t), y + rowH * .4 + fs * 1.1, toVN(t, 0), { a: "middle", fs, cls: "muted mono" }); return s; };
+    y0 += narrow ? fs * 1.4 : fs * .4;
+    g += axis(X1, 1000, narrow ? 500 : 250, y0 + rowH * .5) + row(first, y0 + rowH * .5, X1);
+    y0 += rowH + fs * 2.6;
+    const sl = wrap("Thang đo 0–300 (10 khoản còn lại, xếp theo năm 2015)", w - (narrow ? 4 : Lc + 12), fs);
+    g += `<line x1="0" x2="${w}" y1="${f1(y0 - fs * .9)}" y2="${f1(y0 - fs * .9)}" stroke="${champ()}" stroke-opacity=".6"/>` + sl.map((l, k) => T(narrow ? 2 : Lc + 8, y0 + fs * (.3 + k * 1.2), l, { fs, cls: "muted" })).join("");
+    y0 += (sl.length - 1) * fs * 1.2;
+    y0 += fs * 1.4 + (narrow ? fs * 1.2 : 0);
+    const top = y0;
+    rest.forEach((r, i) => { g += row(r, y0 + rowH * .5, X2); y0 += rowH; });
+    for (let t = 0; t <= 300; t += 100) g += `<line class="grid" x1="${f1(X2(t))}" x2="${f1(X2(t))}" y1="${f1(top)}" y2="${f1(y0)}"/>` + T(X2(t), y0 + fs * 1.2, toVN(t, 0), { a: "middle", fs, cls: "muted mono" });
+    const H = y0 + fs * 2;
+    const legend = `<div class="legend"><span><i style="background:${fillOf("bq")};border-radius:50%"></i>${esc(d.years[0])}</span><span><i style="background:${CV("--card")};border:1.5px solid ${CV("--ink-2")};border-radius:50%"></i>${esc(d.years[1])}</span><span>Số bên phải: ${esc(d.years[0])} · ${esc(d.years[1])}</span><span>${esc(d.total.label)}: ${esc(d.total.v[0])} / ${esc(d.total.v[1])} ${esc(d.unit)}</span></div>`;
+    return svg(w, H, g) + legend;
   };
+  R.b210.rows = d => [["Khoản", d.years[0], d.years[1]], ...d.rows.map(r => [r.label, r.v[0], r.v[1]]), [d.total.label, d.total.v[0], d.total.v[1]]];
 
-  /* Mục 2.6: thời hạn nộp BCTC năm */
+  /* V10a · thời hạn nộp BCTC năm: bullet chart (BQLDA không tính số ngày) */
   R.deadline = (d, w) => {
-    const fs = FS(.6), rowH = fs * 5.2, Lc = w < 640 ? 0 : fs * 11, H = d.rows.length * rowH + fs * 2.4, max = vn(d.max_days), x = lin(0, max, Lc + 6, w - fs * 1.5);
-    let g = ""; [0, 30, 60, 90].forEach(t => { g += `<line class="grid" x1="${f1(x(t))}" x2="${f1(x(t))}" y1="0" y2="${f1(H - fs * 2)}"/>` + T(x(t), H - fs * .6, t + " ngày", { a: "middle", fs, cls: "muted" }); });
+    const fs = FS(.62), narrow = w < 640, Lc = narrow ? 0 : Math.max(...d.rows.map(r => tw(r.label, fs, 1))) + 16, rowH = fs * (narrow ? 7.6 : 5.2), max = vn(d.max_days), x = lin(0, max, Lc + 6, w - fs * 3.2);
+    const H = d.rows.length * rowH + fs * 2.8;
+    let g = ""; [0, 30, 60, 90].forEach(t => { g += `<line class="grid" x1="${f1(x(t))}" x2="${f1(x(t))}" y1="0" y2="${f1(H - fs * 2.2)}"/>` + T(x(t), H - fs * .6, t + " ngày", { a: "middle", fs, cls: "muted mono" }); });
     d.rows.forEach((r, i) => {
-      const y0 = i * rowH + fs * 2.2, ent = r.entity, lim = vn(r.limit);
-      const days = r.days ? vn(r.days) : (dt(r.date) - dt(r.period_end)) * 365;   // vị trí vẽ; chỉ hiển thị số ngày khi bài có ghi
-      g += Lc ? T(Lc - 8, y0 + fs * .9, r.label, { a: "end", fs, w: 700 }) : T(2, y0 - fs * .7, r.label + " · hạn " + r.limit + " ngày", { fs, w: 700 });
-      g += `<rect x="${f1(x(0))}" y="${f1(y0)}" width="${f1(x(lim) - x(0))}" height="${f1(fs * 1.3)}" fill="${ent === "bq" ? col("bqSoft") : col("dnSoft")}" stroke="${col(ent)}" stroke-dasharray="4 3"/>` + (Lc ? T(x(lim) - 4, y0 - 5, "hạn " + r.limit + " ngày", { a: "end", fs: Math.max(12, fs - 1), cls: "muted" }) : "");
-      g += mark(`<rect class="growx" x="${f1(x(0))}" y="${f1(y0 + fs * .25)}" width="${f1(x(days) - x(0))}" height="${f1(fs * .8)}" fill="${GH(ent)}"/><circle cx="${f1(x(days))}" cy="${f1(y0 + fs * .65)}" r="7" fill="${col(ent)}" stroke="${col("card")}" stroke-width="2"/>` +
-        T(x(days) + (ent === "bq" ? 12 : -12), y0 + fs * 2.6, r.date + (r.days ? ` · ${r.days} ngày` : ""), { a: ent === "bq" ? "start" : "end", fs, w: 700, cls: "mono" }),
-        `${r.label}\n${r.shown}`, [x(0), y0 - 4, x(Math.max(days, lim)) - x(0) + 10, fs * 3]);
+      const y0 = i * rowH + fs * (narrow ? 2.4 : 1.6), ent = r.entity, lim = vn(r.limit), bh = fs * 1.6;
+      g += narrow ? T(2, y0 - fs * .7, r.label + " · hạn " + r.limit + " ngày", { fs, w: 600 }) : T(Lc - 10, y0 + bh * .7, r.label, { a: "end", fs, w: 600 });
+      g += `<rect x="${f1(x(0))}" y="${f1(y0)}" width="${f1(x(lim) - x(0))}" height="${f1(bh)}" fill="${softOf(ent)}"/><line x1="${f1(x(lim))}" x2="${f1(x(lim))}" y1="${f1(y0 - 5)}" y2="${f1(y0 + bh + 5)}" stroke="${CV("--ink")}" stroke-width="2"/>` + (narrow ? "" : T(x(lim) - 4, y0 - 6, "hạn " + r.limit + " ngày", { a: "end", fs, cls: "muted" }));
+      if (r.days) {   // Hòa Phát: bài ghi rõ 83 ngày
+        const days = vn(r.days);
+        g += mark(`<rect class="growx" x="${f1(x(0))}" y="${f1(y0 + bh * .3)}" width="${f1(x(days) - x(0))}" height="${f1(bh * .4)}" fill="${fillOf(ent)}"/>` + T(x(days) - 6, y0 + bh + fs * 1.3, `${r.date} · ${r.days} ngày`, { a: "end", fs, w: 600, cls: "mono lbl" }), `${r.label}\n${r.shown}`, [x(0), y0 - 4, x(lim) - x(0), bh + 8]);
+      } else {         // BQLDA: chỉ ghi "đúng hạn trong vòng 30 ngày", không đặt vị trí theo số ngày tự tính
+        g += mark(`<path d="M${f1(x(0) + 10)} ${f1(y0 + bh / 2)} l5 5 l10 -10" fill="none" stroke="${fillOf(ent)}" stroke-width="2"/>` + wrap(`Lập ngày ${r.date} · đúng hạn trong vòng ${r.limit} ngày`, w - x(0) - 8, fs).map((l, k) => T(x(0) + 4, y0 + bh + fs * (1.3 + k * 1.2), l, { fs, w: 600, fill: textOf(ent) })).join(""), `${r.label}\n${r.shown}`, [x(0), y0 - 4, x(lim) - x(0), bh + 8]);
+      }
     });
     return svg(w, H, g);
   };
+  R.deadline.rows = d => [["Đơn vị", "Kết thúc kỳ", "Ngày lập", "Hạn (ngày)", "Bài ghi"], ...d.rows.map(r => [r.label, r.period_end, r.date, r.limit, r.shown])];
+
+  /* V1 · tiến độ dự án: lũy kế 191,325 / tổng mức 312; hai đoạn 186,743 + 4,582; mốc 2013–2016 */
+  const ddate = s => { const [dd, mm, yy] = s.split("/").map(Number); return yy + (mm - 1) / 12 + (dd - 1) / 365; };
+  R.v1 = (d, w) => {
+    const fs = FS(.62), narrow = w < 640, x = lin(0, vn(d.total.v), 2, w - 2), bh = fs * 2.4, y0 = fs * 2.6;
+    const a = vn(d.parts[0].v), b = vn(d.parts[1].v), done = vn(d.done.v);
+    let g = "";
+    // thanh tiến độ trên nền tổng mức đầu tư
+    g += `<rect x="${f1(x(0))}" y="${f1(y0)}" width="${f1(x(vn(d.total.v)) - x(0))}" height="${f1(bh)}" fill="${CV("--paper-2")}" stroke="${CV("--line-2")}"/>`;
+    g += mark(`<rect class="growx" x="${f1(x(0))}" y="${f1(y0)}" width="${f1(x(a) - x(0))}" height="${f1(bh)}" fill="${fillOf("bq")}"/>`, `${d.parts[0].label}\n${d.parts[0].v} ${d.unit}`, [x(0), y0, x(a) - x(0), bh]);
+    g += mark(`<rect class="growx" x="${f1(x(a))}" y="${f1(y0)}" width="${f1(Math.max(3, x(a + b) - x(a)))}" height="${f1(bh)}" fill="${champ()}"/>`, `${d.parts[1].label}\n${d.parts[1].v} ${d.unit}`, [x(a) - 4, y0, Math.max(10, x(a + b) - x(a)) + 8, bh]);
+    g += T(x(0) + 12, y0 + bh / 2 + fs * .36, `${d.parts[0].v}`, { fs, w: 600, cls: "mono lbl", fill: "#FFFDF8" });
+    if (narrow) g += T(x(0), y0 - 8, `${d.done.pct} · lũy kế ${d.done.v} / ${d.total.v}`, { fs, w: 600, cls: "lbl", fill: CV("--bq") });
+    else { g += T(x(done) + 10, y0 + bh / 2 + fs * .36, `${d.done.pct} · lũy kế ${d.done.v}`, { fs, w: 600, cls: "lbl", fill: CV("--ink") }); g += T(x(vn(d.total.v)) - 8, y0 - 8, `${d.total.label}: ${d.total.v} ${d.unit}`, { a: "end", fs, cls: "muted" }); }
+    // chú giải hai đoạn, dưới thanh
+    const ly = y0 + bh + fs * 1.6;
+    const L1 = wrap(`${d.parts[0].v} · ${d.parts[0].label}`, narrow ? w - fs * 2 : w * .48, fs), L2 = wrap(`${d.parts[1].v} · ${d.parts[1].label}`, narrow ? w - fs * 2 : w * .44, fs);
+    g += `<rect x="${f1(x(0))}" y="${f1(ly - fs * .8)}" width="${f1(fs * .9)}" height="${f1(fs * .9)}" fill="${fillOf("bq")}"/>` + L1.map((l, k) => T(x(0) + fs * 1.4, ly + k * fs * 1.2, l, { fs })).join("");
+    const l2y = narrow ? ly + fs * 1.3 * L1.length + fs * .3 : ly, l2x = narrow ? x(0) : w * .52;
+    g += `<rect x="${f1(l2x)}" y="${f1(l2y - fs * .8)}" width="${f1(fs * .9)}" height="${f1(fs * .9)}" fill="${champ()}"/>` + L2.map((l, k) => T(l2x + fs * 1.4, l2y + k * fs * 1.2, l, { fs })).join("");
+    if (narrow) g += T(x(0), l2y + fs * 1.3 * L2.length + fs * .2, `${d.total.label}: ${d.total.v} ${d.unit}`, { fs, cls: "muted" });
+    // trục thời gian 2013–2016, nhãn sự kiện xếp tầng bên dưới, không chồng
+    const ty = l2y + fs * (narrow ? 2.4 + 1.3 * L2.length + 1.6 : 3.4), t0 = +d.timeline.from, t1 = +d.timeline.to + 1, X = lin(t0, t1, fs * .5, w - fs * .5);
+    g += `<line x1="${f1(X(t0))}" x2="${f1(X(t1))}" y1="${f1(ty)}" y2="${f1(ty)}" stroke="${CV("--ink-2")}"/>`;
+    for (let t = t0; t <= t1; t++) g += `<line x1="${f1(X(t))}" x2="${f1(X(t))}" y1="${f1(ty - 5)}" y2="${f1(ty + 5)}" stroke="${CV("--ink-2")}"/>` + (t < t1 ? T(X(t + .5), ty - fs * .7, String(t), { a: "middle", fs, cls: "muted mono" }) : "");
+    let evY = ty + fs * 1.8;
+    d.timeline.events.forEach((e, i) => {
+      const px = X(ddate(e.date)), anchor = px > w * .62 ? "end" : "start", tx = px + (anchor === "end" ? -10 : 10);
+      const avail = anchor === "end" ? tx - 2 : w - tx - 2, tl = wrap(e.text, avail, fs);
+      const ry = evY; evY += fs * (1.4 + tl.length * 1.2 + .6);
+      g += mark(`<line x1="${f1(px)}" x2="${f1(px)}" y1="${f1(ty)}" y2="${f1(ry + fs * .2)}" stroke="${champ()}"/><circle cx="${f1(px)}" cy="${f1(ty)}" r="5" fill="${i === 0 ? champ() : fillOf("bq")}"/>` +
+        T(tx, ry, e.date, { a: anchor, fs, w: 600, cls: "mono" }) + tl.map((l, k) => T(tx, ry + fs * 1.2 * (k + 1), l, { a: anchor, fs, cls: "muted" })).join(""), `${e.date}\n${e.text}`, [px - 10, ty - 10, 20, 20]);
+    });
+    const H = evY;
+    return svg(w, H, g);
+  };
+  R.v1.rows = d => [["Chỉ tiêu", "Giá trị", "Nguồn"], [d.total.label, `${d.total.v} ${d.unit}`, d.total.src], [d.done.label, `${d.done.v} ${d.unit} (${d.done.pct})`, d.done.src], ...d.parts.map(p => [p.label, `${p.v} ${d.unit}`, p.src]), ["Thời gian thực hiện", `${d.timeline.from}–${d.timeline.to}`, d.timeline.src], ...d.timeline.events.map(e => [e.text, e.date, e.src])];
+
+  /* ---------- khung biểu đồ mới (V1, V2, V9) và ma trận V12 ---------- */
+  const NEWFIG = [
+    { slide: "muc-2-1-2b", after: ".stats", key: "v1", title: "Tiến độ dự án: lũy kế vốn đầu tư thực hiện so với tổng mức đầu tư", lead: "Lũy kế vốn đầu tư thực hiện bằng dư chi phí đầu tư xây dựng dở dang cộng giá trị hạng mục đã quyết toán, bàn giao.", unit: "Đơn vị: tỷ đồng; 61,3% in sẵn trong bài. Nguồn: mục 2.1.1, mục 2.1.2, Bảng 2.6.1." },
+    { slide: "bang-2-8-slide", after: "figure.tbl", key: "v2", title: "Biến động TK 241 năm 2015: từ số dư đầu năm đến số dư cuối năm", lead: "Dòng \"Cộng\" của Bảng 2.8.", unit: "Đơn vị: tỷ đồng. Nguồn: Bảng 2.8." },
+    { slide: "muc-2-4", after: "figure.tbl", key: "v9", title: "Hòa Phát 2024: từ doanh thu thuần đến lợi nhuận sau thuế", lead: "Số liệu cột Doanh nghiệp của Bảng 2.7; lợi nhuận trước thuế và sau thuế vẽ từ 0, không nối bậc vì bài không nêu đủ các khoản ở giữa.", unit: "Đơn vị: nghìn tỷ đồng; biên 13,3% và 8,7% in sẵn trong bài. Nguồn: Bảng 2.7." }
+  ];
+  NEWFIG.forEach(f => {
+    const s = document.getElementById(f.slide); if (!s) return; const w = $(".wrap", s), ref = $(f.after, w);
+    const fig = document.createElement("figure"); fig.className = "fig chart vz"; fig.dataset.ui = "";
+    fig.innerHTML = `<figcaption><span class="cap-no">Biểu đồ</span> ${esc(f.title)}</figcaption><p class="vz-lead">${esc(f.lead)}</p><div data-chart="${f.key}"></div><p class="unit">${esc(f.unit)}</p>`;
+    if (ref) ref.after(fig); else w.append(fig);
+  });
+  // V12 · ma trận 5 tiêu chí × 2 chế độ (điều hướng vào Bảng 1.4)
+  (function matrix() {
+    const fig14 = document.getElementById("bang-1-4"); if (!fig14) return;
+    const rows = $$("tbody tr", fig14).map((tr, i) => ({ i, name: $("th", tr).textContent.trim() })).filter(r => /^\d\./.test(r.name));
+    const box = document.createElement("figure"); box.className = "fig vz vz-matrix"; box.dataset.ui = "";
+    box.innerHTML = `<figcaption><span class="cap-no">Bản đồ</span> Năm tiêu chí so sánh · bấm một ô để mở dòng tương ứng của Bảng 1.4</figcaption>
+      <div class="mx" role="grid" aria-label="Năm tiêu chí so sánh"><div class="mx-h" role="row"><span role="columnheader"></span><span role="columnheader" class="mx-bq">BQLDA (Thông tư 195)</span><span role="columnheader" class="mx-dn">Doanh nghiệp (Thông tư 200)</span></div>
+      ${rows.map(r => `<div class="mx-r" role="row"><span class="mx-k" role="rowheader">${esc(r.name)}</span><button type="button" class="mx-c bq" data-row="${r.i}" data-col="a">${icon("ledger")} Xem cột BQLDA</button><button type="button" class="mx-c dn" data-row="${r.i}" data-col="b">${icon("build")} Xem cột Doanh nghiệp</button></div>`).join("")}</div>
+      <p class="unit">Không có số liệu; chỉ là lối vào Bảng 1.4. <button type="button" class="mx-all">Hiện lại toàn bộ bảng</button></p>`;
+    fig14.before(box);
+    const sel = $("select", fig14), seg = $$(".seg button", fig14);
+    box.addEventListener("click", e => {
+      const c = e.target.closest(".mx-c"), all = e.target.closest(".mx-all");
+      if (all) { sel.value = ""; sel.dispatchEvent(new Event("change")); seg[0].click(); $$(".mx-c", box).forEach(b => b.classList.remove("on")); return; }
+      if (!c) return;
+      sel.value = c.dataset.row; sel.dispatchEvent(new Event("change"));
+      const target = seg.find(b => b.dataset.v === c.dataset.col); if (target) target.click();
+      $$(".mx-c", box).forEach(b => b.classList.toggle("on", b === c));
+      fig14.scrollIntoView({ behavior: REDUCE ? "auto" : "smooth", block: "start" });
+    });
+  })();
+
+  /* ---------- "Xem bảng số liệu" cho mọi biểu đồ có số ---------- */
+  function dataTable(k) {
+    const d = VIZ[k], f = R[k] && R[k].rows; if (!d || !f) return "";
+    const [head, ...body] = f(d);
+    return `<table class="vz-data"><caption>Số liệu dùng cho biểu đồ · nguồn: ${esc(d.src || "")}</caption><thead><tr>${head.map(h => `<th scope="col">${esc(h)}</th>`).join("")}</tr></thead><tbody>${body.map(r => `<tr>${r.map((c, i) => i ? `<td>${esc(c)}</td>` : `<th scope="row">${esc(c)}</th>`).join("")}</tr>`).join("")}</tbody></table>`;
+  }
+  $$("[data-chart]").forEach((h, i) => {
+    const k = h.dataset.chart; if (!R[k] || !R[k].rows) return;
+    const id = "vzt-" + k + "-" + i;
+    const box = document.createElement("div"); box.className = "vz-tools"; box.dataset.ui = "";
+    box.innerHTML = `<button type="button" class="vz-btn" aria-expanded="false" aria-controls="${id}">Xem bảng số liệu</button><div class="vz-table" id="${id}" hidden>${dataTable(k)}</div>`;
+    h.after(box);
+    $(".vz-btn", box).addEventListener("click", e => { const t = $(".vz-table", box), o = t.hidden; t.hidden = !o; e.currentTarget.setAttribute("aria-expanded", String(o)); e.currentTarget.textContent = o ? "Ẩn bảng số liệu" : "Xem bảng số liệu"; });
+  });
+  // bàn phím trong biểu đồ: ← → chuyển giữa các điểm dữ liệu, Esc rời biểu đồ
+  document.addEventListener("keydown", e => {
+    const m = e.target.closest && e.target.closest(".mark"); if (!m) return;
+    if (e.key === "ArrowRight" || e.key === "ArrowLeft") { const all = $$(".mark", m.ownerSVGElement); const i = all.indexOf(m) + (e.key === "ArrowRight" ? 1 : -1); if (all[i]) { e.preventDefault(); all[i].focus(); } }
+    else if (e.key === "Escape") { m.blur(); }
+  }, true);
 
   /* ---------- Bảng 2.2: so sánh phân đôi BQLDA | Hòa Phát (kéo thanh ngăn) ---------- */
   (function split() {

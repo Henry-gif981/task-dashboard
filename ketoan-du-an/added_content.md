@@ -80,3 +80,26 @@ Nội dung bài (chữ trong `<main>`) không đổi: `tools/compare_text.py` so
 | Sinh viên Nhóm 2, Đại học Kinh tế Quốc dân. Bài tập môn Kế toán dự án đầu tư xây dựng. | Chân trang | Theo yêu cầu |
 | Biểu tượng nét 1,5px (sổ cái, công trình, dấu tích, đồng hồ, mũi tên, ghim, chữ T, cân) | Tiêu đề bộ ảnh chứng từ, thẻ tình huống, chú thích dòng thời gian và Mục 2.6.3, chân trang | Không có chữ |
 | Cảnh 3D chữ T và hai dòng khối xanh/cam; bản SVG tĩnh dự phòng | Hero | Trang trí, không mang số liệu |
+
+---
+
+## 7. Nhãn và tiêu đề thêm khi chỉnh thiết kế "báo cáo thường niên" và bộ biểu đồ V1–V13
+
+Chữ nội dung trong `<main>` không đổi (so với `before2_text_content.txt`: 13.974/13.974 từ, 0 chỗ khác; xem `text_compare2.md`). Các phần thêm dưới đây đều gắn `data-ui`:
+
+| Chữ | Vị trí |
+|---|---|
+| Về mục lục · Chế độ đọc · A− · A+ (nhãn ẩn "Giảm cỡ chữ", "Tăng cỡ chữ") | Thanh điều hướng trái |
+| Xem bảng số liệu / Ẩn bảng số liệu; tiêu đề bảng "Số liệu dùng cho biểu đồ · nguồn: …" và tiêu đề cột ("Bước", "Giá trị", "Đơn vị", "Khoản mục", "Nhóm", "Đối tượng", "Số ngày", "Đơn vị · bên", "Chỉ tiêu", "Nguồn", "Kết thúc kỳ", "Ngày lập", "Hạn (ngày)", "Bài ghi") | Dưới mỗi biểu đồ |
+| **V1** "Biểu đồ · Tiến độ dự án: lũy kế vốn đầu tư thực hiện so với tổng mức đầu tư"; câu dẫn "Lũy kế vốn đầu tư thực hiện bằng dư chi phí đầu tư xây dựng dở dang cộng giá trị hạng mục đã quyết toán, bàn giao."; nhãn "lũy kế", "Tổng mức đầu tư được duyệt", "Dư chi phí đầu tư xây dựng dở dang", "Đã quyết toán, bàn giao", "Thành lập Ban (Quyết định số 45/QĐ-HĐQT)", "Ngày lập Bảng cân đối kế toán, lũy kế 191,325", "Lập Báo cáo tài chính năm 2015", "Thời gian thực hiện", đơn vị/nguồn | Mục 2.1.2 |
+| **V2** "Biến động TK 241 năm 2015: từ số dư đầu năm đến số dư cuối năm"; câu dẫn "Dòng \"Cộng\" của Bảng 2.8."; đơn vị/nguồn | Trang Bảng 2.8 |
+| **V3** dòng chú thích "Tăng trong năm 63,850: 60,650 bằng tiền · 3,200 bằng vật tư, thiết bị" | Thác nước B02 |
+| **V8** ghi chú "Bốn số trên chưa gồm dòng ảnh hưởng của thay đổi tỷ giá quy đổi ngoại tệ trong báo cáo gốc (Hình 2.9), nên không cộng khít số cuối năm." | Thác nước dòng tiền Hòa Phát |
+| **V9** "Hòa Phát 2024: từ doanh thu thuần đến lợi nhuận sau thuế"; câu dẫn "Số liệu cột Doanh nghiệp của Bảng 2.7; lợi nhuận trước thuế và sau thuế vẽ từ 0, không nối bậc vì bài không nêu đủ các khoản ở giữa."; nhãn bước "Doanh thu thuần", "Giá vốn", "Lợi nhuận gộp", "Lợi nhuận trước thuế", "Lợi nhuận sau thuế", "biên 13,3%", "8,7% doanh thu thuần"; bảng "Các khoản khác trong Bảng 2.7 (nghìn tỷ đồng)" với "Doanh thu tài chính", "Thu nhập khác", "Chi phí bán hàng", "Chi phí quản lý doanh nghiệp", "Chi phí tài chính"; đơn vị/nguồn | Trang 2.4 |
+| **V6** nhãn "…: số dư cuối năm \"-\"" cho hạng mục 7 | Biểu đồ Bảng 2.9 |
+| **V7** "Thang đo 0–1.100", "Thang đo 0–300 (10 khoản còn lại, xếp theo năm 2015)", "Số bên phải: Năm 2015 · Năm 2014" | Biểu đồ Bảng 2.10 |
+| **V10** "Lập ngày 20/01/2016 · đúng hạn trong vòng 30 ngày", "hạn 30 ngày", "hạn 90 ngày" (ở màn hẹp ghép vào tên dòng) | Biểu đồ thời hạn 2.6.3 |
+| **V12** "Bản đồ · Năm tiêu chí so sánh · bấm một ô để mở dòng tương ứng của Bảng 1.4"; "BQLDA (Thông tư 195)", "Doanh nghiệp (Thông tư 200)", "Xem cột BQLDA", "Xem cột Doanh nghiệp", "Không có số liệu; chỉ là lối vào Bảng 1.4.", "Hiện lại toàn bộ bảng" | Trên Bảng 1.4 |
+| **V13** thẻ số mới: "Lợi nhuận sau thuế · Hòa Phát 2024 (Bảng 2.7)" 12,020 nghìn tỷ đồng; "Tỷ lệ thực hiện so với tổng mức đầu tư · BQLDA Đồng Bằng 2015 (Bảng 2.6.1)" 61,3%; "Thời gian lập BCTC năm 2024 · Hòa Phát (hạn 90 ngày) (Bảng 2.6.3)" 83 ngày; các thẻ cũ (93,6%; 94,6%; 28,4%; 188,717; 186,743) nay ghi nguồn trong ngoặc | Đầu trang 2.4, 2.6, 2.6.3 và các trang cũ |
+| Hình 1.4: nhãn trục tung đổi bước 0/30/60/90/120 (trước 0/20/…/120); "Số ngày kể từ ngày kết thúc kỳ kế toán" chuyển lên trên trục | Hình 1.4 |
+| Thứ tự các thanh ở biểu đồ Bảng 2.8, 2.9 và 10 khoản của Bảng 2.10 được sắp theo giá trị (bảng số gốc giữ thứ tự của bài) | Các biểu đồ đó |

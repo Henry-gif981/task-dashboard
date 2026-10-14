@@ -1,0 +1,80 @@
+{
+ "contrast_light": {
+  "checked": 1332,
+  "fail": 25,
+  "examples": [
+   "1.06 h2.h-chapter.rv.in \"CHƯƠNG 2. PHÂN TÍCH SỰ KHÁC BI\"",
+   "1.74 b. \"2.1\"",
+   "1.21 a. \"Đơn vị nghiên cứu\"",
+   "1.74 b. \"2.2\"",
+   "1.21 a. \"Bảng CĐKT, tài khoản\"",
+   "1.74 b. \"2.3\"",
+   "1.21 a. \"Nguồn vốn đầu tư\"",
+   "1.74 b. \"2.4\"",
+   "1.21 a. \"Thực hiện đầu tư\"",
+   "1.74 b. \"2.5\"",
+   "1.21 a. \"Quyết toán F03B\"",
+   "1.74 b. \"2.6\"",
+   "1.21 a. \"Thuyết minh BCTC\"",
+   "1.32 p.sp-title \"BQLDA 31/12/2015\"",
+   "1.14 b. \"6,0%\""
+  ]
+ },
+ "contrast_dark": {
+  "checked": 1332,
+  "fail": 0,
+  "examples": []
+ },
+ "font_min_html_px": 12.6,
+ "font_lt14_html": 37,
+ "font_lt14_html_examples": [
+  "13.0px small. \"Nhóm 2 · NEU\"",
+  "13.4px a. \"Bìa\"",
+  "13.4px a. \"Mục lục\"",
+  "13.4px a. \"Phần mở đầu\"",
+  "13.4px a. \"Kết luận\"",
+  "13.4px a. \"Phụ lục, Tài liệu\"",
+  "12.6px p.cover-sep \"--------\"",
+  "13.9px span.cover-k \"Môn:\"",
+  "13.9px p.cover-k.cover-topic-label.reveal-up \"Chủ đề:\"",
+  "13.0px span.cover-k \"Nhóm:\"",
+  "13.0px dt. \"Sinh viên:\"",
+  "13.4px span.chev-k \"GIAI ĐOẠN 1\""
+ ],
+ "font_min_svg_px": 12,
+ "font_lt14_svg": 129,
+ "font_lt14_svg_examples": [
+  "13.0px \"0\"",
+  "13.0px \"20\"",
+  "13.0px \"40\"",
+  "13.0px \"60\"",
+  "13.0px \"80\"",
+  "13.0px \"100\"",
+  "13.0px \"120\"",
+  "13.0px \"Số ngày kể từ ngày kết t\"",
+  "13.0px \"20 ngày\"",
+  "13.0px \"45 ngày\"",
+  "13.0px \"30 ngày\"",
+  "13.0px \"90 ngày\""
+ ],
+ "body_font_px": {
+  "min": 22.05,
+  "max": 30.72
+ },
+ "body_line_height": {
+  "min": 1.45,
+  "max": 1.68
+ },
+ "chars_per_line": {
+  "paragraphs": 49,
+  "median": 71,
+  "max": 78
+ },
+ "root_font_px": 21,
+ "hOverflow_1366": 0,
+ "clipped_1366": [],
+ "hOverflow_390": 0,
+ "clipped_390": [
+  "thead."
+ ]
+}
