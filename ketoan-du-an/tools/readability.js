@@ -18,8 +18,8 @@ const path = require('path'), fs = require('fs');
   }
   // ---------- 1920×1080: cỡ chữ, độ dài dòng, tương phản ----------
   const p = await page(1920, 1080);
-  for (const theme of ['light', 'dark']) {
-    await p.evaluate(t => { document.documentElement.dataset.theme = t; document.body.classList.remove('on-dark'); }, theme);
+  for (const theme of ['dark', 'reading']) {
+    await p.evaluate(t => { const r = document.documentElement; r.dataset.theme = t === 'reading' ? 'light' : 'dark'; r.classList.toggle('reading', t === 'reading'); document.body.classList.remove('on-dark'); }, theme);
     await p.waitForTimeout(900);
     R['contrast_' + theme] = await p.evaluate(() => {
       const parse = c => { const m = c.match(/rgba?\(([^)]+)\)/); if (!m) return null; const v = m[1].split(/[ ,/]+/).filter(Boolean).map(Number); return { r: v[0], g: v[1], b: v[2], a: v[3] == null ? 1 : v[3] }; };
@@ -40,7 +40,7 @@ const path = require('path'), fs = require('fs');
       return { checked: n, fail: bad.length, examples: [...new Set(bad)].slice(0, 15) };
     });
   }
-  await p.evaluate(() => { document.documentElement.dataset.theme = 'light'; });
+  await p.evaluate(() => { document.documentElement.dataset.theme = 'dark'; document.documentElement.classList.remove('reading'); });
   await p.waitForTimeout(600);
   Object.assign(R, await p.evaluate(() => {
     const vis = el => { const cs = getComputedStyle(el); const r = el.getBoundingClientRect(); return cs.display !== 'none' && cs.visibility !== 'hidden' && r.width > 0 && r.height > 0 && !el.closest('.sr-only, [hidden], .intro, .lightbox:not(.open), .tip, .icon-sprite'); };

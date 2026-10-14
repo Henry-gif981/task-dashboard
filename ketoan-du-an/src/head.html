@@ -40,12 +40,23 @@ window.COVER = {
   <svg class="intro-t" viewBox="0 0 200 160"><path class="it-h" d="M20 30 H180"/><path class="it-v" d="M100 30 V140"/><path class="it-u1" d="M40 44 H90"/><path class="it-u2" d="M110 44 H160"/></svg>
   <button type="button" class="intro-skip" tabindex="-1">Bỏ qua</button>
 </div>
-<div class="topbar" aria-hidden="true" data-ui><div class="progress"></div><p class="where"><span class="where-sec"></span><span class="where-ch"></span></p></div>
-<div class="tools" data-ui>
-  <button type="button" class="tool menu-btn" id="btn-menu" aria-expanded="false" aria-controls="side" data-added>Mục lục</button>
-  <button type="button" class="tool" id="btn-present" aria-pressed="false" title="Phím: ← → hoặc PageUp/PageDown chuyển mục; F toàn màn hình; Esc thoát" data-added>Trình chiếu</button>
-  <button type="button" class="tool" id="btn-theme" aria-pressed="false" data-added>Nền tối</button>
-</div>
+<!-- canvas WebGL cố định phía sau nội dung: "lụa chrome" (chỉ trang trí) -->
+<canvas class="silk-canvas" aria-hidden="true" data-ui></canvas>
+<div class="silk-fallback" aria-hidden="true" data-ui></div>
+<header class="nav" data-ui>
+  <a class="nav-brand" href="#bia"><img src="assets/logo-neu.png" alt="" width="28" height="28"><span data-added>Kế toán dự án đầu tư xây dựng</span></a>
+  <nav class="nav-ch" aria-label="Các chương"><a href="#chuong-1">Chương 1</a><a href="#chuong-2">Chương 2</a><a href="#chuong-3">Chương 3</a><a href="#ket-luan">Kết luận</a></nav>
+  <div class="nav-tools">
+    <button type="button" class="tool menu-btn" id="btn-menu" aria-expanded="false" aria-controls="side" data-added>Mục lục</button>
+    <button type="button" class="tool" id="btn-present" aria-pressed="false" title="Phím: ← → hoặc PageUp/PageDown chuyển mục; F toàn màn hình; Esc thoát" data-added>Trình chiếu</button>
+    <button type="button" class="tool fz" id="fz-dn" aria-label="Giảm cỡ chữ">A−</button>
+    <button type="button" class="tool fz" id="fz-up" aria-label="Tăng cỡ chữ">A+</button>
+    <button type="button" class="tool tool-cta" id="btn-reading" aria-pressed="false">Chế độ đọc</button>
+    <button type="button" class="tool" id="btn-theme" aria-pressed="false" hidden data-added>Nền tối</button>
+  </div>
+  <div class="progress"></div>
+</header>
+<div class="topbar" aria-hidden="true" data-ui><p class="where"><span class="where-sec"></span><span class="where-ch"></span></p></div>
 <aside class="side" id="side" aria-label="Điều hướng" data-ui>
   <div class="side-brand"><img src="assets/logo-neu.png" alt="" width="40" height="40"><p data-added>Kế toán dự án đầu tư xây dựng<small>Nhóm 2 · NEU</small></p></div>
   <nav aria-label="Các mục của bài"><ol id="side-nav"></ol></nav>

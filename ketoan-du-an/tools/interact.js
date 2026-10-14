@@ -41,7 +41,7 @@ const path = require('path');
   ok('split_slider', x1 + ' -> ' + x2);
   // T-accounts
   const tt = p.locator('.t-tabs [role=tab]'); const nt = await tt.count(); const tres = [];
-  for (let i = 0; i < nt; i++) { await tt.nth(i).scrollIntoViewIfNeeded(); await tt.nth(i).click(); tres.push(await p.$$eval('#t-stage .tacc', x => x.length)); }
+  for (let i = 0; i < nt; i++) { await tt.nth(i).scrollIntoViewIfNeeded(); await tt.nth(i).click(); tres.push(await p.$$eval('#t-stage svg[data-viz=V11] text', x => x.filter(t => t.textContent === 'NỢ').length)); }
   ok('t_accounts_per_tab', tres.join(','));
   // bảng so sánh
   const figs = await p.$$('figure.cmp'); const cm = [];
@@ -89,8 +89,7 @@ const path = require('path');
   await p.keyboard.press('Escape'); const pr2 = await p.evaluate(() => document.body.classList.contains('present'));
   ok('present', `on=${pr1} sideHidden=${sideHidden} afterEsc=${pr2}`);
   // nền tối
-  await p.click('#btn-theme'); ok('theme', await p.evaluate(() => document.documentElement.dataset.theme + ' bg=' + getComputedStyle(document.body).backgroundColor));
-  await p.click('#btn-theme');
+  ok('theme_default', await p.evaluate(() => document.documentElement.dataset.theme + ' bg=' + getComputedStyle(document.body).backgroundColor));
   // in: details mở
   await p.evaluate(() => dispatchEvent(new Event('beforeprint'))); ok('print_details_closed', await p.$$eval('details:not([open])', x => x.length));
   await p.evaluate(() => dispatchEvent(new Event('afterprint')));
@@ -108,8 +107,18 @@ const path = require('path');
   await p.keyboard.press('ArrowRight'); const t2 = await p.$eval('.tip', t => t.textContent.slice(0, 40)); await p.keyboard.press('Escape');
   ok('tooltip_keyboard', t1 + ' → ' + t2);
   // ma trận 5 tiêu chí
-  const mx = p.locator('.mx-c.dn').nth(1); await mx.scrollIntoViewIfNeeded(); await mx.click(); await p.waitForTimeout(400);
-  ok('matrix', await p.$eval('#bang-1-4', f => f.classList.contains('only-b') + ' dimRows=' + f.querySelectorAll('tr.dim').length)); await p.click('.mx-all');
+  // Bảng 1.4: hàng danh sách → khung so sánh
+  const cr = p.locator('.crit-list button'); const ncr = await cr.count(); const crs = [];
+  for (let i = 0; i < ncr; i++) { await cr.nth(i).scrollIntoViewIfNeeded(); await cr.nth(i).hover(); crs.push((await p.$eval('.cp-name', e => e.textContent)) === (await cr.nth(i).textContent()) ? 1 : 0); }
+  ok('criteria_rows', `${crs.reduce((a, b) => a + b, 0)}/${ncr}`);
+  // Hình 1.1 nút ‹ › và Hình 1.3 thanh bước
+  await p.locator('.step-ctl [data-d="1"]').first().scrollIntoViewIfNeeded(); await p.click('.step-ctl [data-d="-1"]'); await p.click('.step-ctl [data-d="-1"]'); const atStart = await p.$eval('.step-ctl [data-d="-1"]', b => b.disabled); await p.click('.step-ctl [data-d="1"]');
+  ok('cycle_prev_disabled_at_start', atStart);
+  ok('cycle_next', await p.$$eval('.cycle-steps [role=tab]', x => x.map(t => t.getAttribute('aria-selected')).join(',')));
+  await p.locator('.flowbar button').nth(3).scrollIntoViewIfNeeded(); await p.locator('.flowbar button').nth(3).click();
+  ok('flowbar', await p.$$eval('.flow-row.pending', x => x.length) + ' pending, current=' + await p.$eval('.flowbar [aria-current=true]', b => b.textContent));
+  // nút trên hero
+  await p.evaluate(() => scrollTo(0, 0)); await p.click('.btn-w'); await p.waitForTimeout(800); ok('hero_enter', await p.evaluate(() => Math.round(document.getElementById('muc-luc').getBoundingClientRect().top)));
   // A−/A+ và Chế độ đọc (ghi nhớ)
   await p.evaluate(() => scrollTo(0, 0)); const fz0 = await p.evaluate(() => getComputedStyle(document.documentElement).fontSize);
   await p.click('#fz-up'); await p.click('#fz-up'); const fz1 = await p.evaluate(() => getComputedStyle(document.documentElement).fontSize);

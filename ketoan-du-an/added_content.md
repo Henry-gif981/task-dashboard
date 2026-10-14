@@ -103,3 +103,26 @@ Chữ nội dung trong `<main>` không đổi (so với `before2_text_content.tx
 | **V13** thẻ số mới: "Lợi nhuận sau thuế · Hòa Phát 2024 (Bảng 2.7)" 12,020 nghìn tỷ đồng; "Tỷ lệ thực hiện so với tổng mức đầu tư · BQLDA Đồng Bằng 2015 (Bảng 2.6.1)" 61,3%; "Thời gian lập BCTC năm 2024 · Hòa Phát (hạn 90 ngày) (Bảng 2.6.3)" 83 ngày; các thẻ cũ (93,6%; 94,6%; 28,4%; 188,717; 186,743) nay ghi nguồn trong ngoặc | Đầu trang 2.4, 2.6, 2.6.3 và các trang cũ |
 | Hình 1.4: nhãn trục tung đổi bước 0/30/60/90/120 (trước 0/20/…/120); "Số ngày kể từ ngày kết thúc kỳ kế toán" chuyển lên trên trục | Hình 1.4 |
 | Thứ tự các thanh ở biểu đồ Bảng 2.8, 2.9 và 10 khoản của Bảng 2.10 được sắp theo giá trị (bảng số gốc giữ thứ tự của bài) | Các biểu đồ đó |
+
+---
+
+## 8. Nhãn thêm khi thiết kế lại theo phong cách "fintech tối" (ảnh mẫu do người dùng gửi)
+
+Chữ nội dung trong `<main>` không đổi (so với `before3_text_content.txt`: 13.974/13.974 từ, 0 chỗ khác; `text_compare3.md`). Không dùng tên, logo hay câu chữ của ảnh mẫu. Phần thêm (đều `data-ui`):
+
+| Chữ | Vị trí |
+|---|---|
+| "Kế toán dự án đầu tư xây dựng" (tên môn), "Chương 1 · Chương 2 · Chương 3 · Kết luận", "Mục lục", "Trình chiếu", "A−", "A+", "Chế độ đọc" | Thanh trên cùng |
+| "Kế toán dự án đầu tư xây dựng · Nhóm 2" | Nhãn nhỏ đầu hero |
+| "Cuộn xuống" | Cột chỉ dẫn dọc bên trái hero |
+| "Vào bài →", "Chế độ đọc" | Hai nút trong hero |
+| "Văn bản trọng tâm": TT 195/2012/TT-BTC · TT 200/2014/TT-BTC · TT 79/2019/TT-BTC · TT 99/2025/TT-BTC | Hàng dưới hero (số hiệu văn bản lấy từ bài) |
+| Cụm "chế độ kế toán" trong tên đề tài được in nghiêng serif | Chỉ đổi kiểu chữ, chữ giữ nguyên |
+| Nhãn mục "CHƯƠNG n / x.y" | Đầu mỗi trang (CSS `attr()`) |
+| "Giai đoạn trước", "Giai đoạn sau" (nút ‹ ›), chấm trang | Hình 1.1 |
+| "Bước 01 … Bước 05" | Thanh bước Hình 1.3 |
+| "So sánh · Bảng 1.4", "BQLDA (Thông tư 195)", "Doanh nghiệp (Thông tư 200)"; danh sách năm tiêu chí (chép từ cột "Tiêu chí" của Bảng 1.4) | Khung so sánh trên Bảng 1.4 (thay bản đồ V12 cũ) |
+| "Hình / <nguồn>" (vd. "Hình / Bảng 2.8") | Góc trên trái mỗi panel biểu đồ |
+| "NỢ", "CÓ" và tên khung "BQLDA (Thông tư 195)", "Doanh nghiệp (Thông tư 200)" | Tài khoản chữ T SVG (V11) |
+| Đoạn dẫn Chương 1 trở lại trang bìa chương (bỏ nhãn điều hướng "Chương 1 · Dẫn nhập") | Bìa Chương 1 |
+| Nút "Nền tối" ẩn (nền tối là mặc định; Chế độ đọc là nền kem) | Thanh trên |

@@ -1,72 +1,85 @@
-# Báo cáo nâng cấp giao diện "Sổ cái 3D"
+# Báo cáo thiết kế: phong cách "fintech tối" theo ảnh mẫu
 
-Trang: `index.html` (+ `assets/`, `fonts/`, `vendor/`), bản một tệp `dist/KeToanDuAn_standalone.html`.
-Nội dung bài không đổi; chỉ đổi cấu trúc HTML trình bày, CSS, JS hiển thị và thêm yếu tố trang trí không mang số liệu.
+Ảnh mẫu (trang fintech nền đen xanh, khối lụa kim loại xanh, đường kẻ mảnh, nhãn nhỏ viết hoa, từ khóa in nghiêng) chỉ dùng làm cảm hứng bố cục và phong cách. Không dùng tên, logo, câu chữ hay khẩu hiệu nào của mẫu.
+Bản trước được lưu ở `index.before_avalanche.html`; ảnh trước ở `before3/` (55 trang × 3 cỡ), sau ở `after3/` (54 trang × 1920×1080, 1366×768, 390×844; đoạn dẫn Chương 1 gộp lại vào trang bìa chương). Bản in (A4) 82 trang, nền trắng.
 
 ## 1. Phong cách
 
-**Ý tưởng:** hai dòng vốn đối lập chạy suốt trang: **xanh navy = BQLDA** (hạch toán "vốn"), **cam = Doanh nghiệp** (hạch toán "kết quả"). Mọi trang trí xoay quanh hai biểu tượng của nghề: **tài khoản chữ T (Nợ | Có)** và **dòng kẻ sổ**. Vàng sổ (#E8B84A) chỉ dùng để nhấn: ghim, gạch dưới kép, kẻ lề.
-
-| Vai trò | Nền sáng (nội dung) | Nền tối |
-|---|---|---|
-| Nền giấy / thẻ | #FAF8F3 / #FFFFFF | #0D1626 / #14223A |
-| Mực / mực phụ | #12151C / #4A505C | #E9EEF5 / #A9B6C8 |
-| Đường kẻ | #E6ECF3, #CDD6E1 | #22324B, #33476A |
-| BQLDA (chữ / tô) | #1F4E79 / #1F4E79 → #3B82C4 | #8CC0F0 / #3B82C4 → #74ADE6 |
-| Doanh nghiệp (chữ / tô) | #A94A0B / #C55A11 → #F08A3C | #F5A266 / #E07A35 → #F5A266 |
-| Hero, bìa chương | Navy sâu #0B1F3A (luôn tối) | như bên trái |
-
-Khai báo bằng CSS custom properties trong `:root` và `:root[data-theme="dark"]`.
-
-**Chữ** (tự host, đủ bộ ký tự tiếng Việt): tiêu đề **Fraunces** (serif có cá tính; thêm 300/400/600/700 từ `@fontsource/fraunces` 5.3.0, giấy phép OFL, bổ sung vào `fonts/LICENSE-OFL.txt`); đoạn văn Source Serif 4; giao diện Be Vietnam Pro; số và định khoản IBM Plex Mono, `tabular-nums`. Thang chữ ở 1920×1080: chữ gốc 21px, tiêu đề mục ~64px (tiêu đề dài trên 70 ký tự ~50px để không quá 4 dòng), tên chương ~69px, số mục bên lề 36px, thẻ số nổi bật ~123px.
-
-**Bố cục:** lưới 12 cột (khung nội dung tối đa 1240px), đoạn văn chiếm 9 cột, hình/bảng 12 cột; lề trái có số mục lớn (1.1, 2.3…) kiểu chú thích sổ cái, cạnh đường kẻ lề đôi màu vàng; nền mỗi trang có dòng kẻ ngang rất mờ. Bo góc 4–6px, đường kẻ mảnh, bóng nhẹ hai lớp; không gradient tím–hồng, không kính mờ, không emoji, không khẩu hiệu.
-
-## 2. Thay đổi chính
-
-| Phần | Đã làm |
+| Thành phần | Giá trị |
 |---|---|
-| **Màn mở đầu** | 1,5 giây: nét chữ T được vẽ (thanh ngang → thân → gạch dưới xanh/cam), rồi mở vào hero. Nút "Bỏ qua", phím bất kỳ cũng bỏ qua; chỉ chạy lần đầu trong phiên; tắt khi `prefers-reduced-motion` hoặc `?nointro=1`. |
-| **Hero 3D** (`assets/hero3d.js`, Three.js r155 bản local `vendor/three.min.js`) | Chữ "T" đùn khối có vát cạnh, gạch dưới kép vàng và đường kẻ Nợ/Có; hai dòng khối nhỏ (InstancedMesh) chảy vào hai đầu thanh ngang: trái xanh (vốn), phải cam (kết quả). Đèn chính đổ bóng mềm (PCFSoft), đèn viền xanh bên trái, cam bên phải, sương mù theo độ sâu, hai lớp hạt bụi sáng (gần: to, mờ; xa: nhỏ, sắc) để gợi độ sâu trường ảnh. Chuột làm cảnh nghiêng nhẹ; cuộn trang làm máy ảnh lùi và cảnh mờ dần. Chữ hero: tên trường, môn, chủ đề (nguyên văn, hiện từng dòng bằng mask), Nhóm 2, sinh viên + MSSV, năm 2026, logo NEU; chỉ báo "cuộn xuống" là một vạch chạy; vòng sáng nhỏ quanh con trỏ chỉ trong hero (tắt trên màn cảm ứng). |
-| **Hiệu năng 3D** | Trần 60 FPS; dừng vẽ khi tab ẩn, khi hero ra khỏi màn hình (IntersectionObserver + vị trí cuộn); pixel ratio tối đa 2; tự hạ chất lượng khi FPS < 45 (bước 1: pixel ratio 1, bóng thường; bước 2: bỏ bóng, vật liệu Lambert, bỏ đèn điểm và lớp hạt gần, pixel ratio 0,75). Dự phòng **SVG tĩnh cùng bố cục** khi: không có WebGL, `navigator.hardwareConcurrency ≤ 2` hoặc `deviceMemory ≤ 2`, `prefers-reduced-motion`, hoặc `?no3d=1` (`?force3d=1` để ép 3D trên máy yếu). |
-| **Trang bìa chương** | Toàn màn hình, số chương cực lớn dạng viền mờ (parallax nhẹ khi cuộn), dòng "Chương n", tên chương, danh sách mục con có liên kết. Chương 1 navy, Chương 2 chia đôi chéo xanh/cam, Chương 3 kem. Vào màn hình bằng hiệu ứng mở khung `clip-path`. Đoạn dẫn nhập Chương 1 được tách sang trang ngay sau bìa (thứ tự giữ nguyên). |
-| **Điều hướng** | Cột trái "mục lục sổ cái": chấm tiến độ trên một đường kẻ dọc, mục đã qua tô xám, mục đang xem sáng màu theo ngữ cảnh (xanh, cam, hoặc nửa xanh nửa cam ở trang so sánh); thu thành ngăn kéo "Mục lục" khi màn hình ≤ 1200px. Thanh tiến độ mảnh phía trên chuyển xanh → cam; nhãn vị trí "1.2.4 / Chương 1". Chân trang theo yêu cầu. |
-| **Bảng** | Giữ `<table>` thật; đầu cột BQLDA navy có gạch xanh sáng, Doanh nghiệp cam đậm có gạch cam sáng; dòng kẻ sổ; hàng sáng nhẹ khi rê chuột; dòng tổng gạch dưới kép; nút **ghim hàng** (biểu tượng ghim) để giữ một hàng nổi bật khi trình chiếu. Trên điện thoại (≤ 640px) bảng chữ chuyển thành **thẻ xếp dọc**, mỗi ô có nhãn cột màu xanh/cam; bảng số giữ dạng bảng cuộn ngang. |
-| **Thẻ, danh sách** | Mẫu biểu B01…B04 có số tem 01–05; kiến nghị 01/02 số viền lớn; "Nhận xét", "Tóm tắt chương" thành thẻ kết chương với dấu tick kiểu sổ, viền trái nửa xanh nửa cam. |
-| **Hình 1.1** | Chevron lớn, chọn giai đoạn thì một vệt sáng vàng quét qua chevron và một thanh sáng chạy dưới hàng chevron; hai cột công việc trượt vào. |
-| **Hình 1.2** | Đường nối từ gốc tới ba nhánh vẽ dần khi vào màn hình (SVG theo vị trí thật); chọn một nhánh thì nhánh đó phóng nhẹ, hai nhánh còn lại mờ đi, đường nối của nhánh được tô đậm. |
-| **Lưu ý hiệu lực pháp lý** | Ghi chú giấy vàng sổ, ghim tròn, con dấu vòng tròn mờ, nghiêng −0,4°. |
-| **Hình 1.3** | Đường dẫn vàng giữa hai cột lớn dần theo bước, số bước hiện tại sáng vàng; nút lớn "Bước trước / Bước tiếp / Hiện tất cả"; phím **Space** chạy bước tiếp khi Hình 1.3 đang ở giữa màn hình. |
-| **Bảng 1.5 (chữ T)** | Kẻ T đậm 3px; số hiện dần theo thứ tự định khoản và **mũi tên động** nối số bên Nợ sang số bên Có của cùng một định khoản, màu theo BQLDA/Doanh nghiệp. |
-| **Biểu đồ** | Vẫn là SVG phẳng tự vẽ, trục từ 0, nhãn trực tiếp. Lưới mờ hơn, cột có gradient nhẹ cùng màu, cột/thanh mọc khi vào màn hình rồi nhãn số hiện sau, tooltip nền navy viền vàng hiện số gốc. Áp dụng cho Hình 1.4, Bảng 2.2, thác nước B02, dòng tiền Hòa Phát, F02, Bảng 2.8, 2.9, 2.10, thanh thời hạn 30/90 ngày. |
-| **Thẻ số nổi bật** | 199,464 · 191,325 · 224,490 (đã có), thêm 93,6% · 94,6% · 28,4% (Bảng 2.2), 188,717 tỷ đồng (Bảng 2.5), 186,743 tỷ đồng (Bảng 2.8), 61,3% (thanh tiến độ). Cỡ ~123px ở 1920px, đếm lên khi cuộn tới, đơn vị và nguồn ghi rõ. Chỉ dùng số in trong bài. |
-| **So sánh phân đôi** | Cạnh Bảng 2.2: hai cột cơ cấu Tài sản/Nguồn vốn của BQLDA (nền xanh) và Hòa Phát (nền cam) chồng lên nhau, kéo thanh ngăn vàng ở giữa (hoặc phím mũi tên) để so; lần đầu vào màn hình thanh ngăn tự lắc nhẹ để gợi ý. Chỉ dùng % của Bảng 2.2. |
-| **Dòng thời gian** | Trục ngang tỉ lệ 2012–2027, cuộn ngang trên màn hẹp; đường trục chạy dần, bốn thẻ văn bản hiện lần lượt, đường nối nét đứt từ mốc tới thẻ. |
-| **Chứng từ gốc** | Mỗi ảnh là một "tờ giấy" có góc gấp, nghiêng ±1°, bóng nghiêng; rê chuột thì nâng lên và thẳng lại. Hộp xem ảnh mới: nền tối, lăn chuột để phóng (quanh vị trí con trỏ), kéo thả, nhấp đúp phóng 2×, nút −/Vừa khung/+, phím + − 0 và mũi tên, Esc đóng, Tab vòng trong hộp. |
-| **Biểu tượng** | Bộ SVG tự vẽ nét 1,5px: sổ cái, công trình, dấu tích, đồng hồ, mũi tên, ghim, chữ T, cân. |
-| **Chuyển động** | Một bảng thời gian chung: `cubic-bezier(.2,.7,.2,1)`, 500–700ms, các phần tử trong một trang lệch nhau 60ms. Không nhấp nháy, không xoay liên tục. `prefers-reduced-motion`: tắt màn mở đầu, cảnh 3D (thay SVG tĩnh), hiện dần, clip-path, mọc cột, mũi tên, parallax, vòng con trỏ. |
-| **Sáng/tối** | Mặc định sáng cho nội dung; hero và bìa chương luôn tối; nút "Nền tối" lưu bằng `localStorage` (bọc try/catch). |
-| **In** | Ẩn màn mở đầu, canvas, thanh điều hướng, thẻ trang trí, hình phân đôi; hero in thành bìa chữ đen; mỗi trang một phần, bảng không tách, "Xem chi tiết" mở hết, ảnh tải ngay. |
+| Nền / panel | #070A12 → #0B1020; panel #0E1424; đường kẻ rgba(255,255,255,.10) |
+| Chữ / chữ phụ | #F2F5FF (18,2:1 trên nền) / #9AA4BF (8,0:1) |
+| Xanh điện (nút, khối đang chọn, cột BQLDA) | #2F4BFF; dải lụa #1A2A6C → #7F9CFF |
+| Doanh nghiệp | đồng #E08B4F (chữ #E89A63) |
+| Chữ | Be Vietnam Pro 300–400 cho tiêu đề lớn và thân bài (thêm bộ 300 có tiếng Việt), Playfair Display Italic cho từ then chốt in nghiêng (thêm 400/500 italic có tiếng Việt), IBM Plex Mono cho số và định khoản |
+| Chế độ đọc | nền kem #F7F3EA, chữ #141821, chữ ×1,12, tắt 3D và chuyển động |
 
-## 3. Kiểm tra
+**Bố cục:** thanh trên mỏng (tên môn trái · bốn liên kết chương giữa · Mục lục, Trình chiếu, A−, A+ và nút trắng "Chế độ đọc" phải); hero có cột "Cuộn xuống" dọc bên trái, nhãn nhỏ viết hoa, tiêu đề đề tài nguyên văn với cụm "*chế độ kế toán*" in nghiêng serif, dòng nhóm/sinh viên/năm, hai nút "Vào bài →" và "Chế độ đọc", hàng "Văn bản trọng tâm" (TT 195/2012 · TT 200/2014 · TT 79/2019 · TT 99/2025) thay hàng logo của mẫu. Mỗi chương mở bằng hai cột: nhãn "CHƯƠNG n" và tên chương bên trái, đoạn dẫn của bài bên phải, dưới là lưới 3 cột kẻ mảnh cho các mục con. Mỗi trang có nhãn "CHƯƠNG n / x.y"; trang mở mục đặt tiêu đề trái, đoạn mô tả phải. Phần mở đầu và ba tình huống Bảng 2.12 dùng lưới 3 cột kẻ mảnh.
 
-| Kiểm tra | Cách làm | Kết quả |
+**Thành phần:**
+- Hình 1.1: thanh ngang ba giai đoạn, giai đoạn đang chọn là khối xanh điện, nút ‹ › và chấm trang; hai cột nhiệm vụ trượt vào.
+- Hình 1.3: thanh 5 bước (Bước 01–05), bước hiện tại khối xanh điện; vẫn có nút Bước trước / Bước tiếp / Hiện tất cả và phím Space.
+- Bảng 1.4: danh sách năm tiêu chí có mũi tên →; rê chuột, bấm hoặc Tab mở khung bên phải so sánh BQLDA | Doanh nghiệp (nội dung chép từ chính bảng); bảng gốc vẫn ở dưới.
+- Hình 1.2: cây ba nhánh, đường mảnh vẽ dần, nhánh chọn sáng lên và đường nối đậm hơn.
+- Bảng: `<table>` thật, kẻ mảnh, đầu bảng cố định dưới thanh trên khi cuộn, số căn phải; ≤ 640px thành thẻ dọc.
+- Ảnh chứng từ: khung viền mảnh, bóng nhẹ; hộp phóng to (lăn chuột, kéo, Esc).
+
+## 2. Cảnh 3D "lụa chrome" (`assets/silk.js`)
+
+Một canvas WebGL cố định phía sau nội dung. `THREE.ShaderMaterial` tự viết: lưới phẳng 180×68 ô dịch đỉnh bằng simplex noise 3D (hai tầng) cộng sóng chéo theo thời gian chậm; pháp tuyến tính lại từ đạo hàm; fragment giả phản chiếu môi trường (dải sáng ngang + trời tối theo hướng phản chiếu), fresnel, specular mềm, mép dải mờ dần. Dùng `three.min.js` r155 toàn cục (`vendor/`), không module, nên mở bằng file:// được.
+
+- Theo mục đang xem, cùng một mesh nội suy vị trí/tỉ lệ/góc: **hero** (lớn, nửa phải) → **bìa chương** (bên phải) → **dải ngang** dưới các thanh bước (Hình 1.1, 1.3, Bảng 1.5) → **góc dưới phải, nhỏ, mờ** ở các mục có bảng/biểu đồ để không che số.
+- Màu qua uniform: xanh (BQLDA) ở mục thường; đồng ở mục Doanh nghiệp (1.2.3); hai màu chia trái/phải ở các mục so sánh (bảng so sánh, Bảng 2.2, Chương 2).
+- Chuột làm nghiêng nhẹ. Trần 60 FPS, pixel ratio ≤ 2, dừng khi tab ẩn hoặc bật Chế độ đọc; tự hạ lưới và độ phân giải khi FPS < 45.
+- Dự phòng `.silk-fallback` (CSS gradient cùng vị trí hero) khi không có WebGL, `?no3d=1`, `prefers-reduced-motion` hoặc Chế độ đọc.
+
+## 3. Trực quan hóa V1–V13
+
+Mỗi biểu đồ là SVG có `data-viz="Vn"`, nằm trong panel có nhãn "HÌNH / <nguồn>", tiêu đề, đơn vị, nút "Xem bảng số liệu"; nét mảnh, lưới mờ, nhãn trực tiếp, mọc khi cuộn, tooltip tối viền mảnh, điểm dữ liệu nhận Tab và phím ← →.
+
+| # | Biểu đồ | Nguồn số |
 |---|---|---|
-| (a) Chữ trước/sau | `tools/snap_text.js` lưu `before_text.txt` (innerText) và `before_text_content.txt` (chữ trong `<main>`, kể cả tab ẩn, bỏ `[data-ui]`, biểu đồ sinh bằng JS, `svg`, `.sr-only`) trước khi sửa; chạy lại sau khi sửa (`after_text*.txt`); `tools/compare_text.py` so theo chuỗi từ (bỏ khác biệt khoảng trắng và chữ hoa do CSS) → `text_compare.md`. | Nội dung: **13.974 / 13.974 từ, 0 chỗ khác**. innerText toàn trang: các chỗ thêm đều là nhãn giao diện đã khai trong `added_content.md` mục 6 (tên mục trên bìa chương, nhãn "Chương 1 · Dẫn nhập", "Space", hình phân đôi, thẻ số nổi bật, chân trang). |
-| (b) Ảnh chụp | `tools/shoot.js` từng trang ở 1920×1080, 1366×768, 390×844 → `after/`; ảnh trước khi sửa ở `before/` (1920×1080, 390×844). | 55 trang × 3 kích thước = 165 ảnh (JPEG). Không cuộn ngang ở cả 3 cỡ (`scrollWidth − innerWidth = 0`), 0 lỗi console, 0 yêu cầu mạng, đủ 14 kiểu phông (gồm Fraunces 300/400/600/700). Đã xem từng ảnh và sửa: số mục bên lề của trang "Bảng/Hình" lấy nhầm số bảng (nay dùng số mục đứng trước); số chương viền bị lệch vào giữa; nhãn so sánh phân đôi bị cắt trên điện thoại; Bảng 2.2 bị chật khi đặt cạnh hình phân đôi ở 1366px (nay xếp dọc dưới 1500px); chữ T che tiêu đề ở 1366px và điện thoại (thu hẹp canvas, lùi máy ảnh theo tỉ lệ khung); mũi tên chữ T đi qua tiêu đề tài khoản (nay vòng xuống dưới). Biểu đồ trong ảnh được chụp ở trạng thái đã mọc xong (script bỏ trạng thái chờ cuộn). |
-| (c) Hiệu năng | `tools/perf.js`, Chromium headless **không có GPU** (WebGL chạy bằng SwiftShader, dựng hình bằng CPU 4 nhân). | FPS cảnh hero (SwiftShader, sau khi tự hạ chất lượng): 1920×1080: 10–16; 1366×768: 16–26; 390×844 (DPR 2): 54–58. Khi hero ra khỏi màn hình: 0 khung được vẽ thêm. `?no3d=1` và `prefers-reduced-motion`: dùng SVG dự phòng, không tạo WebGL. Chặn mạng: 0 yêu cầu; console sạch ở mọi trường hợp. FPS khi cuộn nội dung (requestAnimationFrame, cuộn 12px/khung, dựng hình bằng CPU): 61 với giảm chuyển động; 28–44 với `?no3d=1`; 12–20 khi trang vừa tải xong ở 1920/1366 (đang chạy các hiệu ứng hiện dần). **Mục tiêu ≥ 50 FPS trên máy thường (có GPU) chưa đo được trong môi trường này**; số trên là cận dưới trên CPU. |
-| (d) Tương tác | `tools/interact.js` | Đạt: 3 tab Hình 1.1; 3 nhánh Hình 1.2 (nhánh chọn nổi lên, lớp `focus`); Bước tiếp/Bước trước/Hiện tất cả và phím Space (2 lần Space → còn 2 bước chờ); 4 tab chữ T; 11 bảng so sánh × 3 chế độ cột + lọc tiêu chí; ghim hàng; thanh ngăn phân đôi (4% → 96% bằng phím Home/End); 16/16 ô ảnh mở/đóng bằng Esc; lăn chuột phóng 100% → 115%, kéo thả có dịch, "Vừa khung" về 100%; ← → PageUp PageDown; Trình chiếu ẩn thanh trái, Esc thoát; Nền tối; sự kiện in mở hết "Xem chi tiết"; màn mở đầu chạy và nút Bỏ qua hoạt động. 0 ảnh thiếu alt, 0 `th` thiếu scope, 61 điểm dữ liệu biểu đồ nhận tiêu điểm bàn phím. |
-| Tương phản | `tools/check_contrast.js` (sau 0,9 giây để hết hiệu ứng chuyển màu) | Nền sáng 1.229 phần tử chữ, nền tối 1.309: **0 phần tử dưới mức AA**. Bỏ qua chữ số viền trong suốt mang tính trang trí ("01", "02", "03" trên bìa chương, `aria-hidden`). Đã sửa trong quá trình làm: nút công cụ trên nền tối, chữ trắng trên cột xanh/cam của hình phân đôi, số mục vàng trên bìa Chương 3, số thứ tự Phần mở đầu. |
-| (e) Bản một tệp | `python3 tools/build.py` nhúng font, CSS, JS, Three.js, ảnh (base64) | `dist/KeToanDuAn_standalone.html` 2,95 MB (giới hạn 15 MB, không cần giảm chất lượng ảnh). Chặn mạng vẫn chạy: chữ nội dung trùng 100% với bản trước, cảnh 3D chạy (WebGL), 16/16 ảnh, hình phân đôi, ghim, màn mở đầu; console sạch. |
+| V1 | Tiến độ: 186,743 + 4,582 = lũy kế 191,325 trên 312 tỷ đồng, 61,3%; mốc 2013–2016, 05/03/2013, 31/12/2015, 20/01/2016 | mục 2.1.1–2.1.2, Bảng 2.6.1, Bảng 2.7 |
+| V2 | Thác nước TK 241: 121,586 → +69,739 → −4,582 → 186,743 | Bảng 2.8 |
+| V3 | Thác nước B02-CĐT: 129,450 → +63,850 (60,650 tiền; 3,200 vật tư, thiết bị) → −4,582 → 188,717 | Bảng 2.5, 2.6, mục 2.1.2 |
+| V4 | F02: 102,590 (54,4%) · 86,127 (45,6%) | Bảng 2.5, 2.6 |
+| V5 | Bảng 2.2: 6,0/94,0 (XDCB 93,6); 5,4/94,6; 38,6/61,4 (XDCB 28,4); 48,9/51,1; kèm hình phân đôi kéo thanh ngăn | Bảng 2.2 |
+| V6 | Thanh ngang đã sắp xếp: TK 241 theo nội dung chi phí và theo hạng mục (hạng mục 7 ghi riêng) | Bảng 2.8, 2.9 |
+| V7 | Dumbbell 11 khoản 2014 → 2015, khoản 1 tách hàng với thang riêng; tổng 2.146,45 / 2.010,3; "tăng 6,8%", "47,4%" như bài | Bảng 2.10 |
+| V8 | Cầu dòng tiền Hòa Phát: 12,252; +6,608; (29,788); +17,815; 6,888; ghi chú chưa gồm ảnh hưởng tỷ giá (Hình 2.9) | Bảng 2.5, Hình 2.9 |
+| V9 | Doanh thu thuần 138,855 → giá vốn −120,358 → lợi nhuận gộp 18,498 (biên 13,3%); trước thuế 13,694; sau thuế 12,020 (8,7%); bảng đối chiếu các khoản khác | Bảng 2.7 |
+| V10 | Bullet chart thời hạn: Hòa Phát 24/03/2025 · 83 ngày, hạn 90; BQLDA hạn 30, "Lập ngày 20/01/2016 · đúng hạn trong vòng 30 ngày" (không tính số ngày); Hình 1.4 vẽ lại 20/20/45 và 30/90/30 ngày, chú thích (*) nguyên văn | Bảng 2.6.3, Hình 1.4 |
+| V11 | Tài khoản chữ T dạng SVG theo 4 nghiệp vụ, số hiện theo thứ tự định khoản, đường nối Nợ → Có | Bảng 1.5 |
+| V12 | Dòng thời gian văn bản: trục 2012–2027 có dải theo văn bản, 4 cột thẻ (15/11/2012 & 01/01/2013 TT 195; 22/12/2014 & 01/01/2015 TT 200; 14/11/2019 TT 79; 27/10/2025 & 01/01/2026 TT 99) nối bằng đường đứt | mục 1.2.1–1.2.4, Bảng 1.3, TLTK [3]–[6] |
+| V13 | Thẻ số lớn dạng SVG đếm lên khi cuộn: 199,464 · 191,325 · 224,490 · 93,6% · 94,6% · 28,4% · 188,717 · 186,743 · 12,020 · 61,3% · 83 ngày | Bảng 2.2, 2.5, 2.7, 2.8, 2.6.1, 2.6.3, mục 2.1.2 |
 
-## 4. Hạn chế, chưa làm được
+## 4. Kiểm tra
 
-- **FPS trên máy có GPU chưa đo được**: container không có GPU, WebGL chạy bằng SwiftShader nên cảnh hero chỉ đạt 10–26 FPS ở 1920/1366 (54–58 FPS ở khung điện thoại). Trang tự hạ chất lượng (bỏ bóng, vật liệu đơn giản hơn) để giữ cảnh; trên máy thật nên mở trang, xem `window.__hero3d.fps` trong console để kiểm tra mục tiêu ≥ 50 FPS. Khi bị hạ xuống mức thấp nhất, chữ T trông tối hơn vì dùng vật liệu Lambert.
-- **Độ sâu trường ảnh** là giả lập (sương mù theo độ sâu + hai lớp hạt kích thước khác nhau), không dùng bộ lọc bokeh hậu kỳ vì bản `three.min.js` không kèm các pass hậu kỳ.
-- `three.min.js` r155 tự in một cảnh báo "build/three.min.js deprecated" khi tải; trang lọc riêng câu cảnh báo đó (bọc `console.warn` trong lúc nạp rồi trả lại) để console sạch. Không sửa tệp thư viện.
-- Cuộn trang khi dựng hình bằng CPU còn 12–44 FPS tùy kích thước (dòng kẻ nền, hiệu ứng hiện dần); đã bỏ `mask-image`, `backdrop-filter` để nhẹ hơn (30 → 44 FPS ở 1920 với `?no3d=1`).
-- innerText toàn trang có thêm các nhãn giao diện liệt kê ở `added_content.md` mục 6 (danh sách mục con trên bìa chương, thẻ số nổi bật, hình phân đôi, chân trang, "Space", "Chương 1 · Dẫn nhập"); chữ nội dung trong `<main>` trùng 100%.
-- Ảnh `before/` chỉ chụp ở 1920×1080 và 390×844 (chưa có 1366×768 trước khi sửa). Ảnh lưu JPEG (chất lượng 68) để kho nhẹ hơn.
-- Khi in, hình so sánh phân đôi, thẻ số nổi bật và mũi tên chữ T bị ẩn (chỉ là trang trí trùng số với bảng); biểu đồ thác nước in ra khá lớn.
-- Trên điện thoại, bảng số (Bảng 2.2, 2.6, 2.8, 2.9, 2.10) vẫn là bảng cuộn ngang, không chuyển thành thẻ, để giữ cột số thẳng hàng.
-- Màn mở đầu chỉ chạy lần đầu trong phiên (sessionStorage); thêm `?nointro=1` để bỏ hẳn.
+| Kiểm tra | Công cụ | Kết quả |
+|---|---|---|
+| Đủ V1–V13 | `tools/check_viz_dom.js` (selector `[data-viz]`) | 22 SVG, đủ **13/13**; 128 số hiển thị trên biểu đồ đều có trong `viz_data.json` (không tính mốc trục) |
+| Số trong viz_data.json có trong PDF | `tools/check_viz_numbers.py` | **148/148** số khác nhau (240 lần xuất hiện) tìm thấy trong chữ PDF |
+| Chữ trước/sau | `tools/snap_text.js`, `tools/compare_text.py` → `text_compare3.md` | Chữ nội dung **13.974/13.974 từ, 0 chỗ khác**; phần khác của innerText là nhãn giao diện ghi ở `added_content.md` mục 8 |
+| Khả năng đọc | `tools/readability.js` → `readability_report.md` | 0 lỗi tương phản ở chế độ tối và Chế độ đọc; chữ nhỏ nhất 14px, nhãn biểu đồ 14,8px; thân bài 21px, line-height 1,62; ≤ 72 ký tự/dòng; 0 cuộn ngang ở 1366 và 390 |
+| Tương tác | `tools/interact.js` | Đạt: tab Hình 1.1 và nút ‹ › (‹ khóa ở đầu), thanh 5 bước Hình 1.3 + Space, 6/6 hàng tiêu chí mở khung so sánh, cây Hình 1.2, 4 nghiệp vụ chữ T (4/4/5/4 tài khoản), 11 bảng so sánh, ghim hàng, thanh ngăn phân đôi, 13/13 "Xem bảng số liệu", tooltip bàn phím, 16/16 ảnh lightbox (phóng, kéo, Esc), ← → PageUp PageDown, Trình chiếu + Esc, Chế độ đọc (nhớ), A−/A+, "Vào bài →", màn mở đầu chỉ lần đầu; console 0 lỗi, 0 yêu cầu mạng |
+| file:// | mọi script trên mở bằng `file://` | Không lỗi, không module/importmap |
+| `?no3d=1`, `prefers-reduced-motion` | `tools/perf.js` | Dùng nền dự phòng, không tạo WebGL |
+
+## 5. Hiệu năng (đo trong container không có GPU, WebGL qua SwiftShader = dựng hình bằng CPU 4 nhân)
+
+| Khung | FPS cảnh lụa | Ghi chú |
+|---|---|---|
+| 1920×1080 | 12–19 | tự hạ xuống mức thấp nhất (lưới 72 ô, pixel ratio 0,6) |
+| 1366×768 | 18–33 | mức thấp nhất |
+| 390×844 (DPR 2) | 49–60 | đạt mục tiêu ≥ 50 sau vài giây |
+| Tab ẩn | 0 khung | dừng vẽ |
+
+**Mục tiêu ≥ 50 FPS ở 1920/1366 chưa xác nhận được** vì môi trường không có GPU; trên máy có card đồ họa, mở trang và xem `window.__silk.fps` trong console để đo.
+
+## 6. Hạn chế
+
+- FPS màn lớn như trên (chỉ đo được bằng CPU). Khi tự hạ chất lượng, mặt lụa thô hơn.
+- Bản đồ ma trận V12 cũ (5 tiêu chí × 2 ô) được thay bằng danh sách tiêu chí + khung so sánh theo yêu cầu mới; V12 nay là dòng thời gian văn bản pháp lý.
+- Ở màn ≤ 1100px các liên kết chương trên thanh trên ẩn (dùng nút "Mục lục"); ở ≤ 760px ẩn nút "Trình chiếu".
+- Khi in: ẩn thanh trên, canvas, hàng "Văn bản trọng tâm", nút, thanh bước, danh sách tiêu chí; bảng và chữ giữ nguyên.
+- Cảnh 3D chỉ trang trí, không mang số liệu; biểu đồ luôn là SVG phẳng.

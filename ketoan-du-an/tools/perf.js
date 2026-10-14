@@ -14,14 +14,14 @@ const path = require('path');
     p.on('pageerror', e => logs.push('pageerror: ' + e.message));
     await p.goto(file + q); await p.waitForTimeout(opts.wait || 9000);
     const r = await p.evaluate(() => {
-      const h = window.__hero3d || {}; const c = document.querySelector('.hero-canvas');
-      return { mode: h.mode, reason: h.reason, quality: h.quality, fps: (h.fps || []).slice(), canvas: c ? [c.width, c.height] : null, fallbackVisible: getComputedStyle(document.querySelector('.hero-fallback')).display !== 'none', introHidden: document.getElementById('intro').hidden };
+      const h = window.__silk || window.__hero3d || {}; const c = document.querySelector('.silk-canvas') || document.querySelector('.hero-canvas');
+      return { mode: h.mode, reason: h.reason, quality: h.quality, fps: (h.fps || []).slice(), canvas: c ? [c.width, c.height] : null, fallbackVisible: !document.documentElement.classList.contains('silk-on') && getComputedStyle(document.querySelector('.silk-fallback')).display !== 'none', introHidden: document.getElementById('intro').hidden };
     });
     // FPS khi cuộn qua nội dung (không có cảnh 3D trên màn hình): đếm requestAnimationFrame
     r.scrollFps = await p.evaluate(() => new Promise(res => { document.documentElement.style.scrollBehavior = 'auto'; let n = 0; const t0 = performance.now(); scrollTo(0, innerHeight * 3); (function f(t) { n++; scrollBy(0, 12); if (t - t0 < 2000) requestAnimationFrame(f); else res(Math.round(n * 1000 / (t - t0))); })(t0); }));
     // dừng render khi hero ra khỏi màn hình
-    const before = await p.evaluate(() => (window.__hero3d || {}).frames || 0); await p.waitForTimeout(1500);
-    r.framesWhileHidden = (await p.evaluate(() => (window.__hero3d || {}).frames || 0)) - before; r.scrollYAfter = await p.evaluate(() => Math.round(scrollY));
+    const before = await p.evaluate(() => { Object.defineProperty(document, 'hidden', { value: true, configurable: true }); document.dispatchEvent(new Event('visibilitychange')); return (window.__silk || {}).frames || 0; }); await p.waitForTimeout(1500);
+    r.framesWhileTabHidden = (await p.evaluate(() => (window.__silk || {}).frames || 0)) - before; r.scrollYAfter = await p.evaluate(() => Math.round(scrollY));
     r.net = net.length; r.console = logs;
     out[name] = r; await ctx.close();
   }

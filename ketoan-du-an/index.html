@@ -40,12 +40,23 @@ window.COVER = {
   <svg class="intro-t" viewBox="0 0 200 160"><path class="it-h" d="M20 30 H180"/><path class="it-v" d="M100 30 V140"/><path class="it-u1" d="M40 44 H90"/><path class="it-u2" d="M110 44 H160"/></svg>
   <button type="button" class="intro-skip" tabindex="-1">Bỏ qua</button>
 </div>
-<div class="topbar" aria-hidden="true" data-ui><div class="progress"></div><p class="where"><span class="where-sec"></span><span class="where-ch"></span></p></div>
-<div class="tools" data-ui>
-  <button type="button" class="tool menu-btn" id="btn-menu" aria-expanded="false" aria-controls="side" data-added>Mục lục</button>
-  <button type="button" class="tool" id="btn-present" aria-pressed="false" title="Phím: ← → hoặc PageUp/PageDown chuyển mục; F toàn màn hình; Esc thoát" data-added>Trình chiếu</button>
-  <button type="button" class="tool" id="btn-theme" aria-pressed="false" data-added>Nền tối</button>
-</div>
+<!-- canvas WebGL cố định phía sau nội dung: "lụa chrome" (chỉ trang trí) -->
+<canvas class="silk-canvas" aria-hidden="true" data-ui></canvas>
+<div class="silk-fallback" aria-hidden="true" data-ui></div>
+<header class="nav" data-ui>
+  <a class="nav-brand" href="#bia"><img src="assets/logo-neu.png" alt="" width="28" height="28"><span data-added>Kế toán dự án đầu tư xây dựng</span></a>
+  <nav class="nav-ch" aria-label="Các chương"><a href="#chuong-1">Chương 1</a><a href="#chuong-2">Chương 2</a><a href="#chuong-3">Chương 3</a><a href="#ket-luan">Kết luận</a></nav>
+  <div class="nav-tools">
+    <button type="button" class="tool menu-btn" id="btn-menu" aria-expanded="false" aria-controls="side" data-added>Mục lục</button>
+    <button type="button" class="tool" id="btn-present" aria-pressed="false" title="Phím: ← → hoặc PageUp/PageDown chuyển mục; F toàn màn hình; Esc thoát" data-added>Trình chiếu</button>
+    <button type="button" class="tool fz" id="fz-dn" aria-label="Giảm cỡ chữ">A−</button>
+    <button type="button" class="tool fz" id="fz-up" aria-label="Tăng cỡ chữ">A+</button>
+    <button type="button" class="tool tool-cta" id="btn-reading" aria-pressed="false">Chế độ đọc</button>
+    <button type="button" class="tool" id="btn-theme" aria-pressed="false" hidden data-added>Nền tối</button>
+  </div>
+  <div class="progress"></div>
+</header>
+<div class="topbar" aria-hidden="true" data-ui><p class="where"><span class="where-sec"></span><span class="where-ch"></span></p></div>
 <aside class="side" id="side" aria-label="Điều hướng" data-ui>
   <div class="side-brand"><img src="assets/logo-neu.png" alt="" width="40" height="40"><p data-added>Kế toán dự án đầu tư xây dựng<small>Nhóm 2 · NEU</small></p></div>
   <nav aria-label="Các mục của bài"><ol id="side-nav"></ol></nav>
@@ -53,36 +64,10 @@ window.COVER = {
 <div class="cursor-ring" aria-hidden="true" data-ui></div>
 <main id="main">
 <!-- ============ HERO / BÌA (dữ liệu lấy từ window.COVER ở đầu trang) ============ -->
-<section class="slide cover hero" id="bia" data-nav="Bìa" aria-label="Bìa">
-  <div class="hero-bg" aria-hidden="true" data-ui></div>
-  <canvas class="hero-canvas" aria-hidden="true" data-ui></canvas>
-  <!-- phương án dự phòng không-3D: cùng bố cục, vẽ tĩnh -->
-  <svg class="hero-fallback" viewBox="0 0 800 600" aria-hidden="true" data-ui>
-    <defs>
-      <linearGradient id="hf-t" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F4F1EA"/><stop offset="1" stop-color="#B9C4D2"/></linearGradient>
-      <linearGradient id="hf-side" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8E9AAB"/><stop offset="1" stop-color="#5D6878"/></linearGradient>
-      <radialGradient id="hf-glow" cx=".5" cy=".55" r=".5"><stop offset="0" stop-color="#3B82C4" stop-opacity=".35"/><stop offset="1" stop-color="#0B1F3A" stop-opacity="0"/></radialGradient>
-    </defs>
-    <ellipse cx="400" cy="330" rx="360" ry="260" fill="url(#hf-glow)"/>
-    <ellipse cx="410" cy="505" rx="210" ry="22" fill="#000" opacity=".28"/>
-    <!-- khối chữ T: mặt bên + mặt trước -->
-    <path d="M262 168 h300 l18 -14 h-300 z" fill="#DCE3EC"/>
-    <path d="M562 168 l18 -14 v58 l-18 14 z" fill="url(#hf-side)"/>
-    <path d="M443 226 l18 -14 v272 l-18 14 z" fill="url(#hf-side)"/>
-    <path d="M262 168 h300 v58 h-119 v272 h-62 v-272 h-119 z" fill="url(#hf-t)"/>
-    <path d="M262 168 h300" stroke="#E8B84A" stroke-width="2"/>
-    <!-- dòng khối xanh (vốn) bên trái, cam (kết quả) bên phải -->
-    <g fill="#3B82C4">
-      <rect x="70" y="250" width="16" height="16" opacity=".35"/><rect x="112" y="236" width="16" height="16" opacity=".45"/><rect x="152" y="222" width="18" height="18" opacity=".6"/><rect x="194" y="206" width="18" height="18" opacity=".75"/><rect x="232" y="192" width="20" height="20" opacity=".9"/>
-      <rect x="96" y="290" width="12" height="12" opacity=".3"/><rect x="140" y="272" width="14" height="14" opacity=".4"/><rect x="182" y="256" width="14" height="14" opacity=".55"/>
-    </g>
-    <g fill="#F08A3C">
-      <rect x="590" y="192" width="20" height="20" opacity=".9"/><rect x="630" y="206" width="18" height="18" opacity=".75"/><rect x="672" y="222" width="18" height="18" opacity=".6"/><rect x="712" y="236" width="16" height="16" opacity=".45"/><rect x="752" y="250" width="16" height="16" opacity=".35"/>
-      <rect x="646" y="256" width="14" height="14" opacity=".55"/><rect x="688" y="272" width="14" height="14" opacity=".4"/><rect x="730" y="290" width="12" height="12" opacity=".3"/>
-    </g>
-    <g fill="#E8B84A" opacity=".6"><circle cx="180" cy="120" r="1.6"/><circle cx="330" cy="90" r="1.2"/><circle cx="520" cy="70" r="1.8"/><circle cx="650" cy="130" r="1.3"/><circle cx="120" cy="420" r="1.4"/><circle cx="700" cy="420" r="1.6"/></g>
-  </svg>
+<section class="slide cover hero" id="bia" data-nav="Bìa" data-silk="hero" aria-label="Bìa">
+  <p class="scroll-rail" aria-hidden="true" data-ui><span>Cuộn xuống</span><i></i></p>
   <div class="hero-inner">
+    <p class="hero-kicker" aria-hidden="true" data-ui>Kế toán dự án đầu tư xây dựng · Nhóm 2</p>
     <div class="cover-uni">
       <img class="cover-logo" src="assets/logo-neu.png" width="214" height="215" alt="Logo Trường Đại học Kinh tế Quốc dân (NEU)">
       <div>
@@ -102,8 +87,12 @@ window.COVER = {
       </dl>
       <p class="cover-year" data-cover="year"></p>
     </div>
+    <p class="hero-cta" data-ui><a class="btn-w" href="#muc-luc">Vào bài <span aria-hidden="true">→</span></a><button type="button" class="btn-o" data-reading-toggle>Chế độ đọc</button></p>
   </div>
-  <a class="scroll-cue" href="#muc-luc" aria-label="Cuộn xuống" data-ui><span></span></a>
+  <div class="hero-docs" data-ui>
+    <p class="hd-k" aria-hidden="true">Văn bản trọng tâm</p>
+    <ul aria-label="Văn bản trọng tâm"><li>TT 195/2012/TT-BTC</li><li>TT 200/2014/TT-BTC</li><li>TT 79/2019/TT-BTC</li><li>TT 99/2025/TT-BTC</li></ul>
+  </div>
 </section>
 
 <!-- ============ MỤC LỤC (trang 2 của bài) ============ -->
@@ -167,11 +156,6 @@ window.COVER = {
   <div class="wrap">
     <p class="ch-no" aria-hidden="true">01</p>
     <h2 class="h-chapter" id="h-c1">CHƯƠNG 1. CƠ SỞ LÝ LUẬN VÀ PHÁP LÝ VỀ KẾ TOÁN BAN QUẢN LÝ DỰ ÁN VÀ DOANH NGHIỆP</h2>
-  </div>
-</section>
-
-<section class="slide" id="chuong-1-mo" data-nav="Chương 1 · Dẫn nhập" aria-labelledby="h-c1">
-  <div class="wrap">
     <div class="lead-block">
       <p>Kế toán của một Ban quản lý dự án (BQLDA) và kế toán của một doanh nghiệp đều dựa trên Luật Kế toán và cùng dùng phương pháp ghi sổ kép, nhưng phục vụ hai mục tiêu khác nhau. BQLDA quản lý và quyết toán nguồn vốn đầu tư của từng dự án; doanh nghiệp xác định kết quả kinh doanh của toàn đơn vị. Muốn so sánh hai chế độ kế toán cho chính xác, trước hết cần hiểu dự án là gì, đi qua những giai đoạn nào và kế toán phải làm gì ở từng giai đoạn.</p>
       <p>Chương này vì vậy gồm ba phần: mục 1.1 trình bày tổng quan về dự án và kế toán dự án; mục 1.2 làm rõ khung pháp lý và hai chế độ kế toán áp dụng là Thông tư 195/2012/TT-BTC (BQLDA) và Thông tư 200/2014/TT-BTC (doanh nghiệp); mục 1.3 xác định phạm vi và hệ tiêu chí để so sánh hai chế độ ở các chương sau.</p>
@@ -1178,6 +1162,6 @@ window.COVER = {
 <script src="vendor/three.min.js"></script>
 <script>window.__restoreWarn();</script>
 <script src="assets/app.js"></script>
-<script src="assets/hero3d.js"></script>
+<script src="assets/silk.js"></script>
 </body>
 </html>

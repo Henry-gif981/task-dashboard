@@ -42,7 +42,8 @@
     el.innerHTML = lines.map((l, i) => `<span class="ln"><span style="transition-delay:${200 + i * 90}ms">${esc(l.join(""))}</span></span>`).join("");
   }
   const topic = $(".cover-topic");
-  const splitDone = (topic && !REDUCE) ? (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() => splitLines(topic)) : Promise.resolve();
+  if (topic) { const KEY = "chế độ kế toán", t = topic.textContent, i = t.indexOf(KEY); if (i >= 0) topic.innerHTML = esc(t.slice(0, i)) + `<em class="it">${esc(KEY)}</em>` + esc(t.slice(i + KEY.length)); }
+  const splitDone = Promise.resolve();
   $$(".hero .cover-uni, .hero .cover-subject, .hero .cover-topic-label, .hero .cover-foot").forEach((el, i) => { el.classList.add("reveal-up"); el.style.transitionDelay = (120 + i * 80) + "ms"; });
 
   /* ---------- ghi nhớ (localStorage, bọc try/catch) ---------- */
@@ -123,13 +124,21 @@
   const side = $("#side");
   if (side) {
     const st = document.createElement("div"); st.className = "side-tools"; st.dataset.ui = "";
-    st.innerHTML = `<a href="#muc-luc" class="to-toc">Về mục lục</a><button type="button" id="btn-reading" aria-pressed="${READING}">Chế độ đọc</button><button type="button" class="fz" id="fz-dn" aria-label="Giảm cỡ chữ">A−</button><button type="button" class="fz" id="fz-up" aria-label="Tăng cỡ chữ">A+</button>`;
+    st.innerHTML = `<a href="#muc-luc" class="to-toc">Về mục lục</a>`;
     $(".side-brand", side).after(st);
     $(".to-toc", st).addEventListener("click", () => document.body.classList.remove("menu-open"));
-    $("#btn-reading", st).addEventListener("click", e => { READING = !READING; document.documentElement.classList.toggle("reading", READING); e.currentTarget.setAttribute("aria-pressed", String(READING)); storeSet("kt-reading", READING ? "1" : "0"); window.dispatchEvent(new CustomEvent("kt-reading", { detail: READING })); if (READING) { revealables.forEach(el => el.classList.add("in")); finishCounts(); } setTimeout(redrawAll, 60); });
-    $("#fz-dn", st).addEventListener("click", () => { setFz(fzI - 1); setTimeout(redrawAll, 60); });
-    $("#fz-up", st).addEventListener("click", () => { setFz(fzI + 1); setTimeout(redrawAll, 60); });
   }
+  const readBtns = $$("#btn-reading, [data-reading-toggle]");
+  function setReading(on) {
+    READING = on; const r = document.documentElement; r.classList.toggle("reading", on); r.dataset.theme = on ? "light" : "dark";
+    readBtns.forEach(b => b.setAttribute("aria-pressed", String(on))); storeSet("kt-reading", on ? "1" : "0");
+    window.dispatchEvent(new CustomEvent("kt-reading", { detail: on }));
+    if (on) { revealables.forEach(el => el.classList.add("in")); finishCounts(); }
+    setTimeout(redrawAll, 60);
+  }
+  readBtns.forEach(b => { b.setAttribute("aria-pressed", String(READING)); b.addEventListener("click", () => setReading(!READING)); });
+  $("#fz-dn")?.addEventListener("click", () => { setFz(fzI - 1); setTimeout(redrawAll, 60); });
+  $("#fz-up")?.addEventListener("click", () => { setFz(fzI + 1); setTimeout(redrawAll, 60); });
   const navLinks = nav ? $$("a", nav) : [];
   const bar = $(".progress"), where = $(".where"), whereSec = $(".where-sec"), whereCh = $(".where-ch");
   function current() { const mid = innerHeight * .35; let cur = 0; slides.forEach((s, i) => { if (s.getBoundingClientRect().top <= mid) cur = i; }); return cur; }
@@ -159,8 +168,8 @@
   function setPresent(on) { document.body.classList.toggle("present", on); presentBtn?.setAttribute("aria-pressed", String(on)); setTimeout(() => { hosts && hosts.forEach(h => draw(h)); }, 450); }
   presentBtn?.addEventListener("click", () => setPresent(!document.body.classList.contains("present")));
   const themeBtn = $("#btn-theme");
-  function setTheme(t) { document.documentElement.dataset.theme = t; themeBtn?.setAttribute("aria-pressed", String(t === "dark")); try { localStorage.setItem("kt-theme", t); } catch (e) {} redrawAll(); }
-  let savedTheme = "light"; try { savedTheme = localStorage.getItem("kt-theme") || "light"; } catch (e) {}
+  function setTheme(t) { document.documentElement.dataset.theme = t; themeBtn?.setAttribute("aria-pressed", String(t === "dark")); redrawAll(); }
+  let savedTheme = READING ? "light" : "dark";
   document.documentElement.dataset.theme = savedTheme; themeBtn?.setAttribute("aria-pressed", String(savedTheme === "dark"));
   themeBtn?.addEventListener("click", () => setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark"));
 
@@ -202,8 +211,9 @@
 
   /* ---------- "Xem chi tiết": mở hết khi in ---------- */
   let closedDetails = [];
-  addEventListener("beforeprint", () => { $$("img[loading=lazy]").forEach(i => i.loading = "eager"); closedDetails = $$("details:not([open])"); closedDetails.forEach(d => d.open = true); revealables.forEach(el => el.classList.add("in")); finishCounts(); heroReady(); });
-  addEventListener("afterprint", () => { closedDetails.forEach(d => d.open = false); });
+  let printTheme = null, printReading = false;
+  addEventListener("beforeprint", () => { const r = document.documentElement; printTheme = r.dataset.theme; printReading = r.classList.contains("reading"); r.dataset.theme = "light"; r.classList.add("printing"); $$("img[loading=lazy]").forEach(i => i.loading = "eager"); closedDetails = $$("details:not([open])"); closedDetails.forEach(d => d.open = true); revealables.forEach(el => el.classList.add("in")); finishCounts(); heroReady(); });
+  addEventListener("afterprint", () => { const r = document.documentElement; if (printTheme) r.dataset.theme = printTheme; r.classList.remove("printing"); closedDetails.forEach(d => d.open = false); });
 
   /* ---------- tab dùng chung ---------- */
   function tabs(list, onChange) {
@@ -221,8 +231,14 @@
   }
   /* Hình 1.1: chevron + đường sáng chạy theo giai đoạn */
   $$(".cycle-steps").forEach(l => {
-    const rail = document.createElement("span"); rail.className = "cycle-rail"; rail.dataset.ui = ""; rail.setAttribute("aria-hidden", "true"); rail.innerHTML = "<i></i>"; l.append(rail);
-    tabs(l, i => { $("i", rail).style.transform = `translateX(${i * 100}%)`; });
+    const n = $$('[role="tab"]', l).length;
+    const ctl = document.createElement("div"); ctl.className = "step-ctl"; ctl.dataset.ui = "";
+    ctl.innerHTML = `<span class="step-dots" aria-hidden="true">${"<i></i>".repeat(n)}</span><button type="button" data-d="-1" aria-label="Giai đoạn trước">‹</button><button type="button" data-d="1" aria-label="Giai đoạn sau">›</button>`;
+    l.after(ctl);
+    let cur = 0;
+    const paint = i => { cur = i; $$(".step-dots i", ctl).forEach((d, j) => d.classList.toggle("on", j === i)); $('[data-d="-1"]', ctl).disabled = i === 0; $('[data-d="1"]', ctl).disabled = i === n - 1; };
+    const sel = tabs(l, paint); paint(0);
+    ctl.addEventListener("click", e => { const b = e.target.closest("button[data-d]"); if (!b) return; const k = Math.max(0, Math.min(n - 1, cur + +b.dataset.d)); sel(k); });
   });
 
   /* ---------- Hình 1.2: cây A/B/C, đường nối vẽ dần, nhánh chọn nổi lên ---------- */
@@ -258,7 +274,11 @@
     st.dataset.ui = "";
     st.innerHTML = `<button type="button" class="btn ghost" data-a="prev">Bước trước</button><button type="button" class="btn" data-a="next">Bước tiếp</button><button type="button" class="btn ghost" data-a="all">Hiện tất cả</button><span class="hint" aria-hidden="true">Space</span><span class="sr-only" aria-live="polite"></span>`;
     const live = $(".sr-only", st), prev = $('[data-a="prev"]', st), next = $('[data-a="next"]', st);
-    const paint = () => { rows.forEach((r, i) => { r.classList.toggle("pending", i >= n); r.classList.toggle("now", i === n - 1); }); prev.disabled = n <= 1; next.disabled = n >= rows.length; live.textContent = `Bước ${n} / ${rows.length}`; list.style.setProperty("--fp", (n / rows.length * 100) + "%"); };
+    const bar = document.createElement("div"); bar.className = "flowbar"; bar.dataset.ui = ""; bar.setAttribute("role", "group"); bar.setAttribute("aria-label", "Chọn bước");
+    bar.innerHTML = rows.map((r, i) => `<button type="button" data-n="${i + 1}"><b>Bước 0${i + 1}</b></button>`).join("");
+    list.before(bar);
+    bar.addEventListener("click", e => { const b = e.target.closest("button[data-n]"); if (!b) return; n = +b.dataset.n; paint(); });
+    const paint = () => { rows.forEach((r, i) => { r.classList.toggle("pending", i >= n); r.classList.toggle("now", i === n - 1); }); $$("button", bar).forEach((b, i) => b.setAttribute("aria-current", String(i === n - 1))); prev.disabled = n <= 1; next.disabled = n >= rows.length; live.textContent = `Bước ${n} / ${rows.length}`; list.style.setProperty("--fp", (n / rows.length * 100) + "%"); };
     st.addEventListener("click", e => { const a = e.target.closest("button")?.dataset.a; if (!a) return; n = a === "next" ? Math.min(rows.length, n + 1) : a === "prev" ? Math.max(1, n - 1) : rows.length; paint(); });
     paint();
     steppers.push({ fig, step: () => { if (n >= rows.length) return false; n++; paint(); return true; } });
@@ -359,7 +379,8 @@
   Object.entries(BIG).forEach(([id, items]) => {
     const s = document.getElementById(id); if (!s) return;
     const box = document.createElement("div"); box.className = "bignums"; box.dataset.ui = ""; box.setAttribute("aria-hidden", "true");
-    box.innerHTML = items.map(([t, v, u, k]) => `<div class="bn ${t}"><p class="bn-k">${esc(k)}</p><p class="bn-v"><span class="count" data-v="${esc(v.replace("%", ""))}">${esc(v.replace("%", ""))}</span>${v.endsWith("%") ? "%" : ""}${u ? `<span class="bn-u">${esc(u)}</span>` : ""}</p></div>`).join("");
+    box.innerHTML = items.map(([t, v, u, k]) => { const num = v.replace("%", ""), pct = v.endsWith("%");
+      return `<div class="bn ${t}"><p class="bn-k">${esc(k)}</p><svg class="bn-svg" data-viz="V13" role="img" aria-label="${esc(v + (u ? " " + u : ""))}"><text x="100%" y="88%" text-anchor="end"><tspan class="count" data-v="${esc(num)}">${esc(num)}</tspan>${pct ? "<tspan>%</tspan>" : ""}${u ? `<tspan class="bn-u-svg" dx="12" font-size="18">${esc(u)}</tspan>` : ""}</text></svg></div>`; }).join("");
     const w = $(".wrap", s); w.insertBefore(box, w.firstElementChild?.classList.contains("h-sec") ? w.firstElementChild.nextSibling : w.firstElementChild);
   });
   $$(".count").forEach(c => { if (!counts.includes(c)) counts.push(c); REDUCE ? 0 : cio.observe(c); });
@@ -428,58 +449,89 @@
 
   /* dòng thời gian văn bản pháp lý */
   const dt = s => { const [d, m, y] = s.split("/").map(Number); return y + (m - 1) / 12 + (d - 1) / 365; };
-  R.timeline = d => {
+  R.timeline = (d, w) => {
     const docs = []; d.events.forEach(e => { let g = docs.find(x => x.doc === e.doc); if (!g) docs.push(g = { doc: e.doc, key: e.key, ev: [] }); g.ev.push(e); });
-    const y0 = 2012, y1 = 2027, pos = t => ((t - y0) / (y1 - y0) * 100).toFixed(2) + "%";
-    let ticks = ""; for (let t = 2013; t <= 2026; t++) ticks += `<span class="tl-tick${t % 2 ? "" : " minor"}" style="left:${pos(t)}"><i></i>${t % 2 ? t : ""}</span>`;
-    const seg = docs.map((g, i) => { const a = dt(g.ev[0].date), b = dt(g.ev[g.ev.length - 1].date);
-      return `<span class="tl-seg k-${g.key}" data-i="${i}" style="left:${pos(a)};width:calc(${pos(b)} - ${pos(a)} + 16px)"></span><span class="tl-lab k-${g.key}" style="left:${pos(a)}">${esc(g.doc.replace(/^Thông tư (\d+)\/(\d+)\/TT-BTC$/, "TT $1/$2"))}</span>`; }).join("");
-    const cards = docs.map((g, i) => `<li class="tl-card k-${g.key}" data-i="${i}" style="transition-delay:${300 + i * 120}ms"><h5>${esc(g.doc)}</h5><ul>${g.ev.map(e => `<li><span class="tl-date">${esc(e.date)}</span> ${esc(e.text)}</li>`).join("")}</ul></li>`).join("");
-    return `<div class="tl-wrap${REDUCE ? "" : " armed"}"><div class="tl-track"><div class="tl-axis" aria-hidden="true"><div class="tl-line"><i></i></div>${ticks}${seg}</div><svg class="tl-links" aria-hidden="true"></svg><ol class="tl-cards">${cards}</ol></div></div>`;
+    const fs = FS(.62), kc = k => k === "bq" ? CV("--bq-fill") : k === "dn" ? CV("--dn-fill") : k === "other" ? CV("--green") : CV("--ink-2");
+    const tc = k => k === "bq" ? CV("--bq") : k === "dn" ? CV("--dn-text") : k === "other" ? CV("--green") : CV("--ink");
+    let g = "", H;
+    if (w >= 700) {
+      const x = lin(2012, 2027, 12, w - 12), ay = fs * 2.2, colW = (w - 3 * 24) / 4, cy = ay + fs * 4;
+      g += `<line class="axis" x1="${f1(x(2012))}" x2="${f1(x(2027))}" y1="${f1(ay)}" y2="${f1(ay)}"/>`;
+      for (let t = 2013; t <= 2026; t++) g += `<line class="grid" x1="${f1(x(t))}" x2="${f1(x(t))}" y1="${f1(ay - 4)}" y2="${f1(ay + 4)}"/>` + (t % 2 ? T(x(t), ay - fs * .8, String(t), { a: "middle", fs, cls: "muted mono" }) : "");
+      let maxY = 0;
+      docs.forEach((gr, i) => {
+        const a = dt(gr.ev[0].date), b = dt(gr.ev[gr.ev.length - 1].date), cx = i * (colW + 24);
+        g += `<rect x="${f1(x(a) - 5)}" y="${f1(ay - 5)}" width="${f1(Math.max(10, x(b) - x(a) + 10))}" height="10" rx="5" fill="${kc(gr.key)}"/>`;
+        g += `<path d="M${f1(x(a))} ${f1(ay + 6)} C ${f1(x(a))} ${f1(cy - fs * 1.2)}, ${f1(cx + 2)} ${f1(ay + fs * 1.6)}, ${f1(cx + 2)} ${f1(cy - fs * .2)}" fill="none" stroke="${kc(gr.key)}" stroke-width="1" stroke-dasharray="3 3"/>`;
+        let yy = cy + fs * 1.2;
+        g += `<line x1="${f1(cx)}" x2="${f1(cx + colW)}" y1="${f1(cy)}" y2="${f1(cy)}" stroke="${kc(gr.key)}" stroke-width="2"/>`;
+        wrap(gr.doc, colW, fs).forEach(l => { g += T(cx, yy, l, { fs, w: 600, fill: tc(gr.key) }); yy += fs * 1.25; });
+        yy += fs * .5;
+        gr.ev.forEach(e => { g += mark(T(cx, yy, e.date, { fs, w: 600, cls: "mono" }), `${e.date}\n${e.doc}: ${e.text}`, [cx, yy - fs, colW, fs * 1.3]); yy += fs * 1.25; wrap(e.text, colW, fs).forEach(l => { g += T(cx, yy, l, { fs, cls: "muted" }); yy += fs * 1.2; }); yy += fs * .5; });
+        maxY = Math.max(maxY, yy);
+      });
+      H = maxY;
+    } else {
+      const ax = fs * .6; let yy = fs * 1.4;
+      docs.forEach(gr => {
+        g += `<circle cx="${f1(ax)}" cy="${f1(yy - fs * .35)}" r="5" fill="${kc(gr.key)}"/>`;
+        const y1 = yy;
+        wrap(gr.doc, w - fs * 2, fs).forEach(l => { g += T(fs * 1.8, yy, l, { fs, w: 600, fill: tc(gr.key) }); yy += fs * 1.25; });
+        gr.ev.forEach(e => { g += mark(T(fs * 1.8, yy, e.date, { fs, w: 600, cls: "mono" }), `${e.date}\n${e.doc}: ${e.text}`, [0, yy - fs, w, fs * 1.3]); yy += fs * 1.25; wrap(e.text, w - fs * 2, fs).forEach(l => { g += T(fs * 1.8, yy, l, { fs, cls: "muted" }); yy += fs * 1.2; }); });
+        g += `<line x1="${f1(ax)}" x2="${f1(ax)}" y1="${f1(y1)}" y2="${f1(yy)}" stroke="${kc(gr.key)}" stroke-width="1"/>`;
+        yy += fs * 1.2;
+      });
+      H = yy;
+    }
+    return svg(w, H, g);
   };
-  R.timeline.after = host => {
-    const track = $(".tl-track", host), svgL = $(".tl-links", host); if (!track) return;
-    const tr = track.getBoundingClientRect();
-    svgL.setAttribute("viewBox", `0 0 ${tr.width} ${tr.height}`);
-    svgL.innerHTML = $$(".tl-seg", host).map(s => { const i = s.dataset.i, card = $(`.tl-card[data-i="${i}"]`, host), r = s.getBoundingClientRect(), cr = card.getBoundingClientRect();
-      const x1 = r.left - tr.left + 8, y1 = r.bottom - tr.top + 2, x2 = cr.left - tr.left + cr.width / 2, y2 = cr.top - tr.top;
-      const k = [...s.classList].find(x => x.startsWith("k-"));
-      return `<path class="${k}" d="M${f1(x1)} ${f1(y1)} C ${f1(x1)} ${f1(y1 + (y2 - y1) * .6)}, ${f1(x2)} ${f1(y1 + (y2 - y1) * .4)}, ${f1(x2)} ${f1(y2)}"/>`; }).join("");
-    const wrapEl = $(".tl-wrap", host);
-    if (wrapEl.classList.contains("armed")) new IntersectionObserver((es, o) => es.forEach(en => { if (en.isIntersecting) { wrapEl.classList.remove("armed"); o.disconnect(); } }), { threshold: .3 }).observe(wrapEl);
-  };
+  R.timeline.rows = d => [["Ngày", "Văn bản", "Nội dung"], ...d.events.map(e => [e.date, e.doc, e.text])];
 
-  /* Bảng 1.5: tài khoản chữ T */
+  /* V11 · Bảng 1.5: tài khoản chữ T dạng SVG, chạy từng bước (Nợ → Có) */
   function renderT(host) {
     const d = VIZ.taccounts, fig = host.closest("figure"), tabsEl = $(".t-tabs", fig);
     tabsEl.innerHTML = d.ops.map((o, i) => `<button type="button" role="tab" id="tt-${i}" aria-controls="t-stage" aria-selected="${i === 0}" tabindex="${i ? -1 : 0}">${esc(o.name)}</button>`).join("");
     host.id = "t-stage"; host.setAttribute("role", "tabpanel");
-    const panel = (side, op) => {
-      const acc = {}; const order = [];
-      op[side].entries.forEach((e, k) => { [["dr", e.dr], ["cr", e.cr]].forEach(([s, a]) => { if (!acc[a]) { acc[a] = { dr: [], cr: [] }; order.push(a); } acc[a][s].push({ v: e.v, k }); }); });
-      const title = side === "bq" ? "BQLDA (Thông tư 195)" : "Doanh nghiệp (Thông tư 200)";
-      return `<div class="t-panel ${side}"><h5>${title}</h5><p class="t-note">${esc(op[side].note)}</p><div class="t-grid">${order.map(a => `<div class="tacc"><div class="tacc-h">${esc(a)}</div><div class="tacc-b"><div><span class="side-k">Nợ</span>${acc[a].dr.map(x => `<span class="t-amt new pop" data-k="${x.k}" data-s="dr" style="animation-delay:${x.k * 160}ms">${esc(x.v)}</span>`).join("")}</div><div><span class="side-k">Có</span>${acc[a].cr.map(x => `<span class="t-amt new pop" data-k="${x.k}" data-s="cr" style="animation-delay:${x.k * 160 + 80}ms">${esc(x.v)}</span>`).join("")}</div></div></div>`).join("")}</div></div>`;
-    };
-    // mũi tên động nối số bên Nợ sang số bên Có của cùng một định khoản
-    const arrows = () => {
-      $(".t-arrows", host)?.remove();
-      const hr = host.getBoundingClientRect(); let out = "";
-      $$(".t-panel", host).forEach(p => {
-        const side = p.classList.contains("bq") ? "bq" : "dn";
-        $$('.t-amt[data-s="dr"]', p).forEach(dr => {
-          const cr = $(`.t-amt[data-s="cr"][data-k="${dr.dataset.k}"]`, p); if (!cr) return;
-          const a = dr.getBoundingClientRect(), b = cr.getBoundingClientRect();
-          const x1 = a.right - hr.left + 2, y1 = a.top + a.height / 2 - hr.top, x2 = b.left - hr.left - 4, y2 = b.top + b.height / 2 - hr.top;
-          const lift = Math.max(18, Math.abs(x2 - x1) * .12), my = Math.max(y1, y2) + lift, len = Math.hypot(x2 - x1, y2 - y1) * 1.5 + lift * 2, dl = 300 + (+dr.dataset.k) * 160;
-          out += `<path class="${side}" style="--len:${f1(len)};animation-delay:${dl}ms" d="M${f1(x1)} ${f1(y1)} C ${f1(x1 + 10)} ${f1(my)}, ${f1(x2 - 10)} ${f1(my)}, ${f1(x2)} ${f1(y2)}"/><path class="head ${side}" style="animation-delay:${dl}ms" d="M${f1(x2)} ${f1(y2)} l-7 -5 v10 z" transform="rotate(${f1(Math.atan2(y2 - my, 10) * 180 / Math.PI)} ${f1(x2)} ${f1(y2)})"/>`;
-        });
+    let curI = 0;
+    const draw1 = i => {
+      curI = i; const op = d.ops[i], W = Math.round(host.clientWidth) || 800, fs = FS(.62), narrow = W < 700;
+      const pw = narrow ? W : (W - 32) / 2, rowH = fs * 1.6;
+      let y0 = 0, out = "", arrows = "";
+      ["bq", "dn"].forEach((side, si) => {
+        const px = narrow ? 0 : si * (pw + 32), py = narrow ? y0 : 0, col = side === "bq" ? CV("--bq") : CV("--dn-text"), fill = side === "bq" ? CV("--bq-fill") : CV("--dn-fill");
+        const acc = {}, order = [];
+        op[side].entries.forEach((e, k) => { [["dr", e.dr], ["cr", e.cr]].forEach(([s, a]) => { if (!acc[a]) { acc[a] = { dr: [], cr: [] }; order.push(a); } acc[a][s].push({ v: e.v, k }); }); });
+        const cols = pw >= 420 ? 2 : 1, aw = (pw - (cols - 1) * 24) / cols;
+        const title = side === "bq" ? "BQLDA (Thông tư 195)" : "Doanh nghiệp (Thông tư 200)";
+        out += `<line x1="${f1(px)}" x2="${f1(px + pw)}" y1="${f1(py)}" y2="${f1(py)}" stroke="${fill}" stroke-width="2"/>` + T(px, py + fs * 1.6, title, { fs: FS(.72), w: 500 }) + T(px, py + fs * 3, op[side].note, { fs, cls: "muted" });
+        let ay = py + fs * 4.4; const pos = {};
+        const rows = Math.ceil(order.length / cols);
+        for (let r = 0; r < rows; r++) {
+          const inRow = order.slice(r * cols, r * cols + cols), nAmt = Math.max(...inRow.map(a => Math.max(acc[a].dr.length, acc[a].cr.length))), ah = fs * 3.2 + nAmt * rowH;
+          inRow.forEach((a, ci) => {
+            const ax = px + ci * (aw + 24), cx = ax + aw / 2, top = ay + fs * 1.6;
+            out += T(cx, ay + fs * .9, a, { a: "middle", fs, w: 600, cls: "mono" }) + `<line x1="${f1(ax)}" x2="${f1(ax + aw)}" y1="${f1(top)}" y2="${f1(top)}" stroke="${CV("--ink")}" stroke-width="1.5"/><line x1="${f1(cx)}" x2="${f1(cx)}" y1="${f1(top)}" y2="${f1(top + fs * 1.4 + nAmt * rowH)}" stroke="${CV("--ink")}" stroke-width="1.5"/>` +
+              T(cx - 8, top + fs * 1.1, "NỢ", { a: "end", fs, cls: "muted" }) + T(cx + 8, top + fs * 1.1, "CÓ", { fs, cls: "muted" });
+            ["dr", "cr"].forEach(s => acc[a][s].forEach((x, j) => {
+              const tx = s === "dr" ? cx - 10 : cx + 10, ty = top + fs * 1.1 + (j + 1) * rowH;
+              out += `<text class="t-amt-s pop mono" x="${f1(tx)}" y="${f1(ty)}" text-anchor="${s === "dr" ? "end" : "start"}" font-size="${FS(.7)}" font-weight="600" style="fill:${col};animation-delay:${x.k * 220 + (s === "cr" ? 110 : 0)}ms">${esc(x.v)}</text>`;
+              (pos[x.k] = pos[x.k] || {})[s] = [tx, ty - fs * .35, s === "dr" ? tx + 2 : tx - 4];
+            }));
+          });
+          ay += ah + fs * .6;
+        }
+        Object.entries(pos).forEach(([k, p]) => { if (!p.dr || !p.cr) return; const [x1, y1] = [p.dr[2] + 2, p.dr[1]], [x2, y2] = [p.cr[2], p.cr[1]], my = Math.max(y1, y2) + fs * 1.1, len = Math.hypot(x2 - x1, y2 - y1) * 1.5 + fs * 3, dl = 300 + k * 220;
+          arrows += `<path class="t-arr" style="stroke:${fill};--len:${f1(len)};animation-delay:${dl}ms" fill="none" stroke-width="1.5" d="M${f1(x1)} ${f1(y1 + 4)} C ${f1(x1)} ${f1(my)}, ${f1(x2)} ${f1(my)}, ${f1(x2)} ${f1(y2 + 4)}"/>`; });
+        y0 = Math.max(y0, ay) + (narrow ? fs * 2 : 0);
       });
-      host.insertAdjacentHTML("beforeend", `<svg class="t-arrows" aria-hidden="true" data-ui viewBox="0 0 ${f1(hr.width)} ${f1(hr.height)}">${out}</svg>`);
+      const H = y0 + fs;
+      host.innerHTML = `<svg class="chart-svg t-svg" data-viz="V11" viewBox="0 0 ${W} ${f1(H)}" width="${W}" height="${f1(H)}" role="img" aria-label="${esc(op.name + ": " + ["bq", "dn"].map(s => op[s].entries.map(e => `Nợ ${e.dr} / Có ${e.cr}: ${e.v}`).join("; ")).join(" · "))}">${out}${arrows}</svg>`;
+      host.setAttribute("aria-labelledby", "tt-" + i);
     };
-    const sel = i => { host.innerHTML = panel("bq", d.ops[i]) + panel("dn", d.ops[i]); host.setAttribute("aria-labelledby", "tt-" + i); requestAnimationFrame(arrows); };
-    addEventListener("resize", () => requestAnimationFrame(arrows));
+    addEventListener("resize", () => draw1(curI));
+    window.addEventListener("kt-redraw", () => draw1(curI));
     tabsEl.setAttribute("role", "tablist");
-    tabs(tabsEl, sel); sel(0);
+    tabs(tabsEl, draw1); draw1(0);
   }
 
   /* =========================================================
@@ -747,26 +799,19 @@
     fig.innerHTML = `<figcaption><span class="cap-no">Biểu đồ</span> ${esc(f.title)}</figcaption><p class="vz-lead">${esc(f.lead)}</p><div data-chart="${f.key}"></div><p class="unit">${esc(f.unit)}</p>`;
     if (ref) ref.after(fig); else w.append(fig);
   });
-  // V12 · ma trận 5 tiêu chí × 2 chế độ (điều hướng vào Bảng 1.4)
-  (function matrix() {
+  // Bảng 1.4: hàng danh sách có mũi tên; rê chuột hoặc bấm mở khung so sánh BQLDA | Doanh nghiệp bên cạnh
+  (function criteria() {
     const fig14 = document.getElementById("bang-1-4"); if (!fig14) return;
-    const rows = $$("tbody tr", fig14).map((tr, i) => ({ i, name: $("th", tr).textContent.trim() })).filter(r => /^\d\./.test(r.name));
-    const box = document.createElement("figure"); box.className = "fig vz vz-matrix"; box.dataset.ui = "";
-    box.innerHTML = `<figcaption><span class="cap-no">Bản đồ</span> Năm tiêu chí so sánh · bấm một ô để mở dòng tương ứng của Bảng 1.4</figcaption>
-      <div class="mx" role="grid" aria-label="Năm tiêu chí so sánh"><div class="mx-h" role="row"><span role="columnheader"></span><span role="columnheader" class="mx-bq">BQLDA (Thông tư 195)</span><span role="columnheader" class="mx-dn">Doanh nghiệp (Thông tư 200)</span></div>
-      ${rows.map(r => `<div class="mx-r" role="row"><span class="mx-k" role="rowheader">${esc(r.name)}</span><button type="button" class="mx-c bq" data-row="${r.i}" data-col="a">${icon("ledger")} Xem cột BQLDA</button><button type="button" class="mx-c dn" data-row="${r.i}" data-col="b">${icon("build")} Xem cột Doanh nghiệp</button></div>`).join("")}</div>
-      <p class="unit">Không có số liệu; chỉ là lối vào Bảng 1.4. <button type="button" class="mx-all">Hiện lại toàn bộ bảng</button></p>`;
+    const rows = $$("tbody tr", fig14);
+    const box = document.createElement("div"); box.className = "crit"; box.dataset.ui = "";
+    box.innerHTML = `<ul class="crit-list" role="tablist" aria-label="Năm tiêu chí so sánh (Bảng 1.4)">${rows.map((tr, i) => `<li><button type="button" role="tab" aria-selected="${i === 0}" data-i="${i}">${esc($("th", tr).textContent.trim())}</button></li>`).join("")}</ul>
+      <div class="crit-panel" role="tabpanel" aria-live="polite"><h5>So sánh · Bảng 1.4</h5><p class="cp-name"></p><div class="cp-cols"><div class="bq"><b>BQLDA (Thông tư 195)</b><div class="cp-a"></div></div><div class="dn"><b>Doanh nghiệp (Thông tư 200)</b><div class="cp-b"></div></div></div></div>`;
     fig14.before(box);
-    const sel = $("select", fig14), seg = $$(".seg button", fig14);
-    box.addEventListener("click", e => {
-      const c = e.target.closest(".mx-c"), all = e.target.closest(".mx-all");
-      if (all) { sel.value = ""; sel.dispatchEvent(new Event("change")); seg[0].click(); $$(".mx-c", box).forEach(b => b.classList.remove("on")); return; }
-      if (!c) return;
-      sel.value = c.dataset.row; sel.dispatchEvent(new Event("change"));
-      const target = seg.find(b => b.dataset.v === c.dataset.col); if (target) target.click();
-      $$(".mx-c", box).forEach(b => b.classList.toggle("on", b === c));
-      fig14.scrollIntoView({ behavior: REDUCE ? "auto" : "smooth", block: "start" });
-    });
+    const show = i => { const tr = rows[i]; $(".cp-name", box).textContent = $("th", tr).textContent.trim(); $(".cp-a", box).innerHTML = $("td.c-a", tr).innerHTML; $(".cp-b", box).innerHTML = $("td.c-b", tr).innerHTML; $$(".crit-list button", box).forEach((b, j) => b.setAttribute("aria-selected", String(j === i))); };
+    box.addEventListener("pointerover", e => { const b = e.target.closest(".crit-list button"); if (b) show(+b.dataset.i); });
+    box.addEventListener("click", e => { const b = e.target.closest(".crit-list button"); if (b) show(+b.dataset.i); });
+    box.addEventListener("focusin", e => { const b = e.target.closest(".crit-list button"); if (b) show(+b.dataset.i); });
+    show(0);
   })();
 
   /* ---------- "Xem bảng số liệu" cho mọi biểu đồ có số ---------- */
@@ -808,16 +853,21 @@
   })();
 
   /* ---------- vẽ & vẽ lại ---------- */
+  const VIZMAP = { v1: "V1", v2: "V2", wf_b02: "V3", f02: "V4", b22: "V5", b28: "V6", b29: "V6", b210: "V7", wf_cash: "V8", v9: "V9", deadline: "V10", h14: "V10", taccounts: "V11", timeline: "V12" };
   const hosts = $$("[data-chart]");
+  hosts.forEach(h => { const fig = h.closest("figure"), k = h.dataset.chart, d = VIZ[k]; if (!fig || !d || $(".viz-k", fig)) return;
+    const src = String(d.src || "").replace(/\s*\(.*\)\s*$/, "");
+    fig.insertAdjacentHTML("afterbegin", `<span class="viz-k" aria-hidden="true" data-ui>Hình / ${esc(src)}</span>`); });
   const lastW = new Map();
   function draw(host, force) {
     const k = host.dataset.chart; if (k === "taccounts") return;
     const w = Math.round(host.clientWidth); if (!w || (!force && lastW.get(host) === w)) return; lastW.set(host, w);
     host.innerHTML = R[k](VIZ[k], w);
+    $$("svg.chart-svg", host).forEach(s => { s.dataset.viz = VIZMAP[k]; s.dataset.key = k; });
     if (R[k].after) requestAnimationFrame(() => R[k].after(host));
     if (!REDUCE && !host.dataset.drawn) { host.classList.add("armed"); }
   }
-  function redrawAll() { hosts.forEach(h => draw(h, true)); }
+  function redrawAll() { hosts.forEach(h => draw(h, true)); window.dispatchEvent(new Event("kt-redraw")); }
   hosts.forEach(h => { if (h.dataset.chart === "taccounts") renderT(h); else draw(h); });
   let rT; addEventListener("resize", () => { clearTimeout(rT); rT = setTimeout(() => hosts.forEach(h => draw(h)), 150); });
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => redrawAll());

@@ -25,7 +25,7 @@ one = html.replace('<link rel="stylesheet" href="fonts/fonts.css">', "<style>\n"
 one = one.replace('<link rel="stylesheet" href="assets/style.css">', "<style>\n" + style + "</style>")
 one = one.replace('<script src="assets/viz_data.js"></script>', "<script>\n" + (ROOT / "assets/viz_data.js").read_text("utf-8") + "</script>")
 one = one.replace('<script src="assets/app.js"></script>', "<script>\n" + (ROOT / "assets/app.js").read_text("utf-8").replace("</script", "<\\/script") + "</script>")
-for js in ("vendor/three.min.js", "assets/hero3d.js"):
+for js in ("vendor/three.min.js", "assets/hero3d.js", "assets/silk.js"):
     one = one.replace(f'<script src="{js}"></script>', "<script>\n" + (ROOT / js).read_text("utf-8").replace("</script", "<\\/script") + "\n</script>")
 mimes = {".jpg": "image/jpeg", ".png": "image/png", ".webp": "image/webp"}
 cache = {}

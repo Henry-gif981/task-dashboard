@@ -1,0 +1,38 @@
+{
+ "contrast_dark": {
+  "checked": 1396,
+  "fail": 0,
+  "examples": []
+ },
+ "contrast_reading": {
+  "checked": 1396,
+  "fail": 0,
+  "examples": []
+ },
+ "font_min_html_px": 14,
+ "font_lt14_html": 0,
+ "font_lt14_html_examples": [],
+ "font_min_svg_px": 14.8,
+ "font_lt14_svg": 0,
+ "font_lt14_svg_examples": [],
+ "body_font_px": {
+  "min": 21,
+  "max": 21
+ },
+ "body_line_height": {
+  "min": 1.62,
+  "max": 1.62
+ },
+ "chars_per_line": {
+  "paragraphs": 54,
+  "median": 62,
+  "max": 72
+ },
+ "root_font_px": 21,
+ "hOverflow_1366": 0,
+ "clipped_1366": [],
+ "hOverflow_390": 0,
+ "clipped_390": [
+  "thead."
+ ]
+}
