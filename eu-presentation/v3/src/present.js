@@ -31,6 +31,7 @@ const NOTES = {
   "c2-standards": ["'Hiệu ứng Brussels' (Bradford, 2020): doanh nghiệp áp chuẩn EU trên toàn cầu (de facto), chính phủ sao chép luật EU (de jure).", "Ví dụ: GDPR, REACH, CE marking, DSA/DMA, Đạo luật AI.", "Bảng 2.6: các công cụ từ ETS (2005) đến CBAM, giai đoạn chính thức từ 2026."],
   "c2-climate": ["Mục tiêu: giảm ít nhất 55% vào 2030, mục tiêu 90% cho 2040 do Ủy ban đề xuất, trung hòa khí hậu 2050.", "CBAM chuyển sang giai đoạn chính thức năm 2026; bị một số nước, nhất là Ấn Độ, phê phán là rào cản đơn phương.", "Ảnh hưởng mạnh nhất khi quyền lực quy định, đàm phán đa phương và hỗ trợ phát triển bổ trợ nhau."],
   "ch3": ["Chương 3 xét ảnh hưởng của EU tới Việt Nam: tổng quan quan hệ, ảnh hưởng kinh tế, ảnh hưởng rộng hơn, rồi cơ hội, thách thức và khuyến nghị."],
+  "c3-numbers": ["Sáu con số tóm tắt quan hệ: thương mại hàng hóa €76.0 tỷ (2025, Eurostat); Việt Nam xuất sang EU 56,2 tỷ USD (2025).", "EU nhận khoảng 12–13% xuất khẩu của Việt Nam, là thị trường lớn thứ 3; khoảng 2.450 dự án FDI của EU (cuối 2022).", "20/27 nước đã phê chuẩn EVIPA (11/2025); hơn €560 triệu Global Gateway mới (3/2026). Ý chính: quan hệ trải rộng từ thương mại, đầu tư, pháp lý tới tài chính khí hậu."],
   "c3-milestones": ["Bảng 3.1: từ thiết lập quan hệ ngoại giao 1990 đến EVFTA có hiệu lực 1/8/2020.", "Năm 2026: nâng cấp thành Đối tác Chiến lược Toàn diện (29/1) và hơn 560 triệu euro Global Gateway (24/3).", "EVFTA là bước ngoặt: vượt ra ngoài cắt giảm thuế, kèm cam kết lao động, môi trường, sở hữu trí tuệ."],
   "c3-importance": ["Với Việt Nam: EU là thị trường xuất khẩu thứ 3 (khoảng 12–13%), nguồn nhập khẩu thứ 4, nguồn FDI thứ 6.", "Với EU: Việt Nam là đối tác hàng hóa lớn nhất trong ASEAN, nguồn nhập khẩu thứ 9, đối tác thương mại thứ 14 (2025).", "Bảng 3.2 tóm lợi ích hai bên về thương mại, đầu tư, mô hình kinh tế, chuyển đổi xanh, địa chính trị."],
   "c3-frameworks": ["Hai hiệp định ký cùng ngày 30/6/2019 tại Hà Nội.", "Ý kiến 2/15 của Tòa án EU (5/2017) buộc tách gói: EVFTA chỉ cần EU phê chuẩn, EVIPA cần đủ 27 nước.", "Bảng 3.3 so sánh phạm vi, cấu trúc, phê chuẩn, cơ chế giải quyết tranh chấp và tình trạng."],
@@ -86,14 +87,15 @@ const NOTES = {
     const G = []; let pend = [];
     items.forEach(el => {
       const last = G[G.length - 1];
-      if (el.matches(".eyebrow, .h, h1, h2") || (el.matches(".lead") && last && last.head && G.length === 1)) { if (last && last.head) last.push(el); else { const g = [el]; g.head = true; G.push(g); } return; }
+      if (el.matches(".eyebrow, .h, h1, h2") || (el.matches(".lead") && last && last.head && G.length === 1 && !last.some(e => e.matches(".lead")))) { if (last && last.head) last.push(el); else { const g = [el]; g.head = true; G.push(g); } return; }
       if (el.matches(".src, .tnote") && last) { last.push(el); return; }       // sources and table notes stay with their table/figure
       if (el.matches(".cap")) { pend.push(el); return; }                         // a caption opens the next block (table, timeline)
       G.push([...pend, el]); pend = [];
     });
     if (pend.length) G.push(pend);
     while (G.length > MAX_STEPS) { const b = G.pop(); G[G.length - 1].push(...b); }
-    if (G.length <= 2) return [G.flat()];                                       // little content: one step
+    const hasFig = G.some(g => g.some(e => e.matches("figure, .vz, .takeaway") || e.querySelector("figure, .vz")));
+    if (G.length <= 2 && !hasFig) return [G.flat()];                           // little content and no figure: one step
     return G;
   }
   const PLAN = sections.map(groupsOf);
