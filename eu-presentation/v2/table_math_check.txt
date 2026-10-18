@@ -1,0 +1,40 @@
+Table 3.5 (EUR bn): total = imports + exports; balance = exports - imports
+  2019* total                        printed     45.6  recomputed    45.60  diff +0.00  ok
+  2019* balance                      printed    -23.4  recomputed   -23.40  diff +0.00  ok
+  2020 total                         printed     43.3  recomputed    43.30  diff +0.00  ok
+  2020 balance                       printed    -25.8  recomputed   -25.70  diff +0.10  rounding (0.1)
+  2021 total                         printed     49.2  recomputed    49.10  diff -0.10  rounding (0.1)
+  2021 balance                       printed    -27.9  recomputed   -27.90  diff +0.00  ok
+  2022 total                         printed     64.1  recomputed    64.10  diff +0.00  ok
+  2022 balance                       printed    -38.7  recomputed   -38.70  diff +0.00  ok
+  2023 total                         printed     59.3  recomputed    59.30  diff +0.00  ok
+  2023 balance                       printed    -36.4  recomputed   -36.30  diff +0.10  rounding (0.1)
+  2024 total                         printed     67.4  recomputed    67.30  diff -0.10  rounding (0.1)
+  2024 balance                       printed    -42.7  recomputed   -42.70  diff +0.00  ok
+  2025 total                         printed     76.0  recomputed    76.10  diff +0.10  rounding (0.1)
+  2025 balance                       printed    -51.7  recomputed   -51.70  diff +0.00  ok
+Table 3.5 changes 2019-2025
+  imports    printed   +85%  recomputed +85.2%
+  exports    printed   +10%  recomputed +9.9%
+  total      printed   +67%  recomputed +66.7%
+  deficit    printed  +121%  recomputed +120.9%
+
+Table 3.6 (US$ bn): total = exports + imports; surplus = exports - imports
+  2019 total                         printed     49.8  recomputed    49.80  diff +0.00  ok
+  2019 surplus                       printed     21.8  recomputed    21.80  diff -0.00  ok
+  2024 total                         printed     68.4  recomputed    68.40  diff +0.00  ok
+  2024 surplus                       printed     35.0  recomputed    35.00  diff +0.00  ok
+  2025 total (printed as ≈74)        printed     74.0  recomputed    73.80  diff -0.20  ok
+  2025 surplus                       printed     38.6  recomputed    38.60  diff +0.00  ok
+Table 3.6 changes 2019-2025
+  exports    printed   +57%  recomputed +57.0%
+  imports    printed   +26%  recomputed +25.7%
+  total      printed   +49%  recomputed +48.6%  (with the unrounded 73.8: +48.2%)
+  surplus    printed   +77%  recomputed +77.1%
+
+Table 3.7 note: 27.8 / 496.7 = 5.60% (printed ≈5.6%)
+Table 3.7: 24.7 -> 27.8 = +3.1 bn (printed ≈ +US$3 bn)
+Table 2.3: EU imports implied by China 559.4 = 22.3% -> 2509; US 355.5 = 14.2% (printed 14.1%); UK 158.6 = 6.3% (printed 6.3%)
+Table 2.3: EU exports implied by UK 345.3 = 13.1% -> 2636; exports - imports = 127 (printed surplus 128)
+
+0 value(s) flagged beyond rounding

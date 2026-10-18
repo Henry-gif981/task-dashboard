@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The European Union – Group 4 | NEU</title>
+<meta name="description" content="Group 4 (NEU): the European Union and its role in the integration of the region, the world and Vietnam.">
+<!-- Mark that JavaScript runs: reveal animations only hide content when this class is present -->
+<script>document.documentElement.classList.add("js");</script>
+<style>
+/* =========================================================
+   0. Local fonts (fonts/, SIL Open Font License); system fonts are the fallback
+   ========================================================= */
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(fonts/Inter-vietnamese.woff2) format('woff2'); unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB; }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(fonts/Inter-latin-ext.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(fonts/Inter-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Source Serif 4'; font-style: italic; font-weight: 400 600; font-display: swap; src: url(fonts/SourceSerif4-Italic-vietnamese.woff2) format('woff2'); unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB; }
+@font-face { font-family: 'Source Serif 4'; font-style: italic; font-weight: 400 600; font-display: swap; src: url(fonts/SourceSerif4-Italic-latin-ext.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Source Serif 4'; font-style: italic; font-weight: 400 600; font-display: swap; src: url(fonts/SourceSerif4-Italic-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Source Serif 4'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(fonts/SourceSerif4-vietnamese.woff2) format('woff2'); unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB; }
+@font-face { font-family: 'Source Serif 4'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(fonts/SourceSerif4-latin-ext.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Source Serif 4'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(fonts/SourceSerif4-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* =========================================================
+   1. Tokens: EU-inspired institutional palette
+   ========================================================= */
+:root {
+  --blue: #003399;          /* EU blue, primary */
+  --navy: #001A57;          /* deep blue: hero, navigation, footer */
+  --navy-2: #00104A;        /* deepest blue: chapter openings */
+  --tint: #E8EEF9;          /* light blue: highlights, table hover */
+  --tint-2: #F4F7FC;        /* lighter blue: zebra rows, figure panels */
+  --gold: #FFCC00;          /* EU gold: accents only (rules, stars, numbers); text only on dark blue */
+  --ink: #0B1B3A;           /* body text */
+  --ink-2: #4A5A78;         /* secondary text */
+  --paper: #FBFCFE;         /* page background */
+  --white: #FFFFFF;
+  --line: #D3DCEC;          /* hairlines */
+  --on-dark: #FFFFFF;
+  --on-dark-2: #C9D5F0;     /* secondary text on dark blue */
+  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans: "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  /* 8px rhythm */
+  --s1: 8px; --s2: 16px; --s3: 24px; --s4: 32px; --s5: 40px; --s6: 48px; --s8: 64px; --s10: 80px; --s12: 96px; --s16: 128px;
+  --gutter: clamp(16px, 5vw, 96px);
+  --maxw: 1440px;
+  --radius: 4px;
+  --watermark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-110 -110 220 220'%3E%3Cg fill='#003399' fill-opacity='0.04'%3E%3Cpath d='M0.00,-94.00L3.29,-84.53L13.31,-84.33L5.33,-78.27L8.23,-68.67L0.00,-74.40L-8.23,-68.67L-5.33,-78.27L-13.31,-84.33L-3.29,-84.53Z'/%3E%3Cpath d='M40.00,-83.28L43.29,-73.81L53.31,-73.61L45.33,-67.55L48.23,-57.96L40.00,-63.68L31.77,-57.96L34.67,-67.55L26.69,-73.61L36.71,-73.81Z'/%3E%3Cpath d='M69.28,-54.00L72.57,-44.53L82.60,-44.33L74.61,-38.27L77.51,-28.67L69.28,-34.40L61.05,-28.67L63.96,-38.27L55.97,-44.33L65.99,-44.53Z'/%3E%3Cpath d='M80.00,-14.00L83.29,-4.53L93.31,-4.33L85.33,1.73L88.23,11.33L80.00,5.60L71.77,11.33L74.67,1.73L66.69,-4.33L76.71,-4.53Z'/%3E%3Cpath d='M69.28,26.00L72.57,35.47L82.60,35.67L74.61,41.73L77.51,51.33L69.28,45.60L61.05,51.33L63.96,41.73L55.97,35.67L65.99,35.47Z'/%3E%3Cpath d='M40.00,55.28L43.29,64.75L53.31,64.96L45.33,71.01L48.23,80.61L40.00,74.88L31.77,80.61L34.67,71.01L26.69,64.96L36.71,64.75Z'/%3E%3Cpath d='M0.00,66.00L3.29,75.47L13.31,75.67L5.33,81.73L8.23,91.33L0.00,85.60L-8.23,91.33L-5.33,81.73L-13.31,75.67L-3.29,75.47Z'/%3E%3Cpath d='M-40.00,55.28L-36.71,64.75L-26.69,64.96L-34.67,71.01L-31.77,80.61L-40.00,74.88L-48.23,80.61L-45.33,71.01L-53.31,64.96L-43.29,64.75Z'/%3E%3Cpath d='M-69.28,26.00L-65.99,35.47L-55.97,35.67L-63.96,41.73L-61.05,51.33L-69.28,45.60L-77.51,51.33L-74.61,41.73L-82.60,35.67L-72.57,35.47Z'/%3E%3Cpath d='M-80.00,-14.00L-76.71,-4.53L-66.69,-4.33L-74.67,1.73L-71.77,11.33L-80.00,5.60L-88.23,11.33L-85.33,1.73L-93.31,-4.33L-83.29,-4.53Z'/%3E%3Cpath d='M-69.28,-54.00L-65.99,-44.53L-55.97,-44.33L-63.96,-38.27L-61.05,-28.67L-69.28,-34.40L-77.51,-28.67L-74.61,-38.27L-82.60,-44.33L-72.57,-44.53Z'/%3E%3Cpath d='M-40.00,-83.28L-36.71,-73.81L-26.69,-73.61L-34.67,-67.55L-31.77,-57.96L-40.00,-63.68L-48.23,-57.96L-45.33,-67.55L-53.31,-73.61L-43.29,-73.81Z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+/* body text: 18px on laptops, 24px at 1920px wide (projector) */
+html { font-size: clamp(18px, 0.6vw + 12.5px, 24px); scroll-behavior: smooth; scroll-padding-top: 72px; }
+body { font-family: var(--sans); color: var(--ink); background: var(--paper); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+body, body * { font-feature-settings: "lnum" 1, "kern" 1; }
+a { color: inherit; text-decoration: none; }
+strong { font-weight: 600; color: var(--blue); }
+.dark strong { color: var(--gold); }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+/* =========================================================
+   2. Fixed 3D canvas (only behind the dark sections) + fallback
+   ========================================================= */
+#scene { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 0; display: block; }
+body.no3d #scene { display: none; }
+.fallback-bg { position: fixed; inset: 0; z-index: 0; display: none; pointer-events: none; background: var(--navy); }
+body.no3d .fallback-bg { display: block; }
+.fallback-bg svg { position: absolute; right: 8vw; top: 50%; width: 34vw; max-width: 560px; transform: translateY(-50%); opacity: .35; }
+#progress { display: none; }
+main { position: relative; z-index: 1; }
+
+/* =========================================================
+   3. Navigation, reading progress (12 stars), chapter dots
+   ========================================================= */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 10; height: 72px;
+  display: flex; align-items: center; justify-content: space-between; padding: 0 var(--gutter);
+  background: var(--navy); color: var(--on-dark); border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.brand { display: flex; align-items: center; gap: 12px; font: 600 1.02rem/1 var(--serif); letter-spacing: .005em; color: var(--on-dark); }
+.brand svg { width: 34px; height: 34px; flex: none; }
+.brand small { display: block; font: 500 .62rem/1.2 var(--sans); letter-spacing: .1em; color: var(--on-dark-2); margin-top: 5px; font-variant-caps: all-small-caps; }
+.nav-links { display: flex; align-items: center; gap: clamp(16px, 2.4vw, 40px); font: 500 .8rem/1 var(--sans); }
+.nav-links a { color: var(--on-dark); padding: 26px 0 23px; border-bottom: 2px solid transparent; transition: border-color .2s, color .2s; }
+.nav-links a:hover, .nav-links a.on { border-bottom-color: var(--gold); }
+.btn-soft { border: 1px solid rgba(255,255,255,.5) !important; border-radius: var(--radius); padding: 10px 16px !important; }
+.btn-soft:hover, .btn-soft.on { border-color: var(--gold) !important; }
+.nav-toggle { display: none; width: 44px; height: 44px; border: 1px solid rgba(255,255,255,.4); border-radius: var(--radius); background: transparent; cursor: pointer; position: relative; }
+.nav-toggle span, .nav-toggle span::before, .nav-toggle span::after { position: absolute; left: 11px; right: 11px; height: 2px; background: #fff; content: ""; transition: transform .2s, opacity .2s; }
+.nav-toggle span { top: 21px; } .nav-toggle span::before { top: -7px; left: 0; right: 0; } .nav-toggle span::after { top: 7px; left: 0; right: 0; }
+.nav-toggle[aria-expanded="true"] span { background: transparent; }
+.nav-toggle[aria-expanded="true"] span::before { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span::after { transform: translateY(-7px) rotate(-45deg); }
+@media (max-width: 900px) {
+  .nav-toggle { display: block; }
+  .nav-links { position: absolute; top: 72px; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0; background: var(--navy); padding: 8px var(--gutter) 16px; display: none; border-bottom: 2px solid var(--gold); }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,.1); }
+  .btn-soft { border: 0 !important; padding: 14px 0 !important; border-radius: 0; }
+}
+
+/* reading progress: 12 stars light up gold, one per twelfth of the page */
+.star-progress { position: fixed; top: 88px; right: 20px; z-index: 9; width: 60px; height: 60px; border-radius: 50%; background: var(--navy); box-shadow: 0 0 0 1px rgba(255,255,255,.12); transition: opacity .3s; }
+.star-progress svg { width: 100%; height: 100%; display: block; }
+.star-progress .s { fill: rgba(255,255,255,.18); transition: fill .3s; }
+.star-progress .s.lit { fill: var(--gold); }
+.counter { position: fixed; top: 154px; right: 20px; width: 60px; z-index: 9; text-align: center; font: 600 .56rem/1 var(--sans); letter-spacing: .06em; color: var(--on-dark); background: var(--navy); border-radius: 999px; padding: 5px 0; }
+.dots { position: fixed; right: 44px; top: 50%; transform: translateY(-50%); z-index: 9; display: flex; flex-direction: column; gap: 14px; }
+.dots a { width: 8px; height: 8px; border-radius: 50%; background: rgba(0,51,153,.25); position: relative; transition: background .2s, transform .2s; }
+.dots a.on { background: var(--blue); transform: scale(1.4); }
+body.night .dots a { background: rgba(255,255,255,.3); }
+body.night .dots a.on { background: var(--gold); }
+.dots a span { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); white-space: nowrap; font: 500 .66rem/1 var(--sans); opacity: 0; pointer-events: none; transition: opacity .2s; background: var(--navy); color: #fff; padding: 7px 10px; border-radius: var(--radius); }
+.dots a:hover span, .dots a:focus-visible span { opacity: 1; }
+.scroll-hint { position: fixed; right: 38px; bottom: 24px; z-index: 9; writing-mode: vertical-rl; font: 600 .56rem/1 var(--sans); letter-spacing: .3em; color: var(--on-dark-2); background: var(--navy); border-radius: 999px; padding: 12px 6px; display: flex; align-items: center; gap: 10px; }
+.scroll-hint::after { content: ""; width: 1px; height: 32px; background: var(--gold); }
+@media (max-width: 1100px) { .dots, .scroll-hint { display: none; } }
+@media (max-width: 760px) { .star-progress { width: 48px; height: 48px; top: 84px; right: 12px; } .counter { display: none; } }
+
+/* =========================================================
+   4. Sections and the publication grid (12 columns)
+   ========================================================= */
+.sec { position: relative; min-height: 100vh; padding: var(--s16) var(--gutter) var(--s12); display: flex; flex-direction: column; justify-content: center; background: var(--paper); border-top: 1px solid var(--line); }
+.sec:not(.dark):not(.hero) { background: var(--paper) var(--watermark) no-repeat right calc(var(--gutter) * -1) top 96px / min(46vw, 640px); }
+.sec.auto { min-height: auto; }
+.wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; position: relative; }
+.copy { max-width: calc(7 / 12 * 100%); }
+@media (max-width: 1100px) { .copy { max-width: 100%; } }
+
+.eyebrow { display: inline-block; font: 600 .8rem/1 var(--sans); letter-spacing: .06em; color: var(--blue); padding-top: 12px; border-top: 2px solid var(--gold); margin-bottom: var(--s3); min-width: 48px; }
+.dark .eyebrow, .hero .eyebrow { color: var(--gold); }
+h1, .h { font-family: var(--serif); font-weight: 600; letter-spacing: -.01em; line-height: 1.14; color: var(--ink); }
+.h { font-size: clamp(1.9rem, 2.5vw, 3rem); max-width: 30ch; }
+.accent { color: var(--gold); }
+.lead { font-size: 1.05rem; color: var(--ink-2); margin-top: var(--s3); max-width: 68ch; }
+.dark .lead { color: var(--on-dark-2); }
+.src { margin-top: var(--s3); font-size: .74rem; color: var(--ink-2); font-style: italic; max-width: 110ch; }
+.src b { font-style: normal; font-weight: 600; color: var(--ink); }
+.dark .src { color: var(--on-dark-2); }
+.stack { display: flex; flex-direction: column; gap: var(--s3); }
+.mt { margin-top: var(--s5); }
+.panel { background: transparent; }
+
+/* =========================================================
+   5. Components
+   ========================================================= */
+/* buttons: understated links, not calls to action */
+.btn { display: inline-flex; align-items: center; gap: 10px; font: 500 .82rem/1 var(--sans); letter-spacing: .02em; padding: 14px 20px; border-radius: var(--radius); border: 1px solid currentColor; transition: border-color .2s; cursor: pointer; background: transparent; }
+.btn:hover { border-color: var(--gold); }
+.btn-dark, .btn-pill { color: var(--on-dark); border-color: rgba(255,255,255,.55); }
+
+.grid { display: grid; gap: var(--s3); }
+.g2 { grid-template-columns: repeat(2, 1fr); } .g3 { grid-template-columns: repeat(3, 1fr); }
+.g4 { grid-template-columns: repeat(4, 1fr); } .g5 { grid-template-columns: repeat(5, 1fr); }
+@media (max-width: 1100px) { .g4, .g5 { grid-template-columns: repeat(2, 1fr); } .g3 { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 680px) { .g2, .g3, .g4, .g5 { grid-template-columns: 1fr; } }
+
+.card { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--s3); display: flex; flex-direction: column; gap: var(--s1); transition: border-color .2s; }
+.card:hover { border-color: var(--gold); }
+.card .tag { font: 600 .74rem/1.3 var(--sans); letter-spacing: .06em; font-variant-caps: all-small-caps; color: var(--ink-2); }
+.card h3 { font: 600 1.12rem/1.3 var(--serif); color: var(--ink); }
+.card p, .card li { font-size: .9rem; color: var(--ink-2); }
+.card ul { list-style: none; display: flex; flex-direction: column; gap: var(--s1); }
+.card ul li { padding-left: 18px; position: relative; }
+.card ul li::before { content: ""; position: absolute; left: 0; top: .72em; width: 6px; height: 6px; background: var(--blue); }
+.card .n { width: 36px; height: 36px; border-radius: 3px; display: grid; place-items: center; font: 600 .9rem/1 var(--serif); color: #fff; background: var(--blue); margin-bottom: 4px; }
+.card.hl { background: var(--navy); border-color: var(--navy); }
+.card.hl h3, .card.hl p, .card.hl li { color: var(--on-dark); }
+.card.hl .n { background: var(--gold); color: var(--navy); }
+
+.bul { list-style: none; display: flex; flex-direction: column; gap: var(--s2); margin-top: var(--s4); }
+.bul li { position: relative; padding-left: 28px; font-size: 1rem; color: var(--ink); max-width: 68ch; }
+.bul li::before { content: ""; position: absolute; left: 4px; top: .7em; width: 7px; height: 7px; background: var(--blue); }
+
+.stat { background: var(--white); border: 1px solid var(--line); border-top: 2px solid var(--gold); border-radius: var(--radius); padding: var(--s3); transition: border-color .2s; }
+.stat:hover { border-color: var(--gold); }
+.stat .v { font: 600 clamp(1.5rem, 1.9vw, 2.3rem)/1.1 var(--serif); color: var(--blue); }
+.stat .l { font-size: .84rem; color: var(--ink-2); margin-top: var(--s1); }
+
+.callout { border-radius: var(--radius); padding: var(--s3) var(--s4); background: var(--navy); color: var(--on-dark); font-size: .95rem; border-left: 3px solid var(--gold); }
+.callout h3 { font: 600 1rem/1.3 var(--serif); color: var(--gold); margin-bottom: var(--s1); }
+.callout strong { color: var(--gold); }
+.note { font-size: .92rem; color: var(--ink-2); border-left: 2px solid var(--gold); padding-left: var(--s2); max-width: 75ch; }
+.note a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+.tnote { font-size: .74rem; color: var(--ink-2); margin-top: var(--s2); max-width: 110ch; font-style: italic; }
+
+/* tables: blue header, hairlines, numbers right-aligned */
+.tbl-wrap { border: 1px solid var(--line); border-radius: var(--radius); background: var(--white); overflow-x: auto; }
+table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; min-width: 640px; }
+.tbl caption { caption-side: top; text-align: left; padding: var(--s2) 20px; font: 600 .95rem/1.4 var(--serif); color: var(--ink); background: var(--white); border-bottom: 1px solid var(--line); }
+.tbl th { background: var(--blue); color: #fff; text-align: left; font: 600 .78rem/1.3 var(--sans); letter-spacing: .04em; font-variant-caps: all-small-caps; padding: 14px 20px; }
+.tbl td { padding: 14px 20px; border-top: 1px solid var(--line); vertical-align: top; color: var(--ink-2); }
+.tbl tbody tr:nth-child(even) td { background: var(--tint-2); }
+.tbl tbody tr { transition: box-shadow .2s; }
+.tbl tbody tr:hover td { background: var(--tint); }
+.tbl tbody tr:hover td:first-child { box-shadow: inset 3px 0 0 var(--gold); }
+.tbl td:first-child { font-weight: 600; color: var(--ink); }
+.tbl .num { text-align: right; white-space: nowrap; font-variant-numeric: lining-nums tabular-nums; }
+/* "Table 2.1" / "Figure 2.1": small-caps label */
+.lbl { font-family: var(--sans); font-weight: 600; font-size: .9em; letter-spacing: .06em; font-variant-caps: all-small-caps; color: var(--blue); }
+
+/* timelines */
+.tl { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s2); }
+@media (max-width: 1100px) { .tl { grid-template-columns: repeat(2, 1fr); } }
+.tl.five { grid-template-columns: repeat(5, 1fr); }
+@media (max-width: 1100px) { .tl.five { grid-template-columns: repeat(2, 1fr); } }
+.tl .m { background: var(--white); border: 1px solid var(--line); border-top: 2px solid var(--blue); border-radius: var(--radius); padding: var(--s2) 20px; transition: border-color .2s; }
+.tl .m:hover { border-color: var(--gold); }
+.tl .y { font: 600 1.1rem/1.1 var(--serif); color: var(--blue); }
+.tl .t { font: 600 .9rem/1.35 var(--sans); margin-top: var(--s1); }
+.tl .d { font-size: .82rem; color: var(--ink-2); margin-top: 4px; }
+.cap { font: 600 .95rem/1.4 var(--serif); color: var(--ink); margin-top: var(--s3); }
+
+.ladder { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--s2); align-items: end; }
+@media (max-width: 900px) { .ladder { grid-template-columns: 1fr; } .ladder .card { min-height: 0 !important; } }
+.flow { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: var(--s2); align-items: stretch; }
+.flow .ar { display: grid; place-items: center; font: 400 1.6rem/1 var(--serif); color: var(--blue); }
+@media (max-width: 900px) { .flow { grid-template-columns: 1fr; } .flow .ar { transform: rotate(90deg); } }
+.share { height: 12px; border-radius: 2px; background: var(--tint); overflow: hidden; margin-top: var(--s2); }
+.share span { display: block; height: 100%; background: var(--blue); }
+
+/* figures: publication caption, italic source below */
+.chart { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--s3); }
+.chart figcaption { font: 600 .95rem/1.4 var(--serif); color: var(--ink); padding-bottom: var(--s1); border-bottom: 1px solid var(--line); margin-bottom: var(--s1); }
+.chart .unit { font-size: .74rem; color: var(--ink-2); font-style: italic; margin-bottom: var(--s2); }
+.chart svg { width: 100%; height: auto; display: block; overflow: visible; }
+.chart svg text { font-family: var(--sans); }
+.bar-mark { transition: opacity .2s; } .bar-mark:hover { opacity: .85; }
+.legend { display: flex; flex-wrap: wrap; gap: var(--s1) var(--s3); font-size: .76rem; color: var(--ink-2); margin-top: var(--s2); }
+.legend i { display: inline-block; width: 14px; height: 14px; border-radius: 2px; margin-right: 8px; vertical-align: -2px; border: 1px solid var(--navy); }
+
+.cols { display: grid; gap: var(--s4); align-items: start; }
+.c2 { grid-template-columns: 1fr 1fr; } .c21 { grid-template-columns: 7fr 5fr; } .c12 { grid-template-columns: 5fr 7fr; }
+@media (max-width: 1000px) { .c2, .c21, .c12 { grid-template-columns: 1fr; } }
+
+.olist { list-style: none; counter-reset: o; display: flex; flex-direction: column; gap: var(--s2); }
+.olist li { counter-increment: o; position: relative; padding: var(--s2) var(--s3) var(--s2) 64px; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); font-size: .95rem; color: var(--ink-2); transition: border-color .2s; }
+.olist li:hover { border-color: var(--gold); }
+.olist li::before { content: counter(o); position: absolute; left: 20px; top: 16px; width: 28px; height: 28px; border-radius: 3px; background: var(--blue); color: #fff; font: 600 .85rem/28px var(--serif); text-align: center; }
+
+.refs { list-style: none; columns: 2 520px; column-gap: var(--s8); font-size: .86rem; line-height: 1.55; color: var(--ink); }
+.refs li { break-inside: avoid; padding: 0 0 var(--s2) 32px; text-indent: -32px; overflow-wrap: anywhere; }
+.refs a { color: var(--blue); }
+.refs a:hover { text-decoration: underline; text-decoration-color: var(--gold); text-decoration-thickness: 2px; }
+
+.toc { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s3) var(--s5); }
+@media (max-width: 1000px) { .toc { grid-template-columns: 1fr; } }
+.toc a { display: block; font-size: .84rem; color: var(--ink-2); padding: 8px 0 8px 12px; border-bottom: 1px solid var(--line); border-left: 2px solid transparent; transition: border-color .2s, color .2s; }
+.toc a:hover { color: var(--blue); border-left-color: var(--gold); }
+.toc a.toc-h { font: 600 .95rem/1.35 var(--serif); color: var(--ink); padding-top: var(--s2); border-bottom-color: var(--blue); }
+.toc a.toc-l2 { font-weight: 600; color: var(--blue); }
+.toc a:not(.toc-h):not(.toc-l2) { padding-left: 28px; }
+.toc a.toc-sub { padding-left: 44px; font-style: italic; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* =========================================================
+   6. Cover and chapter openings (dark blue, 3D star ring behind)
+   ========================================================= */
+.hero, .dark { background: transparent; color: var(--on-dark); border-top: 0; }
+.hero { padding-top: calc(72px + var(--s10)); }
+.hero .copy { position: relative; z-index: 1; }
+.hero h1 { font-size: clamp(1.9rem, 2.7vw, 3.4rem); line-height: 1.18; color: var(--on-dark); max-width: 26ch; }
+.course { font: 500 .9rem/1.4 var(--sans); color: var(--on-dark-2); margin-bottom: var(--s4); }
+.cover-meta { display: grid; grid-template-columns: auto 1fr; gap: 12px var(--s4); margin-top: var(--s5); padding-top: var(--s3); border-top: 1px solid rgba(255,255,255,.18); font-size: .9rem; color: var(--on-dark); max-width: 640px; }
+.cover-meta dt { font: 600 .74rem/1.9 var(--sans); letter-spacing: .08em; font-variant-caps: all-small-caps; color: var(--gold); }
+.cover-meta dd { line-height: 1.6; }
+.hero .actions { margin-top: var(--s5); }
+/* the 3D ring is drawn where this box is (right column on desktop, above the text on phones) */
+.hero-anchor { position: absolute; right: 0; top: 50%; width: min(38vw, 600px); aspect-ratio: 1; transform: translateY(-50%); pointer-events: none; }
+@media (max-width: 1100px) { .hero-anchor { position: relative; right: auto; top: auto; transform: none; width: min(70vw, 340px); margin: 0 auto var(--s4); } }
+
+.intro { text-align: center; align-items: center; justify-content: center; }
+.intro .wrap { display: flex; flex-direction: column; align-items: center; }
+.chno { display: block; width: 3.6em; height: 3.6em; display: grid; place-items: center; font: 600 clamp(3.2rem, 5.4vw, 6rem)/1 var(--serif); color: var(--gold); margin-bottom: var(--s3); }
+.chno::before { content: attr(data-no); }
+.chno-sm { font-size: clamp(2rem, 3vw, 3.2rem); margin-bottom: var(--s2); }
+.intro .h { font-size: clamp(2rem, 3.2vw, 3.8rem); max-width: 24ch; margin: 0 auto; color: var(--on-dark); }
+.intro .eyebrow { margin-bottom: var(--s2); }
+.subs { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px var(--s3); margin-top: var(--s4); font-size: .85rem; color: var(--on-dark-2); max-width: 980px; padding-top: var(--s3); border-top: 1px solid rgba(255,255,255,.15); }
+.subs b { color: var(--gold); margin-right: 6px; font-weight: 600; }
+.intro .btn-pill { margin-top: var(--s5); }
+.intro .no { font: 600 clamp(3rem, 6vw, 6.4rem)/1 var(--serif); color: var(--gold); margin-bottom: var(--s2); }
+.dark .h { color: var(--on-dark); }
+
+/* footer */
+.site-foot { position: relative; z-index: 1; background: var(--navy-2); color: var(--on-dark-2); border-top: 2px solid var(--gold); padding: var(--s5) var(--gutter); display: flex; align-items: center; gap: var(--s3); font-size: .74rem; }
+.site-foot svg { width: 40px; height: 40px; flex: none; }
+.site-foot svg path { fill: var(--gold); }
+
+/* =========================================================
+   7. Reveal on scroll: short fade and rise, runs once
+   ========================================================= */
+.js .rv { opacity: 0; transform: translateY(16px); transition: opacity .45s ease-out, transform .45s ease-out; transition-delay: calc(var(--d, 0) * 60ms); }
+.js .rv.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .js .rv { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } }
+
+/* =========================================================
+   8. Small screens
+   ========================================================= */
+@media (max-width: 760px) {
+  .sec { padding: calc(72px + var(--s5)) var(--gutter) var(--s8); min-height: auto; }
+  .hero, .intro { min-height: 100vh; }
+  .sec:not(.dark):not(.hero) { background-size: 90vw; background-position: right -30vw top 64px; }
+  table.tbl { font-size: .82rem; }
+}
+
+/* =========================================================
+   9. Print / PDF: light pages, no 3D
+   ========================================================= */
+@media print {
+  #scene, .nav, .dots, .scroll-hint, .counter, .star-progress, #progress, .fallback-bg { display: none !important; }
+  body { background: #fff; }
+  .sec, .hero, .dark { min-height: auto; padding: 32px 24px; break-inside: avoid; background: #fff !important; color: var(--ink); border-top: 1px solid var(--line); }
+  .hero h1, .dark .h, .intro .h, .cover-meta, .subs, .dark .lead, .course { color: var(--ink) !important; }
+  .chno, .intro .no, .accent, .dark .eyebrow, .hero .eyebrow, .subs b, .cover-meta dt { color: var(--blue) !important; }
+  .js .rv { opacity: 1; transform: none; }
+  .site-foot { background: #fff; color: var(--ink-2); }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+
+/* ==========================================================
+   DATA VISUALS (added; data in viz_data.json, see viz_report.md)
+   ========================================================== */
+.vz { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--s3); margin-top: var(--s4); min-width: 0; }
+.vz:hover { border-color: var(--line); }
+.js .vz:empty { display: none; }
+.vz-head { display: block; padding-bottom: var(--s1); border-bottom: 1px solid var(--line); margin-bottom: var(--s1); }
+.vz-lbl { display: block; font: 600 .72rem/1.3 var(--sans); letter-spacing: .06em; font-variant-caps: all-small-caps; color: var(--blue); }
+.vz-lbl::before { content: ""; display: inline-block; width: 18px; height: 2px; background: var(--gold); vertical-align: middle; margin-right: 8px; }
+.vz-title { display: block; font: 600 1rem/1.35 var(--serif); color: var(--ink); margin-top: 4px; }
+.vz-unit { font-size: .74rem; color: var(--ink-2); font-style: italic; margin-bottom: var(--s2); }
+.vz-body { position: relative; min-width: 0; }
+.vz-body svg { width: 100%; height: auto; display: block; overflow: visible; }
+.vz-body svg text, .chart .vz-body svg text { font-family: var(--sans); font-feature-settings: "lnum", "tnum"; }
+.vz-notes { list-style: none; margin: var(--s2) 0 0; padding: 0; font-size: .74rem; color: var(--ink-2); }
+.vz-notes li { padding-left: 14px; position: relative; margin-top: 2px; }
+.vz-notes li::before { content: ""; position: absolute; left: 0; top: .62em; width: 6px; height: 1px; background: var(--ink-2); }
+.vz .src { margin-top: var(--s2); }
+.vz-legend { display: flex; flex-wrap: wrap; gap: var(--s1) var(--s3); font-size: .76rem; color: var(--ink-2); margin-top: var(--s2); }
+.vz-legend span { display: inline-flex; align-items: center; gap: 8px; }
+.vz-legend svg { width: 18px; height: 18px; flex: none; overflow: visible; }
+.vz-context { font-size: .84rem; color: var(--ink-2); margin: 0 0 var(--s2); }
+.vz-context b { font: 600 1.15rem/1 var(--serif); color: var(--blue); }
+
+/* marks: hover, keyboard focus, tooltip */
+.vz-mark { cursor: pointer; outline: none; }
+.vz-mark .hit { fill: transparent; stroke: none; }
+.vz-mark:hover .hit, .vz-mark.on .hit { fill: rgba(0, 51, 153, .06); }
+.vz-mark:focus-visible { outline: 2px dashed var(--blue); outline-offset: 3px; }
+.vz-mark:focus-visible .hit, .vz-mark.on:focus .hit { stroke: var(--blue); stroke-width: 2; stroke-dasharray: 4 3; }
+.vz-tip { position: fixed; z-index: 60; max-width: min(320px, calc(100vw - 32px)); background: var(--navy); color: #fff; font: 500 .8rem/1.45 var(--sans); padding: 10px 14px; border-radius: var(--radius); border-top: 2px solid var(--gold); pointer-events: none; opacity: 0; transform: translateY(4px); transition: opacity .15s, transform .15s; }
+.vz-tip.show { opacity: 1; transform: none; }
+.vz-tip b { display: block; font-weight: 700; color: #fff; }
+.vz-tip .k { color: var(--on-dark-2, #C9D6F2); }
+
+/* "View data" */
+.vz-foot { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--s1) var(--s3); }
+.vz-btn { font: 600 .74rem/1 var(--sans); color: var(--blue); background: none; border: 0; border-bottom: 1px solid var(--line); padding: 6px 0; cursor: pointer; margin-top: var(--s2); }
+.vz-btn:hover, .vz-btn:focus-visible { border-bottom-color: var(--gold); outline: none; }
+.vz-btn:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+.vz-table { margin-top: var(--s2); overflow-x: auto; }
+.vz-table table { width: 100%; border-collapse: collapse; font-size: .76rem; }
+.vz-table th { background: var(--blue); color: #fff; text-align: left; font-weight: 600; padding: 6px 10px; }
+.vz-table td { border-bottom: 1px solid var(--line); padding: 6px 10px; vertical-align: top; }
+.vz-table td.num, .vz-table th.num { text-align: right; font-feature-settings: "lnum", "tnum"; white-space: nowrap; }
+.vz-table .st { color: var(--ink-2); font-style: italic; }
+.sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* draw-in animations: one time, <= 800 ms, final state when reduced motion / print */
+.vz-anim .grow-y, .vz-anim .grow-x, .vz-anim .wipe, .vz-anim .pop { transition: transform .55s cubic-bezier(.2, .7, .2, 1), clip-path .7s cubic-bezier(.3, .6, .2, 1), opacity .45s ease; transition-delay: calc(var(--i, 0) * 45ms); }
+.vz-anim .grow-y { transform-box: fill-box; transform-origin: 50% 100%; }
+.vz-anim .grow-x { transform-box: fill-box; transform-origin: 0 50%; }
+.vz-anim .pop { transform-box: fill-box; transform-origin: 50% 50%; }
+.vz-anim.armed:not(.drawn) .grow-y { transform: scaleY(0); }
+.vz-anim.armed:not(.drawn) .grow-x { transform: scaleX(0); }
+.vz-anim.armed:not(.drawn) .wipe { clip-path: inset(0 100% 0 0); }
+.vz-anim.armed:not(.drawn) .pop { opacity: 0; transform: scale(.4); }
+.vz-anim .wipe { clip-path: inset(0 0 0 0); }
+
+/* layout helpers for placing visuals beside existing content */
+.vz-split { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--s6); align-items: center; }
+.vz-split > .copy { max-width: none; }
+.vz-split > .vz { margin-top: 0; }
+.vz-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s4); align-items: start; }
+.vz-pair > .vz, .vz-pair > .callout { margin-top: 0; }
+.vz-pair.mt { margin-top: var(--s4); }
+@media (max-width: 1000px) { .vz-split, .vz-pair { grid-template-columns: 1fr; } }
+
+/* A1: scrollable milestone strip */
+.vz-strip { position: relative; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x proximity; padding: 4px 2px 8px; scrollbar-width: thin; }
+.vz-strip:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.vz-strip ol { list-style: none; margin: 0; padding: 0; display: flex; position: relative; width: max-content; }
+.vz-strip ol::before { content: ""; position: absolute; left: 0; right: 0; top: 23px; height: 2px; background: var(--line); }
+.vz-strip li { scroll-snap-align: center; }
+.vz-strip button { position: relative; width: 112px; padding: 0 6px 6px; background: none; border: 0; cursor: pointer; text-align: center; color: var(--ink); font: inherit; }
+.vz-strip button svg { display: block; margin: 0 auto; width: 48px; height: 48px; overflow: visible; }
+.vz-strip .yy { display: block; font: 600 .78rem/1.2 var(--serif); color: var(--blue); margin-top: 2px; font-feature-settings: "lnum"; }
+.vz-strip .ev { display: block; font-size: .7rem; line-height: 1.3; color: var(--ink-2); margin-top: 2px; }
+.vz-strip button[aria-pressed="true"] .yy { color: var(--ink); }
+.vz-strip button[aria-pressed="true"]::after { content: ""; position: absolute; left: 22px; right: 22px; bottom: -6px; height: 2px; background: var(--gold); }
+.vz-strip button:focus-visible { outline: 2px solid var(--blue); outline-offset: -2px; border-radius: var(--radius); }
+.vz-strip button:hover svg .core { stroke: var(--gold); }
+.vz-card { border: 1px solid var(--line); border-left: 2px solid var(--gold); border-radius: var(--radius); padding: var(--s2) var(--s3); margin-top: var(--s2); background: var(--tint-2, #F4F7FC); min-height: 5.2em; }
+.vz-card .yy { font: 600 1.05rem/1.2 var(--serif); color: var(--blue); }
+.vz-card .ev { font: 600 .9rem/1.35 var(--sans); margin-top: 4px; }
+.vz-card .mn { font-size: .82rem; color: var(--ink-2); margin-top: 2px; }
+
+/* A6: donut + counters */
+.vz-dc { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s4); align-items: center; }
+.vz-counters { display: grid; gap: var(--s2); }
+.vz-counter { border: 1px solid var(--line); border-top: 2px solid var(--gold); border-radius: var(--radius); padding: var(--s2) var(--s3); }
+.vz-counter .v { font: 600 clamp(1.4rem, 1.8vw, 2.1rem)/1.1 var(--serif); color: var(--blue); font-feature-settings: "lnum", "tnum"; }
+.vz-counter .l { font-size: .8rem; color: var(--ink-2); margin-top: 4px; }
+@media (max-width: 760px) { .vz-dc { grid-template-columns: 1fr; } }
+
+/* B3a: waffle with side labels */
+.vz-wf { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--s3); align-items: center; }
+.vz-wf .big { font: 600 clamp(1.8rem, 2.4vw, 2.8rem)/1 var(--serif); color: var(--blue); }
+.vz-wf p { font-size: .8rem; color: var(--ink-2); margin-top: 6px; }
+.vz-wf p b { color: var(--ink); font-weight: 600; }
+@media (max-width: 480px) { .vz-wf { grid-template-columns: 1fr; } }
+
+/* B4: staircase (3D with a 2D fallback) */
+.vz-stairs { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: var(--s3); align-items: center; }
+.vz-stage { position: relative; aspect-ratio: 16 / 10; }
+.vz-stage canvas, .vz-stage svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.vz-stage canvas { display: none; }
+.vz-stage.webgl canvas { display: block; }
+.vz-stage.webgl svg.iso { visibility: hidden; }
+.vz-stage .tag3d { position: absolute; transform: translate(-50%, -100%); font: 700 .8rem/1 var(--sans); color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 2px; padding: 3px 6px; pointer-events: none; font-feature-settings: "lnum"; }
+.vz-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.vz-steps button { width: 100%; text-align: left; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 8px 12px; font: 600 .8rem/1.3 var(--sans); color: var(--ink); cursor: pointer; display: flex; gap: 10px; align-items: baseline; }
+.vz-steps button .n { font: 600 .9rem/1 var(--serif); color: var(--blue); font-feature-settings: "lnum"; }
+.vz-steps button[aria-pressed="true"], .vz-steps button:hover { border-color: var(--gold); box-shadow: inset 3px 0 0 var(--gold); }
+.vz-steps button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.vz-steps + .vz-card { min-height: 6.5em; }
+@media (max-width: 760px) { .vz-stairs { grid-template-columns: 1fr; } }
+
+@media (max-width: 760px) {
+  .vz { padding: var(--s2); }
+  .vz-strip button { width: 96px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vz-anim .grow-y, .vz-anim .grow-x, .vz-anim .wipe, .vz-anim .pop, .vz-tip { transition: none !important; }
+}
+@media print {
+  .vz { break-inside: avoid; }
+  .vz-anim .grow-y, .vz-anim .grow-x, .vz-anim .wipe, .vz-anim .pop { transform: none !important; clip-path: none !important; opacity: 1 !important; transition: none !important; }
+  .vz-btn, .vz-tip { display: none !important; }
+  .vz-strip { overflow: visible; }
+  .vz-strip ol { flex-wrap: wrap; width: auto; }
+  .vz-strip ol::before { display: none; }
+  .vz-stage canvas, .vz-stage .tag3d { display: none !important; }
+  .vz-stage svg.iso { visibility: visible !important; }
+}
+.vz-stairs.stack { grid-template-columns: 1fr; }
+.vz-split.even { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 1000px) { .vz-split.even { grid-template-columns: 1fr; } }
+
+/* =========================================================
+   10. PDF export (scripts/export_pdf.mjs)
+   Slide PDF: one or more 1920 x 1080 pages per section.
+   html.pdf-a4 (set by the export script): continuous A4 report.
+   The 3D canvas is replaced by a static ring of twelve stars.
+   ========================================================= */
+@page { size: 1920px 1080px; }
+@media print {
+  :root { --pdf-h: 930px; --print-ring: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-110 -110 220 220'%3E%3Ccircle r='108' fill='%23003399'/%3E%3Ccircle r='80' fill='none' stroke='%23FFCC00' stroke-opacity='.25' stroke-width='.6'/%3E%3Cg fill='%23FFCC00' stroke='%23001A57' stroke-width='.6'%3E%3Cpath d='M0.00,-93.00L3.06,-84.21L12.36,-84.02L4.95,-78.39L7.64,-69.48L0.00,-74.80L-7.64,-69.48L-4.95,-78.39L-12.36,-84.02L-3.06,-84.21Z'/%3E%3Cpath d='M40.00,-82.28L43.06,-73.49L52.36,-73.30L44.95,-67.68L47.64,-58.76L40.00,-64.08L32.36,-58.76L35.05,-67.68L27.64,-73.30L36.94,-73.49Z'/%3E%3Cpath d='M69.28,-53.00L72.34,-44.21L81.65,-44.02L74.23,-38.39L76.92,-29.48L69.28,-34.80L61.64,-29.48L64.34,-38.39L56.92,-44.02L66.23,-44.21Z'/%3E%3Cpath d='M80.00,-13.00L83.06,-4.21L92.36,-4.02L84.95,1.61L87.64,10.52L80.00,5.20L72.36,10.52L75.05,1.61L67.64,-4.02L76.94,-4.21Z'/%3E%3Cpath d='M69.28,27.00L72.34,35.79L81.65,35.98L74.23,41.61L76.92,50.52L69.28,45.20L61.64,50.52L64.34,41.61L56.92,35.98L66.23,35.79Z'/%3E%3Cpath d='M40.00,56.28L43.06,65.08L52.36,65.26L44.95,70.89L47.64,79.80L40.00,74.48L32.36,79.80L35.05,70.89L27.64,65.26L36.94,65.08Z'/%3E%3Cpath d='M0.00,67.00L3.06,75.79L12.36,75.98L4.95,81.61L7.64,90.52L0.00,85.20L-7.64,90.52L-4.95,81.61L-12.36,75.98L-3.06,75.79Z'/%3E%3Cpath d='M-40.00,56.28L-36.94,65.08L-27.64,65.26L-35.05,70.89L-32.36,79.80L-40.00,74.48L-47.64,79.80L-44.95,70.89L-52.36,65.26L-43.06,65.08Z'/%3E%3Cpath d='M-69.28,27.00L-66.23,35.79L-56.92,35.98L-64.34,41.61L-61.64,50.52L-69.28,45.20L-76.92,50.52L-74.23,41.61L-81.65,35.98L-72.34,35.79Z'/%3E%3Cpath d='M-80.00,-13.00L-76.94,-4.21L-67.64,-4.02L-75.05,1.61L-72.36,10.52L-80.00,5.20L-87.64,10.52L-84.95,1.61L-92.36,-4.02L-83.06,-4.21Z'/%3E%3Cpath d='M-69.28,-53.00L-66.23,-44.21L-56.92,-44.02L-64.34,-38.39L-61.64,-29.48L-69.28,-34.80L-76.92,-29.48L-74.23,-38.39L-81.65,-44.02L-72.34,-44.21Z'/%3E%3Cpath d='M-40.00,-82.28L-36.94,-73.49L-27.64,-73.30L-35.05,-67.68L-32.36,-58.76L-40.00,-64.08L-47.64,-58.76L-44.95,-67.68L-52.36,-73.30L-43.06,-73.49Z'/%3E%3C/g%3E%3C/svg%3E"); }
+  html { scroll-padding-top: 0; }
+  body { background: #fff !important; }
+  #scene, .nav, .dots, .scroll-hint, .counter, .star-progress, #progress, .fallback-bg,
+  .btn, .actions, .vz-btn, .vz-tip, .vz-table, .sr-only { display: none !important; }
+  *, *::before, *::after { transition: none !important; animation: none !important; box-shadow: none !important; backdrop-filter: none !important; filter: none !important; }
+  .rv, .js .rv { opacity: 1 !important; transform: none !important; }
+  a { color: inherit; text-decoration: none; }
+  .refs a { color: var(--blue); }
+
+  /* every section starts a new page; it may run over several pages */
+  .sec, .hero, .dark { break-before: page; break-inside: auto; min-height: 0; border-top: 0; padding: 40px 96px 24px; display: block; }
+  .sec:first-child { break-before: auto; }
+  .sec:not(.dark):not(.hero) { background: #fff var(--watermark) no-repeat right -40px top 40px / 560px; }
+  .wrap { max-width: none; }
+
+  /* cover and chapter openings: a full light page with the static star ring */
+  .hero, .intro { min-height: var(--pdf-h); display: flex; flex-direction: column; justify-content: center; background: var(--tint-2) !important; border-left: 12px solid var(--blue); }
+  .hero { padding-top: 40px; }
+  #qa { min-height: calc(var(--pdf-h) - 140px); }    /* leaves room for the site footer on the last page */
+  .hero .wrap { position: relative; min-height: 520px; display: flex; align-items: center; }
+  .hero-anchor { display: block !important; position: absolute; right: 0; top: 50%; transform: translateY(-50%); width: 460px; aspect-ratio: 1; background: var(--print-ring) center / contain no-repeat; }
+  /* dark boxes become light boxes with a blue rule */
+  .callout, .card.hl { background: var(--tint) !important; color: var(--ink) !important; border: 1px solid var(--line); border-left: 4px solid var(--blue); }
+  .callout h3, .card.hl h3 { color: var(--blue) !important; }
+  .callout strong { color: var(--ink); }
+  .card.hl p, .card.hl li { color: var(--ink) !important; }
+  .card.hl .n { background: var(--blue); color: #fff; }
+  .hero .copy { max-width: calc(100% - 600px); }
+  .hero h1, .intro .h, .intro .no { color: var(--ink) !important; }
+  .chno { background: var(--print-ring) center / contain no-repeat; color: #fff !important; width: 3.4em; height: 3.4em; }
+  .chno-sm { width: 3em; height: 3em; }
+  .intro .no { color: var(--blue) !important; }
+  .dark .eyebrow, .hero .eyebrow { color: var(--blue) !important; }
+  .dark .src, .dark p, .dark li { color: var(--ink); }
+  .subs span { color: var(--ink); border-color: var(--line); }
+
+  /* keep blocks whole; headings stay with what follows */
+  .card, .stat, .callout, .note, .tnote, .vz, figure, .chart, .tl .m, .cap + .tl .m, .ladder .card, .vz-counter,
+  .refs li, .toc > div, .src, .legend, tr, .bul li, .flow .card { break-inside: avoid; }
+  h1, h2, h3, .h, .eyebrow, .cap, figcaption, .vz-head { break-after: avoid; }
+  h1, h2, h3, .h, .cap, figcaption, .vz-head { break-inside: avoid; }
+  .eyebrow { display: table; }                       /* block level, so it stays with its heading */
+  .eyebrow + .h, .eyebrow + h2, .h + .lead, .cap + .tl, .cap + .tbl-wrap { break-before: avoid; }
+  .vz-stage { aspect-ratio: 2.4; }
+  .tbl-wrap, .vz-strip { overflow: visible !important; }
+  thead { display: table-header-group; }
+  table.tbl { break-inside: auto; }
+  .refs { columns: 2; }
+  .refs li { orphans: 3; widows: 3; }
+  p, li { orphans: 2; widows: 2; }
+  li, .olist li { break-inside: avoid; }
+
+  .site-foot { break-before: avoid; background: #fff !important; color: var(--ink-2); border-top: 1px solid var(--line); padding: 24px 96px; }
+  .site-foot svg path { fill: var(--gold); stroke: var(--navy); stroke-width: .5; }
+  .vz-stage canvas, .vz-stage .tag3d { display: none !important; }
+  .vz-stage svg.iso { visibility: visible !important; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+}
+
+/* A4 report version */
+@media print {
+  html.pdf-a4 { font-size: 14.5px; --pdf-h: 990px; }
+  html.pdf-a4 .sec, html.pdf-a4 .hero, html.pdf-a4 .dark { break-before: auto; padding: 18px 0 6px; background: #fff !important; }
+  html.pdf-a4 .sec:not(.dark):not(.hero) { background: #fff !important; }
+  html.pdf-a4 #contents, html.pdf-a4 #introduction, html.pdf-a4 #ch1, html.pdf-a4 #ch2, html.pdf-a4 #ch3, html.pdf-a4 #references, html.pdf-a4 #qa { break-before: page; }
+  html.pdf-a4 .hero { min-height: var(--pdf-h); background: var(--tint-2) !important; border-left: 8px solid var(--blue); padding: 40px 32px; }
+  html.pdf-a4 .hero .wrap { display: block; min-height: 0; }
+  html.pdf-a4 .hero-anchor { position: relative; top: auto; right: auto; transform: none; width: 240px; margin: 0 0 32px; }
+  html.pdf-a4 .hero .copy { max-width: none; }
+  html.pdf-a4 .intro { min-height: 0; padding: 36px 24px; border-left: 6px solid var(--blue); background: var(--tint-2) !important; margin-bottom: 8px; }
+  html.pdf-a4 .chno { font-size: 2.6rem; }
+  html.pdf-a4 .site-foot { padding: 16px 0; }
+  html.pdf-a4 .refs { columns: 1; }
+  html.pdf-a4 .vz { padding: 14px; margin-top: 18px; }
+}
+</style>
+</head>
+<body>
+<main>
+<!-- removed_sections.html: v1 sections that were dropped from v2 or whose content was rewritten for BTL v5.
+     To restore one, copy the <section> back into index.html (inside <main>) and add it to the table of contents.
+     Charts inside need the v1 viz specs in v2/viz_data.v1.backup.json. -->
+<h1 style="padding:2rem">Removed or rewritten v1 sections (reference only)</h1>
+<!-- ===== DROPPED (not in BTL v5) ===== -->
+<!-- dropped: c1-theories -->
+<section class="sec" id="c1-theories" data-scene="none" data-pdf="1.1.1 Supplement (foundational theories; listed in added_content.md)">
+  <div class="wrap">
+    <div class="copy">
+      <p class="eyebrow rv">1.1.1 · Supplement</p>
+      <h2 class="h rv" style="--d:1">Foundational theories of economic integration</h2>
+      <div class="stack mt">
+        <div class="card rv" style="--d:2"><p class="tag">Viner (1950)</p><h3>Trade creation and trade diversion</h3>
+          <p>Trade creation occurs when a preferential agreement shifts purchases from higher-cost domestic production to lower-cost producers in a partner country. Trade diversion occurs when imports shift from a lower-cost non-member to a higher-cost member because of the preferential tariff. The welfare effect of an integration agreement depends on which effect dominates.</p></div>
+        <div class="card rv" style="--d:3"><p class="tag">Balassa (1961)</p><h3>Stages of economic integration</h3>
+          <p>Integration is described as a sequence of stages of increasing depth: free trade area, customs union, common market, economic union and complete economic integration. Each stage removes further barriers and requires more policy coordination among members.</p></div>
+      </div>
+      <p class="src rv"><b>Source:</b> Viner (1950); Balassa (1961).</p>
+    </div>
+  </div>
+</section>
+<!-- dropped: c1-mechanisms -->
+<section class="sec auto" id="c1-mechanisms" data-scene="none" data-pdf="1.2.4 Core Mechanisms of European Integration">
+  <div class="wrap panel">
+    <p class="eyebrow rv">1.2.4</p>
+    <h2 class="h rv" style="--d:1">Core Mechanisms of European Integration</h2>
+    <div class="grid g5 mt">
+      <div class="card rv"><h3>The European Single Market</h3><ul><li>Free movement of goods, services, capital, and people</li><li>Common product standards reduce transaction costs</li></ul></div>
+      <div class="card rv" style="--d:1"><h3>Common Policies</h3><ul><li>Common Agricultural Policy (CAP)</li><li>Competition policy: cartels, abuse of dominant positions, state aid</li><li>Regional and cohesion policies; environmental and climate policies</li></ul></div>
+      <div class="card rv" style="--d:2"><h3>Economic and Monetary Union</h3><ul><li>The euro eliminates exchange-rate uncertainty and increases price transparency</li><li>Euro-area countries cannot independently conduct national monetary policy</li></ul></div>
+      <div class="card rv" style="--d:3"><h3>Common Trade Policy</h3><ul><li>The EU negotiates many trade agreements collectively</li><li>The size of the integrated market strengthens its bargaining position</li></ul></div>
+      <div class="card rv" style="--d:4"><h3>Supranational Governance</h3><ul><li>EU-level rules can be legally binding within member states</li><li>A political debate concerning national sovereignty</li></ul></div>
+    </div>
+  </div>
+</section>
+<!-- dropped: c2-deepening -->
+<section class="sec" id="c2-deepening" data-scene="none" data-pdf="2.1.1 Deepening integration">
+  <div class="wrap">
+    <div class="vz-split">
+    <div class="copy">
+      <p class="eyebrow rv">2.1.1</p>
+      <h2 class="h rv" style="--d:1">Deepening integration</h2>
+      <ul class="bul">
+        <li class="rv" style="--d:2">Using the stages set out by Balassa (1961): a customs union (completed in 1968), a single market (in place from 1993), and an economic and monetary union.</li>
+        <li class="rv" style="--d:3">The Schengen area removed most internal border checks; the Treaty of Lisbon (in force since 2009) gave the Union a single legal personality, a permanent President of the European Council and a High Representative for foreign policy.</li>
+        <li class="rv" style="--d:4">"Failing forward" (Jones et al., 2016): the euro crisis of 2010–2012 produced the European Stability Mechanism and the banking union; the COVID-19 shock produced NextGenerationEU, financed by joint EU borrowing.</li>
+        <li class="rv" style="--d:5">Cohesion policy transfers funds to poorer regions, and it has helped lower-income members catch up.</li>
+      </ul>
+      <div class="grid g2 mt">
+        <div class="stat rv" style="--d:5"><p class="v">21 of 27</p><p class="l">member states use the euro as official currency</p></div>
+        <div class="stat rv" style="--d:6"><p class="v">EUR 800 bn+</p><p class="l">NextGenerationEU in current prices (EUR 750 billion in 2018 prices)</p></div>
+      </div>
+      <p class="src"><b>Source:</b> Balassa (1961); European Union (2026); Jones et al. (2016); European Commission (n.d.-e).</p>
+    </div>
+    <figure class="vz rv" data-viz="A2"></figure>
+    </div>
+  </div>
+</section>
+<!-- dropped: c2-neighbourhood -->
+<section class="sec auto" id="c2-neighbourhood" data-scene="none" data-pdf="2.1.2 Enlargement and Neighborhood Policy (current round and neighbourhood)">
+  <div class="wrap panel">
+    <p class="eyebrow rv">2.1.2c</p>
+    <h2 class="h rv" style="--d:1">Enlargement and Neighborhood Policy</h2>
+    <div class="grid g2 mt">
+      <div class="card rv"><p class="tag">The current round</p><h3>Shaped by security more than by economics</h3><ul>
+        <li>Ukraine and Moldova applied after Russia's full-scale invasion in 2022 and received candidate status in June 2022</li>
+        <li>The Commission's 2025 Enlargement Package, adopted on 4 November 2025, describes enlargement as a priority of the Union</li>
+        <li>Progress depends on reform in the candidates and on unanimity among existing members</li>
+        <li>Georgia's candidate status, granted in 2023: the incentive works only when the government wants to meet the conditions</li></ul></div>
+      <div class="card rv" style="--d:1"><p class="tag">Lavenex (2004): "external governance"</p><h3>European Neighbourhood Policy</h3><ul>
+        <li>Launched in 2004, with the Eastern Partnership (2009) and the Union for the Mediterranean (2008) as regional tracks</li>
+        <li>The EU extends parts of its single-market rules to its neighbours without offering them membership</li>
+        <li>Mixed results: Moldova and Ukraine moved closer to the Union, while others in the southern neighbourhood changed little</li>
+        <li>In 2022 the EU also created the European Political Community</li></ul></div>
+    </div>
+    <p class="src"><b>Source:</b> European Commission (n.d.-b); Lavenex (2004).</p>
+  </div>
+</section>
+<!-- dropped: c2-challenges -->
+<section class="sec auto" id="c2-challenges" data-scene="none" data-pdf="2.1.3 Challenges to integration">
+  <div class="wrap panel">
+    <p class="eyebrow rv">2.1.3</p>
+    <h2 class="h rv" style="--d:1">Challenges to integration</h2>
+    <div class="grid g4 mt">
+      <div class="card rv"><p class="n">1</p><h3>Euro crisis</h3><p>A common currency without a common fiscal policy leaves weaker economies exposed; a lasting north–south divide over solidarity.</p></div>
+      <div class="card rv" style="--d:1"><p class="n">2</p><h3>Migration 2015–2016</h3><p>Member states split over burden sharing; pressure on Schengen.</p></div>
+      <div class="card rv" style="--d:2"><p class="n">3</p><h3>Brexit</h3><p>The UK referendum of 2016 and its departure on 31 January 2020 showed that membership is reversible.</p></div>
+      <div class="card rv" style="--d:3"><p class="n">4</p><h3>Rule of law</h3><p>Disputes in Hungary and Poland led to Article 7 procedures and a mechanism that links EU funds to respect for the rule of law.</p></div>
+    </div>
+    <div class="vz-pair mt">
+    <div class="callout rv"><h3>Competitiveness</h3>The 2022 energy crisis and the widening gap with the United States and China. Draghi (2024) estimates that the EU needs to invest EUR 750–800 billion a year, equal to 4.4–4.7% of its GDP in 2023; Letta (2024) argues for completing the single market in services, energy and capital.</div>
+    <figure class="vz rv" data-viz="B6"></figure>
+    </div>
+    <p class="src"><b>Source:</b> Draghi (2024); Letta (2024).</p>
+  </div>
+</section>
+<!-- dropped: c2-security -->
+<section class="sec auto" id="c2-security" data-scene="none" data-pdf="2.3.2 Security and External Action">
+  <div class="wrap panel">
+    <p class="eyebrow rv">2.3.2</p>
+    <h2 class="h rv" style="--d:1">Security and External Action</h2>
+    <div class="grid g3 mt">
+      <div class="card rv"><p class="tag">Bull (1982); Manners (2002)</p><h3>"Civilian power" and "normative power"</h3><ul>
+        <li>The Common Foreign and Security Policy is decided mostly by unanimity</li>
+        <li>The High Representative leads the European External Action Service</li>
+        <li>22 CSDP missions and operations (13 civilian, 8 military, 1 civilian-military); more than 40 launched since 2003 (Council of the European Union, 2026a)</li></ul></div>
+      <div class="card rv" style="--d:1"><p class="tag">Since 2022</p><h3>Sanctions and defence</h3><ul>
+        <li>By July 2026 the Council had adopted 21 packages against Russia, the latest on 23 July 2026</li>
+        <li>About EUR 210 billion in Russian central bank assets immobilised in the EU</li>
+        <li>European Peace Facility; Strategic Compass (2022); SAFE loan instrument of EUR 150 billion, adopted on 27 May 2025</li></ul></div>
+      <div class="card rv" style="--d:2"><p class="tag">Limits</p><h3>Not a military power</h3><ul>
+        <li>NATO remains the core of collective defence for most members</li>
+        <li>Defence budgets and procurement remain national</li>
+        <li>Unanimity can slow decisions</li>
+        <li>"Civilian power" or "soft imperialism" (Hettne and Söderbaum, 2005)</li></ul></div>
+    </div>
+    <p class="src"><b>Source:</b> Bull (1982); Manners (2002); Council of the European Union (2025, 2026a, 2026b); Hettne and Söderbaum (2005).</p>
+    <figure class="vz rv" data-viz="A6"></figure>
+  </div>
+</section>
+<!-- dropped: c2-model -->
+<section class="sec" id="c2-model" data-scene="none" data-pdf="2.3.3 The EU as a Model for Other Regional Organizations">
+  <div class="wrap">
+    <div class="copy">
+      <p class="eyebrow rv">2.3.3</p>
+      <h2 class="h rv" style="--d:1">The EU as a Model for Other Regional Organizations</h2>
+      <ul class="bul">
+        <li class="rv" style="--d:2">Börzel and Risse (2012) separate three mechanisms of diffusion: active promotion through funding and agreements, learning, and borrowing institutional forms because they carry legitimacy.</li>
+        <li class="rv" style="--d:3">The African Union (2002), whose structure includes a commission, an assembly and a court, borrowed visibly from European forms.</li>
+        <li class="rv" style="--d:4">Mercosur (1991) set a customs union as a goal; its Parliament and dispute-settlement mechanisms follow European ideas.</li>
+        <li class="rv" style="--d:5">The EU prefers to sign agreements with regional blocs where it can, described by Hettne and Söderbaum (2005) as "interregionalism".</li>
+        <li class="rv" style="--d:6">ASEAN built an Economic Community in 2015 on a different philosophy: consensus, non-interference and no supranational court.</li>
+      </ul>
+      <p class="note rv mt">The EU exports ideas and practices more successfully than its institutional design (Börzel and Risse, 2012).</p>
+      <p class="src"><b>Source:</b> Börzel and Risse (2012); Hettne and Söderbaum (2005).</p>
+    </div>
+  </div>
+</section>
+<!-- dropped: c2-assessment -->
+<section class="sec auto" id="c2-assessment" data-scene="none" data-pdf="2.4.1 Strengths and Limitations (Table 2.3)">
+  <div class="wrap panel">
+    <p class="eyebrow rv">2.4.1</p>
+    <h2 class="h rv" style="--d:1">Strengths and Limitations</h2>
+    <div class="tbl-wrap rv mt"><table class="tbl">
+      <caption><span class="lbl">Table 2.3.</span> Strengths and limitations of the EU's role in integration</caption>
+      <thead><tr><th style="width:20%">Area</th><th style="width:40%">Strengths</th><th>Limitations</th></tr></thead>
+      <tbody>
+        <tr><td>European integration</td><td>Single market, euro, Schengen; ability to repair gaps after crises; cohesion policy</td><td>Uneven participation; democratic-deficit and Euroscepticism; Brexit shows membership is reversible</td></tr>
+        <tr><td>Enlargement and neighbourhood</td><td>Conditionality changed the 2004 entrants; candidate list is long and includes Ukraine and Moldova</td><td>Unanimity and enlargement fatigue; weak leverage over governments that do not want to reform</td></tr>
+        <tr><td>Trade</td><td>Single negotiating voice; 15.8% of world trade in goods and services combined (2024) (Council of the European Union, 2026c); widening network (Japan, Vietnam, Mercosur, India)</td><td>Slow ratification; agricultural and national interests; exposure to US and Chinese trade pressures</td></tr>
+        <tr><td>Regulation</td><td>Brussels Effect in data, chemicals, AI and carbon</td><td>Compliance burden on exporters; recent moves to simplify rules weaken the signal</td></tr>
+        <tr><td>Development</td><td>Large aid and preferences; Global Gateway links finance and strategy</td><td>Financing partly repackaged; aid increasingly tied to EU interests</td></tr>
+        <tr><td>Climate</td><td>Legally binding 2030, 2040 and 2050 targets; carbon market; CBAM</td><td>Small share of global emissions; political pressure over costs</td></tr>
+        <tr><td>Security</td><td>Sanctions, missions and growing defence funding</td><td>Dependence on NATO; unanimity in foreign policy; fragmented defence markets</td></tr>
+      </tbody></table></div>
+    <p class="note rv mt">The EU's strengths are structural (a large market and a body of law), while its limitations are political (shared decision-making among 27 governments).</p>
+    <p class="src"><b>Source:</b> Compiled by the authors from the sources cited in Sections 2.1 to 2.3.</p>
+  </div>
+</section>
+<!-- dropped: c2-prospects -->
+<section class="sec auto" id="c2-prospects" data-scene="none" data-pdf="2.4.2 Future Prospects">
+  <div class="wrap panel">
+    <p class="eyebrow rv">2.4.2</p>
+    <h2 class="h rv" style="--d:1">Future Prospects</h2>
+    <div class="grid g4 mt">
+      <div class="card rv"><p class="n">1</p><h3>Institutional</h3><p>Welcoming Ukraine, Moldova and the Western Balkans would require rethinking decision rules, the budget and agricultural and cohesion policies.</p></div>
+      <div class="card rv" style="--d:1"><p class="n">2</p><h3>Competitiveness</h3><p>Following Draghi (2024) and Letta (2024): reduce fragmentation of the single market and raise investment in technology, energy and defence.</p></div>
+      <div class="card rv" style="--d:2"><p class="n">3</p><h3>Strategic autonomy</h3><p>Trade diversification through agreements with Mercosur, India and Southeast Asian partners; measures on supply chains and critical raw materials.</p></div>
+      <div class="card rv" style="--d:3"><p class="n">4</p><h3>Green ambition and cost</h3><p>The 2040 climate target and CBAM define the European line; the political space to maintain them depends on whether the transition raises growth.</p></div>
+    </div>
+    <p class="note rv mt">For the rest of the world, including Vietnam, the EU will probably remain a major source of market access, capital and rules, but it will ask more in return: stricter environmental and labour standards, supply-chain due diligence and political alignment on some strategic issues.</p>
+    <p class="src"><b>Source:</b> Draghi (2024); Letta (2024).</p>
+  </div>
+</section>
+<!-- dropped: c3-standards-b -->
+<section class="sec auto" id="c3-standards-b" data-scene="none" data-pdf="3.3.1 Standards, Sustainability and Regulatory Alignment (Table 3.7)">
+  <div class="wrap panel">
+    <p class="eyebrow rv">3.3.1b</p>
+    <h2 class="h rv" style="--d:1">Standards, Sustainability and Regulatory Alignment</h2>
+    <div class="tbl-wrap rv mt"><table class="tbl">
+      <caption><span class="lbl">Table 3.7.</span> Opportunities and Challenges from EU Standards for Vietnam</caption>
+      <thead><tr><th style="width:24%">Dimension</th><th style="width:40%">Opportunities</th><th>Challenges</th></tr></thead>
+      <tbody>
+        <tr><td>Export competitiveness</td><td>Better quality and access to demanding markets</td><td>Higher compliance costs</td></tr>
+        <tr><td>Technology</td><td>Incentives to adopt cleaner and more efficient technologies</td><td>High initial investment</td></tr>
+        <tr><td>Supply chains</td><td>Greater integration into European value chains</td><td>Stricter traceability requirements</td></tr>
+        <tr><td>Labour practices</td><td>Improvement in working conditions and labour standards</td><td>Higher compliance and monitoring costs</td></tr>
+        <tr><td>Environment</td><td>Stronger environmental management</td><td>Additional costs for emissions and waste control</td></tr>
+        <tr><td>Governance</td><td>Greater transparency and regulatory capacity</td><td>Need for stronger enforcement institutions</td></tr>
+      </tbody></table></div>
+    <p class="note rv mt">The EU's influence on standards can be viewed as a form of regulatory alignment rather than complete regulatory harmonisation.</p>
+  </div>
+</section>
+<!-- dropped: c3-impact-trade -->
+<section class="sec auto" id="c3-impact-trade" data-scene="none" data-pdf="3.2.3 Impacts on trade and investment (Table 3.4)">
+  <div class="wrap panel">
+    <p class="eyebrow rv">3.2.3a</p>
+    <h2 class="h rv" style="--d:1">Impacts on trade and investment</h2>
+    <div class="tbl-wrap rv mt"><table class="tbl">
+      <caption><span class="lbl">Table 3.4</span> Changes in Vietnam-EU trade</caption>
+      <thead><tr><th style="width:40%">Indicator</th><th class="num">2019</th><th class="num">2024</th><th class="num">Change</th></tr></thead>
+      <tbody>
+        <tr><td>Total Vietnam–EU trade</td><td class="num">US$49.8 bn</td><td class="num">US$68.3 bn</td><td class="num">+37.1%</td></tr>
+        <tr><td>Vietnam's exports to EU</td><td class="num">US$35.8 bn</td><td class="num">US$51.6 bn</td><td class="num">+44.1%</td></tr>
+        <tr><td>Vietnam's trade surplus with EU</td><td class="num">≈US$21.8 bn</td><td class="num">US$34.9 bn</td><td class="num">+60.1%</td></tr>
+      </tbody></table></div>
+    <div class="grid g2 mt">
+      <div class="stat rv"><p class="v">85.6%</p><p class="l">of tariff lines (70.3% of Vietnam's export value) eliminated by the EU upon entry into force</p></div>
+      <div class="stat rv" style="--d:1"><p class="v">99.2%</p><p class="l">of tariff lines (99.7% of Vietnam's export value) scheduled to be eliminated after seven years</p></div>
+    </div>
+    <p class="note rv mt">The changes cannot be attributed entirely to the EVFTA, because trade flows were also affected by COVID-19, geopolitical tensions, global demand and other economic factors.</p>
+    <p class="src"><b>Source:</b> Ministry of Industry and Trade of Vietnam.</p>
+    <div class="vz-pair mt">
+      <figure class="vz rv" data-viz="A7"></figure>
+      <figure class="vz rv" data-viz="A8a"></figure>
+    </div>
+  </div>
+</section>
+<!-- dropped: c3-impact-investment -->
+<section class="sec auto" id="c3-impact-investment" data-scene="none" data-pdf="3.2.3 Impacts on trade and investment (Table 3.5)">
+  <div class="wrap panel">
+    <p class="eyebrow rv">3.2.3b</p>
+    <h2 class="h rv" style="--d:1">Impacts on trade and investment</h2>
+    <div class="tbl-wrap rv mt"><table class="tbl">
+      <caption><span class="lbl">Table 3.5</span> Changes in Vietnam-EU investment</caption>
+      <thead><tr><th style="width:28%">Indicator</th><th>2019</th><th>2024</th><th>Development</th></tr></thead>
+      <tbody>
+        <tr><td>EU investment projects in Vietnam</td><td>&gt;2,240</td><td>≈2,450</td><td>Continued expansion</td></tr>
+        <tr><td>EU cumulative registered investment</td><td>≈US$24.67 bn</td><td>≈US$30.6 bn</td><td>+≈US$5.9 bn</td></tr>
+        <tr><td>EU share of Vietnam's total FDI</td><td>≈7.6%</td><td>Still a relatively modest share</td><td>Limited compared with major Asian investors</td></tr>
+        <tr><td>Main investment orientation</td><td>Manufacturing, infrastructure, services</td><td>Manufacturing and higher-value activities</td><td>Gradual upgrading</td></tr>
+      </tbody></table></div>
+    <p class="tnote rv">No 2024 percentage is reported in the sources. The 2019 figure (about 7.6%) is from FIA/MPI; the 2024 assessment is from EEAS. The two sources may not be directly comparable.</p>
+    <div class="callout rv mt"><h3>EVIPA</h3>The impact of the EVIPA should currently be considered potential rather than fully realized, because the agreement has not yet entered into force at the EU level. At the end of 2024, South Korea had more than US$92 billion and Singapore about US$83.13 billion in cumulative registered investment in Vietnam.</div>
+    <p class="src"><b>Source:</b> Foreign Investment Agency/MPI and European External Action Service.</p>
+    <figure class="vz rv" data-viz="A8b"></figure>
+  </div>
+</section>
+<!-- ===== V1 VERSIONS OF REWRITTEN SECTIONS ===== -->
+<!-- v1 version of: introduction -->
+<section class="sec" id="v1-introduction" data-scene="none" data-pdf="Introduction (page empty in the PDF; listed in added_content.md)">
+  <div class="wrap">
+    <div class="copy">
+      <h2 class="h rv">Introduction</h2>
+      <p class="lead rv" style="--d:1">This report addresses the topic: describe your understanding of the European Union (EU) and analyze the role and influence of the EU on the integration and linkage of the region, the world and Vietnam.</p>
+      <p class="lead rv" style="--d:2">The European Union represents one of the most advanced examples of regional economic integration. What began primarily as an initiative to promote economic cooperation among European countries gradually developed into a highly institutionalized system involving a single market, common policies, a common currency for many members, and supranational institutions.</p>
+      <p class="lead rv" style="--d:3">Chapter 1 presents the theoretical basis of regional economic integration and an overview of the EU. Chapter 2 analyzes the EU's role and influence on regional and global integration. Chapter 3 examines the EU's influence on Vietnam, with the EVFTA and EVIPA as key channels of influence.</p>
+    </div>
+  </div>
+</section>
+<!-- v1 version of: c1-principles -->
+<section class="sec auto" id="v1-c1-principles" data-scene="none" data-pdf="1.2.3. Objectives, Principles and Fundamental Values">
+  <div class="wrap panel">
+    <p class="eyebrow rv">1.2.3</p>
+    <h2 class="h rv" style="--d:1">Objectives, Principles and Fundamental Values</h2>
+    <div class="cols c2 mt">
+      <div class="stack">
+        <div class="card rv"><p class="tag">Objective</p><h3>Economic</h3><p>An internal market in which economic barriers between member states are minimized; sustainable economic growth, employment, competitiveness, social and territorial cohesion.</p></div>
+        <div class="card rv" style="--d:1"><p class="tag">Objective</p><h3>Political</h3><p>Maintaining peace and stability; cooperation in foreign policy, security, justice, and other areas.</p></div>
+        <div class="card rv" style="--d:2"><p class="tag">Values</p><h3>Fundamental values</h3><p>Respect for human dignity, freedom, democracy, equality, the rule of law, and human rights.</p></div>
+      </div>
+      <div class="stack">
+        <div class="card rv"><p class="tag">Principle</p><h3>Subsidiarity</h3><p>Decisions are taken at the EU level only when Union action can achieve objectives more effectively than action at the national, regional, or local level.</p></div>
+        <div class="card rv" style="--d:1"><p class="tag">Principle</p><h3>Proportionality</h3><p>EU action should not go beyond what is necessary to achieve the objectives established by the treaties.</p></div>
+        <div class="card rv" style="--d:2"><p class="tag">Principle</p><h3>Solidarity</h3><p>Financial and regional policies are designed to reduce disparities and support less-developed regions.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- v1 version of: c2-enlargement -->
+<section class="sec" id="v1-c2-enlargement" data-scene="none" data-pdf="2.1.2 Enlargement and Neighborhood Policy (Figure 2.1)">
+  <div class="wrap">
+    <div class="cols c12">
+      <div>
+        <p class="eyebrow rv">2.1.2a</p>
+        <h2 class="h rv" style="--d:1">Enlargement and Neighborhood Policy</h2>
+        <ul class="bul">
+          <li class="rv" style="--d:2">Enlargement is the EU's most effective foreign policy tool, in the sense that candidates change their own laws and institutions in order to join.</li>
+          <li class="rv" style="--d:3">The Copenhagen criteria of 1993 require stable democratic institutions, a functioning market economy and the capacity to take on the EU's body of law.</li>
+          <li class="rv" style="--d:4">Schimmelfennig and Sedelmeier (2004): "governance by conditionality"; the prospect of membership is the reward, and rule adoption is the price.</li>
+          <li class="rv" style="--d:5">The 2004 enlargement, which brought in ten countries, mostly from Central and Eastern Europe, is the clearest example.</li>
+        </ul>
+      </div>
+      <figure class="chart rv" style="--d:2">
+        <figcaption><span class="lbl">Figure 2.1.</span> Number of EU members after each enlargement (including the 2020 UK withdrawal)</figcaption>
+        <div data-chart="members"><noscript><table class="tbl"><caption><span class="lbl">Figure 2.1</span> data: number of EU members</caption><tr><th>Year</th><th>Members</th></tr><tr><td>1957</td><td>6</td></tr><tr><td>1973</td><td>9</td></tr><tr><td>1981</td><td>10</td></tr><tr><td>1986</td><td>12</td></tr><tr><td>1995</td><td>15</td></tr><tr><td>2004</td><td>25</td></tr><tr><td>2007</td><td>27</td></tr><tr><td>2013</td><td>28</td></tr><tr><td>2020</td><td>27</td></tr></table></noscript></div>
+        <p class="src"><b>Source:</b> Compiled by the authors from the European Union (n.d.).</p>
+      </figure>
+    </div>
+  </div>
+</section>
+<!-- v1 version of: c2-waves -->
+<section class="sec auto" id="v1-c2-waves" data-scene="none" data-pdf="2.1.2 Enlargement and Neighborhood Policy (Table 2.1)">
+  <div class="wrap panel">
+    <p class="eyebrow rv">2.1.2b</p>
+    <h2 class="h rv" style="--d:1">Enlargement and Neighborhood Policy</h2>
+    <div class="tbl-wrap rv mt"><table class="tbl">
+      <caption><span class="lbl">Table 2.1.</span> Enlargement waves and current candidates</caption>
+      <thead><tr><th style="width:22%">Stage</th><th>Countries / status</th></tr></thead>
+      <tbody>
+        <tr><td>1957</td><td>Founding six: Belgium, France, Germany, Italy, Luxembourg, Netherlands</td></tr>
+        <tr><td>1973 – 1986</td><td>Denmark, Ireland, UK (1973); Greece (1981); Spain, Portugal (1986)</td></tr>
+        <tr><td>1995</td><td>Austria, Finland, Sweden</td></tr>
+        <tr><td>2004 – 2013</td><td>Ten countries in 2004; Bulgaria and Romania in 2007; Croatia in 2013</td></tr>
+        <tr><td>2020</td><td>The United Kingdom leaves; the EU has 27 members</td></tr>
+        <tr><td>Candidates (2026)</td><td>Albania, Bosnia and Herzegovina, Georgia, Moldova, Montenegro, North Macedonia, Serbia, Türkiye, Ukraine; Kosovo is a potential candidate. Negotiations were opened with Ukraine and Moldova in June 2024.</td></tr>
+      </tbody></table></div>
+    <p class="src"><b>Source:</b> European Union (n.d.); European Commission (n.d.-b).</p>
+  </div>
+</section>
+<!-- v1 version of: c2-trade -->
+<section class="sec" id="v1-c2-trade" data-scene="none" data-pdf="2.2.1 The EU as a Global Trade Power">
+  <div class="wrap">
+    <div class="copy">
+      <p class="eyebrow rv">2.2.1a</p>
+      <h2 class="h rv" style="--d:1">The EU as a Global Trade Power</h2>
+      <div class="grid g2 mt">
+        <div class="stat rv" style="--d:1"><p class="v">15.8%</p><p class="l">of world trade in goods and services combined (2024) (Council of the European Union, 2026c)</p></div>
+        <div class="stat rv" style="--d:2"><p class="v">40+</p><p class="l">agreements in place with about 80 partners</p></div>
+        <div class="stat rv" style="--d:3"><p class="v">EUR 18.8 trillion</p><p class="l">value of the EU economy (2025)</p></div>
+        <div class="stat rv" style="--d:4"><p class="v">30 million+</p><p class="l">jobs in the EU depend on exports</p></div>
+      </div>
+      <ul class="bul">
+        <li class="rv" style="--d:3">Under the common commercial policy (Article 207 TFEU), the Commission negotiates trade agreements on behalf of all members, and tariffs are set at Union level.</li>
+        <li class="rv" style="--d:4">A "conflicted trade power" (Meunier and Nicolaïdis, 2006); "Market Power Europe" (Damro, 2012).</li>
+        <li class="rv" style="--d:5">The EU prefers deals with regions and groups: the Mercosur agreement is a bloc-to-bloc arrangement.</li>
+        <li class="rv" style="--d:6">Trade policy is mixed with strategy: diversification away from the United States and China after the tariff increases of 2025; trade defence tools such as the anti-dumping duties on Chinese pea protein announced in September 2026.</li>
+      </ul>
+      <p class="src"><b>Source:</b> Council of the European Union (2026c); Brussels Times (2026), reporting Eurostat; Meunier and Nicolaïdis (2006); Damro (2012); European Commission (n.d.-f).</p>
+    </div>
+  </div>
+</section>
+<!-- v1 version of: c2-agreements -->
+<section class="sec auto" id="v1-c2-agreements" data-scene="none" data-pdf="2.2.1 The EU as a Global Trade Power (Table 2.2)">
+  <div class="wrap panel">
+    <p class="eyebrow rv">2.2.1b</p>
+    <h2 class="h rv" style="--d:1">The EU as a Global Trade Power</h2>
+    <div class="tbl-wrap rv mt"><table class="tbl">
+      <caption><span class="lbl">Table 2.2.</span> Selected EU trade agreements and their status</caption>
+      <thead><tr><th style="width:15%">Partner</th><th style="width:50%">Status (as of October 2026)</th><th>Why it matters</th></tr></thead>
+      <tbody>
+        <tr><td>Japan</td><td>In force since 1 February 2019 (EU–Japan Economic Partnership Agreement)</td><td>Large developed-market partner; sets rules on non-tariff barriers</td></tr>
+        <tr><td>Vietnam</td><td>EVFTA in force since 1 August 2020; the investment protection agreement (EVIPA) still awaits ratification by all member states</td><td>First FTA with a lower-middle-income ASEAN country</td></tr>
+        <tr><td>Mercosur</td><td>Political agreement 6 December 2024; signed 17 January 2026; interim trade agreement provisionally applied from 1 May 2026; the wider partnership agreement still awaits ratification</td><td>Links two regional blocs; sensitive for agriculture</td></tr>
+        <tr><td>India</td><td>Negotiations concluded 27 January 2026; presented to the Council for signature and conclusion on 11 September 2026</td><td>Described by the Commission as the largest deal either side has concluded</td></tr>
+        <tr><td>Philippines</td><td>Substantial agreement on an FTA announced on 22 September 2026</td><td>Extends the network in Southeast Asia</td></tr>
+      </tbody></table></div>
+    <p class="src"><b>Source:</b> European Commission (n.d.-c, n.d.-d, n.d.-f).</p>
+    <figure class="vz rv" data-viz="A4"></figure>
+  </div>
+</section>
+<!-- v1 version of: c2-regulatory -->
+<section class="sec auto" id="v1-c2-regulatory" data-scene="none" data-pdf="2.2.2 Regulatory Power">
+  <div class="wrap panel">
+    <p class="eyebrow rv">2.2.2</p>
+    <h2 class="h rv" style="--d:1">Regulatory Power</h2>
+    <p class="lead rv" style="--d:2">Bradford (2020) calls this the "Brussels Effect": firms that want to sell in the EU must meet its standards, and many of them apply the same standards everywhere.</p>
+    <div class="flow mt">
+      <div class="card rv"><p class="tag">De facto effect</p><h3>Firms apply EU standards everywhere</h3><p>It is cheaper than running separate production lines.</p></div>
+      <div class="ar rv" style="--d:1" aria-hidden="true">→</div>
+      <div class="card rv" style="--d:2"><p class="tag">De jure effect</p><h3>Governments copy the rules</h3><p>So that their exporters meet EU requirements at home.</p></div>
+      <div class="ar rv" style="--d:3" aria-hidden="true">→</div>
+      <div class="card rv" style="--d:4"><p class="tag">Five conditions (Bradford, 2020)</p><h3>When the effect is strongest</h3><p>A large market, strong regulatory capacity, a preference for strict rules, targets that cannot easily leave the market, and products that are hard to divide by jurisdiction.</p></div>
+    </div>
+    <div class="cols c21 mt">
+      <div class="grid g2">
+        <div class="card rv"><h3>GDPR</h3><p>In application since May 2018; a reference point for privacy laws in many countries.</p></div>
+        <div class="card rv" style="--d:1"><h3>REACH and product standards</h3><p>Rules on chemicals, food safety and product standards work in the same way.</p></div>
+        <div class="card rv" style="--d:2"><h3>Digital and AI regulation</h3><p>Digital Markets Act, Digital Services Act and AI Act, which entered into force in 2024.</p></div>
+        <div class="card rv" style="--d:3"><h3>CBAM</h3><p>Definitive regime from 1 January 2026: importers of cement, iron and steel, aluminium, fertilisers, electricity and hydrogen must buy certificates.</p></div>
+      </div>
+      <div class="stack">
+        <div class="callout rv"><h3>Two sides</h3>For the EU it is a low-cost way to spread its values. For exporters in developing countries it can be a burden, since compliance requires technology, testing and finance that small firms often lack.</div>
+        <p class="note rv">On 19 November 2025 the Commission proposed a Digital Omnibus that would delay the AI Act's rules for high-risk systems until December 2027 and simplify parts of the GDPR (Akin Gump, 2025).</p>
+      </div>
+    </div>
+    <p class="src"><b>Source:</b> Bradford (2020); European Commission (n.d.-a); Akin Gump (2025).</p>
+  </div>
+</section>
+<!-- v1 version of: c2-development -->
+<section class="sec auto" id="v1-c2-development" data-scene="none" data-pdf="2.2.3 Development cooperation">
+  <div class="wrap panel">
+    <p class="eyebrow rv">2.2.3</p>
+    <h2 class="h rv" style="--d:1">Development cooperation</h2>
+    <div class="cols c2 mt">
+      <div class="stack">
+        <div class="stat rv"><p class="v">USD 88.7 billion</p><p class="l">given in 2024 by the EU countries in the OECD's Development Assistance Committee: 42% of global assistance of USD 212 billion, 8.6% less than in 2023</p>
+          <div class="share" role="img" aria-label="USD 88.7 billion of USD 212 billion"><span style="width:41.8%"></span></div></div>
+        <figure class="vz rv" style="margin-top:0" data-viz="B3a"></figure>
+        <ul class="bul" style="margin-top:0">
+          <li class="rv">NDICI–Global Europe: the main funding instrument for 2021–2027.</li>
+          <li class="rv" style="--d:1">Everything But Arms: least-developed countries can export almost everything to the EU free of duty and quota.</li>
+          <li class="rv" style="--d:2">Generalised Scheme of Preferences: lower tariffs in return for commitments on labour and environmental conventions.</li>
+        </ul>
+      </div>
+      <div class="stack">
+        <div class="card rv"><p class="tag">Launched on 1 December 2021</p><h3>Global Gateway</h3><ul>
+          <li>Target of mobilising up to EUR 300 billion</li>
+          <li>Team Europe had mobilised more than EUR 306 billion for over 250 projects by 2026, including an Africa–Europe Investment Package of around EUR 150 billion</li>
+          <li>Widely seen as a response to China's Belt and Road Initiative</li></ul></div>
+        <figure class="vz rv" style="margin-top:0" data-viz="B3b"></figure>
+        <div class="card rv" style="--d:1"><p class="tag">Critics</p><h3>Two points</h3><ul>
+          <li>The Global Gateway counts private and public financing that would have occurred anyway</li>
+          <li>Development cooperation increasingly serves EU interests: migration management, critical raw materials and energy supply</li></ul></div>
+      </div>
+    </div>
+    <p class="src"><b>Source:</b> Finnish Government (2025); European Commission (2026b).</p>
+  </div>
+</section>
+<!-- v1 version of: c2-climate -->
+<section class="sec" id="v1-c2-climate" data-scene="none" data-pdf="2.3.1 Climate Leadership and Sustainability">
+  <div class="wrap">
+    <div class="vz-split even">
+    <div class="copy">
+      <p class="eyebrow rv">2.3.1</p>
+      <h2 class="h rv" style="--d:1">Climate Leadership and Sustainability</h2>
+      <div class="grid g3 mt">
+        <div class="stat rv" style="--d:1"><p class="v">55%</p><p class="l">reduction of net greenhouse-gas emissions by at least 55% by 2030 compared with 1990 (European Climate Law)</p></div>
+        <div class="stat rv" style="--d:2"><p class="v">90%</p><p class="l">net reduction by 2040: 85% domestic and up to 5% international carbon credits (March 2026)</p></div>
+        <div class="stat rv" style="--d:3"><p class="v">2050</p><p class="l">climate neutrality</p></div>
+      </div>
+      <ul class="bul">
+        <li class="rv" style="--d:3">The EU launched the first large carbon market, the Emissions Trading System, in 2005, and played a central role in bringing about the Paris Agreement of 2015.</li>
+        <li class="rv" style="--d:4">Influence works through example and negotiation, market power (the Emissions Trading System and CBAM), and finance and standards.</li>
+      </ul>
+      <div class="callout rv mt" style="--d:5"><h3>Limits</h3>The EU's share of global greenhouse-gas emissions fell from 6.1% in 2023 to 5.9% in 2024, and its emissions were about 35% below 1990 levels, so its goals cannot be reached without larger emitters.</div>
+      <p class="src"><b>Source:</b> European Commission (2026a); European Commission Joint Research Centre (2025).</p>
+    </div>
+    <figure class="vz rv" data-viz="A5"></figure>
+    </div>
+  </div>
+</section>
+<!-- v1 version of: c3-milestones -->
+<section class="sec auto" id="v1-c3-milestones" data-scene="none" data-pdf="3.1.1 Milestones (Table 3.1)">
+  <div class="wrap panel">
+    <p class="eyebrow rv">3.1.1</p>
+    <h2 class="h rv" style="--d:1">Milestones</h2>
+    <p class="cap rv" style="--d:2"><span class="lbl">Table 3.1</span> Key milestones in Vietnam–EU relations</p>
+    <div class="tl mt" role="list" aria-label="Table 3.1 Key milestones in Vietnam–EU relations">
+      <div class="m rv" role="listitem"><p class="y">1990</p><p class="t">Diplomatic relations established</p></div>
+      <div class="m rv" role="listitem" style="--d:1"><p class="y">1995</p><p class="t">Framework cooperation arrangements</p></div>
+      <div class="m rv" role="listitem" style="--d:2"><p class="y">27 Jun 2012</p><p class="t">Partnership and Cooperation Agreement signed in Brussels</p></div>
+      <div class="m rv" role="listitem" style="--d:3"><p class="y">Jun 2018</p><p class="t">Final EVFTA text agreed after a lengthy legal review</p></div>
+      <div class="m rv" role="listitem"><p class="y">30 Jun 2019</p><p class="t">EVFTA and EVIPA signed in Hanoi</p></div>
+      <div class="m rv" role="listitem" style="--d:1"><p class="y">12 Feb 2020</p><p class="t">European Parliament approves EVFTA and EVIPA</p></div>
+      <div class="m rv" role="listitem" style="--d:2"><p class="y">1 Aug 2020</p><p class="t">EVFTA enters into force</p></div>
+      <div class="m rv" role="listitem" style="--d:3"><p class="y">2022–2025</p><p class="t">JETP launched with an initial US$15.5 billion pledge; first flagship projects announced in 2025</p></div>
+      <div class="m rv" role="listitem"><p class="y">29 Jan 2026</p><p class="t">Relations upgraded to a Comprehensive Strategic Partnership during European Council President António Costa's visit to Hanoi</p></div>
+      <div class="m rv" role="listitem" style="--d:1"><p class="y">24 Mar 2026</p><p class="t">EU announces more than €560 million in new Global Gateway commitments for Vietnam</p></div>
+      <div class="m rv" role="listitem" style="--d:2"><p class="y">1 Aug 2026</p><p class="t">EVFTA completed six years in force</p></div>
+    </div>
+    <figure class="vz rv" data-viz="B1"></figure>
+  </div>
+</section>
+<!-- v1 version of: c3-trade -->
+<section class="sec" id="v1-c3-trade" data-scene="none" data-pdf="3.1.2 Trade and investment status (Figure 3.1)">
+  <div class="wrap">
+    <div class="cols c12">
+      <div>
+        <p class="eyebrow rv">3.1.2a</p>
+        <h2 class="h rv" style="--d:1">Trade and investment status</h2>
+        <div class="grid g2 mt">
+          <div class="stat rv" style="--d:2"><p class="v">US$68.3 bn</p><p class="l">total Vietnam–EU trade, 2024</p></div>
+          <div class="stat rv" style="--d:3"><p class="v">US$51.6 bn</p><p class="l">Vietnam's exports to the EU, 2024</p></div>
+          <div class="stat rv" style="--d:4"><p class="v">US$16.7 bn</p><p class="l">Vietnam's imports from the EU, 2024</p></div>
+          <div class="stat rv" style="--d:5"><p class="v">US$34.9 bn</p><p class="l">Vietnam's trade surplus with the EU, 2024</p></div>
+        </div>
+        <p class="src">2024 values. <b>Source:</b> Ministry of Industry and Trade of Vietnam.</p>
+        <p class="lead rv" style="--d:5">Total bilateral trade increased from about US$55 billion in 2020 to more than US$68 billion in 2024. Although trade declined in 2023 compared with the previous year, it recovered strongly in 2024.</p>
+      </div>
+      <figure class="chart rv" style="--d:2">
+        <figcaption><span class="lbl">Figure 3.1</span> Vietnam–EU Trade</figcaption>
+        <p class="unit">billion USD</p>
+        <div data-chart="trade"><noscript><table class="tbl"><caption><span class="lbl">Figure 3.1</span> data (billion USD)</caption><tr><th>Year</th><th>Exports to EU</th><th>Imports from EU</th></tr><tr><td>2020</td><td>40</td><td>15</td></tr><tr><td>2021</td><td>40</td><td>16</td></tr><tr><td>2022</td><td>47</td><td>17</td></tr><tr><td>2023</td><td>44</td><td>16</td></tr><tr><td>2024</td><td>51.6</td><td>16.7</td></tr></table></noscript></div>
+        <p class="src">Values for 2020–2023 are approximate, read from the original chart; 2024 values (51.6 and 16.7) are from the Ministry of Industry and Trade of Vietnam. <b>Source:</b> Vietnam Customs and Ministry of Industry and Trade of Vietnam.</p>
+      </figure>
+    </div>
+  </div>
+</section>
+<!-- v1 version of: c3-structure -->
+<section class="sec" id="v1-c3-structure" data-scene="none" data-pdf="3.1.2 Trade and investment status (Figure 3.2)">
+  <div class="wrap">
+    <div class="cols c12">
+      <div>
+        <p class="eyebrow rv">3.1.2b</p>
+        <h2 class="h rv" style="--d:1">Trade and investment status</h2>
+        <ul class="bul">
+          <li class="rv" style="--d:2">Vietnam's exports to the EU are concentrated in machinery and electrical equipment, textiles and footwear, furniture, and agricultural and food products.</li>
+          <li class="rv" style="--d:3">The EU supplies Vietnam with machinery and transport equipment, chemicals, pharmaceuticals, and other technologically intensive products.</li>
+          <li class="rv" style="--d:4">The structure reflects the different comparative advantages of the two sides.</li>
+          <li class="rv" style="--d:5">The concentration of exports in several major product groups means that Vietnam remains exposed to changes in European consumer demand and regulatory requirements.</li>
+        </ul>
+      </div>
+      <figure class="chart rv" style="--d:2">
+        <figcaption><span class="lbl">Figure 3.2.</span> Major Product Groups in Vietnam-EU Trade in 2024</figcaption>
+        <p class="unit">Billion EUR. Values are approximate, read from the original chart.</p>
+        <div data-chart="products"><noscript><table class="tbl"><caption><span class="lbl">Figure 3.2</span> data (billion EUR)</caption><tr><th>Product group</th><th>EU imports from Vietnam</th><th>EU exports to Vietnam</th></tr><tr><td>Machinery &amp; transport equipment</td><td>26.6</td><td>4.2</td></tr><tr><td>Textiles &amp; clothing</td><td>5.0</td><td>0.6</td></tr><tr><td>Food &amp; agricultural products</td><td>5.0</td><td>1.8</td></tr><tr><td>Chemicals</td><td>1.0</td><td>3.7</td></tr><tr><td>Fuels &amp; mining</td><td>0.4</td><td>0.2</td></tr></table></noscript></div>
+        <p class="src"><b>Source:</b> European Commission and Eurostat.</p>
+      </figure>
+    </div>
+  </div>
+</section>
+<!-- v1 version of: c3-investment -->
+<section class="sec auto" id="v1-c3-investment" data-scene="none" data-pdf="3.1.2 Trade and investment status (Table 3.2)">
+  <div class="wrap panel">
+    <p class="eyebrow rv">3.1.2c</p>
+    <h2 class="h rv" style="--d:1">Trade and investment status</h2>
+    <div class="cols c21 mt">
+      <div class="tbl-wrap rv"><table class="tbl">
+        <caption><span class="lbl">Table 3.2.</span> EU Investment in Vietnam in 2024</caption>
+        <thead><tr><th style="width:48%">Indicator</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td>Number of EU investment projects</td><td>~2,450</td></tr>
+          <tr><td>Cumulative EU investment, end of 2022</td><td>&gt;US$27.8 billion</td></tr>
+          <tr><td>Cumulative EU investment, 2024</td><td>≈US$30.6 billion</td></tr>
+          <tr><td>Share of investment in manufacturing</td><td>&gt;60%</td></tr>
+          <tr><td>Major sectors</td><td>Manufacturing, energy, infrastructure, services</td></tr>
+          <tr><td>Major EU investors</td><td>Netherlands, France, Germany, Denmark, and others</td></tr>
+        </tbody></table></div>
+      <div class="stack">
+        <div class="card rv"><p class="tag">Channels</p><h3>Contribution of European investment</h3><p>Financial capital, advanced technologies, management practices, professional expertise and international quality standards.</p></div>
+        <div class="card rv" style="--d:1"><p class="tag">Constraints</p><h3>Below its potential</h3><p>Administrative procedures, regulatory transparency, infrastructure quality, availability of skilled labour, and the consistency of policy implementation.</p></div>
+      </div>
+    </div>
+    <p class="src"><b>Source:</b> European External Action Service (EEAS).</p>
+  </div>
+</section>
+<!-- v1 version of: c3-evfta -->
+<section class="sec auto" id="v1-c3-evfta" data-scene="none" data-pdf="3.2.1 Content and timeline (Table 3.3)">
+  <div class="wrap panel">
+    <p class="eyebrow rv">3.2.1</p>
+    <h2 class="h rv" style="--d:1">Content and timeline</h2>
+    <p class="lead rv" style="--d:2">In Opinion 2/15 (May 2017), the Court of Justice of the EU ruled that investment protection with arbitration-style dispute settlement falls under shared competence. In response, the EU split the package into two instruments.</p>
+    <div class="grid g2 mt">
+      <div class="card rv"><p class="tag">Trade; EU-only agreement</p><h3>EVFTA: a "new-generation" agreement</h3><ul>
+        <li>Trade in goods: tariff elimination, rules of origin, customs and trade facilitation, trade remedies, TBT and SPS measures</li>
+        <li>Services and investment liberalisation</li>
+        <li>Government procurement, competition policy, state-owned enterprises and intellectual property, including geographical indications</li>
+        <li>Trade and Sustainable Development: core ILO conventions, environmental protection and climate action</li>
+        <li>Institutional provisions and dispute settlement</li></ul></div>
+      <div class="card rv" style="--d:1"><p class="tag">Investment protection; requires ratification by every member state</p><h3>EVIPA</h3><ul>
+        <li>Fair and equitable treatment and protection against expropriation</li>
+        <li>Four chapters, 92 articles and 13 annexes; designed to replace 21 existing bilateral investment agreements</li>
+        <li>A court-style dispute settlement mechanism replaces traditional investor–state arbitration</li>
+        <li>Poland became the 20th member state to ratify it in November 2025; the EVIPA is not yet in force</li></ul></div>
+    </div>
+    <p class="cap rv mt"><span class="lbl">Table 3.3</span> Key milestones in the EVFTA and EVIPA</p>
+    <div class="tl five" role="list" aria-label="Table 3.3 Key milestones in the EVFTA and EVIPA">
+      <div class="m rv" role="listitem"><p class="y">2010</p><p class="t">Scoping exercise; decision to negotiate</p></div>
+      <div class="m rv" role="listitem" style="--d:1"><p class="y">2012</p><p class="t">Formal negotiations launched</p></div>
+      <div class="m rv" role="listitem" style="--d:2"><p class="y">Dec 2015</p><p class="t">Negotiations concluded in principle</p></div>
+      <div class="m rv" role="listitem" style="--d:3"><p class="y">May 2017</p><p class="t">CJEU Opinion 2/15; agreement split into EVFTA and EVIPA</p></div>
+      <div class="m rv" role="listitem" style="--d:4"><p class="y">30 Jun 2019</p><p class="t">EVFTA and EVIPA signed in Hanoi</p></div>
+      <div class="m rv" role="listitem"><p class="y">Feb–Mar 2020</p><p class="t">European Parliament consent; Council approval</p></div>
+      <div class="m rv" role="listitem" style="--d:1"><p class="y">Jun 2020</p><p class="t">Vietnam's National Assembly ratifies both agreements</p></div>
+      <div class="m rv" role="listitem" style="--d:2"><p class="y">1 Aug 2020</p><p class="t">EVFTA enters into force</p></div>
+      <div class="m rv" role="listitem" style="--d:3"><p class="y">Nov 2025</p><p class="t">Poland becomes the 20th member state to ratify the EVIPA</p></div>
+      <div class="m rv" role="listitem" style="--d:4"><p class="y">Aug 2026</p><p class="t">France submits its EVIPA ratification bill to Parliament</p></div>
+    </div>
+    <figure class="vz rv" data-viz="B2"></figure>
+  </div>
+</section>
+<!-- v1 version of: c3-reform -->
+<section class="sec auto" id="v1-c3-reform" data-scene="none" data-pdf="3.2.2 Impact on institutional reform">
+  <div class="wrap panel">
+    <p class="eyebrow rv">3.2.2</p>
+    <h2 class="h rv" style="--d:1">Impact on institutional reform</h2>
+    <div class="grid g5 mt">
+      <div class="card rv"><h3>Legal and institutional reform</h3><p>The implementation plan requires ministries and agencies to review existing regulations and make amendments in accordance with the agreement.</p></div>
+      <div class="card rv" style="--d:1"><h3>Transparency and predictability</h3><p>Commitments on customs procedures, technical regulations, government procurement, services and investment.</p></div>
+      <div class="card rv" style="--d:2"><h3>Government procurement</h3><p>Parts of the public procurement market opened to European suppliers, with more transparent procedures.</p></div>
+      <div class="card rv" style="--d:3"><h3>Consultation and coordination</h3><p>A Trade Committee and specialized institutional structures monitor implementation and address trade-related problems.</p></div>
+      <div class="card rv" style="--d:4"><h3>EVIPA</h3><p>Safeguards against discriminatory treatment and unlawful expropriation; a modernized investment dispute settlement mechanism.</p></div>
+    </div>
+  </div>
+</section>
+<!-- v1 version of: c3-broader -->
+<section class="sec" id="v1-c3-broader" data-scene="none" data-pdf="3.3 EU's Broader Influence on Vietnam's Development">
+  <div class="wrap">
+    <div class="copy">
+      <p class="eyebrow rv">3.3</p>
+      <h2 class="h rv" style="--d:1">EU's Broader Influence on Vietnam's Development</h2>
+      <p class="lead rv" style="--d:2">European standards and regulatory requirements increasingly affect how Vietnamese businesses operate and access international markets.</p>
+    </div>
+  </div>
+</section>
+<!-- v1 version of: c3-standards -->
+<section class="sec auto" id="v1-c3-standards" data-scene="none" data-pdf="3.3.1 Standards, Sustainability and Regulatory Alignment (Table 3.6)">
+  <div class="wrap panel">
+    <p class="eyebrow rv">3.3.1a</p>
+    <h2 class="h rv" style="--d:1">Standards, Sustainability and Regulatory Alignment</h2>
+    <p class="lead rv" style="--d:2">Chapter 13 of the EVFTA covers labour rights, environmental protection, climate change, sustainable management of natural resources and corporate social responsibility, with dialogue through Domestic Advisory Groups.</p>
+    <div class="tbl-wrap rv mt"><table class="tbl">
+      <caption><span class="lbl">Table 3.6.</span> Major Areas of EU Standards and Regulatory Influence on Vietnam</caption>
+      <thead><tr><th style="width:22%">Area</th><th style="width:40%">EU requirements/influence</th><th>Implications for Vietnam</th></tr></thead>
+      <tbody>
+        <tr><td>Environmental standards</td><td>Higher requirements for environmental protection and resource management</td><td>Firms need to improve environmental management and production processes</td></tr>
+        <tr><td>Labour standards</td><td>Respect for fundamental labour rights and ILO standards</td><td>Greater attention to working conditions and workers' rights</td></tr>
+        <tr><td>Product quality and safety</td><td>Strict technical, health and safety requirements</td><td>Greater investment in quality control and certification</td></tr>
+        <tr><td>Traceability</td><td>Increasing importance of supply-chain transparency</td><td>Firms need better tracking of raw materials and production processes</td></tr>
+        <tr><td>Sustainable production</td><td>Greater emphasis on resource efficiency and low-carbon production</td><td>Incentives to adopt cleaner technologies</td></tr>
+        <tr><td>Carbon and climate policy</td><td>Increasing role of carbon pricing and emissions reduction</td><td>Pressure to measure and reduce greenhouse-gas emissions</td></tr>
+        <tr><td>Circular economy</td><td>Promotion of resource efficiency, recycling and waste reduction</td><td>Encourages changes in production and consumption models</td></tr>
+      </tbody></table></div>
+    <p class="src"><b>Source:</b> Compiled from EU–Vietnam cooperation documents and the EVFTA sustainable development framework.</p>
+    <p class="note rv mt">CBAM: see <a href="#c2-regulatory">Section 2.2.2</a>.</p>
+  </div>
+</section>
+<!-- v1 version of: c3-cooperation -->
+<section class="sec auto" id="v1-c3-cooperation" data-scene="none" data-pdf="3.3.2 Development Cooperation and Green Transition (Table 3.8)">
+  <div class="wrap panel">
+    <p class="eyebrow rv">3.3.2a</p>
+    <h2 class="h rv" style="--d:1">Development Cooperation and Green Transition</h2>
+    <p class="lead rv" style="--d:2">Since 1990, the EU has provided grants and development assistance to Vietnam. In March 2026, the EU and Vietnam announced an investment package of more than €560 million for sustainable transport and clean energy.</p>
+    <div class="tbl-wrap rv mt"><table class="tbl">
+      <caption><span class="lbl">Table 3.8.</span> Major EU Development Cooperation Channels in Vietnam</caption>
+      <thead><tr><th style="width:24%">Cooperation channel</th><th style="width:40%">Main focus</th><th>Contribution to Vietnam</th></tr></thead>
+      <tbody>
+        <tr><td>Development assistance</td><td>Poverty reduction, governance and sustainable development</td><td>Strengthens social and institutional capacity</td></tr>
+        <tr><td>Global Gateway</td><td>Sustainable infrastructure and connectivity</td><td>Mobilises public and private investment</td></tr>
+        <tr><td>JETP</td><td>Energy transition and decarbonisation</td><td>Supports renewable energy and power-sector reform</td></tr>
+        <tr><td>Technical assistance</td><td>Policy, regulatory and institutional capacity</td><td>Helps Vietnam implement international commitments</td></tr>
+        <tr><td>Climate cooperation</td><td>Emissions reduction and climate resilience</td><td>Supports Vietnam's net-zero pathway</td></tr>
+        <tr><td>Education and skills</td><td>Human capital and vocational training</td><td>Develops skills for green and digital industries</td></tr>
+      </tbody></table></div>
+    <p class="src"><b>Source:</b> European External Action Service and European Commission.</p>
+  </div>
+</section>
+<!-- v1 version of: c3-green -->
+<section class="sec auto" id="v1-c3-green" data-scene="none" data-pdf="3.3.2 Development Cooperation and Green Transition (JETP, Table 3.9)">
+  <div class="wrap panel">
+    <p class="eyebrow rv">3.3.2b</p>
+    <h2 class="h rv" style="--d:1">Development Cooperation and Green Transition</h2>
+    <div class="cols c12 mt">
+      <div class="stack">
+        <div class="card rv"><p class="tag">Just Energy Transition Partnership (JETP)</p><h3>Projects under the JETP framework</h3><ul>
+          <li>The 1,200 MW Bac Ai pumped-storage hydropower plant</li>
+          <li>The expansion of the Tri An hydropower plant</li>
+          <li>The Tra Vinh near-shore wind project</li></ul></div>
+        <div class="card rv" style="--d:1"><p class="tag">Three interconnected mechanisms</p><h3>Financing, technology and institutional capacity building</h3><p>Financial resources reduce capital constraints; technical cooperation strengthens policy design and implementation; cooperation with European institutions and firms facilitates access to technology.</p></div>
+      </div>
+      <div class="tbl-wrap rv"><table class="tbl" style="min-width:0">
+        <caption><span class="lbl">Table 3.9.</span> EU Support for Vietnam's Green Transition</caption>
+        <thead><tr><th style="width:26%">Area</th><th style="width:38%">Main EU-supported direction</th><th>Expected contribution</th></tr></thead>
+        <tbody>
+          <tr><td>Renewable energy</td><td>Solar, wind and hydropower integration</td><td>Increase clean-energy capacity</td></tr>
+          <tr><td>Electricity grid</td><td>Grid development and flexibility</td><td>Improve integration of intermittent renewables</td></tr>
+          <tr><td>Energy efficiency</td><td>Policy and technical support</td><td>Reduce energy intensity</td></tr>
+          <tr><td>Sustainable transport</td><td>Railways, public transport and low-carbon mobility</td><td>Reduce transport emissions</td></tr>
+          <tr><td>Green finance</td><td>Blended finance and investment mobilisation</td><td>Increase capital for sustainable projects</td></tr>
+          <tr><td>Carbon markets</td><td>Carbon pricing and emissions trading cooperation</td><td>Create incentives for emissions reduction</td></tr>
+          <tr><td>Circular economy</td><td>Resource efficiency and waste management</td><td>Reduce resource use and pollution</td></tr>
+          <tr><td>Climate resilience</td><td>Climate adaptation and environmental protection</td><td>Reduce vulnerability to climate change</td></tr>
+        </tbody></table></div>
+    </div>
+    <p class="src"><b>Source:</b> European Commission and EEAS.</p>
+  </div>
+</section>
+<!-- v1 version of: c3-opportunities -->
+<section class="sec auto" id="v1-c3-opportunities" data-scene="none" data-pdf="3.4.1 Opportunities">
+  <div class="wrap panel">
+    <p class="eyebrow rv">3.4.1</p>
+    <h2 class="h rv" style="--d:1">Opportunities</h2>
+    <ol class="olist mt">
+      <li class="rv"><strong>Greater access to the European market and export diversification:</strong> lower tariffs and clearer market-access conditions, particularly for textiles and garments, footwear, electronics, furniture, agricultural products and seafood.</li>
+      <li class="rv" style="--d:1"><strong>Higher-quality investment and technology:</strong> advanced manufacturing, renewable energy, logistics, digital infrastructure, semiconductors, sustainable agriculture and the circular economy.</li>
+      <li class="rv" style="--d:2"><strong>Stronger support for Vietnam's green transition:</strong> through the Just Energy Transition Partnership and Global Gateway.</li>
+      <li class="rv" style="--d:3"><strong>Improvements in institutional and regulatory quality:</strong> transparency, regulatory predictability, market access and labour and environmental standards.</li>
+      <li class="rv" style="--d:4"><strong>Human-capital and technological development:</strong> demand for skilled workers in advanced manufacturing, digital technology, renewable energy, environmental management, logistics and sustainable finance.</li>
+    </ol>
+  </div>
+</section>
+<!-- v1 version of: c3-challenges -->
+<section class="sec auto" id="v1-c3-challenges" data-scene="none" data-pdf="3.4.2 Challenges">
+  <div class="wrap panel">
+    <p class="eyebrow rv">3.4.2</p>
+    <h2 class="h rv" style="--d:1">Challenges</h2>
+    <ol class="olist mt">
+      <li class="rv"><strong>Increasing compliance costs for Vietnamese enterprises:</strong> small and medium-sized enterprises often have limited financial resources, technological capacity and access to compliance services.</li>
+      <li class="rv" style="--d:1"><strong>Limited domestic capacity to capture high-value investment and technology:</strong> weak supporting industries, limited research and development capacity and shortages of highly skilled labour.</li>
+      <li class="rv" style="--d:2"><strong>Increasing pressure for institutional and regulatory adjustment:</strong> European regulations on climate, carbon emissions, digitalisation and supply-chain responsibility are continuously evolving.</li>
+      <li class="rv" style="--d:3"><strong>Financing and infrastructure constraints for the green transition:</strong> renewable energy, electricity grids, energy storage, sustainable transport and climate-resilient infrastructure.</li>
+      <li class="rv" style="--d:4"><strong>Shortages of skilled human resources and innovation capacity:</strong> gaps between the skills demanded by businesses and those provided by education and vocational training.</li>
+    </ol>
+  </div>
+</section>
+<!-- v1 version of: c3-recommendations -->
+<section class="sec auto" id="v1-c3-recommendations" data-scene="none" data-pdf="3.4.3 Recommendations">
+  <div class="wrap panel">
+    <p class="eyebrow rv">3.4.3</p>
+    <h2 class="h rv" style="--d:1">Recommendations</h2>
+    <div class="grid g4 mt">
+      <div class="card rv"><p class="n">1</p><h3>Complete the EVIPA and manage the surplus diplomatically</h3><p>Continue parliamentary and diplomatic engagement with the remaining member states.</p></div>
+      <div class="card rv" style="--d:1"><p class="n">2</p><h3>Operationalise carbon pricing and emissions data</h3><p>Launch the pilot emissions trading exchange on schedule and build a national measuring, reporting and verification system.</p></div>
+      <div class="card rv" style="--d:2"><p class="n">3</p><h3>Build traceability systems for EUDR and IUU compliance</h3><p>Priorities include digitising production plots and geolocation data for EUDR-covered products such as coffee, rubber and timber (Thế Hải, 2026), and the full implementation of vessel monitoring, electronic traceability and enforcement measures to address the European Commission's IUU recommendations (Viet Nam News, 2026).</p></div>
+      <div class="card rv" style="--d:3"><p class="n">4</p><h3>Raise EVFTA utilisation</h3><p>Authorities should simplify customs and certificate-of-origin procedures, including electronic registration and self-certification of origin, clarify guidance on HS codes and customs valuation, and apply rules of origin consistently across agencies, as EuroCham has recommended (Kiều Mai, 2025; Báo Công Thương, 2025).</p></div>
+      <div class="card rv"><p class="n">5</p><h3>Make JETP and Global Gateway funds bankable</h3><p>A pipeline of prepared grid and storage projects, with clear regulation (several rules are still in draft) and coordination among the JETP working groups and ministries, would improve the absorption of JETP and Global Gateway finance and attract co-investment (Climate Policy Initiative, 2024; European Investment Bank, 2025).</p></div>
+      <div class="card rv" style="--d:1"><p class="n">6</p><h3>Attract higher-quality EU investment and stay predictable</h3><p>Prioritising investors that transfer technology, innovate and work with domestic suppliers, and keeping the regulatory environment stable, would reinforce the benefits of EU FDI, whose scale remains modest compared with major Asian investors (OECD, n.d.; Vietnam News Agency, 2025).</p></div>
+      <div class="card rv" style="--d:2"><p class="n">7</p><h3>For firms: invest in compliance and diversification</h3><p>Map supply chains, measure product-level emissions, obtain certifications and gradually move into higher-value segments.</p></div>
+    </div>
+    <p class="src"><b>Source:</b> East Asia Forum (2026); S&amp;P Global (2025); Thế Hải (2026); Viet Nam News (2026); Kiều Mai (2025); Báo Công Thương (2025); Climate Policy Initiative (2024); European Investment Bank (2025); OECD (n.d.); Vietnam News Agency (2025).</p>
+  </div>
+</section>
+<!-- v1 version of: references -->
+<section class="sec auto" id="v1-references" data-scene="none" data-pdf="References (from references.md, 42 entries)">
+  <div class="wrap panel">
+    <h2 class="h rv">References</h2>
+    <ul class="refs mt">
+      <li>Akin Gump. (2025, November 19). EU unveils 'Digital Omnibus' bill streamlining GDPR and AI Act rules. <a href="https://www.akingump.com/en/insights/ai-law-and-regulation-tracker/eu-unveils-digital-omnibus-bill-streamlining-gdpr-and-ai-act-rules" rel="noopener">https://www.akingump.com/en/insights/ai-law-and-regulation-tracker/eu-unveils-digital-omnibus-bill-streamlining-gdpr-and-ai-act-rules</a></li>
+      <li>Balassa, B. (1961). The theory of economic integration. Richard D. Irwin.</li>
+      <li>Báo Công Thương. (2025, December 17). EuroCham đề xuất doanh nghiệp được tự chứng nhận xuất xứ hàng hóa [Article in Vietnamese]. Vietnam Chamber of Commerce and Industry. <a href="https://www.vcci.com.vn/tin-tuc/eurocham-de-xuat-doanh-nghiep-duoc-tu-chung-nhan-xuat-xu-hang-hoa" rel="noopener">https://www.vcci.com.vn/tin-tuc/eurocham-de-xuat-doanh-nghiep-duoc-tu-chung-nhan-xuat-xu-hang-hoa</a></li>
+      <li>Börzel, T. A., &amp; Risse, T. (2012). From Europeanisation to diffusion: Introduction. West European Politics, 35(1), 1–19.</li>
+      <li>Bradford, A. (2020). The Brussels effect: How the European Union rules the world. Oxford University Press.</li>
+      <li>Brussels Times. (2026). EU GDP hits €18.8 trillion as wealth gaps between nations persist. <a href="https://www.brusselstimes.com/2261095/eu-gdp-hits-e18-8-trillion-as-wealth-gaps-between-nations-persist" rel="noopener">https://www.brusselstimes.com/2261095/eu-gdp-hits-e18-8-trillion-as-wealth-gaps-between-nations-persist</a></li>
+      <li>Bull, H. (1982). Civilian power Europe: A contradiction in terms? Journal of Common Market Studies, 21(2), 149–164.</li>
+      <li>Climate Policy Initiative. (2024, April 4). JETP resource mobilization plan: How Viet Nam can turn ambition into action. <a href="https://www.climatepolicyinitiative.org/jetp-resource-mobilization-plan-how-viet-nam-can-turn-ambition-into-action" rel="noopener">https://www.climatepolicyinitiative.org/jetp-resource-mobilization-plan-how-viet-nam-can-turn-ambition-into-action</a></li>
+      <li>Council of the European Union. (2025, May 27). SAFE: Council adopts €150 billion boost for joint procurement on European security and defence [Press release]. <a href="https://www.eeas.europa.eu/delegations/ukraine/safe-council-adopts-%E2%82%AC150-billion-boost-joint-procurement-european-security-and-defence_en" rel="noopener">https://www.eeas.europa.eu/delegations/ukraine/safe-council-adopts-%E2%82%AC150-billion-boost-joint-procurement-european-security-and-defence_en</a></li>
+      <li>Council of the European Union. (2026a, April 21). Defence and security. Retrieved October 4, 2026, from <a href="https://www.consilium.europa.eu/en/policies/defence-security/" rel="noopener">https://www.consilium.europa.eu/en/policies/defence-security/</a></li>
+      <li>Council of the European Union. (2026b, September 22). EU sanctions against Russia. Retrieved October 4, 2026, from <a href="https://www.consilium.europa.eu/en/policies/sanctions-against-russia/" rel="noopener">https://www.consilium.europa.eu/en/policies/sanctions-against-russia/</a></li>
+      <li>Council of the European Union. (2026c, August 13). EU trade policy. Retrieved October 4, 2026, from <a href="https://www.consilium.europa.eu/en/topics/trade/" rel="noopener">https://www.consilium.europa.eu/en/topics/trade/</a></li>
+      <li>Damro, C. (2012). Market power Europe. Journal of European Public Policy, 19(5), 682–699.</li>
+      <li>Draghi, M. (2024). The future of European competitiveness. European Commission. <a href="https://commission.europa.eu/topics/eu-competitiveness/draghi-report_en" rel="noopener">https://commission.europa.eu/topics/eu-competitiveness/draghi-report_en</a></li>
+      <li>East Asia Forum. (2026, March 6). Vietnam's carbon market faces a reality check. <a href="https://eastasiaforum.org/2026/03/06/vietnams-carbon-market-faces-a-reality-check/" rel="noopener">https://eastasiaforum.org/2026/03/06/vietnams-carbon-market-faces-a-reality-check/</a></li>
+      <li>European Commission. (n.d.-a). Carbon Border Adjustment Mechanism. Retrieved October 4, 2026, from <a href="https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism_en" rel="noopener">https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism_en</a></li>
+      <li>European Commission. (n.d.-b). Enlargement policy. Retrieved October 4, 2026, from <a href="https://enlargement.ec.europa.eu/index_en" rel="noopener">https://enlargement.ec.europa.eu/index_en</a></li>
+      <li>European Commission. (n.d.-c). EU–India trade relations. Retrieved October 4, 2026, from <a href="https://policy.trade.ec.europa.eu/eu-trade-relationships-country-and-region/countries-and-regions/india_en" rel="noopener">https://policy.trade.ec.europa.eu/eu-trade-relationships-country-and-region/countries-and-regions/india_en</a></li>
+      <li>European Commission. (n.d.-d). EU–Mercosur trade relations. Retrieved October 4, 2026, from <a href="https://policy.trade.ec.europa.eu/eu-trade-relationships-country-and-region/countries-and-regions/mercosur_en" rel="noopener">https://policy.trade.ec.europa.eu/eu-trade-relationships-country-and-region/countries-and-regions/mercosur_en</a></li>
+      <li>European Commission. (n.d.-e). Recovery plan for Europe (NextGenerationEU). Retrieved October 4, 2026, from <a href="https://commission.europa.eu/strategy-and-policy/recovery-plan-europe_en" rel="noopener">https://commission.europa.eu/strategy-and-policy/recovery-plan-europe_en</a></li>
+      <li>European Commission. (n.d.-f). Trade policy. Retrieved October 4, 2026, from <a href="https://policy.trade.ec.europa.eu/index_en" rel="noopener">https://policy.trade.ec.europa.eu/index_en</a></li>
+      <li>European Commission. (2026a, April 7). 2040 climate target. Retrieved October 4, 2026, from <a href="https://climate.ec.europa.eu/eu-action/climate-strategies-targets/2040-climate-target_en" rel="noopener">https://climate.ec.europa.eu/eu-action/climate-strategies-targets/2040-climate-target_en</a></li>
+      <li>European Commission. (2026b, May 8). Global Gateway. Retrieved October 4, 2026, from <a href="https://commission.europa.eu/strategy-and-policy/priorities-2019-2024/stronger-europe-world/global-gateway_en" rel="noopener">https://commission.europa.eu/strategy-and-policy/priorities-2019-2024/stronger-europe-world/global-gateway_en</a></li>
+      <li>European Commission Joint Research Centre. (2025). EDGAR – Emissions Database for Global Atmospheric Research: 2025 report. <a href="https://edgar.jrc.ec.europa.eu/report_2025" rel="noopener">https://edgar.jrc.ec.europa.eu/report_2025</a></li>
+      <li>European Investment Bank. (2025, October 9). EU reinforces support for Vietnam's just energy transition with €430 million package [Press release 2025-377-EN]. <a href="https://www.eib.org/en/press/all/2025-377-eu-reinforces-support-for-vietnam-s-just-energy-transition-with-eur430-million-package" rel="noopener">https://www.eib.org/en/press/all/2025-377-eu-reinforces-support-for-vietnam-s-just-energy-transition-with-eur430-million-package</a></li>
+      <li>European Union. (n.d.). EU enlargement. Retrieved October 4, 2026, from <a href="https://european-union.europa.eu/principles-countries-history/eu-enlargement_en" rel="noopener">https://european-union.europa.eu/principles-countries-history/eu-enlargement_en</a></li>
+      <li>European Union. (2026, January 12). Countries using the euro. Retrieved October 4, 2026, from <a href="https://european-union.europa.eu/institutions-law-budget/euro/countries-using-euro_en" rel="noopener">https://european-union.europa.eu/institutions-law-budget/euro/countries-using-euro_en</a></li>
+      <li>Finnish Government. (2025). Global official development assistance declined in 2024. <a href="https://valtioneuvosto.fi/en/-/global-official-development-assistance-declined-in-2024" rel="noopener">https://valtioneuvosto.fi/en/-/global-official-development-assistance-declined-in-2024</a></li>
+      <li>Hettne, B., &amp; Söderbaum, F. (2005). Civilian power or soft imperialism? EU as a global actor and the role of interregionalism. European Foreign Affairs Review, 10(4), 535–552.</li>
+      <li>Jones, E., Kelemen, R. D., &amp; Meunier, S. (2016). Failing forward? The euro crisis and the incomplete nature of European integration. Comparative Political Studies, 49(7), 1010–1034.</li>
+      <li>Kiều Mai. (2025, August 8). Rào cản ngăn doanh nghiệp tiếp cận các ưu đãi thuế quan [Article in Vietnamese]. TheLEADER. <a href="https://theleader.vn/rao-can-ngan-doanh-nghiep-tiep-can-cac-uu-dai-thue-quan-d41425.html" rel="noopener">https://theleader.vn/rao-can-ngan-doanh-nghiep-tiep-can-cac-uu-dai-thue-quan-d41425.html</a></li>
+      <li>Lavenex, S. (2004). EU external governance in "wider Europe". Journal of European Public Policy, 11(4), 680–700.</li>
+      <li>Letta, E. (2024). Much more than a market: Speed, security, solidarity. Report to the European Council.</li>
+      <li>Manners, I. (2002). Normative power Europe: A contradiction in terms? Journal of Common Market Studies, 40(2), 235–258.</li>
+      <li>Meunier, S., &amp; Nicolaïdis, K. (2006). The European Union as a conflicted trade power. Journal of European Public Policy, 13(6), 906–925.</li>
+      <li>OECD. (n.d.). Key assessment and recommendations. In FDI qualities review of Viet Nam. OECD Publishing. Retrieved October 9, 2026, from <a href="https://www.oecd.org/en/publications/fdi-qualities-review-of-viet-nam_a3c78dac-en/full-report/key-assessment-and-recommendations_81422553.html" rel="noopener">https://www.oecd.org/en/publications/fdi-qualities-review-of-viet-nam_a3c78dac-en/full-report/key-assessment-and-recommendations_81422553.html</a></li>
+      <li>Schimmelfennig, F., &amp; Sedelmeier, U. (2004). Governance by conditionality: EU rule transfer to the candidate countries of Central and Eastern Europe. Journal of European Public Policy, 11(4), 661–679.</li>
+      <li>S&amp;P Global. (2025, June 11). Vietnam to start pilot emission trading in 2025, allow offsetting 30% emissions. <a href="https://www.spglobal.com/energy/en/news-research/latest-news/energy-transition/061125-vietnam-to-start-pilot-emission-trading-in-2025-allow-offsetting-30-emissions" rel="noopener">https://www.spglobal.com/energy/en/news-research/latest-news/energy-transition/061125-vietnam-to-start-pilot-emission-trading-in-2025-allow-offsetting-30-emissions</a></li>
+      <li>Thế Hải. (2026, September 25). Trách nhiệm của nhà xuất khẩu Việt Nam tăng cao khi thực thi EUDR [Article in Vietnamese; originally published in Báo Đầu tư]. Trung tâm WTO và Hội nhập. <a href="https://trungtamwto.vn/chuyen-de/33512-trach-nhiem-cua-nha-xuat-khau-viet-nam-tang-cao-khi-thuc-thi-eudr" rel="noopener">https://trungtamwto.vn/chuyen-de/33512-trach-nhiem-cua-nha-xuat-khau-viet-nam-tang-cao-khi-thuc-thi-eudr</a></li>
+      <li>Viet Nam News. (2026, April 26). PM orders comprehensive fixes to shortcomings in fighting IUU fishing. <a href="https://vietnamnews.vn/society/1780247/pm-orders-comprehensive-fixes-to-shortcomings-in-fighting-iuu-fishing.html" rel="noopener">https://vietnamnews.vn/society/1780247/pm-orders-comprehensive-fixes-to-shortcomings-in-fighting-iuu-fishing.html</a></li>
+      <li>Vietnam News Agency. (2025, March 3). Vietnam welcomes European firms for shared successes: PM. Vietnam Investment Review. <a href="https://vir.com.vn/vietnam-welcomes-european-firms-for-shared-successes-pm-123777.html" rel="noopener">https://vir.com.vn/vietnam-welcomes-european-firms-for-shared-successes-pm-123777.html</a></li>
+      <li>Viner, J. (1950). The customs union issue. Carnegie Endowment for International Peace.</li>
+    </ul>
+  </div>
+</section>
+</main>
+</body>
+</html>

@@ -1,0 +1,1812 @@
+{
+  "_about": "Single data source for every visual added to index.html (and for the remade Figures 2.1, 3.1 and 3.2). Every number shown inside a visual must come from a value object below: {\"v\": value, \"s\": status}. Status: exact = appears verbatim in the page text; approximate = shown with the page's approximate sign; derived = calculated from page values (see \"from\"); axis = scale tick only, not a data value. \"pos\" fields only place a mark on a time axis and are never displayed. tools/embed_viz_data.py copies this file into index.html (script#viz-data); tools/check_viz.js checks it.",
+  "visuals": [
+    {
+      "key": "A1",
+      "kind": "timeline",
+      "placement": {
+        "section": "1.2.1",
+        "anchor": "c1-history",
+        "position": "after the Table 1 milestone cards and their source line"
+      },
+      "label": "Visual · Section 1.2.1",
+      "title": "Enlargement milestones run through the whole history of integration",
+      "aria": "Scrollable timeline of the milestones in Table 1, from 1950 to 2020–present; membership changes are marked with stars.",
+      "unit": "Milestones from Table 1; spacing is by order, not to scale. Select a milestone to read it.",
+      "legend": [
+        {
+          "mark": "star",
+          "text": "Enlargement (members join)"
+        },
+        {
+          "mark": "star-open",
+          "text": "Brexit (a member leaves)"
+        },
+        {
+          "mark": "dot",
+          "text": "Other milestone"
+        }
+      ],
+      "source": "European Union, European Parliament, European Council, and European Central Bank materials.",
+      "items": [
+        {
+          "year": {
+            "v": "1950",
+            "s": "exact"
+          },
+          "event": "Schuman Declaration",
+          "meaning": "Pooling of French and German coal and steel production"
+        },
+        {
+          "year": {
+            "v": "1951–1952",
+            "s": "exact"
+          },
+          "event": "European Coal and Steel Community",
+          "meaning": "The first supranational European community"
+        },
+        {
+          "year": {
+            "v": "1957–1958",
+            "s": "exact"
+          },
+          "event": "Treaties of Rome: EEC and Euratom",
+          "meaning": "Integration extended to broader economic cooperation and a common market"
+        },
+        {
+          "year": {
+            "v": "1965–1967",
+            "s": "exact"
+          },
+          "event": "Merger Treaty",
+          "meaning": "A single Commission and Council for the ECSC, EEC, and Euratom"
+        },
+        {
+          "year": {
+            "v": "1973",
+            "s": "exact"
+          },
+          "event": "First enlargement",
+          "meaning": "Denmark, Ireland, and the United Kingdom join",
+          "mark": "join"
+        },
+        {
+          "year": {
+            "v": "1979",
+            "s": "exact"
+          },
+          "event": "First direct European Parliament elections",
+          "meaning": "Citizens directly elect members of the European Parliament"
+        },
+        {
+          "year": {
+            "v": "1981",
+            "s": "exact"
+          },
+          "event": "Greece joins",
+          "meaning": "The tenth member of the European Communities",
+          "mark": "join"
+        },
+        {
+          "year": {
+            "v": "1986",
+            "s": "exact"
+          },
+          "event": "Spain and Portugal join",
+          "meaning": "The Communities expand to 12 members",
+          "mark": "join"
+        },
+        {
+          "year": {
+            "v": "1986-1987",
+            "s": "exact"
+          },
+          "event": "Single European Act",
+          "meaning": "Legal basis for completing the Single Market"
+        },
+        {
+          "year": {
+            "v": "1992–1993",
+            "s": "exact"
+          },
+          "event": "Maastricht Treaty",
+          "meaning": "Creation of the EU; foundations for Economic and Monetary Union"
+        },
+        {
+          "year": {
+            "v": "1993",
+            "s": "exact"
+          },
+          "event": "Single Market launched",
+          "meaning": "Based on the four freedoms"
+        },
+        {
+          "year": {
+            "v": "1995",
+            "s": "exact"
+          },
+          "event": "Austria, Finland and Sweden join",
+          "meaning": "EU membership increases to 15",
+          "mark": "join"
+        },
+        {
+          "year": {
+            "v": "1999",
+            "s": "exact"
+          },
+          "event": "Euro introduced",
+          "meaning": "For accounting and financial transactions"
+        },
+        {
+          "year": {
+            "v": "2002",
+            "s": "exact"
+          },
+          "event": "Euro banknotes and coins",
+          "meaning": "Euro cash enters circulation in 12 countries"
+        },
+        {
+          "year": {
+            "v": "2004",
+            "s": "exact"
+          },
+          "event": "Major EU enlargement",
+          "meaning": "Ten countries, mainly from Central and Eastern Europe",
+          "mark": "join"
+        },
+        {
+          "year": {
+            "v": "2007",
+            "s": "exact"
+          },
+          "event": "Bulgaria and Romania join",
+          "meaning": "EU membership expands to 27 countries",
+          "mark": "join"
+        },
+        {
+          "year": {
+            "v": "2009",
+            "s": "exact"
+          },
+          "event": "Treaty of Lisbon enters into force",
+          "meaning": "Reform of EU institutions and decision-making mechanisms"
+        },
+        {
+          "year": {
+            "v": "2013",
+            "s": "exact"
+          },
+          "event": "Croatia joins the EU",
+          "meaning": "The 28th member, the final accession before Brexit",
+          "mark": "join"
+        },
+        {
+          "year": {
+            "v": "2016",
+            "s": "exact"
+          },
+          "event": "UK referendum on EU membership",
+          "meaning": "A majority of UK voters vote to leave the EU"
+        },
+        {
+          "year": {
+            "v": "2020",
+            "s": "exact"
+          },
+          "event": "Brexit",
+          "meaning": "The UK leaves on 31 January 2020; the EU operates with 27 member states",
+          "mark": "leave"
+        },
+        {
+          "year": {
+            "v": "2020–present",
+            "s": "exact"
+          },
+          "event": "A more resilient and strategic EU",
+          "meaning": "Economic resilience, climate change, digital transformation, energy security"
+        }
+      ]
+    },
+    {
+      "key": "A2",
+      "kind": "unit-grid",
+      "placement": {
+        "section": "2.1.1",
+        "anchor": "c2-deepening",
+        "position": "right-hand column, beside the text"
+      },
+      "label": "Visual · Section 2.1.1",
+      "title": "21 of 27 member states use the euro as official currency",
+      "aria": "Twenty-seven stars, one per member state: 21 filled gold stars use the euro, 6 outlined stars do not. Stars are not assigned to named countries.",
+      "unit": "One star = one member state. Stars are not linked to particular countries.",
+      "notes": [
+        "6 = 27 − 21 (derived)."
+      ],
+      "source": "Balassa (1961); European Union (2026); Jones et al. (2016); European Commission (n.d.-e).",
+      "total": {
+        "v": 27,
+        "s": "exact"
+      },
+      "euro": {
+        "v": 21,
+        "s": "exact"
+      },
+      "other": {
+        "v": 6,
+        "s": "derived",
+        "from": "27 − 21"
+      },
+      "labels": {
+        "euro": "use the euro",
+        "other": "do not use the euro (derived)"
+      }
+    },
+    {
+      "key": "F2.1",
+      "kind": "step",
+      "remake": "Figure 2.1",
+      "placement": {
+        "section": "2.1.2",
+        "anchor": "c2-enlargement",
+        "position": "existing Figure 2.1 (same caption, data and source)"
+      },
+      "aria": "Step chart of EU members after each enlargement: 6 in 1957, 9 in 1973, 10 in 1981, 12 in 1986, 15 in 1995, 25 in 2004, 27 in 2007, 28 in 2013 and 27 in 2020 after the UK withdrawal.",
+      "unit": "Number of member states. Wave notes from Table 2.1.",
+      "axis": {
+        "y": {
+          "ticks": [
+            {
+              "v": 0,
+              "s": "axis"
+            },
+            {
+              "v": 10,
+              "s": "axis"
+            },
+            {
+              "v": 20,
+              "s": "axis"
+            },
+            {
+              "v": 30,
+              "s": "axis"
+            }
+          ]
+        },
+        "x": {
+          "from": {
+            "v": 1957,
+            "s": "exact"
+          },
+          "to": {
+            "v": 2020,
+            "s": "exact"
+          }
+        }
+      },
+      "points": [
+        {
+          "year": {
+            "v": 1957,
+            "s": "exact"
+          },
+          "members": {
+            "v": 6,
+            "s": "exact"
+          },
+          "wave": "Founding six"
+        },
+        {
+          "year": {
+            "v": 1973,
+            "s": "exact"
+          },
+          "members": {
+            "v": 9,
+            "s": "exact"
+          },
+          "wave": "Denmark, Ireland, UK"
+        },
+        {
+          "year": {
+            "v": 1981,
+            "s": "exact"
+          },
+          "members": {
+            "v": 10,
+            "s": "exact"
+          },
+          "wave": "Greece"
+        },
+        {
+          "year": {
+            "v": 1986,
+            "s": "exact"
+          },
+          "members": {
+            "v": 12,
+            "s": "exact"
+          },
+          "wave": "Spain, Portugal"
+        },
+        {
+          "year": {
+            "v": 1995,
+            "s": "exact"
+          },
+          "members": {
+            "v": 15,
+            "s": "exact"
+          },
+          "wave": "Austria, Finland, Sweden"
+        },
+        {
+          "year": {
+            "v": 2004,
+            "s": "exact"
+          },
+          "members": {
+            "v": 25,
+            "s": "exact"
+          },
+          "wave": "Ten countries",
+          "emphasis": "jump"
+        },
+        {
+          "year": {
+            "v": 2007,
+            "s": "exact"
+          },
+          "members": {
+            "v": 27,
+            "s": "exact"
+          },
+          "wave": "Bulgaria and Romania"
+        },
+        {
+          "year": {
+            "v": 2013,
+            "s": "exact"
+          },
+          "members": {
+            "v": 28,
+            "s": "exact"
+          },
+          "wave": "Croatia"
+        },
+        {
+          "year": {
+            "v": 2020,
+            "s": "exact"
+          },
+          "members": {
+            "v": 27,
+            "s": "exact"
+          },
+          "wave": "The United Kingdom leaves",
+          "emphasis": "drop"
+        }
+      ]
+    },
+    {
+      "key": "A4",
+      "kind": "status-timeline",
+      "placement": {
+        "section": "2.2.1",
+        "anchor": "c2-agreements",
+        "position": "below Table 2.2"
+      },
+      "label": "Visual · Section 2.2.1",
+      "title": "The EU's trade network keeps widening, with agreements at every stage",
+      "aria": "Timeline of the five agreements in Table 2.2. Japan in force since 1 February 2019; Vietnam (EVFTA) in force since 1 August 2020; Mercosur political agreement 6 December 2024, signed 17 January 2026, provisionally applied from 1 May 2026; India negotiations concluded 27 January 2026, presented to the Council 11 September 2026; Philippines substantial agreement announced 22 September 2026.",
+      "unit": "Dates from Table 2.2 (status as of October 2026). Shape and label show the latest status.",
+      "context": {
+        "text": "The EU has 40+ agreements in place with about 80 partners (Section 2.2.1).",
+        "agreements": {
+          "v": "40+",
+          "s": "exact"
+        },
+        "partners": {
+          "v": "about 80",
+          "s": "exact"
+        }
+      },
+      "source": "European Commission (n.d.-c, n.d.-d, n.d.-f). Agreement count as stated in Section 2.2.1.",
+      "axis": {
+        "x": {
+          "ticks": [
+            {
+              "v": 2019,
+              "s": "axis"
+            },
+            {
+              "v": 2020,
+              "s": "axis"
+            },
+            {
+              "v": 2021,
+              "s": "axis"
+            },
+            {
+              "v": 2022,
+              "s": "axis"
+            },
+            {
+              "v": 2023,
+              "s": "axis"
+            },
+            {
+              "v": 2024,
+              "s": "axis"
+            },
+            {
+              "v": 2025,
+              "s": "axis"
+            },
+            {
+              "v": 2026,
+              "s": "axis"
+            },
+            {
+              "v": 2027,
+              "s": "axis"
+            }
+          ]
+        }
+      },
+      "statuses": {
+        "force": "In force",
+        "provisional": "Provisionally applied",
+        "concluded": "Negotiations concluded",
+        "announced": "Substantial agreement announced",
+        "step": "Earlier step"
+      },
+      "rows": [
+        {
+          "partner": "Japan",
+          "status": "force",
+          "events": [
+            {
+              "date": {
+                "v": "1 February 2019",
+                "s": "exact",
+                "pos": "2019-02-01"
+              },
+              "what": "In force (EU–Japan Economic Partnership Agreement)",
+              "type": "force"
+            }
+          ]
+        },
+        {
+          "partner": "Vietnam",
+          "status": "force",
+          "events": [
+            {
+              "date": {
+                "v": "1 August 2020",
+                "s": "exact",
+                "pos": "2020-08-01"
+              },
+              "what": "EVFTA in force; EVIPA still awaits ratification by all member states",
+              "type": "force"
+            }
+          ]
+        },
+        {
+          "partner": "Mercosur",
+          "status": "provisional",
+          "events": [
+            {
+              "date": {
+                "v": "6 December 2024",
+                "s": "exact",
+                "pos": "2024-12-06"
+              },
+              "what": "Political agreement",
+              "type": "step"
+            },
+            {
+              "date": {
+                "v": "17 January 2026",
+                "s": "exact",
+                "pos": "2026-01-17"
+              },
+              "what": "Signed",
+              "type": "step"
+            },
+            {
+              "date": {
+                "v": "1 May 2026",
+                "s": "exact",
+                "pos": "2026-05-01"
+              },
+              "what": "Interim trade agreement provisionally applied",
+              "type": "provisional"
+            }
+          ]
+        },
+        {
+          "partner": "India",
+          "status": "concluded",
+          "events": [
+            {
+              "date": {
+                "v": "27 January 2026",
+                "s": "exact",
+                "pos": "2026-01-27"
+              },
+              "what": "Negotiations concluded",
+              "type": "concluded"
+            },
+            {
+              "date": {
+                "v": "11 September 2026",
+                "s": "exact",
+                "pos": "2026-09-11"
+              },
+              "what": "Presented to the Council for signature and conclusion",
+              "type": "step"
+            }
+          ]
+        },
+        {
+          "partner": "Philippines",
+          "status": "announced",
+          "events": [
+            {
+              "date": {
+                "v": "22 September 2026",
+                "s": "exact",
+                "pos": "2026-09-22"
+              },
+              "what": "Substantial agreement on an FTA announced",
+              "type": "announced"
+            }
+          ]
+        }
+      ],
+      "asOf": {
+        "v": "October 2026",
+        "s": "exact",
+        "pos": "2026-10"
+      }
+    },
+    {
+      "key": "A5",
+      "kind": "target-path",
+      "placement": {
+        "section": "2.3.1",
+        "anchor": "c2-climate",
+        "position": "right-hand column, beside the text"
+      },
+      "label": "Visual · Section 2.3.1",
+      "title": "EU climate targets step down from 1990 levels to climate neutrality in 2050",
+      "aria": "Index of net greenhouse-gas emissions, 1990 = 100. Latest reported level about 65 (about 35% below 1990). Targets: 45 or less in 2030, 10 in 2040, 0 (climate neutrality) in 2050. All values except 1990 are derived from the stated percentages; these are targets, not projections.",
+      "unit": "Index, net greenhouse-gas emissions, 1990 = 100.",
+      "notes": [
+        "Targets, not projections; straight lines are schematic.",
+        "Derived: 2030 = 100 − 55 (at least 55% reduction, so at most 45); 2040 = 100 − 90 (90% net reduction: 85% domestic and up to 5% international carbon credits); 2050 = 0 (climate neutrality); latest ≈ 65 = 100 − about 35%.",
+        "The latest level is placed at 2024, the year of the emissions-share figure in Section 2.3.1."
+      ],
+      "source": "European Commission (2026a); European Commission Joint Research Centre (2025).",
+      "axis": {
+        "y": {
+          "ticks": [
+            {
+              "v": 0,
+              "s": "axis"
+            },
+            {
+              "v": 25,
+              "s": "axis"
+            },
+            {
+              "v": 50,
+              "s": "axis"
+            },
+            {
+              "v": 75,
+              "s": "axis"
+            },
+            {
+              "v": 100,
+              "s": "axis"
+            }
+          ]
+        }
+      },
+      "points": [
+        {
+          "year": {
+            "v": 1990,
+            "s": "exact"
+          },
+          "index": {
+            "v": 100,
+            "s": "derived",
+            "from": "index base: 1990 = 100"
+          },
+          "label": "1990 base",
+          "type": "base",
+          "short": "1990 base"
+        },
+        {
+          "year": {
+            "v": 2024,
+            "s": "exact"
+          },
+          "index": {
+            "v": 65,
+            "s": "derived",
+            "approx": true,
+            "from": "100 − about 35% (\"about 35% below 1990 levels\")"
+          },
+          "label": "Latest reported",
+          "pct": {
+            "v": "about 35%",
+            "s": "exact"
+          },
+          "type": "latest",
+          "short": "about 35% below 1990"
+        },
+        {
+          "year": {
+            "v": 2030,
+            "s": "exact"
+          },
+          "index": {
+            "v": 45,
+            "s": "derived",
+            "from": "100 − 55 (\"at least 55%\")",
+            "bound": "at most"
+          },
+          "label": "Target: at least −55%",
+          "pct": {
+            "v": "55%",
+            "s": "exact"
+          },
+          "type": "target",
+          "short": "at least −55%"
+        },
+        {
+          "year": {
+            "v": 2040,
+            "s": "exact"
+          },
+          "index": {
+            "v": 10,
+            "s": "derived",
+            "from": "100 − 90 (\"90% net reduction\")"
+          },
+          "label": "Target: −90% net",
+          "pct": {
+            "v": "90%",
+            "s": "exact"
+          },
+          "split": {
+            "domestic": {
+              "v": "85%",
+              "s": "exact"
+            },
+            "credits": {
+              "v": "5%",
+              "s": "exact"
+            }
+          },
+          "type": "target",
+          "short": "−90% net"
+        },
+        {
+          "year": {
+            "v": 2050,
+            "s": "exact"
+          },
+          "index": {
+            "v": 0,
+            "s": "derived",
+            "from": "climate neutrality = net zero"
+          },
+          "label": "Climate neutrality",
+          "type": "target",
+          "short": "climate neutrality"
+        }
+      ]
+    },
+    {
+      "key": "A6",
+      "kind": "donut-counters",
+      "placement": {
+        "section": "2.3.2",
+        "anchor": "c2-security",
+        "position": "below the three cards"
+      },
+      "label": "Visual · Section 2.3.2",
+      "title": "Most CSDP missions are civilian; since 2022 the EU has added sanctions and defence finance",
+      "aria": "Donut chart of 22 CSDP missions and operations: 13 civilian, 8 military, 1 civilian-military. Beside it: 21 sanctions packages against Russia by July 2026, about EUR 210 billion in Russian central bank assets immobilised, and the EUR 150 billion SAFE loan instrument.",
+      "unit": "Missions and operations: count. Money: EUR billion.",
+      "source": "Council of the European Union (2025, 2026a, 2026b).",
+      "donut": {
+        "total": {
+          "v": 22,
+          "s": "exact"
+        },
+        "parts": [
+          {
+            "name": "civilian",
+            "n": {
+              "v": 13,
+              "s": "exact"
+            }
+          },
+          {
+            "name": "military",
+            "n": {
+              "v": 8,
+              "s": "exact"
+            }
+          },
+          {
+            "name": "civilian-military",
+            "n": {
+              "v": 1,
+              "s": "exact"
+            }
+          }
+        ],
+        "caption": "CSDP missions and operations"
+      },
+      "counters": [
+        {
+          "n": {
+            "v": 21,
+            "s": "exact"
+          },
+          "prefix": "",
+          "suffix": "",
+          "text": "sanctions packages against Russia, by {date}",
+          "date": {
+            "v": "July 2026",
+            "s": "exact"
+          }
+        },
+        {
+          "n": {
+            "v": 210,
+            "s": "approximate"
+          },
+          "prefix": "≈ EUR ",
+          "suffix": " bn",
+          "text": "Russian central bank assets immobilised in the EU (about EUR 210 billion)"
+        },
+        {
+          "n": {
+            "v": 150,
+            "s": "exact"
+          },
+          "prefix": "EUR ",
+          "suffix": " bn",
+          "text": "SAFE loan instrument, adopted on {date}",
+          "date": {
+            "v": "27 May 2025",
+            "s": "exact"
+          }
+        }
+      ]
+    },
+    {
+      "key": "A7",
+      "kind": "milestones",
+      "placement": {
+        "section": "3.2.3",
+        "anchor": "c3-impact-trade",
+        "position": "below the two tariff statistics (where the EU tariff figures appear on the page)"
+      },
+      "label": "Visual · Section 3.2.3 (a)",
+      "title": "The EU removes most tariffs on Vietnamese goods at entry into force and almost all within seven years",
+      "aria": "EU tariff elimination for Vietnamese goods under the EVFTA. Upon entry into force: 85.6% of tariff lines, 70.3% of Vietnam's export value. After seven years: 99.2% of tariff lines, 99.7% of export value.",
+      "unit": "Share eliminated by the EU, %.",
+      "notes": [
+        "Milestones, not annual data; dashed lines only connect the two milestones."
+      ],
+      "source": "Ministry of Industry and Trade of Vietnam.",
+      "axis": {
+        "y": {
+          "ticks": [
+            {
+              "v": 0,
+              "s": "axis"
+            },
+            {
+              "v": 25,
+              "s": "axis"
+            },
+            {
+              "v": 50,
+              "s": "axis"
+            },
+            {
+              "v": 75,
+              "s": "axis"
+            },
+            {
+              "v": 100,
+              "s": "axis"
+            }
+          ]
+        }
+      },
+      "milestones": [
+        "Upon entry into force",
+        "After seven years"
+      ],
+      "series": [
+        {
+          "name": "Tariff lines",
+          "values": [
+            {
+              "v": 85.6,
+              "s": "exact"
+            },
+            {
+              "v": 99.2,
+              "s": "exact"
+            }
+          ]
+        },
+        {
+          "name": "Vietnam's export value",
+          "values": [
+            {
+              "v": 70.3,
+              "s": "exact"
+            },
+            {
+              "v": 99.7,
+              "s": "exact"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "A8a",
+      "kind": "dumbbell",
+      "placement": {
+        "section": "3.2.3",
+        "anchor": "c3-impact-trade",
+        "position": "beside the tariff milestones, below Table 3.4"
+      },
+      "label": "Visual · Section 3.2.3 (b)",
+      "title": "All three trade indicators rose from 2019 to 2024, the surplus fastest",
+      "aria": "Dumbbell chart, US$ billion, 2019 to 2024: total Vietnam–EU trade 49.8 to 68.3 (+37.1%); Vietnam's exports to the EU 35.8 to 51.6 (+44.1%); Vietnam's trade surplus with the EU about 21.8 to 34.9 (+60.1%).",
+      "unit": "US$ billion. Change as in Table 3.4.",
+      "notes": [
+        "The 2019 surplus is approximate (≈), as in Table 3.4."
+      ],
+      "source": "Ministry of Industry and Trade of Vietnam.",
+      "axis": {
+        "x": {
+          "ticks": [
+            {
+              "v": 0,
+              "s": "axis"
+            },
+            {
+              "v": 20,
+              "s": "axis"
+            },
+            {
+              "v": 40,
+              "s": "axis"
+            },
+            {
+              "v": 60,
+              "s": "axis"
+            },
+            {
+              "v": 80,
+              "s": "axis"
+            }
+          ]
+        }
+      },
+      "years": [
+        {
+          "v": 2019,
+          "s": "exact"
+        },
+        {
+          "v": 2024,
+          "s": "exact"
+        }
+      ],
+      "rows": [
+        {
+          "name": "Total Vietnam–EU trade",
+          "a": {
+            "v": 49.8,
+            "s": "exact"
+          },
+          "b": {
+            "v": 68.3,
+            "s": "exact"
+          },
+          "change": {
+            "v": "+37.1%",
+            "s": "exact"
+          }
+        },
+        {
+          "name": "Vietnam's exports to EU",
+          "a": {
+            "v": 35.8,
+            "s": "exact"
+          },
+          "b": {
+            "v": 51.6,
+            "s": "exact"
+          },
+          "change": {
+            "v": "+44.1%",
+            "s": "exact"
+          }
+        },
+        {
+          "name": "Vietnam's trade surplus with EU",
+          "a": {
+            "v": 21.8,
+            "s": "approximate"
+          },
+          "b": {
+            "v": 34.9,
+            "s": "exact"
+          },
+          "change": {
+            "v": "+60.1%",
+            "s": "exact"
+          }
+        }
+      ]
+    },
+    {
+      "key": "A8b",
+      "kind": "hbar",
+      "placement": {
+        "section": "3.2.3",
+        "anchor": "c3-impact-investment",
+        "position": "below the EVIPA callout"
+      },
+      "label": "Visual · Section 3.2.3 (c)",
+      "title": "EU registered investment in Vietnam is far below that of South Korea and Singapore",
+      "aria": "Cumulative registered investment in Vietnam, US$ billion: South Korea more than 92 (end of 2024); Singapore about 83.13 (end of 2024); EU about 30.6 (2024). Figures come from different sources.",
+      "unit": "Cumulative registered investment in Vietnam, US$ billion.",
+      "notes": [
+        "Figures come from different sources; the comparison is indicative only (see the note under Table 3.5).",
+        "An open bar end means \"more than\"."
+      ],
+      "source": "Foreign Investment Agency/MPI and European External Action Service.",
+      "axis": {
+        "x": {
+          "ticks": [
+            {
+              "v": 0,
+              "s": "axis"
+            },
+            {
+              "v": 25,
+              "s": "axis"
+            },
+            {
+              "v": 50,
+              "s": "axis"
+            },
+            {
+              "v": 75,
+              "s": "axis"
+            },
+            {
+              "v": 100,
+              "s": "axis"
+            }
+          ]
+        }
+      },
+      "rows": [
+        {
+          "name": "South Korea",
+          "when": "end of 2024",
+          "n": {
+            "v": 92,
+            "s": "exact",
+            "bound": "more than"
+          },
+          "display": "> 92"
+        },
+        {
+          "name": "Singapore",
+          "when": "end of 2024",
+          "n": {
+            "v": 83.13,
+            "s": "approximate"
+          },
+          "display": "≈ 83.13"
+        },
+        {
+          "name": "EU",
+          "when": "2024",
+          "n": {
+            "v": 30.6,
+            "s": "approximate"
+          },
+          "display": "≈ 30.6",
+          "highlight": true
+        }
+      ],
+      "year": {
+        "v": 2024,
+        "s": "exact"
+      }
+    },
+    {
+      "key": "B1",
+      "kind": "two-lane",
+      "placement": {
+        "section": "3.1.1",
+        "anchor": "c3-milestones",
+        "position": "below Table 3.1"
+      },
+      "label": "Visual · Sections 3.1.1 and 3.2.1",
+      "title": "The EVFTA and EVIPA process runs alongside the deepening of Vietnam–EU relations",
+      "aria": "Two-lane timeline. Upper lane: Vietnam–EU relations from Table 3.1, 1990 to 1 Aug 2026. Lower lane: EVFTA and EVIPA milestones from Table 3.3, 2010 to Aug 2026.",
+      "unit": "Time axis to scale; dates as given in Tables 3.1 and 3.3. Ranges are drawn as bars.",
+      "source": "Compiled by the authors from the data in Sections 3.1.1 and 3.2.1.",
+      "axis": {
+        "x": {
+          "ticks": [
+            {
+              "v": 1990,
+              "s": "axis"
+            },
+            {
+              "v": 1995,
+              "s": "axis"
+            },
+            {
+              "v": 2000,
+              "s": "axis"
+            },
+            {
+              "v": 2005,
+              "s": "axis"
+            },
+            {
+              "v": 2010,
+              "s": "axis"
+            },
+            {
+              "v": 2015,
+              "s": "axis"
+            },
+            {
+              "v": 2020,
+              "s": "axis"
+            },
+            {
+              "v": 2025,
+              "s": "axis"
+            }
+          ]
+        }
+      },
+      "lanes": [
+        {
+          "name": "Vietnam–EU relations (Table 3.1)",
+          "items": [
+            {
+              "date": {
+                "v": "1990",
+                "s": "exact",
+                "pos": "1990"
+              },
+              "text": "Diplomatic relations established"
+            },
+            {
+              "date": {
+                "v": "1995",
+                "s": "exact",
+                "pos": "1995"
+              },
+              "text": "Framework cooperation arrangements"
+            },
+            {
+              "date": {
+                "v": "27 Jun 2012",
+                "s": "exact",
+                "pos": "2012-06-27"
+              },
+              "text": "Partnership and Cooperation Agreement signed in Brussels"
+            },
+            {
+              "date": {
+                "v": "Jun 2018",
+                "s": "exact",
+                "pos": "2018-06"
+              },
+              "text": "Final EVFTA text agreed after a lengthy legal review"
+            },
+            {
+              "date": {
+                "v": "30 Jun 2019",
+                "s": "exact",
+                "pos": "2019-06-30"
+              },
+              "text": "EVFTA and EVIPA signed in Hanoi"
+            },
+            {
+              "date": {
+                "v": "12 Feb 2020",
+                "s": "exact",
+                "pos": "2020-02-12"
+              },
+              "text": "European Parliament approves EVFTA and EVIPA"
+            },
+            {
+              "date": {
+                "v": "1 Aug 2020",
+                "s": "exact",
+                "pos": "2020-08-01"
+              },
+              "text": "EVFTA enters into force"
+            },
+            {
+              "date": {
+                "v": "2022–2025",
+                "s": "exact",
+                "pos": "2022/2025"
+              },
+              "text": "JETP launched with an initial US$15.5 billion pledge; first flagship projects announced in 2025"
+            },
+            {
+              "date": {
+                "v": "29 Jan 2026",
+                "s": "exact",
+                "pos": "2026-01-29"
+              },
+              "text": "Relations upgraded to a Comprehensive Strategic Partnership during European Council President António Costa's visit to Hanoi"
+            },
+            {
+              "date": {
+                "v": "24 Mar 2026",
+                "s": "exact",
+                "pos": "2026-03-24"
+              },
+              "text": "EU announces more than €560 million in new Global Gateway commitments for Vietnam"
+            },
+            {
+              "date": {
+                "v": "1 Aug 2026",
+                "s": "exact",
+                "pos": "2026-08-01"
+              },
+              "text": "EVFTA completed six years in force"
+            }
+          ]
+        },
+        {
+          "name": "EVFTA and EVIPA (Table 3.3)",
+          "items": [
+            {
+              "date": {
+                "v": "2010",
+                "s": "exact",
+                "pos": "2010"
+              },
+              "text": "Scoping exercise; decision to negotiate"
+            },
+            {
+              "date": {
+                "v": "2012",
+                "s": "exact",
+                "pos": "2012"
+              },
+              "text": "Formal negotiations launched"
+            },
+            {
+              "date": {
+                "v": "Dec 2015",
+                "s": "exact",
+                "pos": "2015-12"
+              },
+              "text": "Negotiations concluded in principle"
+            },
+            {
+              "date": {
+                "v": "May 2017",
+                "s": "exact",
+                "pos": "2017-05"
+              },
+              "text": "CJEU Opinion 2/15; agreement split into EVFTA and EVIPA"
+            },
+            {
+              "date": {
+                "v": "30 Jun 2019",
+                "s": "exact",
+                "pos": "2019-06-30"
+              },
+              "text": "EVFTA and EVIPA signed in Hanoi"
+            },
+            {
+              "date": {
+                "v": "Feb–Mar 2020",
+                "s": "exact",
+                "pos": "2020-02/2020-03"
+              },
+              "text": "European Parliament consent; Council approval"
+            },
+            {
+              "date": {
+                "v": "Jun 2020",
+                "s": "exact",
+                "pos": "2020-06"
+              },
+              "text": "Vietnam's National Assembly ratifies both agreements"
+            },
+            {
+              "date": {
+                "v": "1 Aug 2020",
+                "s": "exact",
+                "pos": "2020-08-01"
+              },
+              "text": "EVFTA enters into force"
+            },
+            {
+              "date": {
+                "v": "Nov 2025",
+                "s": "exact",
+                "pos": "2025-11"
+              },
+              "text": "Poland becomes the 20th member state to ratify the EVIPA"
+            },
+            {
+              "date": {
+                "v": "Aug 2026",
+                "s": "exact",
+                "pos": "2026-08"
+              },
+              "text": "France submits its EVIPA ratification bill to Parliament"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "B2",
+      "kind": "unit-grid",
+      "placement": {
+        "section": "3.2.1",
+        "anchor": "c3-evfta",
+        "position": "below Table 3.3"
+      },
+      "label": "Visual · Section 3.2.1",
+      "title": "20 member states had ratified the EVIPA by November 2025; it is not yet in force",
+      "aria": "Twenty-seven dots, one per member state: 20 filled dots have ratified the EVIPA (Poland was the 20th, in November 2025); 7 outlined dots have not. As reported in November 2025; not yet in force as of October 2026.",
+      "unit": "One dot = one member state. Dots are not linked to particular countries.",
+      "notes": [
+        "As reported, Nov 2025; not yet in force as of Oct 2026.",
+        "7 = 27 − 20 (derived)."
+      ],
+      "source": "Compiled by the authors from the data in Section 3.2.1.",
+      "total": {
+        "v": 27,
+        "s": "exact"
+      },
+      "euro": {
+        "v": 20,
+        "s": "exact"
+      },
+      "other": {
+        "v": 7,
+        "s": "derived",
+        "from": "27 − 20"
+      },
+      "labels": {
+        "euro": "have ratified (Poland the 20th, Nov 2025)",
+        "other": "not yet (derived)"
+      },
+      "shape": "dot",
+      "when": {
+        "v": "November 2025",
+        "s": "exact"
+      },
+      "asOf": {
+        "v": "October 2026",
+        "s": "exact"
+      }
+    },
+    {
+      "key": "B3a",
+      "kind": "waffle",
+      "placement": {
+        "section": "2.2.3",
+        "anchor": "c2-development",
+        "position": "left column, under the USD 88.7 billion statistic"
+      },
+      "label": "Visual · Section 2.2.3 (a)",
+      "title": "EU countries in the DAC gave 42% of global development assistance in 2024",
+      "aria": "Waffle chart of 100 squares for global assistance of USD 212 billion: 42 gold squares are the USD 88.7 billion given by EU countries in the OECD Development Assistance Committee, 8.6% less than in 2023.",
+      "unit": "100 squares = global assistance of USD 212 billion (2024).",
+      "source": "Finnish Government (2025); European Commission (2026b).",
+      "share": {
+        "v": 42,
+        "s": "exact"
+      },
+      "part": {
+        "v": 88.7,
+        "s": "exact"
+      },
+      "whole": {
+        "v": 212,
+        "s": "exact"
+      },
+      "change": {
+        "v": "8.6%",
+        "s": "exact"
+      },
+      "cells": {
+        "v": 100,
+        "s": "axis"
+      },
+      "year": {
+        "v": 2024,
+        "s": "exact"
+      },
+      "baseYear": {
+        "v": 2023,
+        "s": "exact"
+      }
+    },
+    {
+      "key": "B3b",
+      "kind": "target-bar",
+      "placement": {
+        "section": "2.2.3",
+        "anchor": "c2-development",
+        "position": "right column, under the Global Gateway card"
+      },
+      "label": "Visual · Section 2.2.3 (b)",
+      "title": "Global Gateway mobilisation has passed its EUR 300 billion target",
+      "aria": "Bar chart: Global Gateway target of mobilising up to EUR 300 billion; Team Europe had mobilised more than EUR 306 billion for over 250 projects by 2026.",
+      "unit": "EUR billion. An open bar end means \"more than\".",
+      "source": "Finnish Government (2025); European Commission (2026b).",
+      "axis": {
+        "x": {
+          "ticks": [
+            {
+              "v": 0,
+              "s": "axis"
+            },
+            {
+              "v": 100,
+              "s": "axis"
+            },
+            {
+              "v": 200,
+              "s": "axis"
+            },
+            {
+              "v": 300,
+              "s": "axis"
+            }
+          ]
+        }
+      },
+      "target": {
+        "v": 300,
+        "s": "exact",
+        "text": "Target: up to EUR 300 bn"
+      },
+      "actual": {
+        "v": 306,
+        "s": "exact",
+        "bound": "more than",
+        "text": "Mobilised by 2026: more than EUR 306 bn"
+      },
+      "projects": {
+        "v": 250,
+        "s": "exact",
+        "text": "over 250 projects"
+      },
+      "by": {
+        "v": 2026,
+        "s": "exact"
+      }
+    },
+    {
+      "key": "B4",
+      "kind": "stairs3d",
+      "placement": {
+        "section": "1.1.2",
+        "anchor": "c1-levels",
+        "position": "between the introductory text and the five cards"
+      },
+      "label": "Visual · Section 1.1.2 · Schematic",
+      "title": "Each level of integration builds on the one below",
+      "aria": "Schematic staircase of five levels of regional economic integration: Free Trade Area, Customs Union, Common Market, Economic Union, Economic and Monetary Union. Not a measurement.",
+      "unit": "Schematic: block heights show order only, not a measured quantity. Select a level to read its description.",
+      "source": "Compiled by the authors from the data in Section 1.1.2.",
+      "steps": [
+        {
+          "name": "Free Trade Area",
+          "text": "Members eliminate or reduce tariffs on goods traded among themselves; each member retains its own trade policy toward non-member countries.",
+          "n": {
+            "v": 1,
+            "s": "exact"
+          }
+        },
+        {
+          "name": "Customs Union",
+          "text": "Establishes a common external tariff toward non-member countries.",
+          "n": {
+            "v": 2,
+            "s": "exact"
+          }
+        },
+        {
+          "name": "Common Market",
+          "text": "Restrictions on the movement of capital, labor, and services are substantially reduced.",
+          "n": {
+            "v": 3,
+            "s": "exact"
+          }
+        },
+        {
+          "name": "Economic Union",
+          "text": "Members may coordinate policies concerning taxation, competition, government spending and employment.",
+          "n": {
+            "v": 4,
+            "s": "exact"
+          }
+        },
+        {
+          "name": "Economic and Monetary Union",
+          "text": "Members may adopt a common currency managed by a common central bank. The euro area is the most prominent contemporary example.",
+          "n": {
+            "v": 5,
+            "s": "exact"
+          }
+        }
+      ]
+    },
+    {
+      "key": "B5",
+      "kind": "institutions",
+      "placement": {
+        "section": "1.2.2",
+        "anchor": "c1-institutions",
+        "position": "below the six institution cards"
+      },
+      "label": "Visual · Section 1.2.2 · Schematic",
+      "title": "The Commission proposes; the Parliament and the Council adopt",
+      "aria": "Schematic of the relations stated in Section 1.2.2: the European Council defines overall political direction and priorities; the European Commission proposes legislation; the European Parliament and the Council of the European Union adopt EU legislation together; the Court of Justice of the European Union ensures EU law is interpreted and applied consistently; the European Central Bank is responsible for monetary policy in the euro area.",
+      "unit": "Schematic: only the relations stated in the text of Section 1.2.2 are drawn.",
+      "source": "Compiled by the authors from the data in Section 1.2.2."
+    },
+    {
+      "key": "B6",
+      "kind": "range",
+      "placement": {
+        "section": "2.1.3",
+        "anchor": "c2-challenges",
+        "position": "beside the Competitiveness callout"
+      },
+      "label": "Visual · Section 2.1.3",
+      "title": "Draghi (2024): the EU needs to invest EUR 750–800 billion a year",
+      "aria": "Range bars: EUR 750 to 800 billion a year, equal to 4.4 to 4.7% of EU GDP in 2023 (Draghi, 2024). Both are ranges, not single estimates.",
+      "unit": "Ranges as stated; no single point estimate is chosen.",
+      "source": "Draghi (2024).",
+      "rows": [
+        {
+          "name": "Investment need, EUR billion a year",
+          "lo": {
+            "v": 750,
+            "s": "exact"
+          },
+          "hi": {
+            "v": 800,
+            "s": "exact"
+          },
+          "max": {
+            "v": 1000,
+            "s": "axis"
+          },
+          "fmt": "EUR {lo}–{hi} bn",
+          "min": {
+            "v": 0,
+            "s": "axis"
+          }
+        },
+        {
+          "name": "Share of 2023 GDP, %",
+          "lo": {
+            "v": 4.4,
+            "s": "exact"
+          },
+          "hi": {
+            "v": 4.7,
+            "s": "exact"
+          },
+          "max": {
+            "v": 5,
+            "s": "axis"
+          },
+          "fmt": "{lo}–{hi}%",
+          "min": {
+            "v": 0,
+            "s": "axis"
+          }
+        }
+      ],
+      "gdpYear": {
+        "v": 2023,
+        "s": "exact"
+      }
+    },
+    {
+      "key": "F3.1",
+      "kind": "stacked",
+      "remake": "Figure 3.1",
+      "placement": {
+        "section": "3.1.2",
+        "anchor": "c3-trade",
+        "position": "existing Figure 3.1 (same caption, data and source)"
+      },
+      "aria": "Stacked bars, billion USD: exports to the EU and imports from the EU, 2020 to 2024. 2020: about 40 and 15; 2021: about 40 and 16; 2022: about 47 and 17; 2023: about 44 and 16; 2024: 51.6 and 16.7.",
+      "notes": [
+        "≈ = approximate (2020–2023, read from the original chart). Totals above the bars are derived (exports + imports)."
+      ],
+      "axis": {
+        "y": {
+          "ticks": [
+            {
+              "v": 0,
+              "s": "axis"
+            },
+            {
+              "v": 20,
+              "s": "axis"
+            },
+            {
+              "v": 40,
+              "s": "axis"
+            },
+            {
+              "v": 60,
+              "s": "axis"
+            },
+            {
+              "v": 80,
+              "s": "axis"
+            }
+          ]
+        }
+      },
+      "series": [
+        "Vietnam's exports to EU",
+        "Vietnam's imports from EU"
+      ],
+      "bars": [
+        {
+          "year": {
+            "v": 2020,
+            "s": "exact"
+          },
+          "exports": {
+            "v": 40,
+            "s": "approximate"
+          },
+          "imports": {
+            "v": 15,
+            "s": "approximate"
+          },
+          "total": {
+            "v": 55,
+            "s": "derived",
+            "approx": true,
+            "from": "40 + 15"
+          }
+        },
+        {
+          "year": {
+            "v": 2021,
+            "s": "exact"
+          },
+          "exports": {
+            "v": 40,
+            "s": "approximate"
+          },
+          "imports": {
+            "v": 16,
+            "s": "approximate"
+          },
+          "total": {
+            "v": 56,
+            "s": "derived",
+            "approx": true,
+            "from": "40 + 16"
+          }
+        },
+        {
+          "year": {
+            "v": 2022,
+            "s": "exact"
+          },
+          "exports": {
+            "v": 47,
+            "s": "approximate"
+          },
+          "imports": {
+            "v": 17,
+            "s": "approximate"
+          },
+          "total": {
+            "v": 64,
+            "s": "derived",
+            "approx": true,
+            "from": "47 + 17"
+          }
+        },
+        {
+          "year": {
+            "v": 2023,
+            "s": "exact"
+          },
+          "exports": {
+            "v": 44,
+            "s": "approximate"
+          },
+          "imports": {
+            "v": 16,
+            "s": "approximate"
+          },
+          "total": {
+            "v": 60,
+            "s": "derived",
+            "approx": true,
+            "from": "44 + 16"
+          }
+        },
+        {
+          "year": {
+            "v": 2024,
+            "s": "exact"
+          },
+          "exports": {
+            "v": 51.6,
+            "s": "exact"
+          },
+          "imports": {
+            "v": 16.7,
+            "s": "exact"
+          },
+          "total": {
+            "v": 68.3,
+            "s": "exact",
+            "from": "51.6 + 16.7; stated on the page"
+          }
+        }
+      ]
+    },
+    {
+      "key": "F3.2",
+      "kind": "paired-hbar",
+      "remake": "Figure 3.2",
+      "placement": {
+        "section": "3.1.2",
+        "anchor": "c3-structure",
+        "position": "existing Figure 3.2 (same caption, data and source)"
+      },
+      "aria": "Paired horizontal bars, billion EUR, 2024, all values approximate: machinery and transport equipment 26.6 EU imports from Vietnam, 4.2 EU exports to Vietnam; textiles and clothing 5.0 and 0.6; food and agricultural products 5.0 and 1.8; chemicals 1.0 and 3.7; fuels and mining 0.4 and 0.2.",
+      "notes": [
+        "All values approximate (≈), read from the original chart."
+      ],
+      "axis": {
+        "x": {
+          "ticks": [
+            {
+              "v": 0,
+              "s": "axis"
+            },
+            {
+              "v": 5,
+              "s": "axis"
+            },
+            {
+              "v": 10,
+              "s": "axis"
+            },
+            {
+              "v": 15,
+              "s": "axis"
+            },
+            {
+              "v": 20,
+              "s": "axis"
+            },
+            {
+              "v": 25,
+              "s": "axis"
+            },
+            {
+              "v": 30,
+              "s": "axis"
+            }
+          ]
+        }
+      },
+      "series": [
+        "EU imports from Vietnam",
+        "EU exports to Vietnam"
+      ],
+      "rows": [
+        {
+          "name": "Machinery & transport equipment",
+          "a": {
+            "v": 26.6,
+            "s": "approximate"
+          },
+          "b": {
+            "v": 4.2,
+            "s": "approximate"
+          }
+        },
+        {
+          "name": "Textiles & clothing",
+          "a": {
+            "v": 5.0,
+            "s": "approximate",
+            "txt": "5.0"
+          },
+          "b": {
+            "v": 0.6,
+            "s": "approximate"
+          }
+        },
+        {
+          "name": "Food & agricultural products",
+          "a": {
+            "v": 5.0,
+            "s": "approximate",
+            "txt": "5.0"
+          },
+          "b": {
+            "v": 1.8,
+            "s": "approximate"
+          }
+        },
+        {
+          "name": "Chemicals",
+          "a": {
+            "v": 1.0,
+            "s": "approximate",
+            "txt": "1.0"
+          },
+          "b": {
+            "v": 3.7,
+            "s": "approximate"
+          }
+        },
+        {
+          "name": "Fuels & mining",
+          "a": {
+            "v": 0.4,
+            "s": "approximate"
+          },
+          "b": {
+            "v": 0.2,
+            "s": "approximate"
+          }
+        }
+      ]
+    }
+  ]
+}
