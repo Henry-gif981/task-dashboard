@@ -1,0 +1,5 @@
+Pages whose content stops above half the page height (last page excluded); PDFs made with scripts/export_pdf.mjs
+print_A4_before_v2: 59 pages; 5 part-empty pages [4, 6, 23, 33, 56]; mean fill 80%
+print_A4_after_v2b: 71 pages; 3 part-empty pages [4, 37, 57]; mean fill 80%
+print_slides_before_v2: 69 pages; 15 part-empty pages [6, 8, 18, 20, 24, 26, 29, 31, 36, 40, 44, 50, 55, 56, 61]; mean fill 71%
+print_slides_after_v2b: 79 pages; 21 part-empty pages [6, 8, 15, 17, 22, 27, 30, 32, 36, 44, 46, 47, 48, 56, 59, 62, 64, 66, 68, 71, 75]; mean fill 68%

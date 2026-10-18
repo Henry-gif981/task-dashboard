@@ -1,0 +1,9 @@
+PASS A4 title: 8 of 10 Table 2.6 instruments dated 2018 or later (CBAM counted from its 2023 transitional phase)
+PASS A5 bars: 2020 bar = 43.3/76.0 of the 2025 bar = 0.570 (drawn 170.9 of 300 units)
+PASS A1 / A6 EVIPA: 20 of 27 ratified → 7 to go
+PASS B1 euro: 21 of 27 use the euro → 6 outside (Section 2.1.1 names six)
+PASS A8 share note: 27.8 / 496.7 = 5.60% ≈ 5.6%
+PASS A8 inflow: 2.5 → 3.25 = +30% (not shown on the page)
+PASS A7b ranges: EU 84–86% → ≈99%; Vietnam ≈65% → rest (drawn to 100%)
+PASS B8 Chapter 1: 6 founders (1951) → 28 (2013) → 27 after Brexit
+all checks passed

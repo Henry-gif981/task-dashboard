@@ -1,0 +1,2 @@
+== 1920x1080: 0 failing text elements ==
+== 390x844: 0 failing text elements ==
