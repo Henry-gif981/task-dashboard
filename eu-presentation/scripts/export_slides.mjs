@@ -5,7 +5,7 @@
 // A section taller than the screen is first scaled down (CSS zoom, not below 0.68, or 0.6
 // where that avoids cutting through a block);
 // if it still does not fit, it continues on the next page, cut only between blocks
-// (paragraphs, cards, figures, table rows), with "(tiếp)" at the top. No text is changed.
+// (paragraphs, cards, figures, whole tables), with "(cont.)" at the top. No text is changed.
 import { createRequire } from 'node:module';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { execFileSync } from 'node:child_process';
@@ -21,7 +21,7 @@ catch { ({ chromium } = require('/opt/node22/lib/node_modules/playwright')); }  
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = path.resolve(process.argv[2] || path.join(ROOT, 'v3b', 'EU_presentation_standalone_v3b.html'));
 const OUT = path.resolve(process.argv[3] || path.join(ROOT, 'v3b', 'EU_presentation_v3b_slides.pdf'));
-const W = 1920, H = 1080, TOP = 96, BOTTOM = 64, MINZOOM = .68, HARDMIN = .6;   // HARDMIN: only to avoid cutting through a block
+const W = 1920, H = 1080, TOP = 96, BOTTOM = 64, MINZOOM = .68, HARDMIN = .6;   // HARDMIN: only to avoid cutting through a block or an almost empty last page
 
 const CSS = `
   html { scroll-behavior: auto !important; }
@@ -33,6 +33,15 @@ const CSS = `
   #pdf-num { position: fixed; bottom: 22px; right: 40px; font: 500 15px/1 Inter, Arial, sans-serif; z-index: 99; }
   #pdf-cont, #pdf-num { color: var(--pdf-ink); }
   @page { size: ${W}px ${H}px; margin: 0; }
+  /* a page cannot hold a WebGL canvas: use the drawn fallback of the 3D visuals, as the print stylesheet does */
+  .vz-stage canvas, .vz-stage .tag3d { display: none !important; }
+  .vz-stage svg.iso { visibility: visible !important; }
+  /* the milestone strip scrolls sideways on screen; on a page it wraps onto several rows */
+  .vz-strip { overflow: visible !important; }
+  .vz-strip ol { flex-wrap: wrap; width: auto !important; row-gap: 14px; }
+  .vz-strip ol::before { display: none; }
+  /* slightly wider word gaps so that text copied from the PDF keeps its spaces */
+  html.pdfs body { word-spacing: .05em; }
 `;
 
 const browser = await chromium.launch();
@@ -106,10 +115,19 @@ for (const id of ids) {
   const cutsAt = () => page.evaluate(([id, H, TOP, BOTTOM]) => {
     const s = document.getElementById(id), st = s.getBoundingClientRect().top, sh = s.getBoundingClientRect().height;
     if (sh <= H + 2) return { cuts: [], forced: 0, tail: 0 };
-    const atoms = [...s.querySelectorAll('figure, svg, img, canvas, tr, .card, p, li, h1, h2, h3, h4, h5, blockquote, .kpi, .takeaway, .tnote, .src, .cap, .lead, dt, dd, .vz')]
+    const atoms = [...s.querySelectorAll('figure, svg, img, canvas, tr, .card, p, li, h1, h2, h3, h4, h5, blockquote, .kpi, .takeaway, .tnote, .src, .cap, .lead, dt, dd, .vz, [role=listitem], .tl .m, .vz-strip')]
       .map(e => e.getBoundingClientRect()).filter(r => r.height).map(r => [r.top - st, r.bottom - st]);
     // a table keeps its caption, header and first two rows together
-    s.querySelectorAll('table').forEach(t => { const r = t.querySelectorAll('tbody tr, tr'), last = r[Math.min(2, r.length - 1)]; if (last) atoms.push([t.getBoundingClientRect().top - st, last.getBoundingClientRect().bottom - st]); });
+    // a table that fits on one page is never split (with its caption); a longer one keeps caption, header and first rows together
+    const room = H - TOP - BOTTOM - 8;
+    s.querySelectorAll('table').forEach(t => {
+      const box = t.closest('.tbl-wrap') || t, tr = box.getBoundingClientRect(), r = t.querySelectorAll('tbody tr, tr'), last = r[Math.min(2, r.length - 1)];
+      if (tr.height <= room) atoms.push([tr.top - st, tr.bottom - st]);
+      else if (last) atoms.push([tr.top - st, last.getBoundingClientRect().bottom - st]);
+    });
+    // a caption stays with the block below it; a "Source:" line or table note stays with the block above it
+    s.querySelectorAll('.cap').forEach(c => { const n = c.nextElementSibling; if (n) { const a = c.getBoundingClientRect(), b = n.getBoundingClientRect(); if (b.bottom - a.top <= room) atoms.push([a.top - st, Math.min(b.bottom, a.top + room) - st]); } });
+    s.querySelectorAll('.src, .tnote').forEach(c => { const n = c.previousElementSibling; if (n) { const a = n.getBoundingClientRect(), b = c.getBoundingClientRect(), whole = n.matches('figure, table, .tbl-wrap, .vz, .chart, .src, .tnote'); atoms.push([(whole ? Math.max(a.top, b.bottom - room) : Math.max(a.top, b.top - 60)) - st, b.bottom - st]); } });
     const cand = [...new Set(atoms.map(a => Math.round(a[0])))].filter(y => y > TOP && !atoms.some(([t, b]) => t < y - 1 && b > y + 1)).sort((a, b) => a - b);
     const out = []; let start = 0, forced = 0;
     while (sh - start > (start ? H - TOP : H) + 2) {
@@ -127,7 +145,7 @@ for (const id of ids) {
   // than planned, or leave an almost empty last page) or avoids a cut through a block
   const worse = (c, b) => c.forced < b.forced || (c.forced === b.forced && c.cuts.length < b.cuts.length);
   const goal = b => b.cuts.length + 1 > pages || b.forced > 0 || (b.cuts.length && b.tail < .3);
-  for (let zz = z * .96; goal(best) && zz >= (best.forced ? HARDMIN : MINZOOM); zz *= .96) {
+  for (let zz = z * .96; goal(best) && zz >= (best.forced || (best.cuts.length && best.tail < .3) ? HARDMIN : MINZOOM); zz *= .96) {
     await show(id, zz); const c = await cutsAt();
     if (worse(c, best)) { z = zz; h = await height(id); best = c; }
   }
@@ -159,7 +177,7 @@ for (const p of plan) {
       document.documentElement.style.setProperty('--pdf-ink', lum < 128 ? 'rgba(255,255,255,.75)' : '#4A5A78');
       document.getElementById('pdf-cont').textContent = cont;
       document.getElementById('pdf-num').textContent = num;
-    }, [p.id, a, b, shift, p.zoom, j ? `${title} (tiếp ${j + 1}/${bounds.length - 1})` : '', n ? `${n + 1} / ${total}` : '']);
+    }, [p.id, a, b, shift, p.zoom, j ? `${title} (cont.)` : '', n ? `${n + 1} / ${total}` : '']);
     await page.waitForTimeout(80);
     const f = path.join(tmp, `p${String(n).padStart(3, '0')}.pdf`);
     await page.pdf({ path: f, width: `${W}px`, height: `${H}px`, margin: { top: 0, right: 0, bottom: 0, left: 0 }, printBackground: true, pageRanges: '1', tagged: true });

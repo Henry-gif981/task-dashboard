@@ -38,6 +38,7 @@
     [/European Commission, DG Trade (?:country )?factsheet(?: on Vietnam)?(?: \(\d+ \w+ \d{4}\))?(?:, based on Eurostat Comext| \(Eurostat Comext\))?/, "dgtrade-vn-factsheet"],
     [/European Commission \((?:Eurostat(?: data)?)\)/, "dgtrade-vn-factsheet"],
     [/European Commission, Access2Markets/, "access2markets-evfta"],
+    [/Global Gateway: Vietnam Just Energy Transition Partnership/, "ec-gg-jetp"],
     [/(?:European Commission|European Union|Council of the European Union) \(n\.d\.-[a-j]\)/, m => ({ ref: m.replace(/ \(/, ". (") })],
     [/Eurostat data \(2025\)|Eurostat data|Eurostat, as reported by the European Commission and specialised media|Eurostat/, (m, sec) => EUROSTAT_BY_SECTION[sec] || "eurostat-extra-2025"],
     [/Treaty on the Functioning of the European Union/, "eurlex-tfeu"],
@@ -84,7 +85,9 @@
     return null;
   }
   const link = (text, r) => r.internal ? `<a class="srcl int" href="${esc(r.url)}" title="${esc(r.tip)}">${esc(text)}</a>`
-    : `<a class="srcl" href="${esc(r.url)}" target="_blank" rel="noopener" title="${esc(r.tip)}">${esc(text)}${EXT}</a>`;
+    : `<a class="srcl" href="${esc(r.url)}" target="_blank" rel="noopener" title="${esc(r.tip)}">${tail(text)}</a>`;
+  // the last word and the ↗ icon never part at a line break
+  function tail(t) { const s = esc(t), i = s.lastIndexOf(" "); return (i < 0 ? "" : s.slice(0, i + 1)) + `<span class="nw">${s.slice(i + 1)}${EXT}</span>`; }
   function render(name, tgt) {
     if (tgt && tgt.sections) {        // "Sections 1.1.3 and 1.2.1" -> each number jumps to that part of the page
       return name.replace(/\d\.\d(?:\.\d)?/g, n => SEC[n] ? `<a class="srcl int" href="#${SEC[n]}" title="Go to ${n} in this page">${n}</a>` : n);
