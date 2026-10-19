@@ -115,7 +115,7 @@ for (const id of ids) {
   const cutsAt = () => page.evaluate(([id, H, TOP, BOTTOM]) => {
     const s = document.getElementById(id), st = s.getBoundingClientRect().top, sh = s.getBoundingClientRect().height;
     if (sh <= H + 2) return { cuts: [], forced: 0, tail: 0 };
-    const atoms = [...s.querySelectorAll('figure, svg, img, canvas, tr, .card, p, li, h1, h2, h3, h4, h5, blockquote, .kpi, .takeaway, .tnote, .src, .cap, .lead, dt, dd, .vz, [role=listitem], .tl .m, .vz-strip')]
+    const atoms = [...s.querySelectorAll('figure, svg, img, canvas, tr, .card, p, li, h1, h2, h3, h4, h5, blockquote, .kpi, .takeaway, .tnote, .src, .cap, .lead, dt, dd, .vz, [role=listitem], .tl .m, .vz-strip, .callout')]
       .map(e => e.getBoundingClientRect()).filter(r => r.height).map(r => [r.top - st, r.bottom - st]);
     // a table keeps its caption, header and first two rows together
     // a table that fits on one page is never split (with its caption); a longer one keeps caption, header and first rows together

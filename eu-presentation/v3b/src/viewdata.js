@@ -64,7 +64,7 @@
     const title = s.title ? (s.label ? s.label + ": " : "") + s.title : cap ? cap.textContent.replace(/\s+/g, " ").trim() : tb.cap;
     let src = s.source;
     if (!src) { let e = fig && fig.querySelector(":scope > .src") || (fig || root).nextElementSibling; while (e && !e.matches(".src")) e = e.nextElementSibling; src = e ? e.textContent.replace(/^\s*Sources?:\s*/, "").trim() : ""; }
-    const meta = [["Visual", title], ["What is measured", s.unit], ["In the report", d.where], ["Source", src]].filter(m => m[1]);
+    const meta = [];   // the panel shows notes, data and calculations only
     const calc = d.calc ? d.calc(s) : null;
     const stats = new Set(tb.status ? tb.rows.map(r => String(r[r.length - 1])) : []);
     const key = STATUS_KEY.filter(([k]) => [...stats].some(x => x.includes(k)));
