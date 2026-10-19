@@ -74,10 +74,10 @@ await page.evaluate(async () => {
   document.querySelectorAll('.rv').forEach(e => e.classList.add('in'));
   document.querySelectorAll('.vz-anim').forEach(e => e.classList.add('drawn'));
   document.documentElement.classList.add('pdfs');
-  // References are set in two columns: split the list in two halves so the page break falls
+  // References are set in two columns: split the list into blocks of 20 entries so the page break falls
   // between two complete blocks instead of through an entry
   const ul = document.querySelector('#references ul.refs');
-  if (ul) { const li = [...ul.children], ul2 = ul.cloneNode(false); li.slice(Math.ceil(li.length / 2)).forEach(x => ul2.appendChild(x)); ul.after(ul2); }
+  if (ul) { const li = [...ul.children].filter(x => x.tagName === 'LI'); let last = ul; for (let i = 20; i < li.length; i += 20) { const u = ul.cloneNode(false); li.slice(i, i + 20).forEach(x => u.appendChild(x)); last.after(u); last = u; } }
   for (const id of ['pdf-cont', 'pdf-num']) { const d = document.createElement('div'); d.id = id; document.body.append(d); }
 });
 await page.waitForTimeout(1500);

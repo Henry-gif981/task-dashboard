@@ -1,14 +1,14 @@
-     slides: 44; steps per slide: 1 1 4 1 4 3 1 3 4 4 1 3 4 3 4 3 2 4 3 4 5 2 1 3 5 4 3 4 3 3 3 3 6 4 2 3 1 3 1 1 3 3 1 1; total states: 125
+     slides: 44; steps per slide: 1 1 4 1 4 3 1 3 4 4 1 3 5 3 4 3 2 4 3 4 5 3 1 3 5 4 3 4 3 3 3 3 6 4 2 3 1 3 1 1 3 3 1 1; total states: 127
 PASS every slide has 1–6 build steps
 PASS P enters at the slide being viewed (slide 8: 1.2.1 Formation and development process)
 PASS nav, dots, scroll hint, counter, progress hidden (none,none,none,none,none)
      fullscreen granted in this browser: true
 PASS Home goes to slide 1, step 1
-PASS → visits every slide and every build step in order (125 states, 139 presses, 14 of them page through tall blocks)
+PASS → visits every slide and every build step in order (127 states, 146 presses, 19 of them page through tall blocks)
 PASS night mode and 3D scene follow the current slide on every step
 PASS the top of each newly shown block is on screen
 PASS → on the last state stays on the last slide
-PASS ← walks back through exactly the same states (previous slide arrives fully built; 500 presses)
+PASS ← walks back through exactly the same states (previous slide arrives fully built; 508 presses)
 PASS End goes to the last slide
 PASS typing 1 2 shows "→ 12" and Enter jumps to slide 12
 PASS G opens the overview with slide 12 focused and marked (groups: Opening | Chapter 1 | Chapter 2 | Chapter 3 | Conclusion)
@@ -18,7 +18,7 @@ PASS B shows a black screen and B again returns
 PASS "." toggles black, W toggles white
 PASS L shows a laser dot that follows the mouse; L again hides it
 PASS T opens the minutes field in the page (no prompt, stays in presentation mode)
-PASS T = 1 minute after more than a minute of testing: the HUD shows overtime in red (+00:56 quá giờ, class "clock over")
+PASS T = 1 minute after more than a minute of testing: the HUD shows overtime in red (+01:02 quá giờ, class "clock over")
 PASS R resets the clock (−01:00, normal colour)
 PASS + / − change the root font size (24px → 26.4px → 24px)
 PASS ? opens the help dialog (16 rows, focus inside); Esc closes it
@@ -62,7 +62,7 @@ PASS 1280×720: no console errors
 PASS prefers-reduced-motion: build steps appear without transition (0s)
 PASS body.no3d: presentation mode works without errors
 PASS 390 px: no Present button, no horizontal overflow (button display none, overflow 0)
-PASS swipe left moves forward (step 2, scroll 24673→25101: a tall phone slide is paged first), swipe right moves back (step 1, scroll 24714)
+PASS swipe left moves forward (step 2, scroll 24724→25150: a tall phone slide is paged first), swipe right moves back (step 1, scroll 24765)
 PASS 390 px in presentation mode: no horizontal overflow
 
 all checks passed
