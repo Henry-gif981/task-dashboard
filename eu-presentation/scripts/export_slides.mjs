@@ -65,6 +65,10 @@ await page.evaluate(async () => {
   document.querySelectorAll('.rv').forEach(e => e.classList.add('in'));
   document.querySelectorAll('.vz-anim').forEach(e => e.classList.add('drawn'));
   document.documentElement.classList.add('pdfs');
+  // References are set in two columns: split the list in two halves so the page break falls
+  // between two complete blocks instead of through an entry
+  const ul = document.querySelector('#references ul.refs');
+  if (ul) { const li = [...ul.children], ul2 = ul.cloneNode(false); li.slice(Math.ceil(li.length / 2)).forEach(x => ul2.appendChild(x)); ul.after(ul2); }
   for (const id of ['pdf-cont', 'pdf-num']) { const d = document.createElement('div'); d.id = id; document.body.append(d); }
 });
 await page.waitForTimeout(1500);
