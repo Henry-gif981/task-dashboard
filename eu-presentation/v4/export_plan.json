@@ -1,0 +1,355 @@
+[
+ {
+  "id": "home",
+  "first": 1,
+  "slides": 1,
+  "zoom": 1,
+  "cuts": []
+ },
+ {
+  "id": "contents",
+  "first": 2,
+  "slides": 1,
+  "zoom": 0.849,
+  "cuts": []
+ },
+ {
+  "id": "introduction",
+  "first": 3,
+  "slides": 1,
+  "zoom": 1,
+  "cuts": []
+ },
+ {
+  "id": "ch1",
+  "first": 4,
+  "slides": 1,
+  "zoom": 1,
+  "cuts": []
+ },
+ {
+  "id": "c1-concept",
+  "first": 5,
+  "slides": 1,
+  "zoom": 0.849,
+  "cuts": []
+ },
+ {
+  "id": "c1-levels",
+  "first": 6,
+  "slides": 2,
+  "zoom": 0.783,
+  "cuts": [
+   1028
+  ]
+ },
+ {
+  "id": "c1-model",
+  "first": 8,
+  "slides": 1,
+  "zoom": 1,
+  "cuts": []
+ },
+ {
+  "id": "c1-history",
+  "first": 9,
+  "slides": 2,
+  "zoom": 0.849,
+  "cuts": [
+   920
+  ]
+ },
+ {
+  "id": "c1-institutions",
+  "first": 11,
+  "slides": 2,
+  "zoom": 1,
+  "cuts": [
+   834
+  ]
+ },
+ {
+  "id": "c1-principles",
+  "first": 13,
+  "slides": 2,
+  "zoom": 0.849,
+  "cuts": []
+ },
+ {
+  "id": "ch2",
+  "first": 15,
+  "slides": 1,
+  "zoom": 1,
+  "cuts": []
+ },
+ {
+  "id": "c2-economic",
+  "first": 16,
+  "slides": 2,
+  "zoom": 1,
+  "cuts": [
+   717
+  ]
+ },
+ {
+  "id": "c2-economic-b",
+  "first": 18,
+  "slides": 2,
+  "zoom": 0.751,
+  "cuts": [
+   1014
+  ]
+ },
+ {
+  "id": "c2-political",
+  "first": 20,
+  "slides": 1,
+  "zoom": 1,
+  "cuts": []
+ },
+ {
+  "id": "c2-waves",
+  "first": 21,
+  "slides": 2,
+  "zoom": 1,
+  "cuts": [
+   1019
+  ]
+ },
+ {
+  "id": "c2-trade",
+  "first": 23,
+  "slides": 3,
+  "zoom": 0.922,
+  "cuts": [
+   770,
+   1650
+  ]
+ },
+ {
+  "id": "c2-trade-balance",
+  "first": 26,
+  "slides": 1,
+  "zoom": 1,
+  "cuts": []
+ },
+ {
+  "id": "c2-agreements",
+  "first": 27,
+  "slides": 3,
+  "zoom": 0.783,
+  "cuts": [
+   322,
+   1117
+  ]
+ },
+ {
+  "id": "c2-governance",
+  "first": 30,
+  "slides": 2,
+  "zoom": 0.751,
+  "cuts": [
+   1015
+  ]
+ },
+ {
+  "id": "c2-development",
+  "first": 32,
+  "slides": 1,
+  "zoom": 0.922,
+  "cuts": []
+ },
+ {
+  "id": "c2-standards",
+  "first": 33,
+  "slides": 3,
+  "zoom": 0.693,
+  "cuts": [
+   489,
+   1234
+  ]
+ },
+ {
+  "id": "c2-climate",
+  "first": 36,
+  "slides": 2,
+  "zoom": 0.885,
+  "cuts": []
+ },
+ {
+  "id": "ch3",
+  "first": 38,
+  "slides": 1,
+  "zoom": 1,
+  "cuts": []
+ },
+ {
+  "id": "c3-numbers",
+  "first": 39,
+  "slides": 1,
+  "zoom": 1,
+  "cuts": []
+ },
+ {
+  "id": "c3-milestones",
+  "first": 40,
+  "slides": 2,
+  "zoom": 0.815,
+  "cuts": [
+   927
+  ]
+ },
+ {
+  "id": "c3-importance",
+  "first": 42,
+  "slides": 2,
+  "zoom": 0.783,
+  "cuts": [
+   904
+  ]
+ },
+ {
+  "id": "c3-frameworks",
+  "first": 44,
+  "slides": 2,
+  "zoom": 0.815,
+  "cuts": [
+   1028
+  ]
+ },
+ {
+  "id": "c3-evfta",
+  "first": 46,
+  "slides": 2,
+  "zoom": 0.815,
+  "cuts": [
+   1028
+  ]
+ },
+ {
+  "id": "c3-evipa",
+  "first": 48,
+  "slides": 1,
+  "zoom": 0.849,
+  "cuts": []
+ },
+ {
+  "id": "c3-trade",
+  "first": 49,
+  "slides": 2,
+  "zoom": 0.885,
+  "cuts": [
+   998
+  ]
+ },
+ {
+  "id": "c3-trade-vn",
+  "first": 51,
+  "slides": 1,
+  "zoom": 0.783,
+  "cuts": []
+ },
+ {
+  "id": "c3-structure",
+  "first": 52,
+  "slides": 1,
+  "zoom": 1,
+  "cuts": []
+ },
+ {
+  "id": "c3-investment",
+  "first": 53,
+  "slides": 3,
+  "zoom": 0.783,
+  "cuts": [
+   964,
+   1590
+  ]
+ },
+ {
+  "id": "c3-reform",
+  "first": 56,
+  "slides": 3,
+  "zoom": 0.849,
+  "cuts": [
+   940,
+   1152
+  ]
+ },
+ {
+  "id": "c3-broader",
+  "first": 59,
+  "slides": 1,
+  "zoom": 1,
+  "cuts": []
+ },
+ {
+  "id": "c3-standards",
+  "first": 60,
+  "slides": 2,
+  "zoom": 0.885,
+  "cuts": [
+   395
+  ]
+ },
+ {
+  "id": "c3-cooperation",
+  "first": 62,
+  "slides": 1,
+  "zoom": 0.922,
+  "cuts": []
+ },
+ {
+  "id": "c3-green",
+  "first": 63,
+  "slides": 2,
+  "zoom": 1,
+  "cuts": [
+   783
+  ]
+ },
+ {
+  "id": "c3-opportunities",
+  "first": 65,
+  "slides": 1,
+  "zoom": 1,
+  "cuts": []
+ },
+ {
+  "id": "c3-challenges",
+  "first": 66,
+  "slides": 1,
+  "zoom": 1,
+  "cuts": []
+ },
+ {
+  "id": "c3-recommendations",
+  "first": 67,
+  "slides": 3,
+  "zoom": 1,
+  "cuts": [
+   793,
+   1472
+  ]
+ },
+ {
+  "id": "conclusion",
+  "first": 70,
+  "slides": 1,
+  "zoom": 1,
+  "cuts": []
+ },
+ {
+  "id": "references",
+  "first": 71,
+  "slides": 2,
+  "zoom": 1
+ },
+ {
+  "id": "qa",
+  "first": 73,
+  "slides": 1,
+  "zoom": 1,
+  "cuts": []
+ }
+]
