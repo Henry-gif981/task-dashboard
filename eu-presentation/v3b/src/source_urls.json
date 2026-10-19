@@ -1,0 +1,275 @@
+[
+ {
+  "key": "eurostat-intra",
+  "source": "Eurostat (euro indicators news release, 13 Feb 2026)",
+  "url": "https://ec.europa.eu/eurostat/web/products-euro-indicators/w/6-13022026-bp",
+  "title": "Euro area international trade in goods surplus €12.6 bn",
+  "status": "page-verified"
+ },
+ {
+  "key": "eurostat-extra-2025",
+  "source": "Eurostat news (26 Mar 2026)",
+  "url": "https://ec.europa.eu/eurostat/web/products-eurostat-news/w/ddn-20260326-4",
+  "title": "EU trade in goods surplus down to €128 billion in 2025",
+  "status": "article-verified"
+ },
+ {
+  "key": "dgtrade-vn-factsheet",
+  "source": "European Commission, DG Trade country factsheet Viet Nam (Eurostat Comext)",
+  "url": "https://webgate.ec.europa.eu/isdb_results/factsheets/country/details_vietnam_en.pdf",
+  "title": "European Union, Trade in goods with Viet Nam (DG Trade factsheet)",
+  "status": "article-verified"
+ },
+ {
+  "key": "access2markets-evfta",
+  "source": "European Commission, Access2Markets",
+  "url": "https://trade.ec.europa.eu/access-to-markets/en/content/eu-vietnam-free-trade-agreement",
+  "title": "EU-Vietnam Free Trade Agreement",
+  "status": "article-verified"
+ },
+ {
+  "key": "eeas-global-gateway-560",
+  "source": "EEAS (press release, March 2026)",
+  "url": "https://www.eeas.europa.eu/commissioner-sikela-business-forum-pr_en",
+  "title": "Global Gateway: The European Union to invest €560 million in Vietnam with new focus on modern transport",
+  "status": "article-verified"
+ },
+ {
+  "key": "eeas-eu-vietnam",
+  "source": "EEAS, Delegation of the EU to Vietnam",
+  "url": "https://www.eeas.europa.eu/vietnam/european-union-and-vietnam_en",
+  "title": "The European Union and Vietnam",
+  "status": "page-verified"
+ },
+ {
+  "key": "eeas-eu-un",
+  "source": "EEAS, EU Delegation to the UN (New York)",
+  "url": "https://www.eeas.europa.eu/un-new-york/who-we-are_en",
+  "title": "Who we are (EU Delegation to the UN in New York)",
+  "status": "article-verified"
+ },
+ {
+  "key": "un-res-65-276",
+  "source": "United Nations, General Assembly resolution A/RES/65/276",
+  "url": "https://digitallibrary.un.org/record/702981",
+  "title": "Participation of the European Union in the work of the United Nations : resolution / adopted by the General Assembly",
+  "status": "article-verified"
+ },
+ {
+  "key": "wto-eu",
+  "source": "WTO, member information",
+  "url": "https://www.wto.org/english/thewto_e/countries_e/european_communities_e.htm",
+  "title": "WTO | European Union - Member information",
+  "status": "article-verified"
+ },
+ {
+  "key": "eurlex-teu",
+  "source": "EUR-Lex, Consolidated Treaty on European Union",
+  "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:12016M/TXT",
+  "title": "Consolidated version of the Treaty on European Union (OJ C 202, 7.6.2016)",
+  "status": "page-verified"
+ },
+ {
+  "key": "eurlex-tfeu",
+  "source": "EUR-Lex, Consolidated Treaty on the Functioning of the European Union",
+  "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:12016E/TXT",
+  "title": "Consolidated version of the Treaty on the Functioning of the European Union",
+  "status": "page-verified"
+ },
+ {
+  "key": "eurlex-climate-law",
+  "source": "EUR-Lex, Regulation (EU) 2021/1119 (European Climate Law)",
+  "url": "https://eur-lex.europa.eu/eli/reg/2021/1119/oj/eng",
+  "title": "Regulation (EU) 2021/1119 ... ('European Climate Law')",
+  "status": "article-verified"
+ },
+ {
+  "key": "eurlex-green-deal",
+  "source": "EUR-Lex, COM(2019) 640 final",
+  "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52019DC0640",
+  "title": "Communication from the Commission: The European Green Deal, COM(2019) 640 final",
+  "status": "page-verified"
+ },
+ {
+  "key": "vnplus-evipa-poland",
+  "source": "VietnamPlus (VNA), 28 Nov 2025",
+  "url": "https://en.vietnamplus.vn/poland-ratifies-eu-vietnam-investment-protection-agreement-post333411.vnp",
+  "title": "Poland ratifies EU-Vietnam Investment Protection Agreement",
+  "status": "article-verified"
+ },
+ {
+  "key": "vnplus-evfta-6yrs",
+  "source": "VietnamPlus (VNA), Aug 2026",
+  "url": "https://en.vietnamplus.vn/evfta-deliver-tangible-gains-for-vietnam-eu-trade-after-six-years-post349353.vnp",
+  "title": "EVFTA deliver tangible gains for Vietnam-EU trade after six years",
+  "status": "page-verified"
+ },
+ {
+  "key": "vnplus-eu-fdi",
+  "source": "VietnamPlus (VNA), Sept 2025",
+  "url": "https://en.vietnamplus.vn/vietnam-sees-rising-european-investment-inflows-post326745.vnp",
+  "title": "Vietnam sees rising European investment inflows",
+  "status": "article-verified"
+ },
+ {
+  "key": "vnplus-trade-2025",
+  "source": "VietnamPlus (VNA), 2026 (covering 2025 trade)",
+  "url": "https://en.vietnamplus.vn/vietnams-trade-surplus-with-eu-expands-amid-economic-headwinds-post344737.vnp",
+  "title": "Vietnam's trade surplus with EU expands amid economic headwinds",
+  "status": "article-verified"
+ },
+ {
+  "key": "vns-trade-june2026",
+  "source": "Viet Nam News, June 2026",
+  "url": "https://vietnamnews.vn/economy/1783697/viet-nam-s-trade-surplus-with-eu-expands-amid-economic-headwinds.html",
+  "title": "Việt Nam's trade surplus with EU expands amid economic headwinds",
+  "status": "article-verified"
+ },
+ {
+  "key": "eurocham-2025",
+  "source": "EuroCham Vietnam (2025) BCI / EVFTA 5-year survey, as reported",
+  "url": "https://trungtamwto.vn/chuyen-de/30413-evfta-don-bay-tri-gia-hang-tram-ty-do-cho-doanh-nghiep-viet-hoi-nhap",
+  "title": "EVFTA đòn bẩy trị giá hàng trăm tỷ đô cho doanh nghiệp Việt hội nhập",
+  "status": "article-verified"
+ },
+ {
+  "key": "vietnam-briefing-eu-fdi",
+  "source": "Vietnam Briefing (Dezan Shira)",
+  "url": "https://www.vietnam-briefing.com/news/what-eus-sustained-investment-tells-us-about-vietnams-business-environment.html/",
+  "title": "What EU's Investment Tells Us About Vietnam's Business Environment",
+  "status": "page-verified"
+ },
+ {
+  "key": "vir-2025",
+  "source": "Vietnam Investment Review",
+  "url": "https://vir.com.vn/evfta-is-a-meaningful-increase-in-both-volume-and-quality-159288.html",
+  "title": "EVFTA is a meaningful increase in both volume and quality",
+  "status": "article-verified"
+ },
+ {
+  "key": "sullcrom-2026",
+  "source": "Sullivan & Cromwell (Jan 2026)",
+  "url": "https://www.sullcrom.com/insights/memo/2026/January/EU-Strikes-Major-Trade-Deals-Mercosur-India",
+  "title": "EU Strikes Major Trade Deals with Mercosur and India",
+  "status": "article-verified"
+ },
+ {
+  "key": "bundesbank-2026",
+  "source": "Deutsche Bundesbank (Monthly Report topic, 2026)",
+  "url": "https://www.bundesbank.de/en/tasks/topics/eu-trade-agreements-with-mercosur-and-india-a-signal-for-global-cooperation-990258",
+  "title": "EU trade agreements with Mercosur and India: a signal for global cooperation",
+  "status": "article-verified"
+ },
+ {
+  "key": "dlapiper-2026",
+  "source": "DLA Piper (Feb 2026)",
+  "url": "https://www.dlapiper.com/en/insights/publications/2026/02/eu-and-india-free-trade-agreement",
+  "title": "EU and India Free Trade Agreement",
+  "status": "article-verified"
+ },
+ {
+  "key": "ebnerstolz-2026",
+  "source": "Ebner Stolz (2026)",
+  "url": "https://www.ebnerstolz.de/de/unser-angebot/leistungen/steuerberatung/zollrecht-energiesteuer-aussenwirtschaft/eu-mercosur-abkommen-eu-indien-freihandelsabkommen-103968.html",
+  "title": "EU-Mercosur-Abkommen und EU-Indien-Freihandelsabkommen",
+  "status": "article-verified"
+ },
+ {
+  "key": "eaf-2026",
+  "source": "East Asia Forum (6 Mar 2026)",
+  "url": "https://eastasiaforum.org/2026/03/06/vietnams-carbon-market-faces-a-reality-check/",
+  "title": "Vietnam's carbon market faces a reality check",
+  "status": "article-verified"
+ },
+ {
+  "key": "spglobal-2025",
+  "source": "S&P Global Commodity Insights (11 Jun 2025)",
+  "url": "https://www.spglobal.com/energy/en/news-research/latest-news/energy-transition/061125-vietnam-to-start-pilot-emission-trading-in-2025-allow-offsetting-30-emissions",
+  "title": "Vietnam to start pilot emission trading in 2025, allow offsetting 30% emissions",
+  "status": "article-verified"
+ },
+ {
+  "key": "ttwto-2026b",
+  "source": "Trung tâm WTO và Hội nhập (VCCI), 2026",
+  "url": "https://trungtamwto.vn/tin-tuc/32123-tu-the-vang-den-the-xanh-co-hoi-tai-dinh-vi-nganh-thuy-san",
+  "title": "Từ \"thẻ vàng\" đến \"thẻ xanh\": Cơ hội tái định vị ngành thủy sản",
+  "status": "page-verified"
+ },
+ {
+  "key": "ttwto-2026c",
+  "source": "Trung tâm WTO và Hội nhập (VCCI), 2026",
+  "url": "https://trungtamwto.vn/",
+  "title": "Trung tâm WTO và Hội nhập (VCCI), trang chủ",
+  "status": "official-site"
+ },
+ {
+  "key": "vna-2026-iuu",
+  "source": "Vietnam News Agency / VietnamPlus (Aug 2026)",
+  "url": "https://en.vietnamplus.vn/action-plan-issued-to-address-ec-recommendations-on-combating-iuu-fishing-post349844.vnp",
+  "title": "Action plan issued to address EC recommendations on combating IUU fishing",
+  "status": "article-verified"
+ },
+ {
+  "key": "thcl-2026",
+  "source": "Thương hiệu & Công luận (2026)",
+  "url": "https://thuonghieucongluan.com.vn/evfta-buoc-vao-giai-doan-moi-khi-loi-the-thue-quan-khong-con-la-yeu-to-quyet-dinh-a328862.html",
+  "title": "EVFTA bước vào giai đoạn mới: Khi lợi thế thuế quan không còn là yếu tố quyết định",
+  "status": "page-verified"
+ },
+ {
+  "key": "cpi-nd",
+  "source": "Climate Policy Initiative (n.d.)",
+  "url": "https://www.climatepolicyinitiative.org/",
+  "title": "Climate Policy Initiative, trang chủ",
+  "status": "official-site"
+ },
+ {
+  "key": "ita-2026",
+  "source": "Italian Trade Agency (ICE), 2026",
+  "url": "https://www.ice.it/it/mercati/vietnam",
+  "title": "Italian Trade Agency (ICE), trang Vietnam",
+  "status": "official-site"
+ },
+ {
+  "key": "fia-mpi",
+  "source": "Foreign Investment Agency (MPI), Vietnam",
+  "url": "http://fia.mpi.gov.vn/tinbai/4019/Dau-tu-cua-EU-tai-Viet-Nam",
+  "title": "Đầu tư của EU tại Việt Nam",
+  "status": "page-verified"
+ },
+ {
+  "key": "moit-evfta",
+  "source": "Ministry of Industry and Trade of Vietnam",
+  "url": "https://moit.gov.vn/tin-tuc/70-nam-nganh-cong-thuong/hiep-dinh-evfta-va-ipa-viet-nam-va-eu-cam-ket-nhung-gi-.html",
+  "title": "Hiệp định EVFTA và IPA: Việt Nam và EU cam kết những gì?",
+  "status": "article-verified"
+ },
+ {
+  "key": "upply-2025",
+  "source": "Upply Market Insights (2025)",
+  "url": "https://market-insights.upply.com/en/review-of-the-eu-vietnam-free-trade-agreement-5-years-on",
+  "title": "Review of the EU-Vietnam Free Trade Agreement 5 years on",
+  "status": "article-verified"
+ },
+ {
+  "key": "customs-vn",
+  "source": "Ministry of Industry and Trade / Vietnam Customs",
+  "url": "https://www.customs.gov.vn/",
+  "title": "Tổng cục Hải quan Việt Nam (số liệu thống kê hải quan), trang chủ",
+  "status": "official-site"
+ },
+ {
+  "key": "ec-single-market",
+  "source": "European Commission (single market)",
+  "url": "https://single-market-economy.ec.europa.eu/single-market_en",
+  "title": "European Commission: The Single Market",
+  "status": "official-site"
+ },
+ {
+  "key": "gov-1201",
+  "source": "Vietnamese Government implementation plan",
+  "url": "https://luatvietnam.vn/thuong-mai/quyet-dinh-1201-ke-hoach-thuc-hien-hiep-dinh-thuong-mai-tu-do-viet-nam-va-eu-188900-d1.html",
+  "title": "Quyết định 1201/QĐ-TTg (6/8/2020) phê duyệt Kế hoạch thực hiện Hiệp định EVFTA",
+  "status": "page-verified"
+ }
+]

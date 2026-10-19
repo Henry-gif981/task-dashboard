@@ -4,7 +4,7 @@ PASS P enters at the slide being viewed (slide 8: 1.2.1 Formation and developmen
 PASS nav, dots, scroll hint, counter, progress hidden (none,none,none,none,none)
      fullscreen granted in this browser: true
 PASS Home goes to slide 1, step 1
-PASS → visits every slide and every build step in order (125 states, 138 presses, 13 of them page through tall blocks)
+PASS → visits every slide and every build step in order (125 states, 139 presses, 14 of them page through tall blocks)
 PASS night mode and 3D scene follow the current slide on every step
 PASS the top of each newly shown block is on screen
 PASS → on the last state stays on the last slide
@@ -18,7 +18,7 @@ PASS B shows a black screen and B again returns
 PASS "." toggles black, W toggles white
 PASS L shows a laser dot that follows the mouse; L again hides it
 PASS T opens the minutes field in the page (no prompt, stays in presentation mode)
-PASS T = 1 minute after more than a minute of testing: the HUD shows overtime in red (+00:53 quá giờ, class "clock over")
+PASS T = 1 minute after more than a minute of testing: the HUD shows overtime in red (+00:56 quá giờ, class "clock over")
 PASS R resets the clock (−01:00, normal colour)
 PASS + / − change the root font size (24px → 26.4px → 24px)
 PASS ? opens the help dialog (16 rows, focus inside); Esc closes it
@@ -62,10 +62,7 @@ PASS 1280×720: no console errors
 PASS prefers-reduced-motion: build steps appear without transition (0s)
 PASS body.no3d: presentation mode works without errors
 PASS 390 px: no Present button, no horizontal overflow (button display none, overflow 0)
-PASS swipe left moves forward (step 2, scroll 24523→24887: a tall phone slide is paged first), swipe right moves back (step 1, scroll 24564)
+PASS swipe left moves forward (step 2, scroll 24673→25101: a tall phone slide is paged first), swipe right moves back (step 1, scroll 24714)
 PASS 390 px in presentation mode: no horizontal overflow
-PASS print: same page count before/after (119 / 119)
-PASS print: identical text before/after (Present button and presenter UI not printed)
-PASS print: no speaker notes or presenter UI in the printout
 
 all checks passed
