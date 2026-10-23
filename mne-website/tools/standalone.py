@@ -1,0 +1,29 @@
+"""Build dist/mne-website.html: one self-contained file (CSS, JS, fonts and images inlined).
+
+    python3 tools/standalone.py
+"""
+import base64, pathlib, re
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+TYPES = {".svg": "image/svg+xml", ".webp": "image/webp", ".woff2": "font/woff2"}
+
+
+def data_uri(path):
+    p = (ROOT / path).resolve()
+    return f"data:{TYPES[p.suffix]};base64,{base64.b64encode(p.read_bytes()).decode()}"
+
+
+html = (ROOT / "index.html").read_text()
+css = (ROOT / "css/style.css").read_text()
+css = re.sub(r'url\("?\.\./(assets/[^")]+)"?\)', lambda m: f'url("{data_uri(m.group(1))}")', css)
+js = (ROOT / "js/main.js").read_text()
+
+html = re.sub(r'<link rel="preload"[^>]*>\n', "", html)
+html = html.replace('<link rel="stylesheet" href="css/style.css">', f"<style>\n{css}</style>")
+html = html.replace('<script src="js/main.js" defer></script>', f"<script>\n{js}</script>")
+html = re.sub(r'(src|href)="(assets/img/[^"]+)"', lambda m: f'{m.group(1)}="{data_uri(m.group(2))}"', html)
+
+out = ROOT / "dist" / "mne-website.html"
+out.parent.mkdir(exist_ok=True)
+out.write_text(html)
+print(out, out.stat().st_size // 1024, "KB")

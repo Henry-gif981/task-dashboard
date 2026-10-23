@@ -304,7 +304,7 @@ MNEs are firms that own and control production in more than one country, and the
 
 ## REFERENCES [p. 24–25]
 
-(Order and italics as in the paper.)
+(Order and italics as in the paper; the website lists them alphabetically, as APA requires.)
 
 1. Hymer, S. H. (1976). *The international operations of national firms: A study of direct foreign investment*. MIT Press.
 2. Dunning, J. H. (1988). The eclectic paradigm of international production: A restatement and some possible extensions. *Journal of International Business Studies, 19*(1), 1–31.

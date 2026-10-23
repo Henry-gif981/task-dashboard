@@ -20,6 +20,9 @@ npm start            # → http://localhost:5173
 
 Any static server works too, e.g. `python3 -m http.server 5173`.
 
+To get a single file that opens without a server (fonts, images, CSS and JS
+inlined): `python3 tools/standalone.py` → `dist/mne-website.html`.
+
 ## Folder structure
 
 ```
@@ -38,6 +41,7 @@ mne-website/
     ├── serve.mjs         # zero-dependency static server (gzip)
     ├── check.mjs         # content / contrast / console / overflow checks
     ├── png.mjs           # tiny PNG decoder used by check.mjs
+    ├── standalone.py     # builds dist/mne-website.html (one self-contained file)
     ├── engrave.py        # draws the SVG engravings (globe, ship, factory, port…)
     ├── textures.py       # renders the watercolour and paper textures
     └── data/             # Natural Earth coastlines (world-atlas, public domain)
