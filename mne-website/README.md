@@ -31,6 +31,7 @@ mne-website/
 ├── css/style.css         # design tokens, layout, components, @font-face
 ├── js/main.js            # nav menu, scroll-spy, progress bar, reveal, count-up,
 │                         # SVG charts, I-R matrix ↔ Table 1.3
+├── js/present.js         # presentation mode + print deck for the PDF
 ├── assets/
 │   ├── fonts/            # Cormorant SC, Cormorant Garamond, Be Vietnam Pro (woff2,
 │   │                     # latin + latin-ext + vietnamese subsets)
@@ -42,10 +43,36 @@ mne-website/
     ├── check.mjs         # content / contrast / console / overflow checks
     ├── png.mjs           # tiny PNG decoder used by check.mjs
     ├── standalone.py     # builds dist/mne-website.html (one self-contained file)
+    ├── export-pdf.mjs    # builds dist/mne-website.pdf (16:9, one page per screen)
     ├── engrave.py        # draws the SVG engravings (globe, ship, factory, port…)
     ├── textures.py       # renders the watercolour and paper textures
     └── data/             # Natural Earth coastlines (world-atlas, public domain)
 ```
+
+## Presenting
+
+Press **Present** in the menu bar (or the **P** key, or open `index.html?present`).
+One slide fills the screen at a time; long slides are split into screen-sized
+pages at block boundaries, so no paragraph, card or table row is cut.
+
+| Key | Action |
+|---|---|
+| → ↓ Space PageDown Enter, swipe | next page / slide |
+| ← ↑ Shift+Space PageUp, swipe | previous |
+| Home / End | first / last slide |
+| F | full screen |
+| Esc | leave (first leaves full screen) |
+
+The control bar hides itself after a few seconds without mouse movement.
+
+## PDF
+
+```bash
+npm start                 # in another terminal
+node tools/export-pdf.mjs # → dist/mne-website.pdf
+```
+
+Same pages as the presentation, 16:9 (1600×900 px), vector text with live links.
 
 ## Checks
 

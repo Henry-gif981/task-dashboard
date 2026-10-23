@@ -8,6 +8,8 @@
     "start": "node tools/serve.mjs",
     "dev": "node tools/serve.mjs",
     "check": "node tools/check.mjs",
+    "pdf": "node tools/export-pdf.mjs",
+    "standalone": "python3 tools/standalone.py",
     "art": "python3 tools/engrave.py && python3 tools/textures.py"
   },
   "engines": { "node": ">=20.11" }

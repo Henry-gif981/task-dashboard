@@ -16,11 +16,10 @@ def data_uri(path):
 html = (ROOT / "index.html").read_text()
 css = (ROOT / "css/style.css").read_text()
 css = re.sub(r'url\("?\.\./(assets/[^")]+)"?\)', lambda m: f'url("{data_uri(m.group(1))}")', css)
-js = (ROOT / "js/main.js").read_text()
 
 html = re.sub(r'<link rel="preload"[^>]*>\n', "", html)
 html = html.replace('<link rel="stylesheet" href="css/style.css">', f"<style>\n{css}</style>")
-html = html.replace('<script src="js/main.js" defer></script>', f"<script>\n{js}</script>")
+html = re.sub(r'<script src="(js/[^"]+)" defer></script>', lambda m: f"<script>\n{(ROOT / m.group(1)).read_text()}</script>", html)
 html = re.sub(r'(src|href)="(assets/img/[^"]+)"', lambda m: f'{m.group(1)}="{data_uri(m.group(2))}"', html)
 
 out = ROOT / "dist" / "mne-website.html"
