@@ -276,7 +276,7 @@ main { padding: calc(var(--nav-h) + var(--gap)) var(--gap) 0; display: grid; gap
   .hero__script { margin-left: 0; }
   .hero__meta { grid-template-columns: 1fr 1fr; max-width: none; }
   .hero__group { grid-column: 1 / -1; }
-  .hero .dot { display: none; }
+  .hero .dot, .thanks .dot { display: none; }
 }
 
 /* ---------------------------------------------------------------- chapter openers */
@@ -555,7 +555,7 @@ main { padding: calc(var(--nav-h) + var(--gap)) var(--gap) 0; display: grid; gap
 .fold summary::-webkit-details-marker { display: none; }
 .fold summary::after { content: "+"; margin-left: auto; font: 400 1.6rem/1 var(--f-body); color: var(--red); transition: transform .3s var(--ease); }
 .fold[open] summary::after { transform: rotate(45deg); }
-.fold summary small { font: italic 500 1rem var(--f-script); color: var(--text-soft); }
+.fold summary small { font: italic 500 1rem var(--f-script); color: var(--text-soft); white-space: nowrap; }
 .fold > table, .fold > ol { margin: 0 20px 20px; width: calc(100% - 40px); }
 .tbl--abbr tbody th { width: 30%; font-family: var(--f-body); }
 .tlist { display: grid; gap: 6px; font-size: .92rem; }
