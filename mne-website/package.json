@@ -2,15 +2,22 @@
   "name": "mne-website",
   "version": "1.0.0",
   "private": true,
-  "description": "Single-page website for the paper \"The Multinational Enterprises\" (Group 4, NEU, Investment Economics 65)",
+  "description": "Website and Morph slide deck for the paper \"The Multinational Enterprises\" (Group 4, NEU, Investment Economics 65), paper v2",
   "type": "module",
   "scripts": {
     "start": "node tools/serve.mjs",
     "dev": "node tools/serve.mjs",
+    "verify": "node scripts/verify-content.mjs",
+    "layout": "node tools/check-layout.mjs",
+    "morph": "node tools/test-morph.mjs",
     "check": "node tools/check.mjs",
+    "screens": "node tools/screens.mjs",
+    "slides": "node tools/slides-md.mjs",
     "pdf": "node tools/export-pdf.mjs",
     "standalone": "python3 tools/standalone.py",
     "art": "python3 tools/engrave.py && python3 tools/textures.py"
   },
-  "engines": { "node": ">=20.11" }
+  "engines": {
+    "node": ">=20.11"
+  }
 }

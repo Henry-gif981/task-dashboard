@@ -1,6 +1,6 @@
 // Quality checks for the page (run while `npm start` is serving):
 //   node tools/check.mjs [url]
-// 1. every sentence, table cell and reference of content/content.md appears on the page
+// 1. content against the paper: scripts/verify-content.mjs
 // 2. WCAG contrast of every text element, measured against the rendered background
 // 3. console errors, failed requests and horizontal overflow at 390 / 768 / 1440 px
 // Needs Playwright (npm i -D playwright, or a global install via PLAYWRIGHT_PATH).
@@ -16,24 +16,6 @@ try { pw = require("playwright"); } catch { pw = require(process.env.PLAYWRIGHT_
 const norm = s => s.replace(/[*_`]/g, "").replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").replace(/[“”]/g, '"').replace(/[‘’]/g, "'")
   .replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
 const low = s => norm(s).toLowerCase();
-
-const md = await readFile(resolve(import.meta.dirname, "../content/content.md"), "utf8");
-const needles = [];
-let section = "";
-for (const raw of md.split("\n")) {
-  const line = raw.trim();
-  if (line.startsWith("## ")) section = line;
-  if (!line || line.startsWith("#") || /^(Extracted|Vietnamese|Page numbers|\(Order)/.test(line)) continue;
-  if (section.startsWith("## Table of contents") || section.startsWith("## List of tables") || section.startsWith("## Cover")) continue;
-  if (line.startsWith("|")) {
-    if (/^\|[-| ]+\|$/.test(line)) continue;
-    line.split("|").map(c => low(c)).filter(Boolean).forEach(c => needles.push(c));
-  } else if (/^\d+\. /.test(line)) {
-    needles.push(low(line.replace(/^\d+\. /, "")));
-  } else {
-    norm(line).split(/(?<=[.;:])\s+(?=[A-Z(])/).forEach(s => s.length > 3 && needles.push(s.toLowerCase()));
-  }
-}
 
 const browser = await pw.chromium.launch();
 let failures = 0;
@@ -53,13 +35,6 @@ for (const width of [1440, 768, 390]) {
   failures += errors.length + (overflow > 0 ? 1 : 0);
 
   if (width === 1440) {
-    // 1. content
-    const text = low(await page.evaluate(() => document.body.innerText));
-    const missing = needles.filter(n => !text.includes(n));
-    console.log(`content: ${needles.length - missing.length}/${needles.length} sentences, cells and references found`);
-    missing.forEach(m => console.log("  MISSING: " + m.slice(0, 140)));
-    failures += missing.length;
-
     // 2. contrast: screenshot with text, then with transparent text, compare per element
     const items = await page.evaluate(() => {
       const out = [];

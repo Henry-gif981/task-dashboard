@@ -392,29 +392,20 @@ def gear_path(cx, cy, r, teeth, depth, hole):
 def factory():
     W, H = 640, 560
     s = Svg(W, H, "Engraving of a factory with chimneys and large cog-wheels", "f")
-    # smoke
-    puffs = []
-    for k in range(11):
-        t = k / 10
-        x = 438 - t * 300 + random.uniform(-8, 8)
-        y = 70 - t * 30 + math.sin(t * 6) * 10
-        rr = 18 + t * 30
-        puffs.append((x, y, rr))
+    # smoke: one clean billow (union of growing circles along a gentle curve), lightly hatched underneath
     blobs = []
-    for x, y, rr in puffs:
-        for _ in range(2):
-            r2 = rr * random.uniform(.6, .85)
-            blobs.append((x + random.uniform(-rr, rr) * .6, y + random.uniform(-rr, rr) * .45, r2))
+    for k in range(7):
+        t = k / 6
+        rr = 20 + 30 * t
+        x = 430 - 300 * t
+        y = 92 - 30 * t - 10 * math.sin(t * math.pi)
+        blobs.append((x, y, rr))
+        if k:
+            blobs.append((x + rr * .45, y + rr * .35, rr * .62))
     circ = lambda x, y, r: f"M{f(x - r)} {f(y)}a{f(r)} {f(r)} 0 1 0 {f(2 * r)} 0a{f(r)} {f(r)} 0 1 0 {f(-2 * r)} 0Z"
     sd = "".join(circ(*b) for b in blobs)
-    s.add(f'<path d="{sd}" fill="none" stroke="{INK}" stroke-width="2.2"/><path d="{sd}" fill="{PAPER}"/>')
-    lower = "".join(circ(x, y + r * .45, r * .85) for x, y, r in blobs)
-    s.add(f'<g clip-path="url(#{s.clip(sd)})">')
-    s.hatch(lower, 0, 3.2, 0.5, (100, 0, 520, 140), 0.85)
-    s.add("</g>")
-    curls = []
-    for x, y, r in blobs[::2]:
-        curls.append(f"M{f(x - r * .5)} {f(y - r * .1)}a{f(r * .5)} {f(r * .5)} 0 0 1 {f(r * .7)} {f(-r * .3)}")
+    s.add(f'<path d="{sd}" fill="none" stroke="{INK}" stroke-width="3"/><path d="{sd}" fill="{PAPER}"/>')
+    s.lines([(x - r * .55, y + r * .35, x + r * .2, y + r * .35) for x, y, r in blobs[::3]], 1.0, None, .55)
 
     # chimneys
     for x, top, w in [(420, 60, 34), (480, 110, 28)]:
@@ -698,7 +689,67 @@ def scale():
         s.lines([(x - 16, y, x - 16, y + 5), (x + 16, y, x + 16, y + 5)], 1)
     s.write("scale.svg")
 
+# ---------------------------------------------------------------- telescope (location strategies)
+def telescope():
+    W, H = 560, 520
+    s = Svg(W, H, "Engraving of a brass telescope on a wooden tripod", "e")
+    # tripod
+    legs = [((250, 300), (130, 500)), ((262, 300), (300, 510)), ((256, 300), (400, 488))]
+    for (x0, y0), (x1, y1) in legs:
+        dx, dy = x1 - x0, y1 - y0
+        n = math.hypot(dx, dy)
+        ox, oy = -dy / n * 7, dx / n * 7
+        d = poly([(x0 - ox, y0 - oy), (x1 - ox * 1.3, y1 - oy * 1.3), (x1 + ox * 1.3, y1 + oy * 1.3), (x0 + ox, y0 + oy)])
+        s.path(d, 1.3, PAPER)
+        s.lines([(x0 + ox * .4, y0 + oy * .4, x1 + ox * .5, y1 + oy * .5), (x0 + ox * .8, y0 + oy * .8, x1 + ox, y1 + oy)], 0.6, d)
+    s.path("M228 286h56v24h-56Z", 1.4, PAPER)
+    s.hatch("M228 286h56v24h-56Z", 90, 3, 0.6)
+    s.lines([(150, 452, 380, 452)], 1.1)
+    # tube, rotated
+    s.add('<g transform="rotate(-24 256 250)">')
+    segs = [(60, 26, 150), (210, 22, 120), (330, 17, 110), (440, 12, 40)]  # x start, radius, length
+    for x, r, L in segs:
+        d = f"M{x} {250 - r}h{L}v{2 * r}h{-L}Z"
+        s.path(d, 1.5, PAPER)
+        s.lines([(x, 250 - r + k * (2 * r) / 9 + (k / 9) ** .5 * 2, x + L, 250 - r + k * (2 * r) / 9 + (k / 9) ** .5 * 2) for k in range(4, 10)], 0.6, d)
+        s.lines([(x + 6, 250 - r, x + 6, 250 + r), (x + L - 6, 250 - r, x + L - 6, 250 + r)], 2.2)
+    s.path("M40 214 L60 220 L60 280 L40 286Z", 1.5, PAPER)
+    s.hatch("M40 214 L60 220 L60 280 L40 286Z", 0, 3, 0.6)
+    s.path("M480 244h22v12h-22Z", 1.3, INK)
+    s.add("</g>")
+    # stars
+    for x, y, r in [(470, 60, 9), (380, 40, 6), (520, 150, 5), (300, 70, 4)]:
+        s.path(f"M{x} {y - r * 2}L{x + r * .5} {y - r * .5}L{x + r * 2} {y}L{x + r * .5} {y + r * .5}L{x} {y + r * 2}L{x - r * .5} {y + r * .5}L{x - r * 2} {y}L{x - r * .5} {y - r * .5}Z", 1, INK)
+    s.write("telescope.svg")
+
+
+# ---------------------------------------------------------------- chain + cog (value chain)
+def chain():
+    W, H = 640, 360
+    s = Svg(W, H, "Engraving of chain links passing over a cog-wheel", "k")
+    d = gear_path(470, 200, 120, 14, 16, 26)
+    s.path(d, 1.5, PAPER, extra='fill-rule="evenodd"')
+    s.hatch(d, 40, 3.2, 0.6, (350, 80, 590, 320))
+    s.path("M410 200a60 60 0 1 0 120 0a60 60 0 1 0 -120 0Z", 1.3, PAPER)
+    s.path("M444 200a26 26 0 1 0 52 0a26 26 0 1 0 -52 0Z", 1.3, PAPER)
+    s.path("M458 200a12 12 0 1 0 24 0a12 12 0 1 0 -24 0Z", 1.2, INK)
+    for i in range(5):
+        x = 40 + i * 96
+        y = 150 + (i % 2) * 6
+        if i % 2 == 0:
+            o = f"M{x} {y}a64 40 0 1 0 128 0a64 40 0 1 0 -128 0Z"
+            inn = f"M{x + 22} {y}a42 18 0 1 0 84 0a42 18 0 1 0 -84 0Z"
+            ring = o + inn
+            s.path(ring, 1.6, PAPER, extra='fill-rule="evenodd"')
+            s.hatch(f"M{x} {y}a64 40 0 0 0 128 0Z", 0, 3, 0.6, (x, y, x + 128, y + 40))
+        else:
+            o = f"M{x} {y - 12}h128v24h-128Z"
+            s.path(f"M{x + 8} {y - 12}h112a12 12 0 0 1 0 24h-112a12 12 0 0 1 0 -24Z", 1.6, PAPER)
+            s.lines([(x + 10, y - 4, x + 118, y - 4), (x + 10, y + 3, x + 118, y + 3), (x + 10, y + 8, x + 118, y + 8)], 0.7)
+    s.defs = [x.replace("<path d=", '<path clip-rule="evenodd" d=') for x in s.defs]
+    s.write("chain.svg")
+
 
 if __name__ == "__main__":
     OUT.mkdir(parents=True, exist_ok=True)
-    globe(); ship(); factory(); port(); rose(); tradmap(); pattern(); scale()
+    globe(); ship(); factory(); port(); rose(); tradmap(); pattern(); scale(); telescope(); chain()

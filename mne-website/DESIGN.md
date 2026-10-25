@@ -73,43 +73,25 @@ Lê Trung Kiên, Ngô Anh Tuấn, Nguyễn Thị Mai Hoa, Việt Nam").
 - Hover: cards lift 2px, links underline from left.
 - `prefers-reduced-motion: reduce` → no transforms, no count-up, no parallax.
 
-## 3. Page structure
+## 3. Slide stage (paper v2)
 
-Like the reference, slides are mostly but not strictly alternating.
+Every slide is a `<section class="slide">` with a fixed **1920×1080** design size
+(padding 84/120/92 px). Body text 26 px, lead 30 px, cards 23 px, tables 20 px (≥ 18 px),
+titles 66 px; nothing scrolls inside a slide and no slide continues onto the next one:
+long sections are split into meaningful units (one paragraph pair, one card group, one
+table, one figure) marked "(cont.)". `tools/check-layout.mjs` enforces it.
 
-| # | Slide (`id`) | Background | Components |
-|---|---|---|---|
-| 0 | Navbar (fixed) | paper, blurred | chapter links, scroll-spy, reading-progress bar, mobile menu |
-| 1 | Hero `#top` | wash | NEU stamp + AEP, course name, giant "Multinational Enterprises" with the globe cut-out on top, italic subtitle, group / class / lecturer / date |
-| 2 | Introduction `#introduction` | paper | 1 Rationale + compass rose, 2 Objectives (+3 numbered cards), 3 Scope, 4 Methodology, 5 Structure (+chapter links) |
-| 3 | Chapter 1 opener `#chapter-1` | paper | giant "Theory" with the merchant ship over it (the reference's "ОТКРЫТИЯ" slide) |
-| 4 | 1.1.1–1.1.2 `#s1-1` | wash (deep) | concept, 10% FDI threshold bar, pull quote, 6 characteristic cards |
-| 5 | 1.1.3 `#s1-1-3` | paper | OLI Venn diagram, Table 1.1, 4 motive cards |
-| 6 | 1.2 `#s1-2` | wash (deep) | ownership forms (bars), Table 1.2, EPRG cards |
-| 7 | 1.3.1 `#s1-3` | paper | interactive I-R 2×2 matrix ↔ Table 1.3 |
-| 8 | 1.3.2–1.3.3 `#s1-3-2` | wash (deep) | entry-mode staircase, 3 trend cards (16% → 44% bars) |
-| 9 | Chapter 2 opener `#chapter-2` | wash | giant "Impacts" with the balance scale over it |
-| 10 | 2.1 `#s2-1` | paper | advantages (+) / disadvantages (−) ledger, Table 2.1 |
-| 11 | 2.2–2.3 `#s2-2`, `#s2-3` | wash (deep) | home-country text + factory engraving, host-country positive / negative, Table 2.2 |
-| 12 | Chapter 3 opener `#chapter-3` | paper | giant "Viet Nam" with the port crane over it |
-| 13 | 3.1 `#s3-1` | wash (deep) | overview, 7 key numbers (count-up), 3 SVG charts, Table 3.1 |
-| 14 | 3.2 `#s3-2` | paper | 5 numbered impacts, ">20% of GDP" and Samsung "≈13%" callouts |
-| 15 | 3.3 `#s3-3` | wash (deep) | 5 impact cards, Samsung share bar, global-minimum-tax callout |
-| 16 | 3.4 `#s3-4` | paper | 5 numbered policy steps on a dotted timeline |
-| 17 | Conclusion `#conclusion` | wash (deep) | large italic pull-quote, antique trade-route map, full conclusion |
-| 18 | References `#references` | paper | 27 APA entries (paper order and italics, live links); collapsible List of abbreviations and List of tables |
-| 19 | Thank you `#thanks` | wash | "Thank you *for your* attention" |
-| 20 | Footer | paper | credits |
+Chrome added to every slide by `js/main.js` (all with morph keys): background layer
+(`bg`, paper or watercolour), three red dots in the margins (`dot-1…3`), chapter tag and
+small engraving top-right (`ctag`, `emblem`), page counter `n / N` (`pno`, computed).
 
-Tables are real `<table>` elements with a slate header and hairline rows.
-Below 720px each row becomes a card (cell labels from `data-label`), so nothing
-scrolls sideways.
+Views: scroll view zooms the stage to the column (`--z`), presentation letterboxes it
+(`--pz`), print uses it 1:1 on a 1920×1080 page; below 760 px the scroll view reflows
+(stage size released, grids to one column, tables scroll sideways).
 
-## 4. Charts (hand-drawn SVG, no library)
+Figures 1.1–1.3 are HTML diagrams (boxes + SVG connectors drawn by `drawLinks`), Figure
+1.3 doubles as the interactive I-R matrix linked to Table 1.4; Figures 2.1–2.2 are HTML
+bar charts (each bar and value label is a morph key). New engravings for v2: telescope
+(1.3.3), chain and cog (1.3.5); the factory smoke was redrawn as one clean billow.
 
-All values come from the paper; derived values are labelled "derived".
-1. **FDI into Viet Nam** — registered vs disbursed, 2025 vs 9M 2026 (USD bn).
-2. **Exports 2025** — FDI sector USD 367.1 bn (77.3%) vs domestic sector
-   USD 107.9 bn (derived: 475 − 367.1).
-3. **Trade balance 2025** — FDI +49.5, domestic −29.4, national ≈ +20 (USD bn).
-4. **Strategic sectors' share of global greenfield value** — 16% (2020) → 44% (2025).
+The slide-by-slide list is generated into `SLIDES.md`; transitions are described in `MORPH.md`.

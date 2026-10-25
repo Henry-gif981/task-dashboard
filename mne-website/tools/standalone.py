@@ -19,7 +19,12 @@ css = re.sub(r'url\("?\.\./(assets/[^")]+)"?\)', lambda m: f'url("{data_uri(m.gr
 
 html = re.sub(r'<link rel="preload"[^>]*>\n', "", html)
 html = html.replace('<link rel="stylesheet" href="css/style.css">', f"<style>\n{css}</style>")
-html = re.sub(r'<script src="(js/[^"]+)" defer></script>', lambda m: f"<script>\n{(ROOT / m.group(1)).read_text()}</script>", html)
+def inline_js(path):
+    js = (ROOT / path).read_text()
+    return re.sub(r'"(assets/img/[^"]+)"', lambda m: f'"{data_uri(m.group(1))}"', js)
+
+
+html = re.sub(r'<script src="(js/[^"]+)" defer></script>', lambda m: f"<script>\n{inline_js(m.group(1))}</script>", html)
 html = re.sub(r'(src|href)="(assets/img/[^"]+)"', lambda m: f'{m.group(1)}="{data_uri(m.group(2))}"', html)
 
 out = ROOT / "dist" / "mne-website.html"
