@@ -1,4 +1,6 @@
-// Content check: paper v2 (PDF) ↔ website (DOM).
+// Content check: paper v2 (PDF) ↔ website (DOM): the `full` text of every slide (speaker notes / reading
+// mode), table cells in full, figure labels and references. Bullets (data-sum) are checked against `full`
+// by scripts/verify-bullets.mjs.
 //   npm start                                    (in another terminal)
 //   node scripts/verify-content.mjs [paper.pdf] [url]
 // Needs `pdftotext` (poppler-utils) and Playwright.
@@ -80,11 +82,13 @@ const site = await page.evaluate(() => {
   const deck = document.getElementById("deck").cloneNode(true);
   deck.querySelectorAll("br").forEach(b => b.replaceWith(" "));
   deck.querySelectorAll("[data-fig]").forEach(e => e.remove());   // figure labels: images in the PDF, checked separately
+  // slides show bullets (data-sum: written for the slide); the paper's text is in the notes (full) and full table cells
+  deck.querySelectorAll("[data-sum]").forEach(e => e.remove());
   deck.querySelectorAll("[data-web], .pno, .ctag, .emblem, .dot, .bg, script, [aria-hidden='true'], .sr-only, .irnote").forEach(e => e.remove());
   // block elements → line breaks, so cells do not run together
   deck.querySelectorAll("p, li, td, th, h1, h2, h3, h4, h5, dt, dd, caption, figcaption, blockquote, div, span, b, i, a").forEach(e => { if (e.closest("p, li, td, th, dd, figcaption, caption, blockquote") === e || !e.closest("p, li, td, th, dd, figcaption, caption, blockquote")) e.append("\n"); });
   const refs = [...document.querySelectorAll(".refs li")].map(li => li.textContent);
-  const cells = [...document.querySelectorAll("#deck table td, #deck table th, #deck .abbr dt, #deck .abbr dd")].filter(e => !e.closest("[data-web]")).map(e => { const c = e.cloneNode(true); c.querySelectorAll("[data-web]").forEach(x => x.remove()); return c.textContent; });
+  const cells = [...document.querySelectorAll("#deck table td, #deck table th, #deck .abbr dt, #deck .abbr dd")].filter(e => !e.closest("[data-web]")).map(e => { const c = e.cloneNode(true); c.querySelectorAll("[data-web], [data-sum]").forEach(x => x.remove()); return c.textContent; });
   const figs = [...document.querySelectorAll("[data-fig]")].map(f => { const c = f.cloneNode(true); c.querySelectorAll("br").forEach(b => b.replaceWith(" ")); c.querySelectorAll("*").forEach(e => e.append("\n")); return c.textContent; }).join("\n");
   return { text: deck.textContent, refs, cells, figs };
 });

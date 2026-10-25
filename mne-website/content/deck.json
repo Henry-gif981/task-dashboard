@@ -1,0 +1,1137 @@
+{
+ "title": "The Multinational Enterprises",
+ "source": "Paper v2 (MNEs - Nhóm 4 (1).pdf). `full` = the paper's text, verbatim; `bullets` = what the slide shows. Build: node tools/build.mjs",
+ "slides": [
+  {
+   "id": "top",
+   "class": "hero is-wash is-light",
+   "attrs": {
+    "data-ch": "cover",
+    "data-title": "Cover",
+    "aria-labelledby": "h-cover"
+   }
+  },
+  {
+   "id": "contents",
+   "class": "",
+   "attrs": {
+    "data-ch": "intro",
+    "data-tag": "Contents",
+    "data-title": "Contents",
+    "data-web": true
+   }
+  },
+  {
+   "id": "introduction",
+   "class": "",
+   "attrs": {
+    "data-ch": "intro",
+    "data-title": "Introduction · 1. Rationale"
+   },
+   "bullets": {
+    "p-a": [
+     "**Main actors** behind foreign direct investment (FDI), international production and a large part of world trade",
+     "**Key decisions**: where factories are built, which suppliers are used, how technology moves across borders",
+     "**Renewed importance**: supply chains reorganised; governments compete for semiconductors and digital infrastructure"
+    ],
+    "p-b": [
+     "**Viet Nam**: closely tied to MNEs since the Law on Foreign Investment of 1987",
+     "**Foreign-invested firms**: more than three quarters of exports; Samsung reshaped whole industries and provinces",
+     "**New conditions**: the global minimum tax and rising labour costs; policies for the next stage"
+    ]
+   },
+   "full": [
+    "Multinational enterprises (MNEs) are the main actors behind foreign direct investment (FDI), international production and a large part of world trade. Firms that own and control operations in more than one country decide where factories are built, which suppliers are used and how technology moves across borders. Their importance has grown again in recent years, as supply chains are being reorganised in response to trade tensions, geopolitical risk, new technologies and the green transition, and as governments compete for investment in strategic sectors such as semiconductors and digital infrastructure.",
+    "For Viet Nam, the topic is especially relevant. Since the Law on Foreign Investment of 1987, the country has become one of the developing economies most closely tied to MNEs: foreign-invested firms now account for more than three quarters of exports, and large investors such as Samsung have reshaped whole industries and provinces. At the same time, the global minimum tax and rising labour costs are changing the conditions under which Viet Nam attracts investment. Understanding what MNEs are, how they operate and how they affect host economies is therefore necessary for assessing both the benefits Viet Nam has gained and the policies it needs for the next stage of development. For these reasons, the topic \"Multinational enterprises (MNEs): concept, structure, strategies and impacts on Viet Nam's economy\" was chosen."
+   ]
+  },
+  {
+   "id": "intro-2",
+   "class": "",
+   "attrs": {
+    "data-ch": "intro",
+    "data-title": "2. Objectives"
+   },
+   "full": [
+    "The paper has three objectives: (1) to systematise the theoretical foundations of MNEs, including their concept, characteristics, structure and business strategies; (2) to analyse the advantages and disadvantages of MNEs and their impacts on home and host countries; and (3) to assess the positive and negative impacts of MNEs on Viet Nam's economy using the latest available data, and to propose policy implications."
+   ]
+  },
+  {
+   "id": "intro-3",
+   "class": "",
+   "attrs": {
+    "data-ch": "intro",
+    "data-title": "3. Object and scope · 4. Research methodology"
+   },
+   "bullets": {
+    "p-a": [
+     "**Object**: multinational enterprises and their activities through FDI",
+     "**Content**: concept, characteristics, structure, strategies, advantages and disadvantages, impacts on home, host countries and Viet Nam",
+     "**Time**: recent years, with data up to the first nine months of 2026"
+    ],
+    "meth": [
+     "**Desk research**: Hymer (1976), Dunning (1988), Bartlett and Ghoshal (1989)",
+     "**Data**: UNCTAD, the OECD, the Government of Viet Nam, the National Statistics Office; checked in October 2026",
+     "**Methods**: synthesis, comparison and analysis"
+    ]
+   },
+   "full": [
+    "The object of the study is multinational enterprises and their activities through FDI. In terms of content, the paper covers the concept and characteristics, structure and business strategies of MNEs, their advantages and disadvantages, their impacts on home and host countries, and their impacts on Viet Nam's economy. In terms of time, the analysis of Viet Nam focuses on recent years, using data up to the first nine months of 2026.",
+    "The paper uses desk research. Theoretical sections are based on the main works in international business and economics, such as Hymer (1976), Dunning (1988) and Bartlett and Ghoshal (1989). Data on global and Vietnamese FDI are collected from official and institutional sources, including UNCTAD, the OECD, the Government of Viet Nam and the National Statistics Office as reported by Viet Nam News, and were checked in October 2026. Methods of synthesis, comparison and analysis are used to summarise theories in tables and to assess the impacts of MNEs on Viet Nam."
+   ]
+  },
+  {
+   "id": "intro-5",
+   "class": "",
+   "attrs": {
+    "data-ch": "intro",
+    "data-title": "5. Structure of the paper"
+   },
+   "bullets": {
+    "p-a": [
+     "**Three chapters**, plus the introduction, conclusion and references",
+     "**Chapter 1**: theoretical overview: concept and characteristics, structure, business strategies",
+     "**Chapter 2**: advantages and disadvantages; impacts on home and host countries",
+     "**Chapter 3**: impacts on Viet Nam's economy; policy implications"
+    ]
+   },
+   "full": [
+    "Apart from the introduction, conclusion and references, the paper consists of three chapters. Chapter 1 presents the theoretical overview of MNEs: their concept and characteristics, structure and business strategies. Chapter 2 analyses the advantages and disadvantages of MNEs and their impacts on home and host countries. Chapter 3 assesses the impacts of MNEs on Viet Nam's economy and proposes policy implications."
+   ]
+  },
+  {
+   "id": "chapter-1",
+   "class": "opener",
+   "attrs": {
+    "data-ch": "ch1",
+    "data-title": "Chapter 1 · Theoretical overview of MNEs"
+   }
+  },
+  {
+   "id": "s1-1",
+   "class": "",
+   "attrs": {
+    "data-ch": "ch1",
+    "data-title": "1.1.1. Concept"
+   },
+   "bullets": {
+    "p-a": [
+     "**No single legal definition**, but the main definitions share the same core",
+     "**Dunning and Lundan (2008)**: engages in FDI; owns or controls value-added activities in more than one country",
+     "**OECD (2023)**: entities in more than one country, linked so they may coordinate operations",
+     "**Ownership** may be private, state or mixed"
+    ]
+   },
+   "full": [
+    "There is no single legal definition of a multinational enterprise, but the main definitions share the same core. Dunning and Lundan (2008) define an MNE as an enterprise that engages in FDI and owns or, in some way, controls value-added activities in more than one country. The OECD (2023) uses a deliberately broad description in its Guidelines for Multinational Enterprises on Responsible Business Conduct: MNEs usually comprise companies or other entities established in more than one country and so linked that they may coordinate their operations in various ways. Ownership may be private, state or mixed."
+   ]
+  },
+  {
+   "id": "s1-1-1a",
+   "class": "is-wash",
+   "attrs": {
+    "data-ch": "ch1",
+    "data-title": "1.1.1. Concept (2/3)"
+   },
+   "bullets": {
+    "p-b": [
+     "**Statistical link** between the parent company and its foreign affiliates: FDI",
+     "**OECD (2008) benchmark**: at least 10% of the voting power → lasting interest, significant influence",
+     "**Smaller holdings** without influence: portfolio investment",
+     "**Same type of firm**: multinational corporation (MNC), transnational corporation (TNC); this paper uses \"MNE\""
+    ]
+   },
+   "full": [
+    "For statistical purposes, the link between the parent company and its foreign affiliates is defined by FDI. Under the OECD (2008) benchmark definition, an investment is direct when an investor resident in one economy holds at least 10% of the voting power of an enterprise resident in another economy, a level taken to show a lasting interest and a significant degree of influence over management. Smaller holdings that do not give influence are treated as portfolio investment. The terms multinational corporation (MNC) and transnational corporation (TNC), the latter long used by the United Nations, describe the same type of firm. This paper uses \"MNE\" throughout."
+   ]
+  },
+  {
+   "id": "s1-1-1b",
+   "class": "is-wash",
+   "attrs": {
+    "data-ch": "ch1",
+    "data-title": "1.1.1. Concept (3/3)"
+   },
+   "bullets": {
+    "p-c": [
+     "**Control over production abroad** makes a firm multinational, not simply selling abroad",
+     "**A company that only exports** is an international trader, not an MNE",
+     "**Size is not part of the definition**: small firms with one foreign affiliate also qualify",
+     "**MNEs from emerging economies**: Vietnam's own Viettel and Vinamilk invest in neighbouring countries"
+    ]
+   },
+   "full": [
+    "Two points follow from these definitions. First, what makes a firm multinational is control over production abroad, not simply selling abroad: a company that only exports is an international trader, not an MNE. Second, size is not part of the definition. Most MNEs are large, but small firms with one foreign affiliate also qualify, and a growing number of MNEs come from emerging economies, including Vietnam's own Viettel and Vinamilk, which have invested in neighbouring countries."
+   ]
+  },
+  {
+   "id": "s1-1-2",
+   "class": "",
+   "attrs": {
+    "data-ch": "ch1",
+    "data-title": "1.1.2. Characteristics"
+   },
+   "full": [
+    "Although MNEs differ by sector and origin, the literature identifies several common characteristics."
+   ]
+  },
+  {
+   "id": "s1-1-2b",
+   "class": "",
+   "attrs": {
+    "data-ch": "ch1",
+    "data-title": "1.1.2. Characteristics 1–3"
+   },
+   "bullets": {
+    "char-1": [
+     "**Parent** in the home country; affiliates in host countries",
+     "**Separate legal entities**; strategy coordinated by the parent"
+    ],
+    "char-2": [
+     "**About 32% of world GDP** in 2016; two thirds of world exports (De Backer et al., 2019)",
+     "**Global FDI**: +6% to USD 1.6 trillion in 2025 (IISD, 2026)"
+    ],
+    "char-3": [
+     "**Proprietary assets**: technology, patents, brands, know-how, finance",
+     "**Hymer (1976)**: lets foreign firms compete against local firms"
+    ]
+   },
+   "full": [
+    "<b>Operations in several countries under common control.</b> An MNE consists of a parent company in the home country and affiliates (subsidiaries, branches or joint ventures) in host countries. The affiliates are separate legal entities in each country, but strategic decisions on investment, finance and technology are coordinated by the parent.",
+    "<b>Large scale and economic weight.</b> The largest MNEs have revenues that exceed the GDP of many countries. Using OECD analytical data, De Backer et al. (2019) estimate that MNEs accounted for about 32% of world GDP in 2016 and were responsible for around two thirds of world exports. This weight is also visible in FDI flows: according to UNCTAD's World Investment Report 2026, global FDI recovered by 6% to about USD 1.6 trillion in 2025, after two years of decline (International Institute for Sustainable Development [IISD], 2026).",
+    "<b>Firm-specific advantages.</b> MNEs usually own proprietary assets such as technology, patents, brands, management know-how and access to finance. Hymer (1976) argued that these advantages are what allow a foreign firm to compete against local firms, which know their own market better. This is also why MNEs are concentrated in industries with high R&amp;D and marketing intensity, such as electronics, pharmaceuticals, automobiles and consumer goods."
+   ]
+  },
+  {
+   "id": "s1-1-2c",
+   "class": "",
+   "attrs": {
+    "data-ch": "ch1",
+    "data-title": "1.1.2. Characteristics 4–6"
+   },
+   "bullets": {
+    "char-4": [
+     "**Transactions inside the firm**: affiliates supply one another",
+     "**Transfer prices** set by the firm itself: tax issues (Section 2.1.2)"
+    ],
+    "char-5": [
+     "**Stages located** where cheapest or most efficient",
+     "**\"Orchestrators\"** decide which countries participate"
+    ],
+    "char-6": [
+     "**Markets dominated** by a few large firms",
+     "**Bargaining power** over host governments competing with tax incentives"
+    ]
+   },
+   "full": [
+    "<b>Internalisation and intra-firm trade.</b> MNEs often prefer to keep transactions inside the firm rather than use markets, for example by supplying components from one affiliate to another instead of buying from independent suppliers. A large share of international trade therefore takes place within the same corporate group, and prices for these transactions (transfer prices) are set by the firm itself, which raises tax issues discussed in <a class=\"xref\" href=\"#s2-1-2\" title=\"The paper says “Section 2.3”: corrected, see content/ISSUES.md #8\">Section 2.1.2</a>.",
+    "<b>Global value chain organisation.</b> Modern MNEs split production into stages and locate each stage where it is cheapest or most efficient. Design and marketing may stay in the home country while assembly is placed in lower-cost economies. MNEs therefore act as \"orchestrators\" of global value chains and decide which countries participate in them.",
+    "<b>Oligopolistic market structure and bargaining power.</b> Many MNEs operate in markets dominated by a few large firms. Their size and mobility give them bargaining power over host governments, which often compete with one another through tax incentives and other benefits to attract investment."
+   ]
+  },
+  {
+   "id": "t1-1",
+   "class": "is-wash",
+   "attrs": {
+    "data-ch": "ch1",
+    "data-title": "1.1.3. Types of MNEs · Table 1.1"
+   },
+   "bullets": {
+    "p-a": [
+     "**Classified** by the relationship between foreign and domestic activities"
+    ]
+   },
+   "full": [
+    "MNEs may be classified according to the relationship between their foreign and domestic activities."
+   ]
+  },
+  {
+   "id": "s1-2",
+   "class": "",
+   "attrs": {
+    "data-ch": "ch1",
+    "data-title": "1.2.1. Ownership and legal structure"
+   },
+   "bullets": {
+    "p-a": [
+     "**A network of separate entities** linked by ownership; the parent company at the center holds controlling equity"
+    ],
+    "form-1": [
+     "**100 percent** of the equity: maximum control, highest capital and risk",
+     "**Greenfield investment** or M&amp;A"
+    ],
+    "form-2": [
+     "**Shared ownership**: less capital, local knowledge, sometimes required by law",
+     "**Risks**: conflict, leakage of know-how"
+    ],
+    "form-3": [
+     "**No separate legal personality**",
+     "**Used for** sales, liaison or market research"
+    ],
+    "form-4": [
+     "**Licensing, franchising**, management contracts, contract manufacturing",
+     "**Influence** without owning equity"
+    ]
+   },
+   "full": [
+    "Legally, an MNE is a network of separate entities linked by ownership. At the center is the parent company, normally incorporated in the home country and holding controlling equity in its foreign affiliates. The parent can organize its overseas presence through several legal forms:",
+    "<b>Wholly owned subsidiaries</b>, in which the parent holds 100 percent of the equity. They offer maximum control and protection of proprietary technology but require the highest commitment of capital and risk. They may be created from scratch (greenfield investment) or by acquiring an existing firm (merger and acquisition, M&amp;A).",
+    "<b>Joint ventures (JVs)</b>, in which the parent shares ownership with one or more local or foreign partners. JVs reduce capital requirements, provide local knowledge and sometimes are required by host-country law, but they bring risks of conflict and leakage of know-how.",
+    "<b>Branches and representative offices</b>, which are extensions of the parent without separate legal personality. They are used for sales, liaison or market research.",
+    "<b>Contractual and non-equity forms</b>, such as licensing, franchising, management contracts and contract manufacturing, through which MNEs exercise influence without owning equity."
+   ]
+  },
+  {
+   "id": "f1-1",
+   "class": "",
+   "attrs": {
+    "data-ch": "ch1",
+    "data-title": "Figure 1.1 Ownership and legal structure"
+   }
+  },
+  {
+   "id": "s1-2-2",
+   "class": "is-wash",
+   "attrs": {
+    "data-ch": "ch1",
+    "data-title": "1.2.2. Organisational structures"
+   },
+   "bullets": {
+    "p-a": [
+     "**Dividing authority** and responsibility among units, beyond ownership",
+     "**Stopford and Wells (1972)**: evolution as foreign sales and product diversity grow",
+     "**Start**: an international division, separate from the domestic business",
+     "**Then**: global product division (high product diversity) or global area division (large foreign sales)",
+     "**Finally**: global matrix: managers report to a product line and a geographic area"
+    ]
+   },
+   "full": [
+    "Beyond ownership, an MNE must decide how to divide authority and responsibility among units. Stopford and Wells (1972) described a typical evolution that firms follow as their foreign sales and product diversity grow. Firms usually begin with an international division that handles all foreign activities separately from the domestic business. As overseas operations expand, they move to either a global product division structure (when product diversity is high and foreign sales are small to moderate) or a global area division structure (when product diversity is low and foreign sales are large). Finally, firms facing both high product diversity and high foreign sales may adopt a global matrix structure, in which managers report simultaneously to a product line and a geographic area."
+   ]
+  },
+  {
+   "id": "f1-2",
+   "class": "",
+   "attrs": {
+    "data-ch": "ch1",
+    "data-title": "Figure 1.2 Typical organizational structures"
+   }
+  },
+  {
+   "id": "t1-2",
+   "class": "",
+   "attrs": {
+    "data-ch": "ch1",
+    "data-title": "Table 1.2 Main organisational structures"
+   }
+  },
+  {
+   "id": "t1-3",
+   "class": "is-wash",
+   "attrs": {
+    "data-ch": "ch1",
+    "data-title": "1.2.3. Control and management orientation · Table 1.3"
+   },
+   "bullets": {
+    "p-a": [
+     "**Mindset of top management**: Perlmutter (1969), three orientations plus a fourth (the EPRG profile)"
+    ]
+   },
+   "full": [
+    "The way in which an MNE is run depends heavily on the mindset of its top management. Perlmutter (1969) identified three basic orientations, later extended with a fourth: ethnocentric, polycentric, geocentric and regiocentric (the EPRG profile)."
+   ]
+  },
+  {
+   "id": "s1-3",
+   "class": "",
+   "attrs": {
+    "data-ch": "ch1",
+    "data-title": "1.3.1. Generic international strategies · Figure 1.3"
+   },
+   "bullets": {
+    "p-a": [
+     "**Two opposing pressures** on MNEs",
+     "**Global integration**: standardise products, concentrate production, reduce costs",
+     "**Local responsiveness**: adapt to consumer tastes, infrastructure, distribution channels, regulation",
+     "**Prahalad and Doz (1987)**: the integration-responsiveness (I-R) framework"
+    ]
+   },
+   "full": [
+    "MNEs face two opposing pressures. Pressure for global integration pushes them to standardise products and concentrate production to reduce costs. Pressure for local responsiveness pushes them to adapt products, marketing and operations to differences in consumer tastes, infrastructure, distribution channels and regulation. Prahalad and Doz (1987) described this as the integration-responsiveness (I-R) framework."
+   ]
+  },
+  {
+   "id": "t1-4",
+   "class": "",
+   "attrs": {
+    "data-ch": "ch1",
+    "data-title": "Table 1.4 Generic international strategies"
+   }
+  },
+  {
+   "id": "s1-3-1c",
+   "class": "is-wash",
+   "attrs": {
+    "data-ch": "ch1",
+    "data-title": "1.3.1. No strategy is best in all cases"
+   },
+   "bullets": {
+    "p-a": [
+     "**No strategy is best** in all cases: each has its own risk",
+     "**Bartlett and Ghoshal (1989)**: the transnational model would become more common as both pressures increased",
+     "**In practice**, many firms combine different strategies for different products"
+    ]
+   },
+   "full": [
+    "No strategy is best in all cases. The international strategy works when the firm's product faces little competition abroad, but it becomes risky once local competitors emerge. The multidomestic strategy satisfies local customers but duplicates costs. The global strategy is efficient but can fail where tastes differ. The transnational strategy is the most demanding, because it requires the firm to coordinate specialised units across many countries. Bartlett and Ghoshal (1989) argued that the transnational model would become more common as both pressures increased, although many firms in practice combine different strategies for different products."
+   ]
+  },
+  {
+   "id": "s1-3-2",
+   "class": "",
+   "attrs": {
+    "data-ch": "ch1",
+    "data-title": "1.3.2. Competitive strategies"
+   },
+   "bullets": {
+    "p-a": [
+     "**Porter's generic strategies**, applied on a global scale (Porter, 1986)"
+    ],
+    "comp-1": [
+     "**Scale**, low-cost locations, efficient supply chains",
+     "**Labor-intensive operations** in Viet Nam, Bangladesh or Indonesia"
+    ],
+    "comp-2": [
+     "**Technology, brand and design** with a price premium",
+     "**Apple**, Toyota's Lexus, luxury brands"
+    ],
+    "comp-3": [
+     "**A narrow segment** served worldwide",
+     "**Specialist machinery** or medical device makers"
+    ],
+    "p-b": [
+     "**In practice**: design, branding and core technology at high-value locations; assembly offshored to low-cost locations"
+    ]
+   },
+   "full": [
+    "Within each strategic orientation, MNEs choose how to compete. Porter's generic strategies are readily applied on a global scale (Porter, 1986):",
+    "<b>Global cost leadership</b>, based on scale, low-cost locations and efficient supply chains. Contract electronics manufacturers and many apparel brands rely on this approach, which is why they have located labor-intensive operations in countries such as Viet Nam, Bangladesh or Indonesia.",
+    "<b>Global differentiation</b>, based on technology, brand and design that command a price premium in every market. Apple, Toyota's Lexus and luxury brands follow this approach.",
+    "<b>Global focus</b>, in which the firm serves a narrow segment worldwide, for example specialist machinery or medical device makers.",
+    "In practice most large MNEs combine low cost and differentiation in different parts of the value chain: they keep design, branding and core technology at high-value locations while outsourcing or offshoring assembly to low-cost locations."
+   ]
+  },
+  {
+   "id": "s1-3-3",
+   "class": "is-wash",
+   "attrs": {
+    "data-ch": "ch1",
+    "data-title": "1.3.3. Location strategies"
+   },
+   "bullets": {
+    "p-a": [
+     "**Dunning (1993)**: FDI motives → four location strategies (Table 1.5)",
+     "**Most investments** combine several motives",
+     "**The dominant motive changes** as a host country develops",
+     "**Viet Nam**: first resource-seeking and labor-seeking investors; now efficiency-seeking electronics production"
+    ]
+   },
+   "full": [
+    "The motives for FDI identified by Dunning (1993) translate into four location strategies, summarized in <a class=\"xref\" href=\"#t1-5\" title=\"The paper says “Table 8”: corrected, see content/ISSUES.md #9\">Table 1.5</a>. Most investments combine several motives, and the dominant motive often changes as a host country develops: Viet Nam, for example, first attracted resource-seeking and labor-seeking investors and is now increasingly chosen for efficiency-seeking electronics production."
+   ]
+  },
+  {
+   "id": "t1-5",
+   "class": "",
+   "attrs": {
+    "data-ch": "ch1",
+    "data-title": "Table 1.5 Motives and location strategies"
+   }
+  },
+  {
+   "id": "t1-6",
+   "class": "is-wash",
+   "attrs": {
+    "data-ch": "ch1",
+    "data-title": "1.3.4. Entry-mode strategies · Table 1.6"
+   },
+   "bullets": {
+    "p-a": [
+     "**How to enter**: a trade-off between control, resource commitment, risk and speed"
+    ]
+   },
+   "full": [
+    "After deciding where to go, the MNE must decide how to enter. The choice reflects a trade-off between control, resource commitment, risk and speed."
+   ]
+  },
+  {
+   "id": "s1-3-4b",
+   "class": "",
+   "attrs": {
+    "data-ch": "ch1",
+    "data-title": "1.3.4. The entry ladder"
+   },
+   "bullets": {
+    "p-a": [
+     "**Up the ladder**: exports → licensing or distribution agreements → a wholly owned factory",
+     "**When** the market is large enough and regulation permits",
+     "**Viet Nam**: joint ventures in the 1990s; wholly foreign-owned enterprises since the 2000s"
+    ]
+   },
+   "full": [
+    "MNEs commonly move up this ladder over time, starting with exports, then licensing or distribution agreements and finally a wholly owned factory once the market is large enough and regulation permits. Viet Nam's gradual opening followed this sequence: joint ventures dominated the 1990s, whereas wholly foreign-owned enterprises have predominated in the manufacturing boom since the 2000s."
+   ]
+  },
+  {
+   "id": "s1-3-5",
+   "class": "is-wash",
+   "attrs": {
+    "data-ch": "ch1",
+    "data-title": "1.3.5. Value-chain and sourcing strategies (1–3)"
+   },
+   "bullets": {
+    "vc-1": [
+     "**Abroad** in own affiliates (offshoring) or to independent contractors (outsourcing)",
+     "**Nike**: almost no factories; Viet Nam its largest footwear source by volume"
+    ],
+    "vc-2": [
+     "**Geopolitical tension, tariffs, pandemic disruption** → production spread across countries",
+     "**A major driver** of FDI into Viet Nam since 2018"
+    ],
+    "vc-3": [
+     "**Global network of R&amp;D laboratories**; best practice transferred among units",
+     "**A learning advantage** local firms find difficult to imitate"
+    ]
+   },
+   "full": [
+    "<b>Offshoring and outsourcing.</b> MNEs shift activities abroad either within their own affiliates (offshoring) or to independent contractors (outsourcing). Nike, for instance, owns almost no factories but relies on independent suppliers; Viet Nam has become the single largest source of Nike footwear by volume in recent years, according to the company's annual reports.",
+    "<b>Supply-chain diversification (the 'China plus one' strategy).</b> Concerns about geopolitical tension, tariffs and pandemic-related disruption have encouraged MNEs to spread production across several countries. This has been a major driver of FDI into Viet Nam since 2018.",
+    "<b>Innovation and knowledge management.</b> MNEs establish a global network of R&amp;D laboratories and transfer best practice among units, creating a learning advantage that local firms find difficult to imitate."
+   ]
+  },
+  {
+   "id": "s1-3-5b",
+   "class": "is-wash",
+   "attrs": {
+    "data-ch": "ch1",
+    "data-title": "1.3.5. Value-chain and sourcing strategies (4–6)"
+   },
+   "bullets": {
+    "vc-4": [
+     "**Prices set inside the group** for goods, services, intellectual property",
+     "**Profit shifting** to low-tax jurisdictions → OECD BEPS project, global minimum tax"
+    ],
+    "vc-5": [
+     "**Internal capital markets**, hedging instruments, political-risk insurance",
+     "**Exchange-rate and country risks** managed"
+    ],
+    "vc-6": [
+     "**Scrutiny** by consumers, investors and regulators",
+     "**ESG commitments**, supplier codes of conduct (OECD Guidelines, 2023)"
+    ]
+   },
+   "full": [
+    "<b>Transfer pricing and tax planning.</b> Because many transactions occur within the group, MNEs have discretion over the prices at which goods, services and intellectual property pass between affiliates. When used to shift profits to low-tax jurisdictions, this practice is controversial and has led to the OECD's base erosion and profit shifting (BEPS) project and the global minimum tax.",
+    "<b>Financial and risk management.</b> MNEs use internal capital markets, hedging instruments and political-risk insurance to manage exchange-rate and country risks.",
+    "<b>Branding and corporate social responsibility.</b> Increasing scrutiny by consumers, investors and regulators has led many MNEs to adopt environmental, social and governance (ESG) commitments and supplier codes of conduct, in line with the OECD Guidelines (2023)."
+   ]
+  },
+  {
+   "id": "s1-4",
+   "class": "",
+   "attrs": {
+    "data-ch": "ch1",
+    "data-title": "1.4.1. Advantages"
+   },
+   "bullets": {
+    "adv-a": [
+     {
+      "t": "**Economies of scale and scope**: R&amp;D, design and brand costs spread over larger output",
+      "morph": "adv-1"
+     },
+     {
+      "t": "**Access to resources and lower costs**: each stage where inputs are cheapest or best",
+      "morph": "adv-2"
+     },
+     {
+      "t": "**Market expansion and risk diversification**: a shock in one country offset by growth elsewhere",
+      "morph": "adv-3"
+     }
+    ],
+    "adv-b": [
+     {
+      "t": "**Avoidance of trade barriers**: producing inside a market; EVFTA and CPTPP lower tariffs",
+      "morph": "adv-4"
+     },
+     {
+      "t": "**Learning and innovation**: new knowledge, talent and ideas across the network",
+      "morph": "adv-5"
+     },
+     {
+      "t": "**Financial flexibility**: capital in several markets; internal finance and transfer pricing",
+      "morph": "adv-6"
+     }
+    ]
+   },
+   "full": [
+    "<b>Economies of scale and scope.</b> By serving many markets, an MNE can spread the fixed costs of R&amp;D, product design and brand building over a larger output and lower its average costs.",
+    "<b>Access to resources and lower costs.</b> MNEs can place each stage of production where inputs are cheapest or best, for example labour-intensive assembly in lower-wage countries and R&amp;D near leading universities.",
+    "<b>Market expansion and risk diversification.</b> Operating in several markets reduces dependence on any one economy, so a recession or policy shock in one country can be offset by growth elsewhere.",
+    "<b>Avoidance of trade barriers.</b> Producing inside a market, or inside a free trade area, allows the firm to avoid tariffs and benefit from trade agreements; firms in Vietnam, for example, can use the EVFTA and the CPTPP to export at lower tariffs.",
+    "<b>Learning and innovation.</b> Affiliates in different countries give the firm access to new knowledge, talent and ideas, which can be transferred throughout the network.",
+    "<b>Financial flexibility.</b> MNEs can raise capital in several markets and, within legal limits, use internal finance and transfer pricing to manage costs and taxes."
+   ]
+  },
+  {
+   "id": "s1-4-2",
+   "class": "",
+   "attrs": {
+    "data-ch": "ch1",
+    "data-title": "1.4.2. Disadvantages"
+   },
+   "bullets": {
+    "dis-a": [
+     {
+      "t": "**Liability of foreignness** (Zaheer, 1995): extra costs foreign firms face compared with local firms",
+      "morph": "dis-1"
+     },
+     {
+      "t": "**Political and regulatory risk**: tax rules, ownership limits, sanctions, expropriation",
+      "morph": "dis-2"
+     },
+     {
+      "t": "**Exchange-rate risk**: revenues and costs in different currencies",
+      "morph": "dis-3"
+     }
+    ],
+    "dis-b": [
+     {
+      "t": "**Coordination and agency costs**: complex networks; local managers' goals may differ",
+      "morph": "dis-4"
+     },
+     {
+      "t": "**Reputational and compliance risk**: supply-chain problems damage the brand worldwide",
+      "morph": "dis-5"
+     },
+     {
+      "t": "**Reduced tax advantages**: global minimum tax, 15% minimum effective rate (OECD, 2021)",
+      "morph": "dis-6"
+     }
+    ]
+   },
+   "full": [
+    "<b>Liability of foreignness.</b> Zaheer (1995) used this term for the extra costs that foreign firms face compared with local firms, including unfamiliarity with the environment, discrimination by consumers or governments, and the costs of coordinating at a distance.",
+    "<b>Political and regulatory risk.</b> Host governments may change tax rules, restrict foreign ownership, impose sanctions or, in extreme cases, expropriate assets. Rising geopolitical tension has made this risk more visible.",
+    "<b>Exchange-rate risk.</b> Revenues and costs in different currencies expose MNEs to currency fluctuations.",
+    "<b>Coordination and agency costs.</b> Managing a complex network of affiliates across time zones, languages and cultures is expensive, and local managers may pursue goals that differ from those of headquarters.",
+    "<b>Reputational and compliance risk.</b> MNEs are increasingly held responsible for labour and environmental problems in their supply chains, and a scandal in one country can damage the brand worldwide.",
+    "<b>Reduced tax advantages.</b> The global minimum tax agreed under the OECD/G20 Inclusive Framework sets a 15% minimum effective rate for large MNE groups (OECD, 2021), reducing the benefit of locating profits in low-tax jurisdiction."
+   ]
+  },
+  {
+   "id": "t1-7",
+   "class": "is-wash",
+   "attrs": {
+    "data-ch": "ch1",
+    "data-title": "Table 1.7 Advantages and disadvantages"
+   }
+  },
+  {
+   "id": "chapter-2",
+   "class": "opener is-wash is-light",
+   "attrs": {
+    "data-ch": "ch2a",
+    "data-title": "Chapter 2 · Impacts of MNEs"
+   }
+  },
+  {
+   "id": "s2-1",
+   "class": "",
+   "attrs": {
+    "data-ch": "ch2a",
+    "data-title": "2.1.1. Impacts on the home country"
+   },
+   "bullets": {
+    "p-a": [
+     "**Profits, dividends, royalties and fees** flow home, supporting the balance of payments",
+     "**Higher home exports**: affiliates buy machinery, components and services from home suppliers",
+     "**Raw materials, energy and markets** abroad; home focus on R&amp;D, design and finance"
+    ],
+    "p-b": [
+     "**Job losses** in manufacturing: offshoring or \"hollowing out\" of industry",
+     "**Exports may fall**, imports rise; capital invested abroad; profit shifting erodes the tax base",
+     "**Since the early 2020s**: the United States, the EU, Japan and South Korea bring semiconductors back"
+    ]
+   },
+   "full": [
+    "The home country is where the MNE's parent company is based. Positive effects include a flow of profits, dividends, royalties and fees back to the home country, which supports the balance of payments. Foreign affiliates often buy machinery, components and services from the parent or from home-country suppliers, so outward FDI can increase home exports. Access to raw materials, energy and markets abroad strengthens the security and competitiveness of the home economy. By moving labour-intensive stages abroad, the home country can concentrate on higher-value activities such as R&amp;D, design and finance, and home firms gain knowledge from foreign markets.",
+    "Negative effects are also important. When production moves abroad, jobs in the home country may be lost, especially in manufacturing, a process often called offshoring or \"hollowing out\" of industry. If affiliates abroad supply goods that were previously exported, home exports may fall and imports may rise. Capital that is invested abroad is not invested at home, at least in the short run. Finally, MNEs can shift profits to low-tax jurisdictions, which reduces the tax base of both home and host countries. Concern about these effects is one reason why the United States, the EU, Japan and South Korea have introduced policies since the early 2020s to bring strategic production, particularly semiconductors, back home or to allied countries."
+   ]
+  },
+  {
+   "id": "s2-1-2",
+   "class": "is-wash",
+   "attrs": {
+    "data-ch": "ch2a",
+    "data-title": "2.1.2. Impacts on the host country: positive effects"
+   },
+   "bullets": {
+    "p-a": [
+     "**For host countries**: capital, technology and market access; effects depend on local conditions and policy",
+     "**Capital** supplements domestic savings; finances industry and infrastructure",
+     "**Jobs**, usually at higher wages than local firms",
+     "**Technology and management skills**: strongest spillovers through backward linkages (Javorcik, 2004)",
+     "**Exports** and connection to global value chains",
+     "**Competition** pushes domestic firms to be more efficient; tax revenue"
+    ]
+   },
+   "full": [
+    "For host countries, especially developing economies, MNEs are a major source of capital, technology and access to world markets, but their effects depend heavily on local conditions and policy.",
+    "<b>Positive effects.</b> First, MNEs bring capital, which supplements domestic savings and finances investment in industry and infrastructure. Second, they create jobs and usually pay higher wages than local firms. Third, they transfer technology and management skills, both directly to their affiliates and indirectly through spillovers. Javorcik (2004) found that the strongest spillovers occur through backward linkages, when local firms supply inputs to foreign affiliates and are pushed to improve quality and productivity. Fourth, MNEs increase exports and connect host countries to global value chains, which would be difficult for local firms to enter alone. Fifth, they increase competition, which can push domestic firms to become more efficient, and they contribute to tax revenue."
+   ]
+  },
+  {
+   "id": "s2-1-2b",
+   "class": "is-wash",
+   "attrs": {
+    "data-ch": "ch2a",
+    "data-title": "2.1.2. Impacts on the host country: negative effects"
+   },
+   "bullets": {
+    "p-b": [
+     "**Spillovers are not automatic**",
+     "**Aitken and Harrison (1999)**: foreign entry in Venezuela reduced productivity in domestic firms",
+     "**Görg and Greenaway (2004)**: evidence of positive spillovers is mixed",
+     "**Crowding out**, dependence on a few investors, \"enclave\" production",
+     "**Transfer pricing** lowers taxes; profit repatriation creates current-account outflows",
+     "**Pollution haven effect**; bargaining power → excessive incentives"
+    ]
+   },
+   "full": [
+    "<b>Negative effects.</b> Spillovers are not automatic. Aitken and Harrison (1999) found that foreign entry in Venezuela raised productivity in foreign-owned plants but reduced it in domestic firms in the same industries, because foreign firms took market share from them. A review by Görg and Greenaway (2004) concluded that the evidence of positive spillovers to domestic firms is mixed. Other risks include the crowding out of local firms, dependence on a few large foreign investors, and \"enclave\" production, in which foreign affiliates import most inputs and have few links with the local economy. MNEs may also use transfer pricing to declare low profits in the host country and reduce tax payments, and profit repatriation can create outflows on the current account. Finally, some MNEs may relocate polluting activities to countries with weaker environmental standards, the so-called pollution haven effect, and their bargaining power may lead governments to offer excessive incentives. <a class=\"xref\" href=\"#t2-1\" title=\"The paper says “Table 2.2”: corrected, see content/ISSUES.md #10\">Table 2.1</a> summarises these effects."
+   ]
+  },
+  {
+   "id": "t2-1",
+   "class": "",
+   "attrs": {
+    "data-ch": "ch2a",
+    "data-title": "Table 2.1 Impacts on home and host countries"
+   }
+  },
+  {
+   "id": "s2-2",
+   "class": "opener",
+   "attrs": {
+    "data-ch": "ch2b",
+    "data-title": "2.2. Impacts of MNEs on the Viet Nam Economy"
+   }
+  },
+  {
+   "id": "key-numbers",
+   "class": "is-wash",
+   "attrs": {
+    "data-ch": "ch2b",
+    "data-tag": "Key numbers",
+    "data-title": "Key numbers",
+    "data-web": true
+   }
+  },
+  {
+   "id": "s2-2-1",
+   "class": "",
+   "attrs": {
+    "data-ch": "ch2b",
+    "data-title": "2.2.1. Evolution of FDI · Table 2.2"
+   },
+   "bullets": {
+    "p-a": [
+     "**Opened in 1987** with the Law on Foreign Investment, one year after the Doi Moi reforms"
+    ]
+   },
+   "full": [
+    "Vietnam opened to foreign investment in 1987 with the Law on Foreign Investment, one year after the Doi Moi reforms. Since then FDI has passed through several distinct phases.."
+   ]
+  },
+  {
+   "id": "s2-2-2",
+   "class": "is-wash",
+   "attrs": {
+    "data-ch": "ch2b",
+    "data-title": "2.2.2. Scale of FDI in Viet Nam today (1/2)"
+   },
+   "bullets": {
+    "p-a": [
+     "**Registered, 2025**: US$38.42 billion, up 0.5 percent (National Statistics Office)",
+     "**Disbursed**: an estimated US$27.62 billion, up 9 percent, the highest level in five years",
+     {
+      "t": "**Of the registered total**",
+      "sub": [
+       "US$17.32 billion: 4,054 newly licensed projects",
+       "US$14.07 billion: additional capital for 1,404 operating projects",
+       "about US$7.03 billion: capital contributions and share purchases"
+      ]
+     }
+    ]
+   },
+   "full": [
+    "According to the National Statistics Office, total registered foreign investment in 2025 reached US$38.42 billion, up 0.5 percent year on year, while disbursed (implemented) FDI reached an estimated US$27.62 billion, up 9 percent and the highest level in five years. Of the registered total, US$17.32 billion was for 4,054 newly licensed projects, US$14.07 billion was additional capital for 1,404 operating projects, and about US$7.03 billion came from capital contributions and share purchases."
+   ]
+  },
+  {
+   "id": "s2-2-2b",
+   "class": "is-wash",
+   "attrs": {
+    "data-ch": "ch2b",
+    "data-title": "2.2.2. Scale of FDI in Viet Nam today (2/2)"
+   },
+   "bullets": {
+    "p-b": [
+     "**Manufacturing and processing**: US$9.8 billion, or 56.5 percent, of newly registered capital",
+     "**Real estate** next, with US$3.67 billion",
+     "**First five months of 2026**: US$24.81 billion registered, 34.9 percent higher",
+     "**Established MNEs deepening their commitment**: a positive signal of confidence"
+    ]
+   },
+   "full": [
+    "Manufacturing and processing attracted US$9.8 billion, or 56.5 percent, of newly registered capital, followed by real estate with US$3.67 billion. The trend continued in 2026: registered FDI in the first five months reached US$24.81 billion, 34.9 percent higher than a year earlier. The growing share of capital adjustments and additional investments by existing firms suggests that established MNEs are deepening their commitment to Viet Nam, which is a positive signal of confidence."
+   ]
+  },
+  {
+   "id": "t2-3",
+   "class": "",
+   "attrs": {
+    "data-ch": "ch2b",
+    "data-title": "Table 2.3 Registered and disbursed FDI"
+   }
+  },
+  {
+   "id": "f2-1",
+   "class": "",
+   "attrs": {
+    "data-ch": "ch2b",
+    "data-title": "Figure 2.1 Registered and disbursed FDI"
+   },
+   "bullets": {
+    "p-b": [
+     "**Disbursed FDI** rose every year since 2021, about 40 percent over the period",
+     "**Registered capital** much more volatile: fell in 2022, recovered strongly in 2023",
+     "**Disbursed / registered**: between roughly 63 and 81 percent"
+    ]
+   },
+   "full": [
+    "Two features stand out. Disbursed FDI has risen every year since 2021 without interruption, increasing by about 40 percent over the period, whereas registered capital has been much more volatile, falling in 2022 and recovering strongly in 2023. The ratio of disbursed to registered capital, which measures how much of the pledged investment is actually implemented, has fluctuated between roughly 63 and 81 percent."
+   ]
+  },
+  {
+   "id": "s2-2-3",
+   "class": "is-wash",
+   "attrs": {
+    "data-ch": "ch2b",
+    "data-title": "2.2.3. Capital formation and economic growth"
+   },
+   "bullets": {
+    "p-a": [
+     "**By early 2022**: about a quarter of total social investment capital; some 55 percent of industrial production",
+     "**May 2026**: FDI sector contributes more than 20 percent of GDP (Deputy Prime Minister Nguyen Van Thang)",
+     "**A vital complement** to domestic savings in financing industrialization",
+     "**Growth** of about 8 percent in 2025"
+    ]
+   },
+   "full": [
+    "FDI has long been a pillar of investment: by early 2022, the foreign-invested sector accounted for about a quarter of total social investment capital and some 55 percent of industrial production. In May 2026, Deputy Prime Minister Nguyen Van Thang stated that the FDI sector contributes more than 20 percent of GDP. Foreign capital has therefore been a vital complement to domestic savings in financing industrialization and helping Viet Nam sustain a high rate of growth, which reached about 8 percent in 2025."
+   ]
+  },
+  {
+   "id": "s2-2-3b",
+   "class": "is-wash",
+   "attrs": {
+    "data-ch": "ch2b",
+    "data-title": "2.2.3. Exports and integration into global value chains"
+   },
+   "bullets": {
+    "p-a": [
+     "**2025**: total exports US$475 billion; FIEs US$367.1 billion, 77.3 percent, growing 26.1 percent",
+     "**Domestic enterprises**: US$108 billion, down 6.1 percent",
+     "**First five months of 2026**: FIE share rose to 79.8 percent",
+     "**FDI-sector surplus** of nearly US$49.5 billion offset a domestic deficit of about US$29.4 billion",
+     "**From** agricultural products, crude oil, garments **to** phones, computers, electronic components"
+    ]
+   },
+   "full": [
+    "FIEs are the backbone of Viet Nam's export performance. In 2025, total exports reached US$475 billion, of which FIEs accounted for US$367.1 billion, or 77.3 percent, growing 26.1 percent, while exports by domestic enterprises (US$108 billion) fell 6.1 percent. In the first five months of 2026 the FIE share rose further to 79.8 percent. The foreign-invested sector posted a trade surplus of nearly US$49.5 billion in 2025, which offset a deficit of about US$29.4 billion in the domestic sector. MNEs thus transformed Viet Nam from an exporter of agricultural products, crude oil and garments into a major exporter of phones, computers and electronic components."
+   ]
+  },
+  {
+   "id": "t2-4",
+   "class": "",
+   "attrs": {
+    "data-ch": "ch2b",
+    "data-title": "Table 2.4 Viet Nam's total exports"
+   }
+  },
+  {
+   "id": "f2-2",
+   "class": "",
+   "attrs": {
+    "data-ch": "ch2b",
+    "data-title": "Figure 2.2 Viet Nam's total exports"
+   }
+  },
+  {
+   "id": "s2-2-3e",
+   "class": "is-wash",
+   "attrs": {
+    "data-ch": "ch2b",
+    "data-title": "2.2.3. Employment and incomes"
+   },
+   "bullets": {
+    "p-a": [
+     "**About 4.6 million direct jobs** in 2021, around 7 percent of the labor force (VAFIE)",
+     "**Higher wages and benefits** than in local small firms",
+     "**Skills**: technical skills, work discipline, modern management systems",
+     "**Industrial parks** in Bac Ninh, Thai Nguyen, Hai Phong and Binh Duong developed provinces"
+    ]
+   },
+   "full": [
+    "The FDI sector creates jobs for millions of workers. A VAFIE report showed that FIEs generated about 4.6 million direct jobs, around 7 percent of the national labor force, in 2021, and more recent official statements refer to 'millions of workers'. Wages and benefits in MNE affiliates are generally higher than in local small firms, and workers acquire technical skills, work discipline and exposure to modern management systems. Moreover, industrial parks anchored by MNEs, such as those in Bac Ninh, Thai Nguyen, Hai Phong and Binh Duong, have brought development to provincial areas."
+   ]
+  },
+  {
+   "id": "s2-2-3t",
+   "class": "",
+   "attrs": {
+    "data-ch": "ch2b",
+    "data-title": "2.2.3. Technology, productivity and structural change"
+   },
+   "bullets": {
+    "p-a": [
+     "**New technology**, quality standards and process know-how",
+     "**Intel** (Ho Chi Minh City): advanced semiconductor packaging; **Toyota and Honda**: lean manufacturing",
+     "**Highest productivity** in FIEs; some domestic suppliers upgraded"
+    ],
+    "p-b": [
+     "**Tax revenue and customs receipts**: a significant contribution",
+     "**Structural shift** toward manufacturing and processing",
+     "**CPTPP and EVFTA** consolidated Viet Nam's position in regional supply chains"
+    ]
+   },
+   "full": [
+    "<b><i>Technology, productivity and management.</i></b> MNEs bring new technology, quality standards and process know-how. Intel's assembly and test plant in Ho Chi Minh City, for instance, introduced advanced semiconductor packaging to Viet Nam, while Toyota and Honda introduced lean manufacturing methods to local suppliers. Productivity in FIEs is the highest in the economy, and some domestic suppliers have upgraded by meeting MNE requirements.",
+    "<i>State budget and structural change.</i> FIEs contribute significantly to tax revenue and customs receipts, and they have been at the center of the structural shift toward manufacturing and processing, which attracted the largest share of FDI. Viet Nam's participation in agreements such as the CPTPP and EVFTA, partly motivated by the interests of MNEs located in the country, has further consolidated its position in regional supply chains."
+   ]
+  },
+  {
+   "id": "s2-2-4",
+   "class": "is-wash",
+   "attrs": {
+    "data-ch": "ch2b",
+    "data-title": "2.2.4. Weak linkages and dependence"
+   },
+   "bullets": {
+    "p-a": [
+     "**FDI remains an enclave**: the principal criticism",
+     "**Only about 26.6 percent** of input materials bought from Vietnamese enterprises (VCCI)",
+     "**Export gap**: FIE sector up roughly a quarter; domestic exporters stagnated",
+     "**A modest share of the value added**: spillovers depend on backward linkages"
+    ]
+   },
+   "full": [
+    "The principal criticism is that FDI remains an enclave. A survey cited by the Vietnam Chamber of Commerce and Industry (VCCI) found that FIEs bought only about 26.6 percent of their input materials from Vietnamese enterprises, with the rest imported or supplied by group companies. The widening gap in export performance, with the FIE sector growing by roughly a quarter while domestic exporters stagnated, shows the limited participation of Vietnamese firms in global value chains. Vietnamese firms thus capture a modest share of the value added, in line with the theory that spillovers depend on backward linkages."
+   ]
+  },
+  {
+   "id": "s2-2-4b",
+   "class": "is-wash",
+   "attrs": {
+    "data-ch": "ch2b",
+    "data-title": "2.2.4. Dependence on a few investors and sectors"
+   },
+   "bullets": {
+    "p-b": [
+     "**A limited number** of foreign electronics firms: a large share of exports",
+     "**GDP growth and trade balance** exposed to the decisions of a few MNEs",
+     "**Shocks**: demand, tariff changes, technological cycles in key markets",
+     "**FIE imports** up 31.9 percent to US$317.6 billion in 2025 (Vietnam Briefing, 2026)"
+    ]
+   },
+   "full": [
+    "<i>Dependence on a few investors and sectors</i><b>.</b> A large share of Viet Nam's exports comes from a limited number of foreign electronics firms. The country's GDP growth and trade balance are thus exposed to the strategic decisions of a few MNEs and to demand shocks, tariff changes and technological cycles in their key markets. FIEs also drove import growth: imports of FIEs rose 31.9 percent to US$317.6 billion in 2025, reflecting heavy reliance on imported components (Vietnam Briefing, 2026)."
+   ]
+  },
+  {
+   "id": "s2-2-4c",
+   "class": "",
+   "attrs": {
+    "data-ch": "ch2b",
+    "data-title": "2.2.4. Fiscal, environmental and social risks"
+   },
+   "bullets": {
+    "p-a": [
+     "**Long-term losses** while expanding: transfer pricing a priority area of audit",
+     "**Tax holidays and incentives** reduce the net fiscal gain",
+     "**Global minimum tax from 2024**: National Assembly Resolution 107/2023/QH15"
+    ],
+    "p-b": [
+     "**2016 marine pollution disaster**: toxic waste from Formosa Ha Tinh Steel",
+     "**US$500 million** in compensation",
+     "**Labor issues**: long working hours, wage disputes, unstable contracts; housing pressures"
+    ]
+   },
+   "full": [
+    "<i>Transfer pricing and tax erosion.</i> Vietnamese tax authorities have repeatedly investigated foreign-invested firms that report long-term losses while continuing to expand, and transfer pricing is a priority area of audit. Extended tax holidays and incentives can also reduce the net fiscal gain. In response, Viet Nam adopted legislation to implement the OECD global minimum tax from 2024 (National Assembly Resolution 107/2023/QH15), together with support mechanisms to preserve its attractiveness.",
+    "<i>Environmental and social risks.</i> The environmental costs of MNE activity have sometimes been severe. The most notable example is the 2016 marine pollution disaster in the central provinces caused by the discharge of toxic waste from Formosa Ha Tinh Steel, a subsidiary of Taiwan's Formosa Plastics Group, which killed large quantities of fish and devastated fishing and tourism livelihoods; the company later agreed to pay US$500 million in compensation. Labor issues, such as long working hours, wage disputes and unstable contracts in some labor-intensive factories, also raise concerns, as do pressures on housing and services around industrial zones."
+   ]
+  },
+  {
+   "id": "s2-2-4d",
+   "class": "is-wash",
+   "attrs": {
+    "data-ch": "ch2b",
+    "data-title": "2.2.4. Limited technology transfer and regional imbalance"
+   },
+   "bullets": {
+    "p-a": [
+     "**Assembly and processing**: the lowest value-added segment; R&amp;D remains limited",
+     "**Regional inequality**: FDI concentrated in the Southeast and the Red River Delta"
+    ]
+   },
+   "full": [
+    "Much of the FDI is still concentrated in assembly and processing, the lowest value-added segment of the value chain, and R&amp;D remains limited. FDI is also concentrated in the Southeast and the Red River Delta, which contributes to regional inequality."
+   ]
+  },
+  {
+   "id": "s2-2-5",
+   "class": "",
+   "attrs": {
+    "data-ch": "ch2b",
+    "data-title": "2.2.5. Policy implications and recommendations (1–3)"
+   },
+   "bullets": {
+    "p-a": [
+     "**From quantity to quality**: selecting FDI of higher quality",
+     "**Politburo Resolution 50-NQ/TW (2019)**: advanced technology, high value added, environmental protection, domestic links"
+    ],
+    "rec-1": [
+     "**Certify and upgrade** domestic suppliers; matching with MNE procurement; realistic local-content incentives"
+    ],
+    "rec-2": [
+     "**High-tech, semiconductor, digital, green** industries; incentives conditioned on R&amp;D, technology transfer, training"
+    ],
+    "rec-3": [
+     "**Vocational and engineering education** with MNEs; higher absorptive capacity"
+    ]
+   },
+   "full": [
+    "Viet Nam's authorities have recognized the need to move from attracting FDI in large quantities to selecting FDI of higher quality. Politburo Resolution 50-NQ/TW (2019) calls for prioritizing projects with advanced technology, high value added, environmental protection and strong links with domestic enterprises. Building on this orientation, the following recommendations can be made.",
+    "<b>Strengthen supplier linkages.</b> Develop programs that certify and upgrade domestic suppliers, facilitate matching with MNE procurement departments, and set realistic local-content incentives rather than rigid requirements.",
+    "<b>Prioritize quality and technology.</b> Target high-tech, semiconductor, digital and green industries, and condition incentives on R&amp;D, technology transfer and training commitments rather than on investment size alone.",
+    "<b>Invest in human capital.</b> Expand vocational and engineering education in partnership with MNEs to raise the absorptive capacity of the workforce."
+   ]
+  },
+  {
+   "id": "s2-2-5b",
+   "class": "",
+   "attrs": {
+    "data-ch": "ch2b",
+    "data-title": "2.2.5. Policy implications and recommendations (4–6)"
+   },
+   "bullets": {
+    "rec-4": [
+     "**Transparent legal system**; transfer pricing rules in line with OECD standards; global minimum tax support funds"
+    ],
+    "rec-5": [
+     "**Strict environmental standards** for new large-scale projects; responsible business conduct (OECD Guidelines)"
+    ],
+    "rec-6": [
+     "**Less reliance** on a few markets, investors and industries; domestic private firms as future national MNEs"
+    ]
+   },
+   "full": [
+    "<b>Improve institutions and tax enforcement.</b> Maintain a transparent legal system, enforce transfer pricing rules in line with OECD standards, and use the support funds linked to the global minimum tax to maintain competitiveness.",
+    "<b>Protect the environment and workers.</b> Apply strict environmental standards and monitoring to new large-scale projects and promote responsible business conduct according to the OECD Guidelines.",
+    "<b>Diversify sources and sectors.</b> Reduce excessive reliance on a few markets, investors and industries, and support domestic private firms to become future national MNEs."
+   ]
+  },
+  {
+   "id": "conclusion",
+   "class": "is-wash",
+   "attrs": {
+    "data-ch": "end",
+    "data-title": "Conclusion",
+    "data-web": true
+   }
+  },
+  {
+   "id": "conclusion-2",
+   "class": "is-wash",
+   "attrs": {
+    "data-ch": "end",
+    "data-title": "Conclusion (text)"
+   },
+   "bullets": {
+    "p-a": [
+     "**MNEs** own and control production in more than one country: FDI, trade and global value chains",
+     "**OLI paradigm**: ownership advantages, internalised operations, attractive locations",
+     "**Structures** from an international division to a transnational network; balance integration and responsiveness",
+     "**Abroad**: economies of scale, new markets, learning; liability of foreignness, political risk, compliance demands",
+     "**Vietnam**: growth, exports, integration; FDI sector more than three quarters of exports in 2025",
+     "**The challenge**: deepen foreign–domestic links; attract higher-quality investment"
+    ]
+   },
+   "full": [
+    "MNEs are firms that own and control production in more than one country, and they are central to the modern world economy through FDI, trade and global value chains. They exist because they possess ownership advantages that they prefer to exploit through internalised operations in attractive locations, as the OLI paradigm explains. They organise themselves through structures ranging from an international division to a transnational network, and they choose strategies that balance global integration and local responsiveness. Operating abroad brings economies of scale, new markets and learning, but also the liability of foreignness, political risk and rising compliance demands. For home and host countries, MNEs bring both benefits and costs. In Vietnam, MNEs have been a key driver of growth, exports and integration, with the FDI sector accounting for more than three quarters of exports in 2025. The challenge now is to deepen the links between foreign and domestic firms and to attract higher-quality investment, so that the benefits of MNE activity are shared more widely by the Vietnamese economy."
+   ]
+  },
+  {
+   "id": "references",
+   "class": "",
+   "attrs": {
+    "data-ch": "refs",
+    "data-title": "References (A – I)"
+   }
+  },
+  {
+   "id": "references-2",
+   "class": "",
+   "attrs": {
+    "data-ch": "refs",
+    "data-title": "References (J – R)"
+   }
+  },
+  {
+   "id": "references-3",
+   "class": "",
+   "attrs": {
+    "data-ch": "refs",
+    "data-title": "References (S – Z)"
+   }
+  },
+  {
+   "id": "abbreviations",
+   "class": "",
+   "attrs": {
+    "data-ch": "refs",
+    "data-title": "List of abbreviations"
+   }
+  },
+  {
+   "id": "lists",
+   "class": "",
+   "attrs": {
+    "data-ch": "refs",
+    "data-title": "Lists of tables and figures",
+    "data-web": true
+   }
+  },
+  {
+   "id": "thanks",
+   "class": "thanks is-wash is-light",
+   "attrs": {
+    "data-ch": "cover",
+    "data-title": "Thank you",
+    "data-web": true
+   }
+  }
+ ]
+}

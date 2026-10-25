@@ -18,6 +18,7 @@ page.on("pageerror", e => errors.push(e.message));
 await page.goto(url, { waitUntil: "networkidle" });
 const n = await page.evaluate(async () => {
   document.documentElement.classList.add("printing");
+  window.MNE?.reflow?.();
   document.querySelectorAll("img[loading=lazy]").forEach(i => (i.loading = "eager"));
   document.querySelectorAll("#deck > .slide").forEach(s => s.classList.add("is-in"));
   await document.fonts.ready;

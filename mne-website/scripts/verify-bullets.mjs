@@ -1,0 +1,100 @@
+// Bullet check: the slides only summarise, they never add facts.
+//   node scripts/verify-bullets.mjs          (no server needed; reads content/deck.json and index.html)
+//
+// 1. Every number, year, percentage, name and citation in a slide's bullets (and in a shortened table
+//    cell) must appear in that slide's `full` text (or in the full cell). → errors, exit 1
+// 2. Every number and name of `full` should be visible on the slide (bullets, cards, tables, figures,
+//    callouts); the ones that are not are listed in content/COVERAGE.md as "chỉ có trong ghi chú"
+//    (only in the speaker notes / reading mode). → report
+// 3. Bullet rules: ≤ 6 first-level bullets per slide, ≤ 3 sub-bullets, ≤ ~20 words per bullet, each
+//    bullet starts with a bold keyword. → errors
+// (The `full` text itself is compared with the paper by scripts/verify-content.mjs.)
+import { readFileSync, writeFileSync } from "node:fs";
+import { resolve } from "node:path";
+
+const dir = resolve(import.meta.dirname, "..");
+const deck = JSON.parse(readFileSync(resolve(dir, "content/deck.json"), "utf8"));
+const html = readFileSync(resolve(dir, "index.html"), "utf8");
+const text = s => s.replace(/<br\s*\/?>/g, " ").replace(/<[^>]+>/g, " ").replace(/\*\*/g, "")
+  .replace(/&amp;/g, "&").replace(/&nbsp;/g, " ").replace(/&gt;/g, ">").replace(/&lt;/g, "<").replace(/&quot;/g, '"')
+  .replace(/[‘’]/g, "'").replace(/[“”]/g, '"').replace(/\s+/g, " ").trim();
+
+// facts: numbers (with %, decimals, thousands) and capitalised words / acronyms that are not the first
+// word of a phrase (first words are capitalised by the bullet style, not because they are names)
+const numbers = s => (s.match(/\d[\d,.]*\d|\d/g) || []).map(n => n.replace(/[.,]$/, ""));
+function names(s) {
+  const out = [];
+  for (const part of s.split(/\s*(?:[:;→•(—–]|\. |, and |^)\s*/)) {
+    const words = part.split(/\s+/).filter(Boolean);
+    words.forEach((w, k) => {
+      const m = w.match(/^[("']*([A-Z][\p{L}&'’.-]*[\p{L}])/u);
+      if (m && k > 0) out.push(m[1].replace(/'s$/, ""));
+    });
+  }
+  return out;
+}
+const TOPIC = new Set(["MNE", "MNEs", "FDI"]);           // the subject of every slide, not a fact
+const words = s => s.split(/\s+/).filter(Boolean).length;
+// numbers match between digits only ("1990" in "1990s", "15" in "QH15"); names as whole words
+const has = (hay, needle) => /^\d/.test(needle) ? new RegExp(`(^|[^\\d.,]|[.,](?!\\d))${needle.replace(/[.]/g, "\\.")}(?![\\d]|[.,]\\d)`).test(hay) : new RegExp(`(^|[^\\p{L}\\d])${needle.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}($|[^\\p{L}\\d])`, "u").test(hay);
+
+const sections = Object.fromEntries([...html.matchAll(/<section class="[^"]*" id="([^"]+)"[\s\S]*?<\/section>/g)].map(m => [m[1], m[0]]));
+const errors = [], coverage = [], rules = [];
+let nBullets = 0, nSlides = 0;
+for (const s of deck.slides) {
+  const sec = sections[s.id] || "";
+  const full = text((s.full || []).join(" "));
+  const items = Object.entries(s.bullets || {}).flatMap(([k, list]) => list.map(it => ({ k, ...(typeof it === "string" ? { t: it } : it) })));
+  if (items.length) nSlides++;
+  // 1. bullets ⊂ full
+  for (const it of items) {
+    nBullets++;
+    const t = text(it.t), all = [t, ...(it.sub || []).map(text)];
+    for (const x of all) {
+      for (const n of numbers(x)) if (!has(full, n)) errors.push(`${s.id} [${it.k}] number "${n}" not in full: ${x}`);
+      for (const n of names(x)) if (!has(full, n)) errors.push(`${s.id} [${it.k}] name "${n}" not in full: ${x}`);
+    }
+    // 3. rules
+    if (!/^\*\*/.test(it.t)) rules.push(`${s.id} [${it.k}] does not start with a bold keyword: ${t}`);
+    for (const x of all) if (words(x) > 21) rules.push(`${s.id} [${it.k}] ${words(x)} words: ${x}`);
+    if ((it.sub || []).length > 3) rules.push(`${s.id} [${it.k}] more than 3 sub-bullets`);
+  }
+  // first-level bullets that are revealed on this slide (cards hold their own short lists)
+  const steps = (sec.match(/<li data-step/g) || []).length;
+  if (steps > 6) rules.push(`${s.id}: ${steps} first-level bullets (max 6)`);
+  // shortened table cells: short ⊂ full cell
+  for (const m of sec.matchAll(/<span class="cs" data-sum>([\s\S]*?)<\/span><span class="cf">([\s\S]*?)<\/span>/g)) {
+    const sh = text(m[1]), fu = text(m[2]);
+    for (const n of [...numbers(sh), ...names(sh)]) if (!has(fu, n)) errors.push(`${s.id} cell "${n}" not in the full cell: ${sh}`);
+    if (words(sh) > 15) rules.push(`${s.id} shortened cell still ${words(sh)} words: ${sh}`);
+  }
+  // 2. coverage: facts of full that the slide does not show
+  if (full) {
+    const visible = text(sec.replace(/<aside class="notes"[\s\S]*?<\/aside>/, "").replace(/<span class="cf">[\s\S]*?<\/span>/g, "").replace(/<!--[\s\S]*?-->/g, ""));
+    const miss = [...new Set([...numbers(full), ...names(full)])].filter(n => !TOPIC.has(n) && !has(visible, n));
+    coverage.push({ id: s.id, title: s.attrs?.["data-title"] || s.id, miss });
+  }
+}
+
+const md = [
+  "# COVERAGE — generated by `node scripts/verify-bullets.mjs`",
+  "",
+  "Every slide shows a summary (bullets); the paper's full text of the slide is kept in `content/deck.json` (`full`)",
+  "and shown in the speaker notes (N, presenter view S) and in reading mode (Đọc). The bullets add no fact that is not",
+  "in `full` (check 1 of the script). The numbers and names below are in `full` but not on the slide itself:",
+  "they are **chỉ có trong ghi chú** (only in the notes / reading mode). Everything else in `full` is visible on the slide.",
+  "",
+  `${nSlides} slides with bullets · ${nBullets} bullets · ${coverage.filter(c => !c.miss.length).length} of ${coverage.length} slides show every number and name of their text.`,
+  "",
+  "| Slide | Only in the notes |",
+  "|---|---|",
+  ...coverage.filter(c => c.miss.length).map(c => `| \`${c.id}\` ${c.title.replace(/\|/g, "/")} | ${c.miss.join(", ")} |`),
+  "",
+];
+writeFileSync(resolve(dir, "content/COVERAGE.md"), md.join("\n"));
+
+const show = (t, l) => { console.log(`\n${t}: ${l.length}`); l.forEach(x => console.log("  · " + x)); };
+show("Facts in bullets / short cells that are not in the slide's full text", errors);
+show("Bullet rule violations", rules);
+console.log(`\n${nBullets} bullets on ${nSlides} slides · coverage report: content/COVERAGE.md`);
+process.exit(errors.length + rules.length ? 1 : 0);

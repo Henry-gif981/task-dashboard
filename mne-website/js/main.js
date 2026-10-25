@@ -13,27 +13,38 @@
   const CH = {
     cover: null,
     intro: ["Introduction", "assets/img/compass.svg"],
-    ch1: ["Theory", "assets/img/ship.svg"],
-    ch2a: ["Impacts", "assets/img/scale.svg"],
-    ch2b: ["Viet Nam", "assets/img/port.svg"],
+    ch1: ["Theory", "assets/img/ship.webp"],
+    ch2a: ["Impacts", "assets/img/scale.webp"],
+    ch2b: ["Viet Nam", "assets/img/port.webp"],
     end: ["Conclusion", "assets/img/compass.svg"],
     refs: ["References", "assets/img/compass.svg"],
   };
-  // dot positions (stage px): kept near the edges so they never sit on text
-  const DOTS = [   // only in the margins: x < 100 or x > 1820, y > 1000 (left of the page number)
-    [[1846, 300], [40, 1004], [1836, 800]],
-    [[30, 420], [1500, 1012], [1844, 520]],
-    [[1848, 180], [420, 1014], [22, 760]],
-    [[40, 190], [1100, 1012], [1844, 380]],
-    [[1846, 640], [56, 560], [20, 940]],
-    [[30, 300], [1846, 860], [1840, 160]],
-  ];
+  // slide templates (morph choreography: same template = subtle, new template = stronger)
+  const tplOf = s => s.matches(".hero") ? "cover" : s.matches(".thanks") ? "thanks" : s.matches(".opener") ? "opener"
+    : s.querySelector(".quote") ? "quote" : s.querySelector(".chart") ? "chart" : s.querySelector(".tframe") ? "table"
+    : s.querySelector(".fpanel, .ir") ? "figure" : s.querySelector(".nums, .callout") ? "numbers"
+    : s.querySelector(".refs, .abbr, .toc-lists") ? "list" : s.querySelector(".cards, .recs, .toc, .ladder, .mini-ir, .evo") ? "cards" : "bullets";
+  // dot positions (stage px) per template, so neighbours of the same template keep their dots still;
+  // only in the margins (x < 100 or x > 1820), away from the compass (bottom left) and the page number
+  const DOTS = {
+    bullets: [[1846, 300], [30, 420], [1836, 800]],
+    cards: [[30, 300], [1846, 860], [1840, 170]],
+    table: [[1848, 190], [24, 700], [1844, 520]],
+    figure: [[40, 190], [1846, 640], [22, 560]],
+    chart: [[1846, 400], [30, 240], [1840, 760]],
+    numbers: [[30, 560], [1846, 300], [1836, 860]],
+    list: [[1846, 520], [30, 620], [1840, 880]],
+    quote: [[1846, 300], [40, 560], [1836, 820]],
+    opener: [[1846, 300], [40, 560], [1836, 820]],
+    cover: [[1846, 300], [60, 560], [1836, 820]],
+    thanks: [[1846, 300], [60, 560], [1836, 820]],
+  };
   const el = (tag, cls, attrs = {}) => { const e = document.createElement(tag); e.className = cls; for (const k in attrs) e.setAttribute(k, attrs[k]); return e; };
   slides.forEach((s, i) => {
+    const tpl = s.dataset.tpl || (s.dataset.tpl = tplOf(s));
     if (!$(":scope > .bg", s)) s.prepend(el("div", "bg", { "data-morph": "bg", "aria-hidden": "true" }));
-    const d = DOTS[i % DOTS.length];
-    d.forEach(([x, y], k) => { s.style.setProperty(`--d${k + 1}x`, x + "px"); s.style.setProperty(`--d${k + 1}y`, y + "px"); });
-    if (!s.classList.contains("thanks") || true) [1, 2, 3].forEach(k => s.append(el("span", `dot d${k}`, { "data-morph": `dot-${k}`, "aria-hidden": "true" })));
+    DOTS[tpl].forEach(([x, y], k) => { s.style.setProperty(`--d${k + 1}x`, x + "px"); s.style.setProperty(`--d${k + 1}y`, y + "px"); });
+    [1, 2, 3].forEach(k => s.append(el("span", `dot d${k}`, { "data-morph": `dot-${k}`, "aria-hidden": "true" })));
     const ch = CH[s.dataset.ch];
     const special = s.matches(".hero, .opener, .thanks");
     if (ch && !special) {
@@ -47,6 +58,38 @@
     s.append(pno);
     s.dataset.n = i + 1;
   });
+
+  /* ------------------------------------------------ reflow (phone width) and reading mode
+     Reading mode ("Đọc", R): the slides become a scrolling article with the paper's full text
+     (the speaker notes) in place of the bullets; the same DOM, nothing duplicated. */
+  const store = {
+    get(k) { try { return localStorage.getItem("mne-" + k); } catch { return null; } },
+    set(k, v) { try { localStorage.setItem("mne-" + k, v); } catch { /* private mode */ } },
+  };
+  function reflow() {
+    const busy = root.classList.contains("presenting") || root.classList.contains("printing");
+    root.classList.toggle("reflow", !busy && (innerWidth <= 760 || root.classList.contains("reading")));
+  }
+  const readBtn = $(".nav__read");
+  function setReading(onR) {
+    root.classList.toggle("reading", onR);
+    readBtn?.setAttribute("aria-pressed", String(onR));
+    store.set("read", onR ? "1" : "");
+    reflow();
+    linksNow();
+  }
+  if (store.get("read") === "1" || /[?&]read\b/.test(location.search)) root.classList.add("reading");
+  readBtn?.setAttribute("aria-pressed", String(root.classList.contains("reading")));
+  readBtn?.addEventListener("click", () => {
+    const top = slides.find(s => s.getBoundingClientRect().bottom > 80);
+    setReading(!root.classList.contains("reading"));
+    top && requestAnimationFrame(() => top.scrollIntoView({ block: "start" }));
+  });
+  document.addEventListener("keydown", e => {
+    if ((e.key === "r" || e.key === "R") && !e.ctrlKey && !e.metaKey && !e.altKey && !root.classList.contains("presenting") && !e.target.closest("input, textarea, [contenteditable]")) readBtn?.click();
+  });
+  reflow();
+  addEventListener("resize", reflow);
 
   /* ------------------------------------------------ scroll view: zoom the 1920×1080 stage to the column */
   function fit() {
@@ -79,7 +122,7 @@
       svg.innerHTML = paths.join("");
     });
   }
-  const linksNow = () => { if (innerWidth > 760 || root.classList.contains("presenting") || root.classList.contains("printing")) drawLinks(); };
+  function linksNow() { if (!root.classList.contains("reflow")) drawLinks(); }
   document.fonts.ready.then(linksNow);
   addEventListener("resize", linksNow);
 
@@ -111,10 +154,10 @@
   const links = $$(".nav__menu a");
   const order = links.map(a => a.hash.slice(1));
   const bar = $("#progress");
-  let ticking = false;
+  let ticking = false, paused = false;
   function onScroll() {
     ticking = false;
-    if (root.classList.contains("presenting")) return;
+    if (paused) return;
     const y = scrollY, max = root.scrollHeight - innerHeight;
     bar.style.transform = `scaleX(${max > 0 ? Math.min(1, y / max) : 0})`;
     const line = y + innerHeight * .35;
@@ -159,10 +202,11 @@
 
   /* ------------------------------------------------ reveal + count-up as slides enter */
   const counts = $$(".count");
+  let io = null;
   if (!("IntersectionObserver" in window) || reduce) {
     slides.forEach(s => s.classList.add("is-in"));
   } else {
-    const io = new IntersectionObserver(es => es.forEach(e => {
+    io = new IntersectionObserver(es => es.forEach(e => {
       if (!e.isIntersecting) return;
       e.target.classList.add("is-in");
       $$(".count", e.target).forEach(countUp);
@@ -170,5 +214,10 @@
     }), { threshold: .08 });
     slides.forEach(s => io.observe(s));
   }
-  window.MNE = { slides, N, fit, counts, drawLinks };
+  // presentation mode: no scroll-spy, no observers (MNEPresent marks every slide is-in)
+  function pauseScroll(p) {
+    paused = p;
+    if (p && io) { io.disconnect(); io = null; }
+  }
+  window.MNE = { slides, N, fit, counts, drawLinks, reflow, pauseScroll, tplOf };
 })();

@@ -113,3 +113,13 @@ Word file too); everything else is **left as in the paper** for you to decide.
     FIE, JV, M&A, BEPS, WTO, RCEP, VCCI, VAFIE, VGP, VOV, NSO (implied),
     HQ, CEO, CSR, COVID-19, US$. The website adds those it uses to its
     abbreviation slide, marked "added by the website".
+
+## Website v3 notes
+
+18. Bullets summarise the paper's text and never add to it; the full text of every slide is in its
+    notes and in reading mode. Numbers and names that are only in the notes are listed in
+    `content/COVERAGE.md` (mostly long official names, e.g. "Guidelines for Multinational Enterprises
+    on Responsible Business Conduct", "Formosa Plastics Group").
+19. The Introduction still says the paper "consists of three chapters" (#1): the bullet keeps
+    "Three chapters" and "Chapter 3" as written; the website's own cards beside it show the two
+    current chapters.

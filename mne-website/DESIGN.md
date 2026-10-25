@@ -65,9 +65,17 @@ Lê Trung Kiên, Ngô Anh Tuấn, Nguyễn Thị Mai Hoa, Việt Nam").
 - Paper grain: `assets/img/paper.webp` (fine noise, multiply).
 - Watercolour: `assets/img/wash.webp` (pre-rendered turbulence blotches) under
   a `--wash-2 → --wash-3` gradient.
-- Engravings: single-colour SVG, stroke `--slate-ink`, hatching for shade.
+- Engravings: single-colour SVG, stroke `--slate-ink`, hatching for shade; the large ones are served as 2× WebP (no runtime filter or shadow).
+
+### Bullets
+- First-level bullets 32 px (30 px inside cards), sub-bullets 28 px, on the 1920 stage; marker = a small
+  brick-red compass point (ring + centre dot, `--accent`: blush on the watercolour); `+` / `−` markers in
+  the advantage / disadvantage ledgers. Each bullet opens with a bold keyword phrase.
+- One-line summaries above a table or a card grid: `.lede` (accent rule on the left).
+- Reading mode / phone: 17 px bullets; reading mode hides every summary and shows the full text.
 
 ### Motion
+- Presentation: see MORPH.md (`js/morph.config.js`).
 - Reveal on scroll: 14px rise + fade, 600ms, `cubic-bezier(.2,.7,.2,1)`.
 - Count-up for key numbers, 1.2s ease-out; final value is in the HTML.
 - Hover: cards lift 2px, links underline from left.
@@ -76,7 +84,7 @@ Lê Trung Kiên, Ngô Anh Tuấn, Nguyễn Thị Mai Hoa, Việt Nam").
 ## 3. Slide stage (paper v2)
 
 Every slide is a `<section class="slide">` with a fixed **1920×1080** design size
-(padding 84/120/92 px). Body text 26 px, lead 30 px, cards 23 px, tables 20 px (≥ 18 px),
+(padding 84/120/92 px), generated from `content/deck.json`. Bullets 32 px, card bullets 30 px, tables 20 px (≥ 18 px),
 titles 66 px; nothing scrolls inside a slide and no slide continues onto the next one:
 long sections are split into meaningful units (one paragraph pair, one card group, one
 table, one figure) marked "(cont.)". `tools/check-layout.mjs` enforces it.
@@ -86,8 +94,11 @@ Chrome added to every slide by `js/main.js` (all with morph keys): background la
 small engraving top-right (`ctag`, `emblem`), page counter `n / N` (`pno`, computed).
 
 Views: scroll view zooms the stage to the column (`--z`), presentation letterboxes it
-(`--pz`), print uses it 1:1 on a 1920×1080 page; below 760 px the scroll view reflows
-(stage size released, grids to one column, tables scroll sideways).
+(`--pz`), print uses it 1:1 on a 1920×1080 page; below 760 px, and in reading mode, the slides reflow
+(`html.reflow`: stage size released, grids to one column, tables scroll sideways).
+
+Templates (set by `js/main.js` as `data-tpl`): cover, opener, bullets, cards, table, figure, chart,
+numbers, quote, list, thanks. Neighbours of the same template keep their dots and compass in place.
 
 Figures 1.1–1.3 are HTML diagrams (boxes + SVG connectors drawn by `drawLinks`), Figure
 1.3 doubles as the interactive I-R matrix linked to Table 1.4; Figures 2.1–2.2 are HTML

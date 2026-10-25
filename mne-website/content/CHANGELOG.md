@@ -55,3 +55,26 @@ missing from the paper's list (see the abbreviations slide; ISSUES #12).
   in HTML with the labels of the paper; Figures 2.1 and 2.2 rebuilt from Tables 2.3 and 2.4
   (2025 bar darker, as in the paper).
 * Lists of tables (11) and figures (5) and the abbreviation count are generated from the page.
+
+## Website v3: bullets, single content source, new Morph
+
+* **Single content source.** `content/deck.json` (every slide: `bullets` shown, `full` = the paper's
+  text verbatim) + `content/slides/<id>.html` (layout only) → `tools/build.mjs` → `index.html`. The
+  presentation, scroll view, reading mode, speaker notes, presenter window and PDF all read it.
+* **Prose → bullets** on 40 slides (181 bullets): ≤ 6 first-level bullets per slide, ≤ 3 sub-bullets,
+  ≤ ~20 words, a bold keyword first; numbers, years, names, laws and citations unchanged; no fact
+  added (checked by `scripts/verify-bullets.mjs`). Cards (6 characteristics, 4 legal forms, 3
+  competitive strategies, 6 value-chain strategies, 6 recommendations) keep their layout with 1–2
+  bullet lines each; the advantages / disadvantages ledgers became `+` / `−` bullets; short
+  transition sentences ("…identifies several common characteristics.", "Table 2.1 summarises these
+  effects.") are only in the notes. Paragraph-long intros above a table became one-line ledes.
+* **Splits** (more than six bullets): 1.1.1 Concept → (1/3) definitions, (2/3) statistics + 10 %
+  threshold, (3/3) two points; 2.2.2 Scale of FDI → (1/2) 2025 figures, (2/2) sectors and 2026 (two
+  callouts with figures of the same paragraph: 56.5 %, US$24.81 bn). 63 → **65 slides**.
+* **Tables**: cells over ~14 words shortened on the slide, full text in notes / reading mode (Table 1.1:
+  2 cells, Table 2.1: 4, Table 2.2: 3). Tables with more than 4 columns or 6 rows (1.4, 1.6, 2.2,
+  2.3, 2.4) highlight one row per step.
+* **Reading mode** ("Đọc", R), **speaker notes** (N), **presenter window** (S), **steps**
+  (Từng bước | Hiện hết).
+* **Morph rebuilt** for speed (PERF.md: 8 → ~58 FPS) with eight signature effects and presets
+  Cinematic | Classic | Fade | Tắt (MORPH.md). Large engravings pre-rendered to 2× WebP.

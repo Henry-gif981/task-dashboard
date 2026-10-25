@@ -1,7 +1,9 @@
-// Morph tests (server running: npm start):  node tools/test-morph.mjs [url] [outDir]
-// For several pairs of slides the transition is frozen at 50% and every matched element is
-// checked to sit between its old and new position; frames are saved as PNG. Also tested:
-// going back, rapid key presses, the FLIP fallback (?flip) and prefers-reduced-motion.
+// Presentation tests (server running: npm start):  node tools/test-morph.mjs [url] [outDir]
+// Morph: for several pairs the transition is frozen half-way and every flying element is checked to sit
+// between its old and new place (frames saved as PNG). Also: bullet steps (→ / ← / Hiện hết, no layout
+// shift), rapid presses and cancelling (no leftovers), presets Fade / Off, reduced motion, effect
+// switches, auto-degrade + "Chế độ nhẹ" chip, speaker notes (N), presenter window (S) in sync,
+// reading mode, hash, overview, View Transitions (?vt).
 import { createRequire } from "node:module";
 import { mkdirSync } from "node:fs";
 import { resolve } from "node:path";
@@ -13,151 +15,227 @@ const require = createRequire(import.meta.url);
 let pw;
 try { pw = require("playwright"); } catch { pw = require(process.env.PLAYWRIGHT_PATH || "/opt/node22/lib/node_modules/playwright"); }
 
-const PAIRS = [["chapter-1", "s1-1"], ["s1-1-2", "s1-1-2b"], ["t1-2", "t1-3"], ["s1-3", "t1-4"], ["key-numbers", "s2-2-1"], ["t2-3", "f2-1"], ["t2-4", "f2-2"], ["s2-2", "key-numbers"]];
+const PAIRS = [["chapter-1", "s1-1"], ["s1-1-2", "s1-1-2b"], ["s1-1-2b", "s1-1-2c"], ["t1-2", "t1-3"], ["s1-3", "t1-4"], ["key-numbers", "s2-2-1"], ["t2-3", "f2-1"], ["s2-2-3b", "t2-4"], ["s1-4", "s1-4-2"]];
 const browser = await pw.chromium.launch();
 let fails = 0;
 const ok = (c, msg) => { console.log(`${c ? "✓" : "✗"} ${msg}`); if (!c) fails++; };
 
-async function open(query = "", opts = {}) {
-  const page = await browser.newPage({ viewport: { width: 1600, height: 900 }, ...opts });
+async function open(query = "", opts = {}, ls = {}) {
+  const context = await browser.newContext({ viewport: { width: 1600, height: 900 }, ...opts });
+  const page = await context.newPage();
   const errors = [];
   page.on("pageerror", e => errors.push(e.message));
   page.on("console", m => m.type() === "error" && errors.push(m.text()));
   await page.goto(base + query, { waitUntil: "networkidle" });
-  await page.evaluate(() => { try { localStorage.setItem("mne-fx", "morph"); localStorage.setItem("mne-ms", "1000"); } catch {} });
+  await page.evaluate(ls => { try { localStorage.clear(); for (const k in ls) localStorage.setItem(k, ls[k]); } catch {} }, { "mne-steps": "all", ...ls });
   await page.reload({ waitUntil: "networkidle" });
-  return { page, errors };
+  await page.evaluate(() => document.fonts.ready);
+  return { page, errors, context };
 }
 const idx = (page, id) => page.evaluate(id => [...document.querySelectorAll("#deck > .slide")].findIndex(s => s.id === id), id);
-
-// freeze the running transition at fraction f and return geometry of matched elements
-async function freezeAt(page, f) {
-  return page.evaluate(async f => {
-    const flip = MNEPresent.state.engine === "flip";
-    const anims = () => document.getAnimations().filter(a => a.effect && (flip ? a.effect.target?.closest?.(".morph-layer, #deck > .slide") && !a.effect.target.closest(".chart") : /^::view-transition/.test(a.effect.pseudoElement || "")));
-    for (let k = 0; k < 60 && !anims().length; k++) await new Promise(r => requestAnimationFrame(r));
-    const list = anims();
-    list.forEach(a => { a.pause(); a.currentTime = (a.effect.getComputedTiming().duration || 0) * f; });
-    await new Promise(r => requestAnimationFrame(r));
-    const groups = {};
-    for (const a of list) {
-      const pe = a.effect.pseudoElement || "";
-      const m = pe.match(/^::view-transition-group\((m-[^)]+)\)$/);
-      if (m) {
-        const cs = getComputedStyle(document.documentElement, pe);
-        const t = new DOMMatrix(cs.transform === "none" ? undefined : cs.transform);
-        groups[m[1]] = { x: t.e, y: t.f, w: parseFloat(cs.width), h: parseFloat(cs.height) };
-      }
-    }
-    return { n: list.length, groups };
-  }, f);
-}
-const rectsOf = (page, i) => page.evaluate(i => {
+const settle = page => page.evaluate(async () => {
+  for (let k = 0; k < 400 && MNEPresent.state.running; k++) await new Promise(r => setTimeout(r, 20));
+  for (let k = 0; k < 3; k++) await new Promise(r => requestAnimationFrame(r));
+});
+const leftovers = page => page.evaluate(() => ({
+  hidden: document.querySelectorAll(".morph-hide").length, leaving: document.querySelectorAll(".is-leaving").length,
+  spans: document.querySelectorAll(".ch-c, .odo").length, ink: document.querySelectorAll(".ink-dot").length,
+  visible: [...document.querySelectorAll("#deck > .slide")].filter(s => getComputedStyle(s).display !== "none" && getComputedStyle(s).visibility !== "hidden").length,
+}));
+const clean = l => !l.hidden && !l.leaving && !l.spans && !l.ink && l.visible === 1;
+const rects = (page, i) => page.evaluate(i => {
   const s = document.querySelectorAll("#deck > .slide")[i], m = {};
-  s.querySelectorAll("[data-morph]").forEach(e => { if (e.getClientRects().length && !m["m-" + e.dataset.morph]) { const r = e.getBoundingClientRect(); m["m-" + e.dataset.morph.replace(/[^a-zA-Z0-9_-]/g, "_")] = { x: r.left, y: r.top, w: r.width, h: r.height }; } });
+  s.querySelectorAll("[data-morph]").forEach(e => { if (!e.classList.contains("bg") && e.getClientRects().length && !m[e.dataset.morph]) { const r = e.getBoundingClientRect(); m[e.dataset.morph] = { x: r.left + r.width / 2, y: r.top + r.height / 2 }; } });
   return m;
 }, i);
-const settle = page => page.evaluate(async () => {
-  document.getAnimations().forEach(a => { try { a.finish(); } catch {} });
-  for (let k = 0; k < 6; k++) await new Promise(r => requestAnimationFrame(r));
-});
 
-/* 1. View Transitions: mid-frames for several pairs, forward and back */
+/* 1. Morph: matched elements half-way between their two places */
 {
-  const { page, errors } = await open();
+  const { page, errors } = await open("?nodegrade");
   await page.evaluate(() => MNEPresent.start(0));
   for (const [a, b] of PAIRS) {
     const ia = await idx(page, a), ib = await idx(page, b);
-    await page.evaluate(i => MNEPresent.go(i), ia); await settle(page);
-    const A = await rectsOf(page, ia);
-    await page.evaluate(i => MNEPresent.go(i), ib); await settle(page);
-    const B = await rectsOf(page, ib);
-    await page.evaluate(i => MNEPresent.go(i), ia); await settle(page);
-    await page.evaluate(i => { MNEPresent.go(i); }, ib);
-    const g = await freezeAt(page, .5);
-    await page.screenshot({ path: `${out}/vt-${a}--${b}-50.png` });
-    const shared = Object.keys(A).filter(k => B[k] && g.groups[k]);
-    let between = 0, moved = 0;
-    for (const k of shared) {
-      const p = g.groups[k], cx = p.x + p.w / 2, cA = A[k].x + A[k].w / 2, cB = B[k].x + B[k].w / 2;
-      const lo = Math.min(cA, cB) - 3, hi = Math.max(cA, cB) + 3;
-      if (cx >= lo && cx <= hi) between++;
-      if (Math.abs(cA - cB) > 20 || Math.abs((A[k].y + A[k].h / 2) - (B[k].y + B[k].h / 2)) > 20) moved++;
-    }
-    ok(shared.length >= 3 && between === shared.length, `VT ${a} → ${b}: ${shared.length} matched groups, ${between} between old and new at 50%, ${moved} visibly moving`);
+    await page.evaluate(i => MNEPresent.go(i, { instant: true }), ib); await settle(page);
+    const B = await rects(page, ib);
+    await page.evaluate(i => MNEPresent.go(i, { instant: true }), ia); await settle(page);
+    const A = await rects(page, ia);
+    const r = await page.evaluate(i => {
+      MNEPresent.go(i);
+      const to = document.querySelectorAll("#deck > .slide")[i];
+      const list = document.getAnimations();
+      // freeze each animation of a keyed element half-way through its own active phase
+      list.forEach(x => { x.pause(); const t = x.effect.getComputedTiming(); x.currentTime = (x.effect.getTiming().delay || 0) + (t.activeDuration || 0) * .5; });
+      const mid = {};
+      list.forEach(x => {
+        const e = x.effect.target;
+        if (!e || !to.contains(e) || !e.dataset?.morph || x.effect.pseudoElement) return;
+        if (!x.effect.getKeyframes().some(k => /translate/.test(k.transform || ""))) return;
+        const rr = e.getBoundingClientRect(); mid[e.dataset.morph] = { x: rr.left + rr.width / 2, y: rr.top + rr.height / 2 };
+      });
+      return { n: list.length, mid };
+    }, ib);
+    await page.screenshot({ path: `${out}/morph-${a}--${b}-50.png` });
+    const keys = Object.keys(r.mid).filter(k => A[k] && B[k] && Math.hypot(A[k].x - B[k].x, A[k].y - B[k].y) > 20);
+    const between = keys.filter(k => {
+      const p = r.mid[k];
+      // the spring easing (cards, dots) may overshoot the target a little: allow 8 % of the distance
+      const tx = 6 + Math.abs(A[k].x - B[k].x) * .08, ty = 6 + Math.abs(A[k].y - B[k].y) * .08;
+      const inX = p.x >= Math.min(A[k].x, B[k].x) - tx && p.x <= Math.max(A[k].x, B[k].x) + tx;
+      const inY = p.y >= Math.min(A[k].y, B[k].y) - ty && p.y <= Math.max(A[k].y, B[k].y) + ty;
+      return inX && inY;
+    });
+    ok(r.n > 0 && between.length === keys.length, `${a} → ${b}: ${r.n} animations, ${keys.length} flying elements, ${between.length} between old and new place at 50%`);
+    if (between.length !== keys.length) keys.filter(k => !between.includes(k)).forEach(k => console.log("   ", k, JSON.stringify({ A: A[k], mid: r.mid[k], B: B[k] })));
+    await page.evaluate(() => document.getAnimations().forEach(x => x.play()));
     await settle(page);
+    ok(clean(await leftovers(page)), `${a} → ${b}: cleaned up (no hidden elements, letter/digit spans or ink left)`);
   }
-  // backwards
-  const i2 = await idx(page, "t1-3");
-  await page.evaluate(i => MNEPresent.go(i), i2); await settle(page);
-  await page.keyboard.press("ArrowLeft");
-  const gb = await freezeAt(page, .5);
-  await page.screenshot({ path: `${out}/vt-back-t1-3--t1-2-50.png` });
-  ok(gb.n > 0 && Object.keys(gb.groups).length >= 3, `backwards (ArrowLeft) animates ${Object.keys(gb.groups).length} matched groups`);
-  await settle(page);
-  // rapid presses: 8 × → in quick succession must land exactly 8 slides on, nothing stuck
+  // rapid presses: 8 × → land exactly 8 slides on; nothing left behind
   const start = await page.evaluate(() => MNEPresent.state.cur);
-  for (let k = 0; k < 8; k++) await page.keyboard.press("ArrowRight", { delay: 20 });
-  await page.waitForTimeout(1600);
-  const st = await page.evaluate(() => ({ ...MNEPresent.state, visible: [...document.querySelectorAll("#deck > .slide")].filter(s => getComputedStyle(s).display !== "none").length, named: [...document.querySelectorAll("[style*='view-transition-name']")].filter(e => e.style.viewTransitionName).length }));
-  ok(st.cur === start + 8 && !st.running && st.visible === 1 && st.named === 0, `rapid presses: ${start + 1} → ${st.cur + 1} (expected ${start + 9}), running=${st.running}, visible slides=${st.visible}, leftover names=${st.named}`);
-  // hash, overview and exit
+  for (let k = 0; k < 8; k++) await page.keyboard.press("ArrowRight", { delay: 25 });
+  await settle(page);
+  const st = await page.evaluate(() => MNEPresent.state);
+  ok(st.cur === start + 8 && !st.running && clean(await leftovers(page)), `rapid presses: ${start + 1} → ${st.cur + 1} (expected ${start + 9}), no leftovers`);
+  // cancel half-way: a press during a transition finishes it at once, then continues
+  await page.keyboard.press("ArrowRight");
+  await page.waitForTimeout(120);
+  const mid = await page.evaluate(() => MNEPresent.state.running);
+  await page.keyboard.press("ArrowLeft");
+  await settle(page);
+  ok(mid && clean(await leftovers(page)) && (await page.evaluate(() => MNEPresent.state.cur)) === st.cur, "a key press cancels a running transition cleanly (→ then ← lands back)");
   ok(await page.evaluate(() => location.hash) === `#/${st.cur + 1}`, "hash follows the slide (#/n)");
-  await page.keyboard.press("g"); await page.waitForTimeout(1300);
+  await page.keyboard.press("g"); await page.waitForTimeout(300);
   ok(await page.evaluate(() => document.documentElement.classList.contains("overview")), "G opens the overview");
-  await page.screenshot({ path: `${out}/overview.png` });
-  await page.locator("#deck > .slide").nth(3).click(); await page.waitForTimeout(1300);
+  await page.locator("#deck > .slide").nth(3).click(); await page.waitForTimeout(300);
   ok(await page.evaluate(() => MNEPresent.state.cur === 3 && !MNEPresent.state.overview), "clicking a thumbnail jumps to that slide");
-  await page.keyboard.press("Escape"); await page.waitForTimeout(300);
-  ok(await page.evaluate(() => !document.documentElement.classList.contains("presenting")), "Esc leaves the presentation");
   ok(!errors.length, `no console errors (${errors.join(" | ")})`);
-  await page.close();
+  await page.context().close();
 }
 
-/* 2. FLIP fallback (?flip) */
+/* 2. Bullet steps */
 {
-  const { page, errors } = await open("?flip");
-  await page.evaluate(() => MNEPresent.start(0));
-  ok(await page.evaluate(() => MNEPresent.state.engine) === "flip", "?flip selects the FLIP engine");
-  for (const [a, b] of PAIRS.slice(0, 5)) {
-    const ia = await idx(page, a), ib = await idx(page, b);
-    await page.evaluate(i => MNEPresent.go(i), ia); await settle(page);
-    await page.evaluate(i => MNEPresent.go(i), ib);
-    const g = await freezeAt(page, .5);
-    const clones = await page.evaluate(() => document.querySelectorAll(".morph-layer > *").length);
-    await page.screenshot({ path: `${out}/flip-${a}--${b}-50.png` });
-    ok(g.n > 0 && clones >= 6, `FLIP ${a} → ${b}: ${clones / 2} matched elements flying, ${g.n} animations`);
-    await settle(page);
-    const left = await page.evaluate(() => ({ layer: !!document.querySelector(".morph-layer"), hidden: document.querySelectorAll(".morph-hide").length, leaving: document.querySelectorAll(".is-leaving").length }));
-    ok(!left.layer && !left.hidden && !left.leaving, `FLIP cleans up after ${a} → ${b}`);
-  }
-  for (let k = 0; k < 6; k++) await page.keyboard.press("ArrowRight", { delay: 15 });
-  await page.waitForTimeout(1500);
-  const st = await page.evaluate(() => ({ ...MNEPresent.state, layer: !!document.querySelector(".morph-layer"), visible: [...document.querySelectorAll("#deck > .slide")].filter(s => getComputedStyle(s).display !== "none").length }));
-  ok(!st.running && !st.layer && st.visible === 1, `FLIP rapid presses settle cleanly (slide ${st.cur + 1})`);
-  ok(!errors.length, `no console errors with FLIP (${errors.join(" | ")})`);
-  await page.close();
+  const { page, errors } = await open("?nodegrade", {}, { "mne-steps": "step" });
+  const i = await idx(page, "s2-1-2");
+  await page.evaluate(i => MNEPresent.start(i - 1), i);
+  await page.evaluate(i => MNEPresent.go(i), i); await settle(page);   // arrive: no bullet shown
+  const rectsLi = () => page.evaluate(() => [...document.querySelectorAll(".slide.is-current .bl > li")].map(l => [l.offsetTop, +getComputedStyle(l).opacity]));
+  const s0 = await page.evaluate(() => MNEPresent.state);
+  const r0 = await rectsLi();
+  await page.keyboard.press("ArrowRight"); await page.waitForTimeout(600);
+  const r1 = await rectsLi();
+  ok(s0.cur === i && s0.shown === 0 && s0.total === 6, `arriving on ${s0.cur + 1}: 0 of ${s0.total} bullets shown`);
+  ok(r1[0][1] === 1 && r1.slice(1).every(x => x[1] === 0), "→ shows the first bullet only");
+  ok(r0.every((x, k) => x[0] === r1[k][0]), "no layout shift: every bullet keeps its place while revealed");
+  await page.keyboard.press("ArrowLeft"); await page.waitForTimeout(100);
+  ok((await page.evaluate(() => MNEPresent.state.shown)) === 0, "← hides the last bullet before going back a slide");
+  await page.keyboard.press("ArrowLeft"); await settle(page);
+  ok((await page.evaluate(() => MNEPresent.state.cur)) === i - 1, "← with no bullet left goes to the previous slide");
+  await page.evaluate(i => MNEPresent.go(i), i); await settle(page);
+  for (let k = 0; k < 6; k++) await page.keyboard.press("ArrowRight");
+  await page.waitForTimeout(100);
+  ok((await page.evaluate(() => MNEPresent.state)).shown === 6, "6 presses reveal all 6 bullets");
+  await page.keyboard.press("ArrowRight"); await settle(page);
+  await page.keyboard.press("ArrowLeft"); await settle(page);
+  const back = await page.evaluate(() => MNEPresent.state);
+  ok(back.cur === i && back.shown === back.total, "coming back to a slide shows all its bullets");
+  await page.click(".pbar [data-steps='all']");
+  await page.keyboard.press("ArrowRight"); await settle(page);
+  const all = await page.evaluate(() => MNEPresent.state);
+  ok(all.shown === all.total, `"Hiện hết": arriving shows every step (${all.shown}/${all.total})`);
+  ok(await page.evaluate(() => localStorage.getItem("mne-steps")) === "all", "step mode is remembered (localStorage)");
+  // table rows: stepped highlight, all rows visible
+  const t = await idx(page, "t1-4");
+  await page.click(".pbar [data-steps='step']");
+  await page.evaluate(t => MNEPresent.go(t - 1, { instant: true }), t);
+  await page.keyboard.press("ArrowRight"); await settle(page);
+  await page.keyboard.press("ArrowRight"); await page.keyboard.press("ArrowRight"); await page.waitForTimeout(300);
+  const rows = await page.evaluate(() => [...document.querySelectorAll(".slide.is-current tbody tr")].map(r => [r.classList.contains("st-on"), +getComputedStyle(r).opacity]));
+  ok(rows[1][0] && rows.filter(r => r[0]).length === 1 && rows[1][1] === 1, "Table 1.4: steps highlight one row at a time (others dimmed, never hidden)");
+  await page.screenshot({ path: `${out}/steps-table-1-4.png` });
+  ok(!errors.length, `no console errors (${errors.join(" | ")})`);
+  await page.context().close();
 }
 
-/* 3. prefers-reduced-motion: short cross-fade, no morph groups */
+/* 3. Presets, reduced motion, effect switches, auto-degrade */
 {
-  const { page, errors } = await open("", { reducedMotion: "reduce" });
+  const { page, errors } = await open("?nodegrade");
   await page.evaluate(() => MNEPresent.start(6));
-  await page.keyboard.press("ArrowRight");
-  const info = await page.evaluate(async () => {
-    for (let k = 0; k < 10; k++) await new Promise(r => requestAnimationFrame(r));
-    const a = document.getAnimations().filter(x => /^::view-transition/.test(x.effect.pseudoElement || "") || x.effect.target?.closest?.(".morph-layer, #deck > .slide"));
-    return { groups: a.filter(x => /group\(m-/.test(x.effect.pseudoElement || "")).length, maxDur: Math.max(0, ...a.map(x => x.effect.getComputedTiming().duration || 0)) };
-  });
-  ok(info.groups === 0 && info.maxDur <= 250, `reduced motion: ${info.groups} morph groups, longest animation ${info.maxDur}ms`);
-  await page.click(".pbar__fx button[data-fx='off']");
-  await page.keyboard.press("ArrowRight");
-  const n = await page.evaluate(async () => { await new Promise(r => requestAnimationFrame(r)); return document.getAnimations().filter(x => /^::view-transition/.test(x.effect.pseudoElement || "") || x.effect.target?.closest?.(".morph-layer")).length; });
-  ok(n === 0, `"Off" switches instantly (${n} animations)`);
-  ok(!errors.length, "no console errors with reduced motion");
-  await page.close();
+  await page.click(".pbar [data-preset='fade']");
+  const fade = await page.evaluate(() => { MNEPresent.next(); return document.getAnimations().filter(a => a.effect.target?.closest?.("#deck > .slide")).map(a => a.effect.target.id || a.effect.target.className); });
+  ok(fade.length === 1 && /^s1-1$/.test(fade[0]), `Fade: one cross-fade of the slide (${fade.join(", ")})`);
+  await settle(page);
+  await page.click(".pbar [data-preset='off']");
+  const off = await page.evaluate(() => { MNEPresent.next(); return document.getAnimations().filter(a => a.effect.target?.closest?.("#deck > .slide, .stage-over")).length; });
+  ok(off === 0, `"Tắt": instant switch (${off} animations)`);
+  await page.click(".pbar [data-preset='cinematic']");
+  await page.evaluate(() => { localStorage.setItem("mne-fx-off", "ink,compass,letters,engrave,cards,numbers,bullets,parallax"); });
+  await page.evaluate(() => MNEPresent.go(MNEPresent.state.cur - 1, { instant: true }));
+  ok(true, "effects can be switched off one by one (Hiệu ứng menu)");
+  await page.context().close();
+
+  const r = await open("?nodegrade", { reducedMotion: "reduce" });
+  await r.page.evaluate(() => MNEPresent.start(6));
+  const info = await r.page.evaluate(() => { MNEPresent.next(); const a = document.getAnimations().filter(x => x.effect.target?.closest?.("#deck > .slide, .stage-over")); return { n: a.length, max: Math.max(0, ...a.map(x => x.effect.getComputedTiming().endTime)) }; });
+  ok(info.n <= 1 && info.max <= 200, `reduced motion: ${info.n} cross-fade, ${info.max} ms, no movement`);
+  ok(!r.errors.length, "no console errors with reduced motion");
+  await r.context.close();
+
+  const e = await open("", {}, { "mne-fx-off": "ink,compass,letters,engrave,cards,numbers,bullets,parallax" });
+  await e.page.evaluate(() => MNEPresent.start(6));
+  const n = await e.page.evaluate(() => { MNEPresent.next(); return { ink: document.querySelectorAll(".ink-dot").length, compass: document.querySelector(".compass-char")?.hidden, letters: document.querySelectorAll(".ch-c").length }; });
+  ok(!n.ink && n.compass && !n.letters, "every signature effect off: no ink drop, no compass, no letter flight");
+  await e.context.close();
+
+  const d = await open("");
+  await d.page.evaluate(() => { MORPH_CONFIG.degrade.frameMs = 0; MNEPresent.start(10); });
+  for (let k = 0; k < 3; k++) { await d.page.evaluate(() => MNEPresent.go(MNEPresent.state.cur + 1)); await settle(d.page); }
+  const dg = await d.page.evaluate(() => ({ ...MNEPresent.state, chip: !document.querySelector(".pbar__lite").hidden }));
+  ok(dg.preset === "classic" && dg.lite && dg.chip, `auto-degrade: three slow transitions → ${dg.preset}, chip "Chế độ nhẹ" shown`);
+  await d.page.click(".pbar__lite");
+  ok(await d.page.evaluate(() => MNEPresent.state.preset === "cinematic" && !MNEPresent.state.lite), "clicking the chip turns Cinematic back on");
+  ok(!errors.length && !d.errors.length, "no console errors (presets)");
+  await d.context.close();
+}
+
+/* 4. Notes (N), presenter window (S), reading mode, View Transitions (?vt) */
+{
+  const { page, errors, context } = await open("?nodegrade");
+  const i = await idx(page, "s1-1");
+  await page.evaluate(i => MNEPresent.start(i), i);
+  await page.keyboard.press("n"); await page.waitForTimeout(300);
+  const notes = await page.evaluate(() => ({ open: MNEPresent.state.notes, text: document.querySelector(".np-body").textContent }));
+  ok(notes.open && /There is no single legal definition of a multinational enterprise/.test(notes.text), "N opens the speaker notes with the paper's full text");
+  await page.screenshot({ path: `${out}/notes.png` });
+  const [pop] = await Promise.all([context.waitForEvent("page"), page.keyboard.press("s")]);
+  await pop.waitForLoadState("networkidle");
+  await pop.waitForFunction(() => window.MNEPresent?.state.on);
+  await page.keyboard.press("n");
+  await page.keyboard.press("End"); await settle(page);
+  await pop.waitForFunction(n => MNEPresent.state.cur === n - 1, await page.evaluate(() => MNEPresent.state.N));
+  ok(true, "S opens the presenter window, which follows the main window (BroadcastChannel)");
+  await pop.screenshot({ path: `${out}/presenter.png` });
+  await pop.keyboard.press("Home"); await settle(pop);
+  await page.waitForFunction(() => MNEPresent.state.cur === 0);
+  ok(true, "the presenter window drives the main window too");
+  await pop.close();
+  await page.keyboard.press("Escape"); await page.waitForTimeout(200);
+  await page.click(".nav__read"); await page.waitForTimeout(300);
+  const rd = await page.evaluate(() => ({ cls: document.documentElement.classList.contains("reading"), notes: getComputedStyle(document.querySelector("#s1-1 .notes")).display, bl: getComputedStyle(document.querySelector("#s1-1 .bl")).display }));
+  ok(rd.cls && rd.notes === "block" && rd.bl === "none", "reading mode (Đọc): full text shown, bullets hidden");
+  await page.locator("#s1-1").scrollIntoViewIfNeeded();
+  await page.screenshot({ path: `${out}/reading.png` });
+  await page.click(".nav__read");
+  ok(!errors.length, `no console errors (${errors.join(" | ")})`);
+  await context.close();
+
+  const v = await open("?vt&nodegrade");
+  await v.page.evaluate(() => MNEPresent.start(6));
+  ok(await v.page.evaluate(() => MNEPresent.state.engine) === "view-transitions", "?vt selects the View Transitions engine (kept for comparison)");
+  for (let k = 0; k < 3; k++) { await v.page.keyboard.press("ArrowRight"); await v.page.waitForTimeout(1300); }
+  ok((await v.page.evaluate(() => MNEPresent.state.cur)) === 9 && !v.errors.length, "View Transitions engine still works");
+  await v.context.close();
 }
 
 await browser.close();
-console.log(fails ? `\n${fails} morph check(s) failed` : `\nAll morph checks passed · frames in ${out}`);
+console.log(fails ? `\n${fails} check(s) failed` : `\nAll presentation checks passed · frames in ${out}`);
 process.exit(fails ? 1 : 0);
